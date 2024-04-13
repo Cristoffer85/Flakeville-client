@@ -4,6 +4,11 @@ import Home from './Home';
 import Account from './Account';
 import Store from './Store';
 import Weather from './Weather';
+import Adminacc from "./AdminAcc.jsx";
+import Employeeacc from "./EmployeeAcc.jsx";
+import AdminAcc from "./AdminAcc.jsx";
+import EmployeeAcc from "./EmployeeAcc.jsx";
+import UserAcc from "./UserAcc.jsx";
 
 function AppRouter() {
     return (
@@ -23,6 +28,9 @@ function AppRouter() {
                     <Route path="/store" element={<Store />} />
                     <Route path="/weather" element={<Weather />} />
                     <Route path="/" element={<Home />} />
+                    <Route path="/admin" element={<AdminAcc />} />
+                    <Route path="/employee" element={<EmployeeAcc />} />
+                    <Route path="/user" element={<UserAcc />} />
                 </Routes>
             </div>
         </Router>

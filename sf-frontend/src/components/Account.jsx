@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Account() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
     const handleLogin = async (event) => {
         event.preventDefault();
@@ -30,6 +32,24 @@ function Account() {
                 // Login was successful
                 // Save the token and user data in the state or local storage
                 console.log('Login successful:', data);
+
+                // Redirect based on authority
+
+                console.log('Role:', data.role);
+
+                switch (data.role.authority) {
+                    case 'ADMIN':
+                        navigate('/admin');
+                        break;
+                    case 'EMPLOYEE':
+                        navigate('/employee');
+                        break;
+                    case 'USER':
+                        navigate('/user');
+                        break;
+                    default:
+                        console.log('Unknown role:', data.role.authority);
+                }
             } else {
                 // Login failed
                 console.log('Login failed:', data);
