@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 function User() {
-    const [username, setUsername] = useState('user');
+    const [username] = useState('user');
     const [birthday, setBirthday] = useState('');
     const [address, setAddress] = useState('');
     const [telephone, setTelephone] = useState('');
@@ -20,11 +20,14 @@ function User() {
     const handleUpdate = async (event) => {
         event.preventDefault();
 
+        const token = localStorage.getItem('token'); // Retrieve the token from local storage
+
         try {
             const response = await fetch(`http://localhost:8080/user/${username}`, {
                 method: 'PUT',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}` // Include the user's authentication token
                 },
                 body: JSON.stringify({ birthday, address, telephone, email })
             });

@@ -30,8 +30,10 @@ function Account() {
 
             if (response.ok) {
                 // Login was successful
+                console.log('Server response:', data);
                 // Save the token and user data in the state or local storage
                 console.log('Login successful:', data);
+                localStorage.setItem('token', data.jwt);
 
                 // Redirect based on authority
 
