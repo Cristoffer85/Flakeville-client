@@ -28,7 +28,7 @@ function AppRouter() {
                     <Route path="/" element={<Home />} />
                     <Route path="/admin" element={<AdminAcc />} />
                     <Route path="/employee" element={<EmployeeAcc />} />
-                    <Route path="/user" element={<UserAcc />} />
+                    <Route path="/user/:username" element={<UserAcc />} />
                 </Routes>
             </div>
         </Router>

@@ -1,35 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import {useNavigate} from "react-router-dom";
+import { useParams } from 'react-router-dom';
 
 function User() {
-    const username = localStorage.getItem('username');
+    const { username } = useParams();
     const [birthday, setBirthday] = useState('');
     const [address, setAddress] = useState('');
     const [telephone, setTelephone] = useState('');
     const [email, setEmail] = useState('');
-
     const navigate = useNavigate();
 
-    const handleLogout = () => {
-        // Remove the token and username from local storage
-        localStorage.removeItem('token');
-        localStorage.removeItem('username');
+    const fetchUserData = async () => {};
 
-        // Redirect the user back to the login page
-        navigate('/account');
-    };
-
-
-    // Fetch the user's data when the component mounts
     useEffect(() => {
         fetchUserData().catch(error => console.error('Error:', error));
     }, []);
 
-    const fetchUserData = async () => {
-        // Fetch the user's data from the server
-        // Update the state variables with the fetched data
-    };
-
+    // ### Update user ###
     const handleUpdate = async (event) => {
         event.preventDefault();
 
@@ -55,10 +42,18 @@ function User() {
         }
     };
 
+    // ### Logout user ###
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('username');
+
+        navigate('/account');
+    };
+
     return (
         <div>
             <h1>User Page</h1>
-            <p>Welcome, user! You can manage your account from here.</p>
+            <p>Welcome, {username}! You can manage your account from here.</p>
             <form onSubmit={handleUpdate}>
                 <input type="date" value={birthday} onChange={e => setBirthday(e.target.value)} required/>
                 <input type="text" value={address} onChange={e => setAddress(e.target.value)} required/>
