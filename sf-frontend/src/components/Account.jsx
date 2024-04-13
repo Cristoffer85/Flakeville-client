@@ -34,6 +34,7 @@ function Account() {
                 // Save the token and user data in the state or local storage
                 console.log('Login successful:', data);
                 localStorage.setItem('token', data.jwt);
+                localStorage.setItem('username', data.user.username); // Set the username state variable
 
                 // Redirect based on authority
 

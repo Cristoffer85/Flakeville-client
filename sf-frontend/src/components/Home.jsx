@@ -5,7 +5,7 @@ function Home() {
         backgroundImage: "url('/MainBackground.png')",
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-        height: '100hh', // Adjust the height according to your needs
+        height: '100hh', // Adjust the height according to your needs (vh = viewport height, hh = half of the viewport height, etc.)
         // You can add more background-related styles here, like backgroundRepeat, backgroundAttachment, etc.
     };
 
