@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
+import UserContext from './UserContext'; // import the UserContext
 import {useNavigate} from "react-router-dom";
-import { useParams } from 'react-router-dom';
 
-function User() {
-    const { username } = useParams();
+function User({ isLoggedIn, handleLogout }) {
+    const username = useContext(UserContext); // use the useContext hook to access the username
     const [birthday, setBirthday] = useState('');
     const [address, setAddress] = useState('');
     const [telephone, setTelephone] = useState('');
@@ -16,18 +16,23 @@ function User() {
         fetchUserData().catch(error => console.error('Error:', error));
     }, []);
 
-    // ### Update user ###
+    useEffect(() => {
+        if (!isLoggedIn) {
+            navigate('/account');
+        }
+    }, [isLoggedIn]); // add isLoggedIn as a dependency
+
     const handleUpdate = async (event) => {
         event.preventDefault();
 
-        const token = localStorage.getItem('token'); // Retrieve the token from local storage
+        const token = localStorage.getItem('token');
 
         try {
-            const response = await fetch(`http://localhost:8080/user/${username}`, { // Use the username state variable
+            const response = await fetch(`http://localhost:8080/user/${username}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}` // Include the user's authentication token
+                    'Authorization': `Bearer ${token}`
                 },
                 body: JSON.stringify({ birthday, address, telephone, email })
             });
@@ -42,11 +47,9 @@ function User() {
         }
     };
 
-    // ### Logout user ###
-    const handleLogout = () => {
+    const handleUserLogout = () => {
         localStorage.removeItem('token');
-        localStorage.removeItem('username');
-
+        handleLogout(); // call handleLogout after a successful logout
         navigate('/account');
     };
 
@@ -60,11 +63,10 @@ function User() {
                 <input type="tel" value={telephone} onChange={e => setTelephone(e.target.value)} required/>
                 <input type="email" value={email} onChange={e => setEmail(e.target.value)} required/>
                 <button type="submit">Update</button>
-                <button onClick={handleLogout}>Logout</button>
+                <button onClick={handleUserLogout}>Logout</button>
             </form>
         </div>
     );
-
 }
 
 export default User;

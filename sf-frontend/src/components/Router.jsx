@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './Home';
 import Account from './Account';
 import Store from './Store';
@@ -9,19 +9,19 @@ import EmployeeAcc from "./EmployeeAcc.jsx";
 import UserAcc from "./UserAcc.jsx";
 import Navbar from './Navbar'; // import the Navbar component
 
-function AppRouter() {
+function AppRouter({ isLoggedIn, handleLogin, handleLogout, username }) { // update this line
     return (
         <Router>
             <div>
-                <Navbar /> {}
+                <Navbar />
                 <Routes>
-                    <Route path="/account" element={<Account />} />
+                    <Route path="/account" element={<Account isLoggedIn={isLoggedIn} handleLogin={handleLogin} />} />
                     <Route path="/store" element={<Store />} />
                     <Route path="/weather" element={<Weather />} />
                     <Route path="/" element={<Home />} />
                     <Route path="/admin" element={<AdminAcc />} />
                     <Route path="/employee" element={<EmployeeAcc />} />
-                    <Route path="/user/:username" element={<UserAcc />} />
+                    <Route path="/user/:username" element={<UserAcc isLoggedIn={isLoggedIn} handleLogout={handleLogout} username={username} />} /> {/* update this line */}
                 </Routes>
             </div>
         </Router>

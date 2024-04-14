@@ -6,7 +6,7 @@
     z-index: 1; /* make it appear above the background image */
 }
 
-.navbar-content { /* add this block */
+.navbar-content {
     display: flex;
     align-items: center;
 }
@@ -15,7 +15,9 @@
     list-style-type: none;
     margin: 0;
     padding: 0;
-    overflow: hidden;
+    display: flex; /* add this line */
+    justify-content: space-between; /* add this line */
+    width: 100%; /* add this line */
 }
 
 .navbar li {

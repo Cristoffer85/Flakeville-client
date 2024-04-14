@@ -1,17 +1,19 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function Account() {
+function Account({ isLoggedIn, handleLogin }) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
-    const handleLogin = async (event) => {
-        event.preventDefault();
+    useEffect(() => {
+        if (isLoggedIn) {
+            navigate(`/user/${localStorage.getItem('username')}`);
+        }
+    }, [isLoggedIn]); // add isLoggedIn as a dependency
 
-        console.log('Form submitted');
-        console.log('Username:', username);
-        console.log('Password:', password);
+    const handleUserLogin = async (event) => {
+        event.preventDefault();
 
         try {
             const response = await fetch('http://localhost:8080/auth/login', {
@@ -22,22 +24,13 @@ function Account() {
                 body: JSON.stringify({ username, password })
             });
 
-            console.log('Response:', response);
-
             const data = await response.json();
 
-            console.log('Data:', data);
+            console.log('Response data:', data); // add this line
 
             if (response.ok) {
-                // Login was successful
-                console.log('Server response:', data);
-                // Save the token and user data in the state or local storage
-                console.log('Login successful:', data);
                 localStorage.setItem('token', data.jwt);
-
-                // Redirect based on authority
-
-                console.log('Role:', data.role);
+                handleLogin(data.user.username); // update this line
 
                 switch (data.role.authority) {
                     case 'ADMIN':
@@ -53,7 +46,6 @@ function Account() {
                         console.log('Unknown role:', data.role.authority);
                 }
             } else {
-                // Login failed
                 console.log('Login failed:', data);
             }
         } catch (error) {
@@ -64,7 +56,7 @@ function Account() {
     return (
         <div>
             <h1>Account Page</h1>
-            <form onSubmit={handleLogin}>
+            <form onSubmit={handleUserLogin}>
                 <input type="text" value={username} onChange={e => setUsername(e.target.value)} placeholder="Username" required />
                 <input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Password" required />
                 <button type="submit">Login</button>
