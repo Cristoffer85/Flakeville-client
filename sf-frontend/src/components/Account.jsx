@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie'; // import js-cookie
 
 function Account({ isLoggedIn, handleLogin }) {
     const [username, setUsername] = useState('');
@@ -8,7 +9,7 @@ function Account({ isLoggedIn, handleLogin }) {
 
     useEffect(() => {
         if (isLoggedIn) {
-            navigate(`/user/${localStorage.getItem('username')}`);
+            navigate(`/user/${Cookies.get('username')}`);
         }
     }, [isLoggedIn]); // add isLoggedIn as a dependency
 
@@ -26,11 +27,9 @@ function Account({ isLoggedIn, handleLogin }) {
 
             const data = await response.json();
 
-            console.log('Response data:', data); // add this line
-
             if (response.ok) {
-                localStorage.setItem('token', data.jwt);
-                handleLogin(data.user.username); // update this line
+                Cookies.set('token', data.jwt); // set the token in cookies
+                handleLogin(data.user.username, data.jwt); // update this line
 
                 switch (data.role.authority) {
                     case 'ADMIN':

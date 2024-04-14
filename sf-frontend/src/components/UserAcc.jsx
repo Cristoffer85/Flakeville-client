@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import UserContext from './UserContext'; // import the UserContext
 import {useNavigate} from "react-router-dom";
+import Cookies from 'js-cookie'; // import js-cookie
 
 function User({ isLoggedIn, handleLogout }) {
     const username = useContext(UserContext); // use the useContext hook to access the username
@@ -25,7 +26,7 @@ function User({ isLoggedIn, handleLogout }) {
     const handleUpdate = async (event) => {
         event.preventDefault();
 
-        const token = localStorage.getItem('token');
+        const token = Cookies.get('token'); // get the token from cookies
 
         try {
             const response = await fetch(`http://localhost:8080/user/${username}`, {
@@ -48,7 +49,7 @@ function User({ isLoggedIn, handleLogout }) {
     };
 
     const handleUserLogout = () => {
-        localStorage.removeItem('token');
+        Cookies.remove('token'); // remove the token from cookies
         handleLogout(); // call handleLogout after a successful logout
         navigate('/account');
     };
