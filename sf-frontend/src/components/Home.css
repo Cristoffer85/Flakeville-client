@@ -1,0 +1,45 @@
+.backgroundStyle {
+    position: absolute;
+    top: 0;
+    background-image: url('/MainBackground.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    width: 100vw;
+    /* You can add more background-related styles here, like background-repeat, background-attachment, etc. */
+}
+
+.contentStyle {
+    color: #e01010;
+    border-radius: 10px; /* rounded corners */
+    padding: 20px;
+    margin: 10px;
+    width: 200px; /* adjust as needed */
+    height: 200px; /* adjust as needed */
+}
+
+.box1 {
+    position: absolute;
+    top: 200px;
+    left: 50px;
+    background-color: rgba(255, 255, 255, 0.8); /* semi-transparent white */
+    color: rgba(58, 53, 53, 0.5);
+    border-radius: 10px; /* rounded corners */
+    padding: 20px;
+    margin: 10px;
+    width: 200px; /* adjust as needed */
+    height: 200px; /* adjust as needed */
+}
+
+.box2 {
+    position: absolute;
+    top: 200px;
+    left: 320px;
+    background-color: rgba(255, 255, 255, 0.8); /* semi-transparent white */
+    color: rgba(58, 53, 53, 0.5);
+    border-radius: 10px; /* rounded corners */
+    padding: 20px;
+    margin: 10px;
+    width: 200px; /* adjust as needed */
+    height: 200px; /* adjust as needed */
+}

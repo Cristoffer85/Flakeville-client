@@ -7,20 +7,13 @@ import Weather from './Weather';
 import AdminAcc from "./AdminAcc.jsx";
 import EmployeeAcc from "./EmployeeAcc.jsx";
 import UserAcc from "./UserAcc.jsx";
+import Navbar from './Navbar'; // import the Navbar component
 
 function AppRouter() {
     return (
         <Router>
             <div>
-                <nav>
-                    <ul>
-                        <li><Link to="/">Home</Link></li>
-                        <li><Link to="/account">Account</Link></li>
-                        <li><Link to="/store">Store</Link></li>
-                        <li><Link to="/weather">Weather</Link></li>
-                    </ul>
-                </nav>
-
+                <Navbar /> {}
                 <Routes>
                     <Route path="/account" element={<Account />} />
                     <Route path="/store" element={<Store />} />
