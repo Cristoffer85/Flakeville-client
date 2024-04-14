@@ -1,14 +1,3 @@
-.backgroundStyle {
-    position: absolute;
-    top: 0;
-    background-image: url('/MainBackground.jpg');
-    background-size: cover;
-    background-position: center;
-    height: 100vh;
-    width: 100vw;
-    /* You can add more background-related styles here, like background-repeat, background-attachment, etc. */
-}
-
 .contentStyle {
     color: #e01010;
     border-radius: 10px; /* rounded corners */

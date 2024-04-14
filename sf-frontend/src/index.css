@@ -23,6 +23,9 @@ a:hover {
 }
 
 body {
+  background-image: url('/MainBackground.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
   margin: 0;
   display: flex;
   place-items: center;

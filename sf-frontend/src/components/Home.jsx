@@ -3,7 +3,6 @@ import './Home.css'; // import the CSS file
 
 function Home() {
     return (
-        <div className="backgroundStyle">
             <div className="contentStyle">
                 <h1>SNÖFJÄLLBY HOME</h1>
                 <div className="box box1">
@@ -16,7 +15,6 @@ function Home() {
                 </div>
                 {/* Add more boxes as needed */}
             </div>
-        </div>
     );
 }
 
