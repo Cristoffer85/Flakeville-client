@@ -7,13 +7,13 @@ import Weather from './Weather';
 import AdminAcc from "./AdminAcc.jsx";
 import EmployeeAcc from "./EmployeeAcc.jsx";
 import UserAcc from "./UserAcc.jsx";
-import Navbar from './Navbar'; // import the Navbar component
+import Navbar from './Navbar';
 
-function AppRouter({ isLoggedIn, handleLogin, handleLogout, username }) { // update this line
+function AppRouter({ isLoggedIn, handleLogin, handleLogout, username, showPopup, setShowPopup }) {
     return (
         <Router>
             <div>
-                <Navbar handleLogin={handleLogin} />
+                <Navbar isLoggedIn={isLoggedIn} handleLogin={handleLogin} handleLogout={handleLogout} showPopup={showPopup} setShowPopup={setShowPopup} /> {}
                 <Routes>
                     <Route path="/account" element={<Account isLoggedIn={isLoggedIn} handleLogin={handleLogin} />} />
                     <Route path="/store" element={<Store />} />
@@ -21,7 +21,7 @@ function AppRouter({ isLoggedIn, handleLogin, handleLogout, username }) { // upd
                     <Route path="/" element={<Home />} />
                     <Route path="/admin" element={<AdminAcc />} />
                     <Route path="/employee" element={<EmployeeAcc />} />
-                    <Route path="/user/:username" element={<UserAcc isLoggedIn={isLoggedIn} handleLogout={handleLogout} username={username} />} /> {/* update this line */}
+                    <Route path="/user/:username" element={<UserAcc isLoggedIn={isLoggedIn} handleLogout={handleLogout} username={username} />} /> {}
                 </Routes>
             </div>
         </Router>

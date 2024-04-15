@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
-import Cookies from 'js-cookie'; // import js-cookie
-import './Account.css'; // import the CSS file
+import Cookies from 'js-cookie';
+import './Account.css';
 
-function Account({ isLoggedIn, handleLogin, setShowPopup }) { // modify this line
+function Account({ isLoggedIn, handleLogin, handleLogout, setShowPopup }) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
@@ -12,7 +12,7 @@ function Account({ isLoggedIn, handleLogin, setShowPopup }) { // modify this lin
         if (isLoggedIn) {
             navigate(`/user/${Cookies.get('username')}`);
         }
-    }, [isLoggedIn]); // add isLoggedIn as a dependency
+    }, [isLoggedIn]);
 
     const handleUserLogin = async (event) => {
         event.preventDefault();
@@ -30,8 +30,8 @@ function Account({ isLoggedIn, handleLogin, setShowPopup }) { // modify this lin
 
             if (response.ok) {
                 setShowPopup(false);
-                Cookies.set('token', data.jwt); // set the token in cookies
-                handleLogin(data.user.username, data.jwt); // update this line
+                Cookies.set('token', data.jwt);
+                handleLogin(data.user.username, data.jwt);
 
                 switch (data.role.authority) {
                     case 'ADMIN':
@@ -54,14 +54,22 @@ function Account({ isLoggedIn, handleLogin, setShowPopup }) { // modify this lin
         }
     };
 
+    const handleUserLogout = () => {
+        handleLogout();
+        setShowPopup(false);
+    };
+
     return (
         <div className="loginPopup">
             <h2>Account</h2>
-            <form onSubmit={handleUserLogin}>
-                <input type="text" value={username} onChange={e => setUsername(e.target.value)} placeholder="Username" required />
-                <input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Password" required />
-                <button type="submit">Login</button>
-            </form>
+            {!isLoggedIn && (
+                <form onSubmit={handleUserLogin}>
+                    <input type="text" value={username} onChange={e => setUsername(e.target.value)} placeholder="Username" required />
+                    <input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Password" required />
+                    <button type="submit">Login</button>
+                </form>
+            )}
+            {isLoggedIn && <button onClick={handleUserLogout}>Logout</button>}
         </div>
     );
 }

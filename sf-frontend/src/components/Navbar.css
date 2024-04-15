@@ -2,8 +2,8 @@
     position: fixed;
     top: 0;
     width: 100%;
-    background-color: rgba(255, 255, 255, 0.5); /* semi-transparent white */
-    z-index: 1; /* make it appear above the background image */
+    background-color: rgba(255, 255, 255, 0.5);
+    z-index: 1;
 }
 
 .navbar-content {
@@ -15,9 +15,9 @@
     list-style-type: none;
     margin: 0;
     padding: 0;
-    display: flex; /* add this line */
-    justify-content: space-between; /* add this line */
-    width: 100%; /* add this line */
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .navbar li {
@@ -39,6 +39,6 @@
 }
 
 .navbar-logo {
-    height: 50px; /* adjust as needed */
-    margin-right: 10px; /* adjust as needed */
+    height: 50px;
+    margin-right: 10px;
 }

@@ -1,10 +1,10 @@
 import React, { useContext, useState, useEffect } from 'react';
-import UserContext from './UserContext'; // import the UserContext
+import UserContext from './UserContext';
 import {useNavigate} from "react-router-dom";
-import Cookies from 'js-cookie'; // import js-cookie
+import Cookies from 'js-cookie';
 
-function User({ isLoggedIn, handleLogout }) {
-    const username = useContext(UserContext); // use the useContext hook to access the username
+function User({ isLoggedIn }) {
+    const username = useContext(UserContext);
     const [birthday, setBirthday] = useState('');
     const [address, setAddress] = useState('');
     const [telephone, setTelephone] = useState('');
@@ -21,12 +21,12 @@ function User({ isLoggedIn, handleLogout }) {
         if (!isLoggedIn) {
             navigate('/account');
         }
-    }, [isLoggedIn]); // add isLoggedIn as a dependency
+    }, [isLoggedIn]);
 
     const handleUpdate = async (event) => {
         event.preventDefault();
 
-        const token = Cookies.get('token'); // get the token from cookies
+        const token = Cookies.get('token');
 
         try {
             const response = await fetch(`http://localhost:8080/user/${username}`, {
@@ -48,12 +48,6 @@ function User({ isLoggedIn, handleLogout }) {
         }
     };
 
-    const handleUserLogout = () => {
-        Cookies.remove('token'); // remove the token from cookies
-        handleLogout(); // call handleLogout after a successful logout
-        navigate('/account');
-    };
-
     return (
         <div>
             <h1>User Page</h1>
@@ -64,7 +58,6 @@ function User({ isLoggedIn, handleLogout }) {
                 <input type="tel" value={telephone} onChange={e => setTelephone(e.target.value)} required/>
                 <input type="email" value={email} onChange={e => setEmail(e.target.value)} required/>
                 <button type="submit">Update</button>
-                <button onClick={handleUserLogout}>Logout</button>
             </form>
         </div>
     );

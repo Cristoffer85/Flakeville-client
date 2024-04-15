@@ -1,10 +1,10 @@
 .weatherPageTitleAlign {
-    align-self: flex-start; /* aligns the item at the start of the container */
+    align-self: flex-start;
 }
 
 .pageTitle {
     position: absolute;
     top: 50px;
     left: 20px;
-    margin-top: 1px; /* adjust as needed */
+    margin-top: 1px;
 }

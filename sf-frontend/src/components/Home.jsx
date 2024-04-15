@@ -1,5 +1,5 @@
 import React from 'react';
-import './Home.css'; // import the CSS file
+import './Home.css';
 
 function Home() {
     return (
@@ -12,11 +12,12 @@ function Home() {
                 <h2>Box Title</h2>
                 <p>Box content...</p>
             </div>
+
             <div className="box2">
                 <h2>Another Box Title</h2>
                 <p>Another box content...</p>
             </div>
-            {/* Add more boxes as needed */}
+
         </>
     );
 }
