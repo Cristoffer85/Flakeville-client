@@ -27,3 +27,7 @@
     justify-content: space-between;
     align-items: center;
 }
+
+.userDetails {
+    margin-bottom: 20px;
+}

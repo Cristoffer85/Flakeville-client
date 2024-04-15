@@ -10,9 +10,21 @@ function User({ isLoggedIn }) {
     const [address, setAddress] = useState('');
     const [telephone, setTelephone] = useState('');
     const [email, setEmail] = useState('');
+    const [userDetails, setUserDetails] = useState(null);
     const navigate = useNavigate();
 
-    const fetchUserData = async () => {};
+    const fetchUserData = async () => {
+        const token = Cookies.get('token'); // Get the token from cookies
+
+        const response = await fetch(`http://localhost:8080/user/getOneUser/${username}`, {
+            headers: {
+                'Authorization': `Bearer ${token}` // Include the token in the Authorization header
+            }
+        });
+
+        const data = await response.json();
+        setUserDetails(data);
+    };
 
     useEffect(() => {
         fetchUserData().catch(error => console.error('Error:', error));
@@ -41,6 +53,7 @@ function User({ isLoggedIn }) {
 
             if (response.ok) {
                 console.log('Update successful');
+                fetchUserData(); // Fetch the updated user details
             } else {
                 console.log('Update failed:', await response.text());
             }
@@ -56,6 +69,15 @@ function User({ isLoggedIn }) {
             </div>
 
             <div className="updateUserDetailsBox">
+                {userDetails && (
+                    <div className="userDetails">
+                        <h2>Current User Details</h2>
+                        <p>Birthday: {userDetails.birthday}</p>
+                        <p>Address: {userDetails.address}</p>
+                        <p>Telephone: {userDetails.telephone}</p>
+                        <p>Email: {userDetails.email}</p>
+                    </div>
+                )}
                 <form onSubmit={handleUpdate}>
                     <h2>Update User Details</h2>
                     <div className="form-field">
