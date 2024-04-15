@@ -1,7 +1,12 @@
 import React from 'react';
+import './Weather.css'; // import the CSS file
 
 function Weather() {
-    return <h1>Weather Page</h1>;
+    return (
+        <div className="weatherPageTitleAlign">
+            <h1 className="pageTitle">SNÖFJÄLLBY WEATHER</h1>
+        </div>
+    );
 }
 
 export default Weather;

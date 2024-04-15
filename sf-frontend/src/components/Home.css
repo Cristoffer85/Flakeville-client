@@ -1,10 +1,13 @@
-.contentStyle {
-    color: #e01010;
-    border-radius: 10px; /* rounded corners */
-    padding: 20px;
-    margin: 10px;
-    width: 200px; /* adjust as needed */
-    height: 200px; /* adjust as needed */
+.homePageTitleAlign {
+    align-self: flex-start; /* aligns the item at the start of the container */
+}
+
+.pageTitle {
+    position: absolute;
+    top: 50px;
+    left: 20px;
+    margin-top: 1px;
+    color: rgb(255, 0, 0, 0.3);
 }
 
 .box1 {
