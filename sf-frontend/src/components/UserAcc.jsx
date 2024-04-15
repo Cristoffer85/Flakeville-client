@@ -69,6 +69,7 @@ function User({ isLoggedIn }) {
             </div>
 
             <div className="updateUserDetailsBox">
+                <h2>Welcome, {username}!</h2>
                 {userDetails && (
                     <div className="userDetails">
                         <h2>Current User Details</h2>
