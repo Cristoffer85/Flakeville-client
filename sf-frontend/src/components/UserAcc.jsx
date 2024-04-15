@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import UserContext from './UserContext';
 import {useNavigate} from "react-router-dom";
 import Cookies from 'js-cookie';
+import './UserAcc.css';
 
 function User({ isLoggedIn }) {
     const username = useContext(UserContext);
@@ -49,17 +50,34 @@ function User({ isLoggedIn }) {
     };
 
     return (
-        <div>
-            <h1>User Page</h1>
-            <p>Welcome, {username}! You can manage your account from here.</p>
-            <form onSubmit={handleUpdate}>
-                <input type="date" value={birthday} onChange={e => setBirthday(e.target.value)} required/>
-                <input type="text" value={address} onChange={e => setAddress(e.target.value)} required/>
-                <input type="tel" value={telephone} onChange={e => setTelephone(e.target.value)} required/>
-                <input type="email" value={email} onChange={e => setEmail(e.target.value)} required/>
-                <button type="submit">Update</button>
-            </form>
-        </div>
+        <>
+            <div className="userAccPageTitleAlign">
+                <h1 className="pageTitle">USER ACCOUNT PAGE</h1>
+            </div>
+
+            <div className="updateUserDetailsBox">
+                <form onSubmit={handleUpdate}>
+                    <h2>Update User Details</h2>
+                    <div className="form-field">
+                        <label>Birthday:</label>
+                        <input type="date" value={birthday} onChange={e => setBirthday(e.target.value)} required/>
+                    </div>
+                    <div className="form-field">
+                        <label>Address:</label>
+                        <input type="text" value={address} onChange={e => setAddress(e.target.value)} required/>
+                    </div>
+                    <div className="form-field">
+                        <label>Telephone:</label>
+                        <input type="tel" value={telephone} onChange={e => setTelephone(e.target.value)} required/>
+                    </div>
+                    <div className="form-field">
+                        <label>Email:</label>
+                        <input type="email" value={email} onChange={e => setEmail(e.target.value)} required/>
+                    </div>
+                    <button type="submit">Update</button>
+                </form>
+            </div>
+        </>
     );
 }
 

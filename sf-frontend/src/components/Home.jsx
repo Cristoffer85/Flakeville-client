@@ -4,7 +4,7 @@ import './Home.css';
 function Home() {
     return (
         <>
-            <div className="homePageTitleAlign">
+            <div className="userAccPageTitleAlign">
                 <h1 className="pageTitle">SNÖFJÄLLBY HOME</h1>
             </div>
 
@@ -17,7 +17,6 @@ function Home() {
                 <h2>Another Box Title</h2>
                 <p>Another box content...</p>
             </div>
-
         </>
     );
 }

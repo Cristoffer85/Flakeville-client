@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import './Account.css';
@@ -7,12 +7,29 @@ function Account({ isLoggedIn, handleLogin, handleLogout, setShowPopup }) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
+    const popupRef = useRef(); // Create a ref for the popup
 
     useEffect(() => {
         if (isLoggedIn) {
             navigate(`/user/${Cookies.get('username')}`);
         }
     }, [isLoggedIn]);
+
+    useEffect(() => {
+        // Function to check if clicked outside of popup
+        function handleClickOutside(event) {
+            if (popupRef.current && !popupRef.current.contains(event.target)) {
+                setShowPopup(false);
+            }
+        }
+
+        // Add the event listener when the component is mounted
+        document.addEventListener("mousedown", handleClickOutside);
+        // Clean up the event listener on component unmount
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [setShowPopup]);
 
     const handleUserLogin = async (event) => {
         event.preventDefault();
@@ -56,12 +73,12 @@ function Account({ isLoggedIn, handleLogin, handleLogout, setShowPopup }) {
 
     const handleUserLogout = () => {
         handleLogout();
-        setShowPopup(false); // Set showPopup to false after logging out
-        navigate('/'); // Navigate to Home page after logging out
+        setShowPopup(false);
+        navigate('/');
     };
 
     return (
-        <div className="loginPopup">
+        <div className="loginPopup" ref={popupRef}>
             <h2>Account</h2>
             {!isLoggedIn && (
                 <form onSubmit={handleUserLogin}>
