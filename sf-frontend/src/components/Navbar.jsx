@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Account from './Account';
 import './Navbar.css';
 import logo from '/Logo.jpg';
+import accountLogo from '/ProfileLogoGold.png';
 
 function Navbar({ isLoggedIn, handleLogin, handleLogout, showPopup, setShowPopup }) {
 
@@ -17,7 +18,7 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout, showPopup, setShowPopup
                         <li><Link to="/weather">Weather</Link></li>
                     </div>
                     <div>
-                        <li><a onClick={() => setShowPopup(prev => !prev)}>Account</a></li>
+                        <li><img src={accountLogo} alt="Account" onClick={() => setShowPopup(prev => !prev)} /></li> {}
                     </div>
                 </ul>
             </div>
