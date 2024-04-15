@@ -13,7 +13,7 @@ function User({ isLoggedIn }) {
     const [userDetails, setUserDetails] = useState(null);
     const navigate = useNavigate();
 
-    const fetchUserData = async () => {
+    const getUserData = async () => {
         const token = Cookies.get('token'); // Get the token from cookies
 
         const response = await fetch(`http://localhost:8080/user/getOneUser/${username}`, {
@@ -27,7 +27,7 @@ function User({ isLoggedIn }) {
     };
 
     useEffect(() => {
-        fetchUserData().catch(error => console.error('Error:', error));
+        getUserData().catch(error => console.error('Error:', error));
     }, []);
 
     useEffect(() => {
@@ -36,7 +36,7 @@ function User({ isLoggedIn }) {
         }
     }, [isLoggedIn]);
 
-    const handleUpdate = async (event) => {
+    const updateUserData = async (event) => {
         event.preventDefault();
 
         const token = Cookies.get('token');
@@ -53,7 +53,7 @@ function User({ isLoggedIn }) {
 
             if (response.ok) {
                 console.log('Update successful');
-                fetchUserData(); // Fetch the updated user details
+                getUserData(); // Fetch the updated user details
             } else {
                 console.log('Update failed:', await response.text());
             }
@@ -78,7 +78,7 @@ function User({ isLoggedIn }) {
                         <p>Email: {userDetails.email}</p>
                     </div>
                 )}
-                <form onSubmit={handleUpdate}>
+                <form onSubmit={updateUserData}>
                     <h2>Update User Details</h2>
                     <div className="form-field">
                         <label>Birthday:</label>
