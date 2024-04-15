@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie'; // import js-cookie
+import './Account.css'; // import the CSS file
 
-function Account({ isLoggedIn, handleLogin }) {
+function Account({ isLoggedIn, handleLogin, setShowPopup }) { // modify this line
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
@@ -28,6 +29,7 @@ function Account({ isLoggedIn, handleLogin }) {
             const data = await response.json();
 
             if (response.ok) {
+                setShowPopup(false);
                 Cookies.set('token', data.jwt); // set the token in cookies
                 handleLogin(data.user.username, data.jwt); // update this line
 
@@ -53,8 +55,8 @@ function Account({ isLoggedIn, handleLogin }) {
     };
 
     return (
-        <div>
-            <h1>Account Page</h1>
+        <div className="loginPopup">
+            <h2>Account</h2>
             <form onSubmit={handleUserLogin}>
                 <input type="text" value={username} onChange={e => setUsername(e.target.value)} placeholder="Username" required />
                 <input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Password" required />

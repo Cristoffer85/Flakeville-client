@@ -32,7 +32,6 @@ function App() {
         Cookies.remove('token'); // remove the token from cookies
         Cookies.remove('username'); // remove the username from cookies
     };
-
     return (
         <UserContext.Provider value={username}> {/* use the UserContext.Provider here */}
             <div className="App">

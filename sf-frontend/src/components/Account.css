@@ -1,0 +1,11 @@
+.loginPopup {
+    position: absolute;
+    top: 60px; /* adjust as needed */
+    left: 87%; /* adjust as needed */
+    background-color: rgba(255, 255, 255, 0.8); /* semi-transparent white */
+    color: rgba(58, 53, 53, 0.5);
+    border-radius: 10px; /* rounded corners */
+    padding: 20px;
+    width: 200px; /* adjust as needed */
+    height: 200px; /* adjust as needed */
+}

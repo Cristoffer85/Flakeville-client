@@ -13,7 +13,7 @@ function AppRouter({ isLoggedIn, handleLogin, handleLogout, username }) { // upd
     return (
         <Router>
             <div>
-                <Navbar />
+                <Navbar handleLogin={handleLogin} />
                 <Routes>
                     <Route path="/account" element={<Account isLoggedIn={isLoggedIn} handleLogin={handleLogin} />} />
                     <Route path="/store" element={<Store />} />
