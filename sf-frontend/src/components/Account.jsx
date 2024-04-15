@@ -56,7 +56,8 @@ function Account({ isLoggedIn, handleLogin, handleLogout, setShowPopup }) {
 
     const handleUserLogout = () => {
         handleLogout();
-        setShowPopup(false);
+        setShowPopup(false); // Set showPopup to false after logging out
+        navigate('/'); // Navigate to Home page after logging out
     };
 
     return (
