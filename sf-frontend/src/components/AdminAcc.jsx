@@ -3,10 +3,17 @@ import Cookies from 'js-cookie';
 
 function Admin() {
     const [users, setUsers] = useState([]);
-    const [employees, setEmployees] = useState([]);
     const [searchUsername, setSearchUsername] = useState('');
     const [searchedUser, setSearchedUser] = useState(null);
     const [searched, setSearched] = useState(false);
+    const [selectedUser, setSelectedUser] = useState(null);
+    const [showUpdateForm, setShowUpdateForm] = useState(false);
+    const [updateEmail, setUpdateEmail] = useState('');
+    const [updateTelephone, setUpdateTelephone] = useState('');
+    const [updateBirthday, setUpdateBirthday] = useState('');
+    const [updateAddress, setUpdateAddress] = useState('');
+
+    const [employees, setEmployees] = useState([]);
 
     useEffect(() => {
         getAllUsers();
@@ -17,6 +24,26 @@ function Admin() {
         event.preventDefault();
         fetchUser(searchUsername);
         setSearched(true);
+    };
+
+    const handleUpdateSubmit = async (event) => {
+        event.preventDefault();
+        // Get the updated user data from the form
+        const updatedUser = {
+            username: selectedUser.username, // Keep the current username
+            password: selectedUser.password, // Keep the current password
+            email: updateEmail,
+            telephone: updateTelephone,
+            birthday: updateBirthday,
+            address: updateAddress
+        };
+        await updateUser(selectedUser.username, updatedUser);
+        setShowUpdateForm(false);
+    };
+
+    const handleDeleteClick = async () => {
+        await deleteUser(searchedUser.username);
+        setSearchedUser(null);
     };
 
     // #################### USERS ####################
@@ -59,7 +86,11 @@ function Admin() {
             body: JSON.stringify(user)
         });
         const data = await response.json();
-        // Handle the updated user data
+        if (response.ok) {
+            setSearchedUser(data); // Update the searchedUser state with the updated user data
+        } else {
+            console.error('Update failed:', data);
+        }
     };
 
     const deleteUser = async (username) => {
@@ -114,10 +145,21 @@ function Admin() {
                         <h2>Searched User</h2>
                         <p>Username: {searchedUser.username}</p>
                         {/* Display other user properties as needed */}
+                        <button onClick={() => {setSelectedUser(searchedUser); setShowUpdateForm(true);}}>Update</button>
+                        <button onClick={handleDeleteClick}>Delete</button>
                     </div>
                 ) : (
                     <p>User not in database</p>
                 )
+            )}
+            {showUpdateForm && (
+                <form onSubmit={handleUpdateSubmit}>
+                    <input type="email" value={updateEmail} onChange={e => setUpdateEmail(e.target.value)} placeholder="Update Email" required />
+                    <input type="tel" value={updateTelephone} onChange={e => setUpdateTelephone(e.target.value)} placeholder="Update Telephone" required />
+                    <input type="date" value={updateBirthday} onChange={e => setUpdateBirthday(e.target.value)} placeholder="Update Birthday" required />
+                    <input type="text" value={updateAddress} onChange={e => setUpdateAddress(e.target.value)} placeholder="Update Address" required />
+                    <button type="submit">Submit Update</button>
+                </form>
             )}
         </div>
     );
