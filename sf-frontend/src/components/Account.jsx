@@ -7,25 +7,29 @@ function Account({ isLoggedIn, handleLogin, handleLogout, setShowPopup }) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
-    const popupRef = useRef(); // Create a ref for the popup
+    const popupRef = useRef();
 
     useEffect(() => {
         if (isLoggedIn) {
-            navigate(`/user/${Cookies.get('username')}`);
+            const role = Cookies.get('role');
+            if (role === 'ADMIN') {
+                navigate('/admin');
+            } else if (role === 'EMPLOYEE') {
+                navigate('/employee');
+            } else if (role === 'USER') {
+                navigate(`/user/${Cookies.get('username')}`);
+            }
         }
-    }, [isLoggedIn]);
+    }, [isLoggedIn, navigate]);
 
     useEffect(() => {
-        // Function to check if clicked outside of popup
         function handleClickOutside(event) {
             if (popupRef.current && !popupRef.current.contains(event.target)) {
                 setShowPopup(false);
             }
         }
 
-        // Add the event listener when the component is mounted
         document.addEventListener("mousedown", handleClickOutside);
-        // Clean up the event listener on component unmount
         return () => {
             document.removeEventListener("mousedown", handleClickOutside);
         };
@@ -48,20 +52,15 @@ function Account({ isLoggedIn, handleLogin, handleLogout, setShowPopup }) {
             if (response.ok) {
                 setShowPopup(false);
                 Cookies.set('token', data.jwt);
-                handleLogin(data.user.username, data.jwt);
+                handleLogin(data.user.username, data.jwt, data.role.authority);
 
-                switch (data.role.authority) {
-                    case 'ADMIN':
-                        navigate('/admin');
-                        break;
-                    case 'EMPLOYEE':
-                        navigate('/employee');
-                        break;
-                    case 'USER':
-                        navigate(`/user/${data.user.username}`);
-                        break;
-                    default:
-                        console.log('Unknown role:', data.role.authority);
+                // Navigate to the respective page based on the user's role
+                if (data.role.authority === 'ADMIN') {
+                    navigate('/admin');
+                } else if (data.role.authority === 'EMPLOYEE') {
+                    navigate('/employee');
+                } else if (data.role.authority === 'USER') {
+                    navigate(`/user/${data.user.username}`);
                 }
             } else {
                 console.log('Login failed:', data);

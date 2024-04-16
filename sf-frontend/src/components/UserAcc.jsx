@@ -22,6 +22,11 @@ function User({ isLoggedIn }) {
             }
         });
 
+        if (!response.ok) {
+            console.error('Error:', response.statusText);
+            return;
+        }
+
         const data = await response.json();
         setUserDetails(data);
     };
