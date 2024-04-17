@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 
 function Admin() {
+    const [searched, setSearched] = useState(false);
+
     const [users, setUsers] = useState([]);
     const [searchUsername, setSearchUsername] = useState('');
     const [searchedUser, setSearchedUser] = useState(null);
-    const [searched, setSearched] = useState(false);
     const [selectedUser, setSelectedUser] = useState(null);
     const [showUpdateForm, setShowUpdateForm] = useState(false);
     const [updateEmail, setUpdateEmail] = useState('');
@@ -25,6 +26,8 @@ function Admin() {
         getAllUsers();
         getAllEmployees();
     }, []);
+
+    // #################### HELPER METHODS ####################
 
     const handleUserSearchSubmit = (event) => {
         event.preventDefault();
@@ -55,6 +58,7 @@ function Admin() {
     const handleEmployeeSearchSubmit = (event) => {
         event.preventDefault();
         fetchEmployee(searchEmployeeUsername);
+        setSearched(true);
     };
 
     const handleEmployeeUpdateSubmit = async (event) => {
@@ -66,6 +70,11 @@ function Admin() {
         };
         await updateEmployee(selectedEmployee.username, updatedEmployee);
         setShowUpdateEmployeeForm(false); // Hide the update form after updating
+    };
+
+    const handleEmployeeDeleteClick = async () => {
+        await deleteEmployee(searchedEmployee.username);
+        setSearchedEmployee(null);
     };
 
     // #################### USERS ####################
@@ -202,55 +211,74 @@ function Admin() {
                     {/* Display other employee properties as needed */}
                 </div>
             ))}
+            <h2>Search Users</h2>
             <form onSubmit={handleUserSearchSubmit}>
-                <input type="text" value={searchUsername} onChange={e => setSearchUsername(e.target.value)} placeholder="Search for a user" required />
+                <input type="text" value={searchUsername} onChange={e => setSearchUsername(e.target.value)}
+                       placeholder="Search for a user" required/>
                 <button type="submit">Search</button>
             </form>
-            {searched && ( // Check if a search has been made
+            {searched && (
                 searchedUser ? (
                     <div>
                         <h2>Searched User</h2>
                         <p>Username: {searchedUser.username}</p>
-                        {/* Display other user properties as needed */}
-                        <button onClick={() => {setSelectedUser(searchedUser); setShowUpdateForm(true);}}>Update</button>
+                        {}
+                        <button onClick={() => {
+                            setSelectedUser(searchedUser);
+                            setShowUpdateForm(true);
+                        }}>Update
+                        </button>
                         <button onClick={handleUserDeleteClick}>Delete</button>
                     </div>
                 ) : (
                     <p>User not in database</p>
                 )
-
             )}
             {showUpdateForm && (
                 <form onSubmit={handleUserUpdateSubmit}>
-                    <input type="email" value={updateEmail} onChange={e => setUpdateEmail(e.target.value)} placeholder="Update Email" required />
-                    <input type="tel" value={updateTelephone} onChange={e => setUpdateTelephone(e.target.value)} placeholder="Update Telephone" required />
-                    <input type="date" value={updateBirthday} onChange={e => setUpdateBirthday(e.target.value)} placeholder="Update Birthday" required />
-                    <input type="text" value={updateAddress} onChange={e => setUpdateAddress(e.target.value)} placeholder="Update Address" required />
+                    <input type="email" value={updateEmail} onChange={e => setUpdateEmail(e.target.value)}
+                           placeholder="Update Email" required/>
+                    <input type="tel" value={updateTelephone} onChange={e => setUpdateTelephone(e.target.value)}
+                           placeholder="Update Telephone" required/>
+                    <input type="date" value={updateBirthday} onChange={e => setUpdateBirthday(e.target.value)}
+                           placeholder="Update Birthday" required/>
+                    <input type="text" value={updateAddress} onChange={e => setUpdateAddress(e.target.value)}
+                           placeholder="Update Address" required/>
                     <button type="submit">Submit Update</button>
                 </form>
             )}
+
+            <h2>Search Employees</h2>
             <form onSubmit={handleEmployeeSearchSubmit}>
-                <input type="text" value={searchEmployeeUsername} onChange={e => setSearchEmployeeUsername(e.target.value)} placeholder="Search for an employee" required />
+                <input type="text" value={searchEmployeeUsername}
+                       onChange={e => setSearchEmployeeUsername(e.target.value)} placeholder="Search for an employee"
+                       required/>
                 <button type="submit">Search</button>
             </form>
-            {searchedEmployee && (
-                <div>
-                    <h2>Searched Employee</h2>
-                    <p>Username: {searchedEmployee.username}</p>
-                    {/* Display other employee properties as needed */}
-                    <button onClick={() => {
-                        setSelectedEmployee(searchedEmployee);
-                        setShowUpdateEmployeeForm(true);
-                    }}>Update
-                    </button>
-                    <button onClick={() => deleteEmployee(searchedEmployee.username)}>Delete</button>
-                </div>
+            {searched && (
+                searchedEmployee ? (
+                    <div>
+                        <h2>Searched Employee</h2>
+                        <p>Username: {searchedEmployee.username}</p>
+                        {}
+                        <button onClick={() => {
+                            setSelectedEmployee(searchedEmployee);
+                            setShowUpdateEmployeeForm(true);
+                        }}>Update
+                        </button>
+                        <button onClick={handleEmployeeDeleteClick}>Delete</button>
+                    </div>
+                ) : (
+                    <p>Employee not in database</p>
+                )
             )}
             {showUpdateEmployeeForm && (
                 <form onSubmit={handleEmployeeUpdateSubmit}>
                     <input type="text" value={updateEmployeeName} onChange={e => setUpdateEmployeeName(e.target.value)}
                            placeholder="Update Name" required/>
-                    <input type="text" value={updateEmployeePosition} onChange={e => setUpdateEmployeePosition(e.target.value)} placeholder="Update Position" required />
+                    <input type="text" value={updateEmployeePosition}
+                           onChange={e => setUpdateEmployeePosition(e.target.value)} placeholder="Update Position"
+                           required/>
                     <button type="submit">Submit Update</button>
                 </form>
             )}
