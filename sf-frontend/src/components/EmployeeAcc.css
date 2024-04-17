@@ -1,0 +1,33 @@
+.employeeAccPageTitleAlign {
+    align-self: flex-start;
+}
+
+.pageTitle {
+    position: absolute;
+    top: 50px;
+    left: 20px;
+    margin-top: 1px;
+}
+
+.updateEmployeeDetailsBox {
+    position: absolute;
+    top: 110px;
+    left: 50px;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: rgba(58, 53, 53, 0.5);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 10px;
+    width: 300px;
+    height: auto;
+}
+
+.form-field {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.employeeDetails {
+    margin-bottom: 20px;
+}

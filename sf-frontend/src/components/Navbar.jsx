@@ -25,7 +25,6 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout, showPopup, setShowPopup
         } else if (role === 'USER') {
             navigate(`/user/${username}`);
         } else {
-            console.log('Unknown role:', role);
         }
     };
 
