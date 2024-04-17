@@ -5,6 +5,9 @@ function Admin() {
     const [searched, setSearched] = useState(false);
 
     const [users, setUsers] = useState([]);
+    const [newUsername, setNewUsername] = useState('');
+    const [newPassword, setNewPassword] = useState('');
+    const [newUserMessage, setNewUserMessage] = useState('');
     const [searchUsername, setSearchUsername] = useState('');
     const [searchedUser, setSearchedUser] = useState(null);
     const [selectedUser, setSelectedUser] = useState(null);
@@ -15,6 +18,11 @@ function Admin() {
     const [updateAddress, setUpdateAddress] = useState('');
 
     const [employees, setEmployees] = useState([]);
+    const [newEmployeeName, setNewEmployeeName] = useState('');
+    const [newEmployeePosition, setNewEmployeePosition] = useState('');
+    const [newEmployeeUsername, setNewEmployeeUsername] = useState('');
+    const [newEmployeePassword, setNewEmployeePassword] = useState('');
+    const [newEmployeeMessage, setNewEmployeeMessage] = useState('');
     const [searchEmployeeUsername, setSearchEmployeeUsername] = useState('');
     const [searchedEmployee, setSearchedEmployee] = useState(null);
     const [selectedEmployee, setSelectedEmployee] = useState(null);
@@ -33,6 +41,15 @@ function Admin() {
         event.preventDefault();
         fetchUser(searchUsername);
         setSearched(true);
+    };
+
+    const handleNewUserSubmit = async (event) => {
+        event.preventDefault();
+        const newUser = {
+            username: newUsername,
+            password: newPassword
+        };
+        await createUser(newUser);
     };
 
     const handleUserUpdateSubmit = async (event) => {
@@ -55,10 +72,22 @@ function Admin() {
         setSearchedUser(null);
     };
 
+
     const handleEmployeeSearchSubmit = (event) => {
         event.preventDefault();
         fetchEmployee(searchEmployeeUsername);
         setSearched(true);
+    };
+
+    const handleNewEmployeeSubmit = async (event) => {
+        event.preventDefault();
+        const newEmployee = {
+            name: newEmployeeName,
+            position: newEmployeePosition,
+            username: newEmployeeUsername,
+            password: newEmployeePassword
+        };
+        await createEmployee(newEmployee);
     };
 
     const handleEmployeeUpdateSubmit = async (event) => {
@@ -104,6 +133,28 @@ function Admin() {
         }
         const data = await response.json();
         setSearchedUser(data); // Update the state with the fetched user data
+    };
+
+    const createUser = async (user) => {
+        const token = Cookies.get('token');
+        const response = await fetch('http://localhost:8080/admin/createUser', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(user)
+        });
+        if (response.ok) {
+            const data = await response.json();
+            setUsers([...users, data]); // Add the new user to the users list
+            setNewUserMessage('New user created'); // Set the user newEmployeeMessage
+            // Reset the form fields
+            setNewUsername('');
+            setNewPassword('');
+        } else {
+            console.error('Creation failed:', await response.text());
+        }
     };
 
     const updateUser = async (username, user) => {
@@ -162,6 +213,30 @@ function Admin() {
         }
         const data = await response.json();
         setSearchedEmployee(data); // Update the state with the fetched employee data
+    };
+
+    const createEmployee = async (employee) => {
+        const token = Cookies.get('token');
+        const response = await fetch('http://localhost:8080/admin/createEmployee', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(employee)
+        });
+        if (response.ok) {
+            const data = await response.json();
+            setEmployees([...employees, data]); // Add the new employee to the employees list
+            setNewEmployeeMessage('New employee created'); // Set the newEmployeeMessage
+            // Reset the form fields
+            setNewEmployeeName('');
+            setNewEmployeePosition('');
+            setNewEmployeeUsername('');
+            setNewEmployeePassword('');
+        } else {
+            console.error('Creation failed:', await response.text());
+        }
     };
 
     const updateEmployee = async (username, employee) => {
@@ -282,6 +357,29 @@ function Admin() {
                     <button type="submit">Submit Update</button>
                 </form>
             )}
+            <h2>Create New Employee</h2>
+            <form onSubmit={handleNewEmployeeSubmit}>
+                <input type="text" value={newEmployeeName} onChange={e => setNewEmployeeName(e.target.value)}
+                       placeholder="Name" required/>
+                <input type="text" value={newEmployeePosition} onChange={e => setNewEmployeePosition(e.target.value)}
+                       placeholder="Position" required/>
+                <input type="text" value={newEmployeeUsername} onChange={e => setNewEmployeeUsername(e.target.value)}
+                       placeholder="Username" required/>
+                <input type="password" value={newEmployeePassword}
+                       onChange={e => setNewEmployeePassword(e.target.value)} placeholder="Password" required/>
+                <button type="submit">Create</button>
+            </form>
+            <p>{newEmployeeMessage}</p>
+
+            <h2>Create New User</h2>
+            <form onSubmit={handleNewUserSubmit}>
+                <input type="text" value={newUsername} onChange={e => setNewUsername(e.target.value)}
+                       placeholder="Username" required/>
+                <input type="password" value={newPassword} onChange={e => setNewPassword(e.target.value)}
+                       placeholder="Password" required/>
+                <button type="submit">Create</button>
+            </form>
+            <p>{newUserMessage}</p>
         </div>
     );
 }
