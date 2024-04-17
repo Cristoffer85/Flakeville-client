@@ -175,7 +175,7 @@ function Admin() {
 
     const deleteEmployee = async (username) => {
         const token = Cookies.get('token');
-        await fetch(`http://localhost:8080/admin/deleteOneEmployee/${username}`, {
+        await fetch(`http://localhost:8080/admin/deleteEmployee/${username}`, {
             method: 'DELETE',
             headers: {
                 'Authorization': `Bearer ${token}`
