@@ -7,7 +7,9 @@ import './EmployeeAcc.css';
 function Employee() {
     const username = useContext(UserContext);
     const [employeeDetails, setEmployeeDetails] = useState({name: '', position: ''});
-    const navigate = useNavigate();
+    const [formFields, setFormFields] = useState({name: '', position: ''});
+    const [successMessage, setSuccessMessage] = useState('');
+    useNavigate();
 
     const getEmployeeData = async () => {
         const token = Cookies.get('token'); // Get the token from cookies
@@ -43,11 +45,13 @@ function Employee() {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`
                 },
-                body: JSON.stringify(employeeDetails)
+                body: JSON.stringify(formFields)
             });
 
             if (response.ok) {
                 console.log('Update successful');
+                setSuccessMessage('Information updated');
+                setFormFields({name: '', position: ''}); // Clear the form
                 getEmployeeData(); // Fetch the updated employee details
             } else {
                 console.log('Update failed:', await response.text());
@@ -64,24 +68,24 @@ function Employee() {
             {employeeDetails && (
                 <div className="employeeDetails">
                     <h2>Current Employee Details</h2>
-                    <p>Username: {employeeDetails.username}</p>
-                    <p>Role: {employeeDetails.role}</p>
-                    <p>Email: {employeeDetails.email}</p>
+                    <p>Name: {employeeDetails.name}</p>
+                    <p>Position: {employeeDetails.position}</p>
                 </div>
             )}
             <form onSubmit={updateEmployeeData}>
                 <h2>Update Employee Details</h2>
                 <div className="form-field">
                     <label>Name:</label>
-                    <input type="text" value={employeeDetails.name}
-                           onChange={e => setEmployeeDetails({...employeeDetails, name: e.target.value})} required/>
+                    <input type="text" value={formFields.name}
+                           onChange={e => setFormFields({...formFields, name: e.target.value})} required/>
                 </div>
                 <div className="form-field">
                     <label>Position:</label>
-                    <input type="text" value={employeeDetails.position}
-                           onChange={e => setEmployeeDetails({...employeeDetails, position: e.target.value})} required/>
+                    <input type="text" value={formFields.position}
+                           onChange={e => setFormFields({...formFields, position: e.target.value})} required/>
                 </div>
                 <button type="submit">Update</button>
+                <p>{successMessage}</p>
             </form>
         </div>
     );
