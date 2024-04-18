@@ -62,32 +62,37 @@ function Employee() {
     };
 
     return (
-        <div>
-            <h1>Employee Page</h1>
-            <p>Welcome, {username}! You can manage your tasks from here.</p>
-            {employeeDetails && (
-                <div className="employeeDetails">
-                    <h2>Current Employee Details</h2>
-                    <p>Name: {employeeDetails.name}</p>
-                    <p>Position: {employeeDetails.position}</p>
-                </div>
-            )}
-            <form onSubmit={updateEmployeeData}>
-                <h2>Update Employee Details</h2>
-                <div className="form-field">
-                    <label>Name:</label>
-                    <input type="text" value={formFields.name}
-                           onChange={e => setFormFields({...formFields, name: e.target.value})} required/>
-                </div>
-                <div className="form-field">
-                    <label>Position:</label>
-                    <input type="text" value={formFields.position}
-                           onChange={e => setFormFields({...formFields, position: e.target.value})} required/>
-                </div>
-                <button type="submit">Update</button>
-                <p>{successMessage}</p>
-            </form>
-        </div>
+        <>
+            <div className="userAccPageTitleAlign">
+                <h1 className="pageTitle">EMPLOYEE ACCOUNT PAGE</h1>
+            </div>
+
+            <div className="updateEmployeeDetailsBox">
+                <p>Welcome, {username}!</p>
+                {employeeDetails && (
+                    <div className="employeeDetails">
+                        <h2>Current Employee Details</h2>
+                        <p>Name: {employeeDetails.name}</p>
+                        <p>Position: {employeeDetails.position}</p>
+                    </div>
+                )}
+                <form onSubmit={updateEmployeeData}>
+                    <h2>Update Employee Details</h2>
+                    <div className="form-field">
+                        <label>Name:</label>
+                        <input type="text" value={formFields.name}
+                               onChange={e => setFormFields({...formFields, name: e.target.value})} required/>
+                    </div>
+                    <div className="form-field">
+                        <label>Position:</label>
+                        <input type="text" value={formFields.position}
+                               onChange={e => setFormFields({...formFields, position: e.target.value})} required/>
+                    </div>
+                    <button type="submit">Update</button>
+                    <p>{successMessage}</p>
+                </form>
+            </div>
+        </>
     );
 }
 

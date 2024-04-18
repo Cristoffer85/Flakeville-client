@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
+import './AdminAcc.css';
 
 function Admin() {
     const [searched, setSearched] = useState(false);
