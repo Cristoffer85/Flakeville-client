@@ -54,7 +54,6 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout, showPopup, setShowPopup
             </div>
             {showInitialPopup && (
                 <div className="initialPopup">
-                    <h2>Welcome</h2>
                     <button onClick={handleSignInClick}>Sign in</button>
                     <button>Sign up</button>
                 </div>
