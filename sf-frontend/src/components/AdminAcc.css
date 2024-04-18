@@ -1,0 +1,10 @@
+.adminAccPageTitleAlign {
+    align-self: flex-start;
+}
+
+.pageTitle {
+    position: fixed;
+    top: 50px;
+    left: 20px;
+    margin-top: 1px;
+}

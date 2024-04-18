@@ -3,7 +3,7 @@
 }
 
 .pageTitle {
-    position: absolute;
+    position: fixed;
     top: 50px;
     left: 20px;
     margin-top: 1px;
