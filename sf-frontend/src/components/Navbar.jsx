@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Account from './Account';
 import UserContext from './UserContext';
@@ -11,21 +11,30 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout, showPopup, setShowPopup
     const username = useContext(UserContext);
     const role = useContext(RoleContext);
     const navigate = useNavigate();
+    const [showInitialPopup, setShowInitialPopup] = useState(false);
 
     useEffect(() => {
     }, [role]);
 
     const handleAccountClick = () => {
-        setShowPopup(true);
-
-        if (role === 'ADMIN') {
-            navigate('/admin');
-        } else if (role === 'EMPLOYEE') {
-            navigate('/employee');
-        } else if (role === 'USER') {
-            navigate(`/user/${username}`);
+        if (!isLoggedIn) {
+            setShowInitialPopup(true);
         } else {
+            setShowPopup(true);
+
+            if (role === 'ADMIN') {
+                navigate('/admin');
+            } else if (role === 'EMPLOYEE') {
+                navigate('/employee');
+            } else if (role === 'USER') {
+                navigate(`/user/${username}`);
+            }
         }
+    };
+
+    const handleSignInClick = () => {
+        setShowInitialPopup(false);
+        setShowPopup(true);
     };
 
     return (
@@ -43,6 +52,13 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout, showPopup, setShowPopup
                     </div>
                 </ul>
             </div>
+            {showInitialPopup && (
+                <div className="initialPopup">
+                    <h2>Welcome</h2>
+                    <button onClick={handleSignInClick}>Sign in</button>
+                    <button>Sign up</button>
+                </div>
+            )}
             {showPopup && <Account isLoggedIn={isLoggedIn} setShowPopup={setShowPopup} handleLogin={handleLogin} handleLogout={handleLogout} />}
         </nav>
     );
