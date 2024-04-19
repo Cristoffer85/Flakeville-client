@@ -4,29 +4,21 @@ import {useNavigate} from "react-router-dom";
 import Cookies from 'js-cookie';
 import './UserAccount.css';
 
-function User({ isLoggedIn }) {
+function User() {
     const username = useContext(UserContext);
     const [birthday, setBirthday] = useState('');
     const [address, setAddress] = useState('');
     const [telephone, setTelephone] = useState('');
     const [email, setEmail] = useState('');
     const [userDetails, setUserDetails] = useState(null);
-    const navigate = useNavigate();
+    useNavigate();
 
     useEffect(() => {
         getUserData().catch(error => console.error('Error:', error));
     }, []);
 
-    useEffect(() => {
-        if (!isLoggedIn) {
-            navigate('/account');
-        }
-    }, [isLoggedIn]);
-
     const getUserData = async () => {
-
         const token = Cookies.get('token'); // Get the token from cookies
-
         const response = await fetch(`http://localhost:8080/user/getOneUser/${username}`, {
             headers: {
                 'Authorization': `Bearer ${token}` // Include the token in the Authorization header
