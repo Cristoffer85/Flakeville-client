@@ -7,18 +7,20 @@ import accountLogo from '../assets/ProfileLogoGold.png';
 import {navigateBasedOnRole} from "./Router.jsx";
 import Cookies from "js-cookie";
 
-function Navbar({ isLoggedIn, handleLogin, handleLogout, showPopup, setShowPopup }) {
+function Navbar({ isLoggedIn, handleLogin, handleLogout }) {
     const navigate = useNavigate();
     const username = Cookies.get('username');
     const role = Cookies.get('role');
-    const [showInitialPopup, setShowInitialPopup] = useState(false);
+    const [showPopup, setShowPopup] = useState(false);
+    const [showRegisterForm, setShowRegisterForm] = useState(false);
 
     useEffect(() => {
     }, [role]);
 
     const handleAccountClick = () => {
         if (!isLoggedIn) {
-            setShowInitialPopup(true);
+            setShowPopup(true);
+            setShowRegisterForm(false);
         } else {
             setShowPopup(true);
             if (navigate) {
@@ -28,8 +30,13 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout, showPopup, setShowPopup
     };
 
     const handleSignInClick = () => {
-        setShowInitialPopup(false);
         setShowPopup(true);
+        setShowRegisterForm(false);
+    };
+
+    const handleSignUpClick = () => {
+        setShowPopup(true);
+        setShowRegisterForm(true);
     };
 
     return (
@@ -43,17 +50,17 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout, showPopup, setShowPopup
                         <li><Link to="/weather">Weather</Link></li>
                     </div>
                     <div>
+                        {!isLoggedIn && (
+                            <>
+                                <button onClick={handleSignInClick}>Sign In</button>
+                                <button onClick={handleSignUpClick}>Sign Up</button>
+                            </>
+                        )}
                         <li><img src={accountLogo} alt="AuthHandler" onClick={handleAccountClick} /></li>
                     </div>
                 </ul>
             </div>
-            {showInitialPopup && (
-                <div className="initialPopup">
-                    <button onClick={handleSignInClick}>Sign in</button>
-                    <button>Sign up</button>
-                </div>
-            )}
-            {showPopup && <AuthHandler isLoggedIn={isLoggedIn} setShowPopup={setShowPopup} handleLogin={handleLogin} handleLogout={handleLogout} />}
+            {showPopup && <AuthHandler isLoggedIn={isLoggedIn} setShowPopup={setShowPopup} handleLogin={handleLogin} handleLogout={handleLogout} showRegisterForm={showRegisterForm} />}
         </nav>
     );
 }

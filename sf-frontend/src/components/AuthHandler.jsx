@@ -4,7 +4,7 @@ import Cookies from 'js-cookie';
 import './CSS/Account.css';
 import {navigateBasedOnRole} from "./Router.jsx";
 
-function AuthHandler({ isLoggedIn, handleLogin, handleLogout, setShowPopup }) {
+function AuthHandler({ isLoggedIn, handleLogin, handleLogout, setShowPopup, showRegisterForm }) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
@@ -30,6 +30,31 @@ function AuthHandler({ isLoggedIn, handleLogin, handleLogout, setShowPopup }) {
             document.removeEventListener("mousedown", handleClickOutside);
         };
     }, [setShowPopup]);
+
+    const handleUserRegister = async (event) => {
+        event.preventDefault();
+
+        try {
+            const response = await fetch('http://localhost:8080/auth/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username, password })
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                console.log('Registration successful:', data);
+                // You can add more logic here after successful registration
+            } else {
+                console.log('Registration failed:', data);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
 
     const handleUserLogin = async (event) => {
         event.preventDefault();
@@ -60,7 +85,7 @@ function AuthHandler({ isLoggedIn, handleLogin, handleLogout, setShowPopup }) {
         }
     };
 
-    const handleUserLogout = () => {
+    const handleGeneralLogout = () => {
         handleLogout();
         setShowPopup(false);
         navigate('/');
@@ -69,14 +94,21 @@ function AuthHandler({ isLoggedIn, handleLogin, handleLogout, setShowPopup }) {
     return (
         <div className="loginPopup" ref={popupRef}>
             <h2>Account</h2>
-            {!isLoggedIn && (
+            {!isLoggedIn && !showRegisterForm && (
                 <form onSubmit={handleUserLogin}>
                     <input type="text" value={username} onChange={e => setUsername(e.target.value)} placeholder="Username" required />
                     <input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Password" required />
                     <button type="submit">Login</button>
                 </form>
             )}
-            {isLoggedIn && <button onClick={handleUserLogout}>Logout</button>}
+            {!isLoggedIn && showRegisterForm && (
+                <form onSubmit={handleUserRegister}>
+                    <input type="text" value={username} onChange={e => setUsername(e.target.value)} placeholder="Username" required />
+                    <input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Password" required />
+                    <button type="submit">Register</button>
+                </form>
+            )}
+            {isLoggedIn && <button onClick={handleGeneralLogout}>Logout</button>}
         </div>
     );
 }
