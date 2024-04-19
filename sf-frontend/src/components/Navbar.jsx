@@ -32,11 +32,6 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout }) {
             setFormType('Logout');
         }
     };
-
-    const handleCloseButtonClick = () => {
-        setShowButtons(false);
-    };
-
     return (
         <nav className="navbar">
             <div className="navbar-content">
