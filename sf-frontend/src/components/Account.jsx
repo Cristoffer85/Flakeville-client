@@ -1,7 +1,7 @@
 import React, {useEffect, useState, useRef} from 'react';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
-import './Account.css';
+import './CSS/Account.css';
 import {navigateBasedOnRole} from "./Router.jsx";
 
 function Account({ isLoggedIn, handleLogin, handleLogout, setShowPopup }) {

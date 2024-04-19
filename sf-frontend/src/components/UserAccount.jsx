@@ -1,11 +1,10 @@
-import React, { useContext, useState, useEffect } from 'react';
-import UserContext from './UserContext';
+import React, { useState, useEffect } from 'react';
 import {useNavigate} from "react-router-dom";
 import Cookies from 'js-cookie';
-import './UserAccount.css';
+import './CSS/UserAccount.css';
 
 function User() {
-    const username = useContext(UserContext);
+    const username = Cookies.get('username');
     const [birthday, setBirthday] = useState('');
     const [address, setAddress] = useState('');
     const [telephone, setTelephone] = useState('');

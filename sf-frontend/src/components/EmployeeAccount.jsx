@@ -1,11 +1,10 @@
-import React, { useContext, useState, useEffect } from 'react';
-import UserContext from './UserContext';
+import React, { useState, useEffect } from 'react';
 import {useNavigate} from "react-router-dom";
 import Cookies from 'js-cookie';
-import './EmployeeAccount.css';
+import './CSS/EmployeeAccount.css';
 
 function Employee() {
-    const username = useContext(UserContext);
+    const username = Cookies.get('username');
     const [employeeDetails, setEmployeeDetails] = useState({name: '', position: ''});
     const [formFields, setFormFields] = useState({name: '', position: ''});
     const [successMessage, setSuccessMessage] = useState('');

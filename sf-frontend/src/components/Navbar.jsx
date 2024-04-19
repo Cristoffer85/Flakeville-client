@@ -1,17 +1,16 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import Account from './Account';
-import UserContext from './UserContext';
-import RoleContext from './RoleContext';
-import './Navbar.css';
-import logo from '/Logo.jpg';
-import accountLogo from '/ProfileLogoGold.png';
+import './CSS/Navbar.css';
+import logo from '../assets/Logo.jpg';
+import accountLogo from '../assets/ProfileLogoGold.png';
 import {navigateBasedOnRole} from "./Router.jsx";
+import Cookies from "js-cookie";
 
 function Navbar({ isLoggedIn, handleLogin, handleLogout, showPopup, setShowPopup }) {
     const navigate = useNavigate();
-    const username = useContext(UserContext);
-    const role = useContext(RoleContext);
+    const username = Cookies.get('username');
+    const role = Cookies.get('role');
     const [showInitialPopup, setShowInitialPopup] = useState(false);
 
     useEffect(() => {
