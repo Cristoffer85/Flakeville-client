@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
-import './AdminAcc.css';
+import './AdminAccount.css';
 
 function Admin() {
     const [searched, setSearched] = useState(false);
@@ -38,13 +38,13 @@ function Admin() {
 
     // #################### HELPER METHODS ####################
 
-    const handleUserSearchSubmit = (event) => {
+    const userSearchSubmit = (event) => {
         event.preventDefault();
-        fetchUser(searchUsername);
+        getUser(searchUsername);
         setSearched(true);
     };
 
-    const handleNewUserSubmit = async (event) => {
+    const userNewSubmit = async (event) => {
         event.preventDefault();
         const newUser = {
             username: newUsername,
@@ -53,7 +53,7 @@ function Admin() {
         await createUser(newUser);
     };
 
-    const handleUserUpdateSubmit = async (event) => {
+    const userUpdateSubmit = async (event) => {
         event.preventDefault();
         // Get the updated user data from the form
         const updatedUser = {
@@ -68,19 +68,19 @@ function Admin() {
         setShowUpdateForm(false);
     };
 
-    const handleUserDeleteClick = async () => {
+    const userDeleteClick = async () => {
         await deleteUser(searchedUser.username);
         setSearchedUser(null);
     };
 
 
-    const handleEmployeeSearchSubmit = (event) => {
+    const employeeSearchSubmit = (event) => {
         event.preventDefault();
-        fetchEmployee(searchEmployeeUsername);
+        getEmployee(searchEmployeeUsername);
         setSearched(true);
     };
 
-    const handleNewEmployeeSubmit = async (event) => {
+    const employeeNewSubmit = async (event) => {
         event.preventDefault();
         const newEmployee = {
             name: newEmployeeName,
@@ -91,7 +91,7 @@ function Admin() {
         await createEmployee(newEmployee);
     };
 
-    const handleEmployeeUpdateSubmit = async (event) => {
+    const employeeUpdateSubmit = async (event) => {
         event.preventDefault();
         // Get the updated employee data from the form
         const updatedEmployee = {
@@ -102,39 +102,12 @@ function Admin() {
         setShowUpdateEmployeeForm(false); // Hide the update form after updating
     };
 
-    const handleEmployeeDeleteClick = async () => {
+    const employeeDeleteClick = async () => {
         await deleteEmployee(searchedEmployee.username);
         setSearchedEmployee(null);
     };
 
     // #################### USERS ####################
-
-    const getAllUsers = async () => {
-        const token = Cookies.get('token');
-        const response = await fetch('http://localhost:8080/admin/getAllUsers', {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        });
-        const data = await response.json();
-        setUsers(data);
-
-    };
-
-    const fetchUser = async (username) => {
-        const token = Cookies.get('token');
-        const response = await fetch(`http://localhost:8080/admin/getOneUser/${username}`, {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        });
-        if (!response.ok || response.headers.get('Content-Length') === '0') {
-            setSearchedUser(null); // Set searchedUser to null if the user is not found
-            return;
-        }
-        const data = await response.json();
-        setSearchedUser(data); // Update the state with the fetched user data
-    };
 
     const createUser = async (user) => {
         const token = Cookies.get('token');
@@ -156,6 +129,33 @@ function Admin() {
         } else {
             console.error('Creation failed:', await response.text());
         }
+    };
+
+    const getAllUsers = async () => {
+        const token = Cookies.get('token');
+        const response = await fetch('http://localhost:8080/admin/getAllUsers', {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        const data = await response.json();
+        setUsers(data);
+
+    };
+
+    const getUser = async (username) => {
+        const token = Cookies.get('token');
+        const response = await fetch(`http://localhost:8080/admin/getOneUser/${username}`, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        if (!response.ok || response.headers.get('Content-Length') === '0') {
+            setSearchedUser(null); // Set searchedUser to null if the user is not found
+            return;
+        }
+        const data = await response.json();
+        setSearchedUser(data); // Update the state with the fetched user data
     };
 
     const updateUser = async (username, user) => {
@@ -189,33 +189,6 @@ function Admin() {
 
     // #################### EMPLOYEES ####################
 
-    const getAllEmployees = async () => {
-        const token = Cookies.get('token');
-        const response = await fetch('http://localhost:8080/admin/getAllEmployees', {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        });
-        const data = await response.json();
-        setEmployees(data);
-
-    };
-
-    const fetchEmployee = async (username) => {
-        const token = Cookies.get('token');
-        const response = await fetch(`http://localhost:8080/admin/getOneEmployee/${username}`, {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        });
-        if (!response.ok || response.headers.get('Content-Length') === '0') {
-            setSearchedEmployee(null); // Set searchedEmployee to null if the employee is not found
-            return;
-        }
-        const data = await response.json();
-        setSearchedEmployee(data); // Update the state with the fetched employee data
-    };
-
     const createEmployee = async (employee) => {
         const token = Cookies.get('token');
         const response = await fetch('http://localhost:8080/admin/createEmployee', {
@@ -238,6 +211,33 @@ function Admin() {
         } else {
             console.error('Creation failed:', await response.text());
         }
+    };
+
+    const getAllEmployees = async () => {
+        const token = Cookies.get('token');
+        const response = await fetch('http://localhost:8080/admin/getAllEmployees', {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        const data = await response.json();
+        setEmployees(data);
+
+    };
+
+    const getEmployee = async (username) => {
+        const token = Cookies.get('token');
+        const response = await fetch(`http://localhost:8080/admin/getOneEmployee/${username}`, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        if (!response.ok || response.headers.get('Content-Length') === '0') {
+            setSearchedEmployee(null); // Set searchedEmployee to null if the employee is not found
+            return;
+        }
+        const data = await response.json();
+        setSearchedEmployee(data); // Update the state with the fetched employee data
     };
 
     const updateEmployee = async (username, employee) => {
@@ -289,7 +289,7 @@ function Admin() {
                         </div>
                     ))}
                     <h2>Search Users</h2>
-                    <form onSubmit={handleUserSearchSubmit}>
+                    <form onSubmit={userSearchSubmit}>
                         <input type="text" value={searchUsername} onChange={e => setSearchUsername(e.target.value)}
                                placeholder="Search for a user" required/>
                         <button type="submit">Search</button>
@@ -305,14 +305,14 @@ function Admin() {
                                     setShowUpdateForm(true);
                                 }}>Update
                                 </button>
-                                <button onClick={handleUserDeleteClick}>Delete</button>
+                                <button onClick={userDeleteClick}>Delete</button>
                             </div>
                         ) : (
                             <p>User not in database</p>
                         )
                     )}
                     {showUpdateForm && (
-                        <form onSubmit={handleUserUpdateSubmit}>
+                        <form onSubmit={userUpdateSubmit}>
                             <input type="email" value={updateEmail} onChange={e => setUpdateEmail(e.target.value)}
                                    placeholder="Update Email" required/>
                             <input type="tel" value={updateTelephone} onChange={e => setUpdateTelephone(e.target.value)}
@@ -325,7 +325,7 @@ function Admin() {
                         </form>
                     )}
                     <h2>Create New User</h2>
-                    <form onSubmit={handleNewUserSubmit}>
+                    <form onSubmit={userNewSubmit}>
                         <input type="text" value={newUsername} onChange={e => setNewUsername(e.target.value)}
                                placeholder="Username" required/>
                         <input type="password" value={newPassword} onChange={e => setNewPassword(e.target.value)}
@@ -345,7 +345,7 @@ function Admin() {
                         </div>
                     ))}
                     <h2>Search Employees</h2>
-                    <form onSubmit={handleEmployeeSearchSubmit}>
+                    <form onSubmit={employeeSearchSubmit}>
                         <input type="text" value={searchEmployeeUsername}
                                onChange={e => setSearchEmployeeUsername(e.target.value)} placeholder="Search for an employee"
                                required/>
@@ -362,14 +362,14 @@ function Admin() {
                                     setShowUpdateEmployeeForm(true);
                                 }}>Update
                                 </button>
-                                <button onClick={handleEmployeeDeleteClick}>Delete</button>
+                                <button onClick={employeeDeleteClick}>Delete</button>
                             </div>
                         ) : (
                             <p>Employee not in database</p>
                         )
                     )}
                     {showUpdateEmployeeForm && (
-                        <form onSubmit={handleEmployeeUpdateSubmit}>
+                        <form onSubmit={employeeUpdateSubmit}>
                             <input type="text" value={updateEmployeeName} onChange={e => setUpdateEmployeeName(e.target.value)}
                                    placeholder="Update Name" required/>
                             <input type="text" value={updateEmployeePosition}
@@ -379,7 +379,7 @@ function Admin() {
                         </form>
                     )}
                     <h2>Create New Employee</h2>
-                    <form onSubmit={handleNewEmployeeSubmit}>
+                    <form onSubmit={employeeNewSubmit}>
                         <input type="text" value={newEmployeeName} onChange={e => setNewEmployeeName(e.target.value)}
                                placeholder="Name" required/>
                         <input type="text" value={newEmployeePosition} onChange={e => setNewEmployeePosition(e.target.value)}

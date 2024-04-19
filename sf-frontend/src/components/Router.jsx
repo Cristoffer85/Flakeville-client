@@ -4,9 +4,9 @@ import Home from './Home';
 import Account from './Account';
 import Store from './Store';
 import Weather from './Weather';
-import AdminAcc from "./AdminAcc.jsx";
-import EmployeeAcc from "./EmployeeAcc.jsx";
-import UserAcc from "./UserAcc.jsx";
+import AdminAcc from "./AdminAccount.jsx";
+import EmployeeAcc from "./EmployeeAccount.jsx";
+import UserAcc from "./UserAccount.jsx";
 import Navbar from './Navbar';
 
 function AppRouter({ isLoggedIn, handleLogin, handleLogout, username, showPopup, setShowPopup }) {

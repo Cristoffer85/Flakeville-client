@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import UserContext from './UserContext';
 import {useNavigate} from "react-router-dom";
 import Cookies from 'js-cookie';
-import './EmployeeAcc.css';
+import './EmployeeAccount.css';
 
 function Employee() {
     const username = useContext(UserContext);
@@ -11,7 +11,12 @@ function Employee() {
     const [successMessage, setSuccessMessage] = useState('');
     useNavigate();
 
+    useEffect(() => {
+        getEmployeeData().catch(error => console.error('Error:', error));
+    }, []);
+
     const getEmployeeData = async () => {
+
         const token = Cookies.get('token'); // Get the token from cookies
 
         const response = await fetch(`http://localhost:8080/employee/getOneEmployee/${username}`, {
@@ -19,19 +24,15 @@ function Employee() {
                 'Authorization': `Bearer ${token}` // Include the token in the Authorization header
             }
         });
-
         if (!response.ok) {
             console.error('Error:', response.statusText);
             return;
-        }
 
+        }
         const data = await response.json();
         setEmployeeDetails(data);
-    };
 
-    useEffect(() => {
-        getEmployeeData().catch(error => console.error('Error:', error));
-    }, []);
+    };
 
     const updateEmployeeData = async (event) => {
         event.preventDefault();

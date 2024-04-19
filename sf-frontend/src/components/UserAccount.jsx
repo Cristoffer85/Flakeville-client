@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import UserContext from './UserContext';
 import {useNavigate} from "react-router-dom";
 import Cookies from 'js-cookie';
-import './UserAcc.css';
+import './UserAccount.css';
 
 function User({ isLoggedIn }) {
     const username = useContext(UserContext);
@@ -13,24 +13,6 @@ function User({ isLoggedIn }) {
     const [userDetails, setUserDetails] = useState(null);
     const navigate = useNavigate();
 
-    const getUserData = async () => {
-        const token = Cookies.get('token'); // Get the token from cookies
-
-        const response = await fetch(`http://localhost:8080/user/getOneUser/${username}`, {
-            headers: {
-                'Authorization': `Bearer ${token}` // Include the token in the Authorization header
-            }
-        });
-
-        if (!response.ok) {
-            console.error('Error:', response.statusText);
-            return;
-        }
-
-        const data = await response.json();
-        setUserDetails(data);
-    };
-
     useEffect(() => {
         getUserData().catch(error => console.error('Error:', error));
     }, []);
@@ -40,6 +22,25 @@ function User({ isLoggedIn }) {
             navigate('/account');
         }
     }, [isLoggedIn]);
+
+    const getUserData = async () => {
+
+        const token = Cookies.get('token'); // Get the token from cookies
+
+        const response = await fetch(`http://localhost:8080/user/getOneUser/${username}`, {
+            headers: {
+                'Authorization': `Bearer ${token}` // Include the token in the Authorization header
+            }
+        });
+        if (!response.ok) {
+            console.error('Error:', response.statusText);
+            return;
+
+        }
+        const data = await response.json();
+        setUserDetails(data);
+
+    };
 
     const updateUserData = async (event) => {
         event.preventDefault();
