@@ -1,7 +1,7 @@
 import React from 'react';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Home from './Home';
-import Account from './Account';
+import AuthHandler from './AuthHandler.jsx';
 import Store from './Store';
 import Weather from './Weather';
 import AdminAcc from "./AdminAccount.jsx";
@@ -28,7 +28,7 @@ function AppRouter({ isLoggedIn, handleLogin, handleLogout, username, showPopup,
             <div>
                 <Navbar {...commonProps} />
                 <Routes>
-                    <Route path="/account" element={<Account {...commonProps} />} />
+                    <Route path="/account" element={<AuthHandler {...commonProps} />} />
                     <Route path="/store" element={<Store {...commonProps} />} />
                     <Route path="/weather" element={<Weather {...commonProps} />} />
                     <Route path="/" element={<Home {...commonProps} />} />

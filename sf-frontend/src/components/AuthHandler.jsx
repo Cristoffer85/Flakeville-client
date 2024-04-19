@@ -4,7 +4,7 @@ import Cookies from 'js-cookie';
 import './CSS/Account.css';
 import {navigateBasedOnRole} from "./Router.jsx";
 
-function Account({ isLoggedIn, handleLogin, handleLogout, setShowPopup }) {
+function AuthHandler({ isLoggedIn, handleLogin, handleLogout, setShowPopup }) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
@@ -81,4 +81,4 @@ function Account({ isLoggedIn, handleLogin, handleLogout, setShowPopup }) {
     );
 }
 
-export default Account;
+export default AuthHandler;

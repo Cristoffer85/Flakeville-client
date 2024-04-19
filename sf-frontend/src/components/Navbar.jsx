@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {Link, useNavigate} from 'react-router-dom';
-import Account from './Account';
+import AuthHandler from './AuthHandler.jsx';
 import './CSS/Navbar.css';
 import logo from '../assets/Logo.jpg';
 import accountLogo from '../assets/ProfileLogoGold.png';
@@ -43,7 +43,7 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout, showPopup, setShowPopup
                         <li><Link to="/weather">Weather</Link></li>
                     </div>
                     <div>
-                        <li><img src={accountLogo} alt="Account" onClick={handleAccountClick} /></li>
+                        <li><img src={accountLogo} alt="AuthHandler" onClick={handleAccountClick} /></li>
                     </div>
                 </ul>
             </div>
@@ -53,7 +53,7 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout, showPopup, setShowPopup
                     <button>Sign up</button>
                 </div>
             )}
-            {showPopup && <Account isLoggedIn={isLoggedIn} setShowPopup={setShowPopup} handleLogin={handleLogin} handleLogout={handleLogout} />}
+            {showPopup && <AuthHandler isLoggedIn={isLoggedIn} setShowPopup={setShowPopup} handleLogin={handleLogin} handleLogout={handleLogout} />}
         </nav>
     );
 }
