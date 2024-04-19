@@ -1,31 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import AuthHandler from './AuthHandler.jsx';
 import './CSS/Navbar.css';
 import logo from '../assets/Logo.jpg';
 import accountLogo from '../assets/ProfileLogoGold.png';
-import {navigateBasedOnRole} from "./Router.jsx";
-import Cookies from "js-cookie";
 
 function Navbar({ isLoggedIn, handleLogin, handleLogout }) {
-    const navigate = useNavigate();
-    const username = Cookies.get('username');
-    const role = Cookies.get('role');
+    useNavigate();
     const [showPopup, setShowPopup] = useState(false);
     const [showButtons, setShowButtons] = useState(false);
     const [showRegisterForm, setShowRegisterForm] = useState(false);
 
-    useEffect(() => {
-    }, [role]);
 
     const handleAccountClick = () => {
         if (!isLoggedIn) {
             setShowButtons(!showButtons); // Toggle showButtons state
         } else {
-            setShowPopup(true);
-            if (navigate) {
-                navigateBasedOnRole(role, username, navigate);
-            }
+            setShowPopup(!showPopup); // Toggle showPopup state
         }
     };
 
