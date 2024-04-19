@@ -10,24 +10,31 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout }) {
     const [showPopup, setShowPopup] = useState(false);
     const [showButtons, setShowButtons] = useState(false);
     const [showRegisterForm, setShowRegisterForm] = useState(false);
-
-
-    const handleAccountClick = () => {
-        if (!isLoggedIn) {
-            setShowButtons(!showButtons); // Toggle showButtons state
-        } else {
-            setShowPopup(!showPopup); // Toggle showPopup state
-        }
-    };
+    const [formType, setFormType] = useState('Account');
 
     const handleSignInClick = () => {
         setShowPopup(true);
         setShowRegisterForm(false);
+        setFormType('Sign In');
     };
 
     const handleSignUpClick = () => {
         setShowPopup(true);
         setShowRegisterForm(true);
+        setFormType('Sign Up');
+    };
+
+    const handleAccountClick = () => {
+        if (!isLoggedIn) {
+            setShowButtons(!showButtons);
+        } else {
+            setShowPopup(!showPopup);
+            setFormType('Logout');
+        }
+    };
+
+    const handleCloseButtonClick = () => {
+        setShowButtons(false);
     };
 
     return (
@@ -51,7 +58,7 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout }) {
                     </div>
                 </ul>
             </div>
-            {showPopup && <AuthHandler isLoggedIn={isLoggedIn} setShowPopup={setShowPopup} handleLogin={handleLogin} handleLogout={handleLogout} showRegisterForm={showRegisterForm} />}
+            {showPopup && <AuthHandler isLoggedIn={isLoggedIn} setShowPopup={setShowPopup} handleLogin={handleLogin} handleLogout={handleLogout} showRegisterForm={showRegisterForm} formType={formType} />}
         </nav>
     );
 }

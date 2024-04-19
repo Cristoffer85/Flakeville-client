@@ -4,7 +4,7 @@ import Cookies from 'js-cookie';
 import './CSS/Account.css';
 import {navigateBasedOnRole} from "./Router.jsx";
 
-function AuthHandler({ isLoggedIn, handleLogin, handleLogout, setShowPopup, showRegisterForm }) {
+function AuthHandler({ isLoggedIn, handleLogin, handleLogout, setShowPopup, showRegisterForm, formType }) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
@@ -93,7 +93,7 @@ function AuthHandler({ isLoggedIn, handleLogin, handleLogout, setShowPopup, show
 
     return (
         <div className="loginPopup" ref={popupRef}>
-            <h2>Account</h2>
+            <h2>{formType}</h2>
             {!isLoggedIn && !showRegisterForm && (
                 <form onSubmit={handleUserLogin}>
                     <input type="text" value={username} onChange={e => setUsername(e.target.value)} placeholder="Username" required />

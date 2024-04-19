@@ -21,6 +21,7 @@ export const navigateBasedOnRole = (role, username, navigate) => {
 }
 
 function AppRouter({ isLoggedIn, handleLogin, handleLogout, username, showPopup, setShowPopup }) {
+    // lots of props to keep current user logged in all the time, when browsing through the page. Among others
     const commonProps = { isLoggedIn, handleLogin, handleLogout, username, showPopup, setShowPopup };
 
     return (
