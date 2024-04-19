@@ -56,11 +56,12 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout }) {
                                 <button onClick={handleSignUpClick}>Sign Up</button>
                             </>
                         )}
-                        <li><img src={accountLogo} alt="AuthHandler" onClick={handleAccountClick} /></li>
+                        <li><img src={accountLogo} alt="AuthHandler" onClick={handleAccountClick}/></li>
                     </div>
                 </ul>
             </div>
-            {showPopup && <AuthHandler isLoggedIn={isLoggedIn} setShowPopup={setShowPopup} handleLogin={handleLogin} handleLogout={handleLogout} showRegisterForm={showRegisterForm} />}
+            {showPopup && <AuthHandler isLoggedIn={isLoggedIn} setShowPopup={setShowPopup} handleLogin={handleLogin}
+                                       handleLogout={handleLogout} showRegisterForm={showRegisterForm}/>}
         </nav>
     );
 }

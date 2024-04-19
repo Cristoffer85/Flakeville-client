@@ -62,3 +62,9 @@
     width: 184px;
     height: auto;
 }
+
+.navbar-content div {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
