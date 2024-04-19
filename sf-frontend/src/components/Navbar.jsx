@@ -12,6 +12,7 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout }) {
     const username = Cookies.get('username');
     const role = Cookies.get('role');
     const [showPopup, setShowPopup] = useState(false);
+    const [showButtons, setShowButtons] = useState(false);
     const [showRegisterForm, setShowRegisterForm] = useState(false);
 
     useEffect(() => {
@@ -19,8 +20,7 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout }) {
 
     const handleAccountClick = () => {
         if (!isLoggedIn) {
-            setShowPopup(true);
-            setShowRegisterForm(false);
+            setShowButtons(!showButtons); // Toggle showButtons state
         } else {
             setShowPopup(true);
             if (navigate) {
@@ -50,7 +50,7 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout }) {
                         <li><Link to="/weather">Weather</Link></li>
                     </div>
                     <div>
-                        {!isLoggedIn && (
+                        {!isLoggedIn && showButtons && (
                             <>
                                 <button onClick={handleSignInClick}>Sign In</button>
                                 <button onClick={handleSignUpClick}>Sign Up</button>
@@ -60,8 +60,7 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout }) {
                     </div>
                 </ul>
             </div>
-            {showPopup && <AuthHandler isLoggedIn={isLoggedIn} setShowPopup={setShowPopup} handleLogin={handleLogin}
-                                       handleLogout={handleLogout} showRegisterForm={showRegisterForm}/>}
+            {showPopup && <AuthHandler isLoggedIn={isLoggedIn} setShowPopup={setShowPopup} handleLogin={handleLogin} handleLogout={handleLogout} showRegisterForm={showRegisterForm} />}
         </nav>
     );
 }
