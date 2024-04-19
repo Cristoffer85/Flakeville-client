@@ -2,6 +2,7 @@ import React, {useEffect, useState, useRef} from 'react';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import './Account.css';
+import {navigateBasedOnRole} from "./Router.jsx";
 
 function Account({ isLoggedIn, handleLogin, handleLogout, setShowPopup }) {
     const [username, setUsername] = useState('');
@@ -10,15 +11,10 @@ function Account({ isLoggedIn, handleLogin, handleLogout, setShowPopup }) {
     const popupRef = useRef();
 
     useEffect(() => {
-        if (isLoggedIn) {
+        if (isLoggedIn && navigate) {
             const role = Cookies.get('role');
-            if (role === 'ADMIN') {
-                navigate('/admin');
-            } else if (role === 'EMPLOYEE') {
-                navigate('/employee');
-            } else if (role === 'USER') {
-                navigate(`/user/${Cookies.get('username')}`);
-            }
+            const username = Cookies.get('username');
+            navigateBasedOnRole(role, username, navigate);
         }
     }, [isLoggedIn, navigate]);
 
@@ -55,13 +51,7 @@ function Account({ isLoggedIn, handleLogin, handleLogout, setShowPopup }) {
                 handleLogin(data.user.username, data.jwt, data.role.authority);
 
                 // Navigate to the respective page based on the user's role
-                if (data.role.authority === 'ADMIN') {
-                    navigate('/admin');
-                } else if (data.role.authority === 'EMPLOYEE') {
-                    navigate('/employee');
-                } else if (data.role.authority === 'USER') {
-                    navigate(`/user/${data.user.username}`);
-                }
+                navigateBasedOnRole(data.role.authority, data.user.username, navigate);
             } else {
                 console.log('Login failed:', data);
             }

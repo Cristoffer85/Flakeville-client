@@ -1,16 +1,17 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import Account from './Account';
 import UserContext from './UserContext';
 import RoleContext from './RoleContext';
 import './Navbar.css';
 import logo from '/Logo.jpg';
 import accountLogo from '/ProfileLogoGold.png';
+import {navigateBasedOnRole} from "./Router.jsx";
 
 function Navbar({ isLoggedIn, handleLogin, handleLogout, showPopup, setShowPopup }) {
+    const navigate = useNavigate();
     const username = useContext(UserContext);
     const role = useContext(RoleContext);
-    const navigate = useNavigate();
     const [showInitialPopup, setShowInitialPopup] = useState(false);
 
     useEffect(() => {
@@ -21,13 +22,8 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout, showPopup, setShowPopup
             setShowInitialPopup(true);
         } else {
             setShowPopup(true);
-
-            if (role === 'ADMIN') {
-                navigate('/admin');
-            } else if (role === 'EMPLOYEE') {
-                navigate('/employee');
-            } else if (role === 'USER') {
-                navigate(`/user/${username}`);
+            if (navigate) {
+                navigateBasedOnRole(role, username, navigate);
             }
         }
     };

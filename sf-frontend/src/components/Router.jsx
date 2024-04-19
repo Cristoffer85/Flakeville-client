@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import {BrowserRouter as Router, Route, Routes, useNavigate} from 'react-router-dom';
 import Home from './Home';
 import Account from './Account';
 import Store from './Store';
@@ -8,6 +8,16 @@ import AdminAcc from "./AdminAccount.jsx";
 import EmployeeAcc from "./EmployeeAccount.jsx";
 import UserAcc from "./UserAccount.jsx";
 import Navbar from './Navbar';
+
+export const navigateBasedOnRole = (role, username, navigate) => {
+    if (role === 'ADMIN') {
+        navigate('/admin');
+    } else if (role === 'EMPLOYEE') {
+        navigate('/employee');
+    } else if (role === 'USER') {
+        navigate(`/user/${username}`);
+    }
+}
 
 function AppRouter({ isLoggedIn, handleLogin, handleLogout, username, showPopup, setShowPopup }) {
     const commonProps = { isLoggedIn, handleLogin, handleLogout, username, showPopup, setShowPopup };
