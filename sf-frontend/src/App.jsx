@@ -4,6 +4,7 @@ import UserContext from './components/UserContext';
 import RoleContext from './components/RoleContext';
 import Cookies from 'js-cookie';
 
+    // Main component that mainly handles the login and logout functionalities
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [username, setUsername] = useState('');
@@ -22,6 +23,7 @@ function App() {
         }
     }, []);
 
+    // Function to handle login, and save the user's current data in cookies
     const handleLogin = (username, token, userRole) => {
         setIsLoggedIn(true);
         setUsername(username);
@@ -31,7 +33,7 @@ function App() {
         Cookies.set('username', username);
         Cookies.set('role', userRole);
     };
-
+    // Function to handle logout, and remove the user's current data from cookies (This app/frontend only)
     const handleLogout = () => {
         setIsLoggedIn(false);
         setUsername('');
