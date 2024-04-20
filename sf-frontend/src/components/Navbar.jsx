@@ -35,12 +35,12 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout }) {
     return (
         <nav className="navbar">
             <div className="navbar-content">
-                <img src={logo} alt="Logo" className="navbar-logo" />
+                <img src={logo} alt="Logo" className="main-logo" />
                 <ul>
                     <div>
-                        <li><Link to="/">Home</Link></li>
-                        <li><Link to="/store">Store</Link></li>
-                        <li><Link to="/weather">Weather</Link></li>
+                        <li><Link to="/">HOME</Link></li>
+                        <li><Link to="/store">STORE</Link></li>
+                        <li><Link to="/weather">WEATHER</Link></li>
                     </div>
                     <div>
                         {!isLoggedIn && showButtons && (
@@ -49,7 +49,7 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout }) {
                                 <button onClick={handleSignUpClick}>Sign Up</button>
                             </>
                         )}
-                        <li><img src={accountLogo} alt="AuthHandler" onClick={handleAccountClick}/></li>
+                        <img src={accountLogo} alt="AuthHandler" onClick={handleAccountClick} className="account-logo"/>
                     </div>
                 </ul>
             </div>

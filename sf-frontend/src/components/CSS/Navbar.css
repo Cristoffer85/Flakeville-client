@@ -1,16 +1,13 @@
+/*Makes the navbar visible on the top of the page*/
 .navbar {
     position: fixed;
     top: 0;
     width: 100%;
-    background-color: rgba(255, 255, 255, 0.5);
+    background: linear-gradient(to top, rgba(255, 255, 255, 0), rgba(30, 30, 30, 0.7));
     z-index: 1;
 }
 
-.navbar-content {
-    display: flex;
-    align-items: center;
-}
-
+/*Organises the navbar and its contents*/
 .navbar ul {
     list-style-type: none;
     margin: 0;
@@ -20,36 +17,50 @@
     width: 100%;
 }
 
-.navbar li {
-    float: left;
+/*Organises and does some override settings related to index.- and app.css*/
+.navbar-content {
+    display: flex;
+    align-items: center;
 }
 
+/*Organises Home, Store and Weather links*/
 .navbar li a {
     display: block;
-    color: black;
+    color: #ffffff;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
     position: relative;
+    font-family: Lato; /* Change to your preferred font */
+    font-size: 20px; /* Change to your preferred size */
+    font-weight: bold; /* Change to 'normal' if you don't want bold */
 }
 
-.navbar li a:hover {
-    background-color: #ddd;
-    color: black;
+/*Settings Home, Store, Weather - Stores the links horizontally instead of vertical*/
+.navbar-content div {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
 
-.navbar-logo {
+
+
+
+/*Settings for main logo*/
+.main-logo {
     height: 50px;
     margin-right: 10px;
 }
 
-.navbar li img {
+/*Settings for account logo*/
+.account-logo {
     margin-top: 5px;
     margin-right: 5px;
     height: 40px;
     width: 40px;
 }
 
+/*Settings for sign up/sign in buttons*/
 .initialPopup {
     position: absolute;
     top: 1px;
@@ -61,10 +72,4 @@
     margin: 1px;
     width: 184px;
     height: auto;
-}
-
-.navbar-content div {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
 }
