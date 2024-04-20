@@ -16,7 +16,7 @@ const SnowfallEffect = () => {
             const top = random(100);
             const left = random(100);
             const dur = random(10) + 10;
-            const size = random(25) + 25;
+            const size = random(10) + 10;
             return {
                 top: `-${top}%`,
                 left: `${left}%`,

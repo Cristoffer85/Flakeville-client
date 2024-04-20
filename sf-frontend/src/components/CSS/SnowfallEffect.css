@@ -19,6 +19,13 @@ main {
     text-align: center;
 }
 
+.snowflake-button {
+    margin-right: 10px;
+    margin-left: 10px;
+    width: 30px; /* Set the width of the image */
+    height: 30px; /* Set the height of the image */
+}
+
 h1 {
     color: white;
 }
@@ -34,7 +41,7 @@ h1 {
 
 .snow {
     animation: fall ease-in infinite, sway ease-in-out infinite;
-    color: skyblue;
+    color: #d5e1ea;
     position: absolute;
 }
 
@@ -85,11 +92,4 @@ footer .heart {
     100% {
         margin-left: 0;
     }
-}
-
-.snowflake-button {
-    margin-right: 10px;
-    margin-left: 10px;
-    width: 30px; /* Set the width of the image */
-    height: 30px; /* Set the height of the image */
 }

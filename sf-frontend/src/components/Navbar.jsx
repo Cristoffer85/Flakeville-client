@@ -55,7 +55,7 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout }) {
                         {!isLoggedIn && showButtons && (
                             <>
                                 <button onClick={handleSignInClick}>Sign In</button>
-                                <button onClick={handleSignUpClick}>Sign Up</button>
+                                <button onClick={handleSignUpClick} className="signup-button">Sign Up</button>
                             </>
                         )}
                         <img src={snowflakeImg} alt="Start snow" onClick={handleStartSnow} className="snowflake-button" /> {/* Use the Snowflake.png image as the button */}
