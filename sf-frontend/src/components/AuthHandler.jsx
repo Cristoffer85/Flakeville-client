@@ -1,7 +1,7 @@
 import React, {useEffect, useState, useRef} from 'react';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
-import './CSS/Account.css';
+import './CSS/AuthHandler.css';
 import {navigateBasedOnRole} from "./Router.jsx";
 
 function AuthHandler({ isLoggedIn, handleLogin, handleLogout, setShowPopup, showRegisterForm, formType }) {
@@ -92,7 +92,7 @@ function AuthHandler({ isLoggedIn, handleLogin, handleLogout, setShowPopup, show
     };
 
     return (
-        <div className="loginPopup" ref={popupRef}>
+        <div className="login-and-SignInPopup" ref={popupRef}>
             <h2>{formType}</h2>
             {!isLoggedIn && !showRegisterForm && (
                 <form onSubmit={handleUserLogin}>
@@ -108,7 +108,11 @@ function AuthHandler({ isLoggedIn, handleLogin, handleLogout, setShowPopup, show
                     <button type="submit">Register</button>
                 </form>
             )}
-            {isLoggedIn && <button onClick={handleGeneralLogout}>Logout</button>}
+            {isLoggedIn &&
+                <div className="logout-box">
+                    <button onClick={handleGeneralLogout}>Logout</button>
+                </div>
+            }
         </div>
     );
 }

@@ -32,6 +32,7 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout }) {
             setFormType('Logout');
         }
     };
+
     return (
         <nav className="navbar">
             <div className="navbar-content">
