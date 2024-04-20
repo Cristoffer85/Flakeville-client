@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {useNavigate} from "react-router-dom";
 import Cookies from 'js-cookie';
-import './CSS/EmployeeAccount.css';
+import './css/EmployeeAccount.css';
 
 function Employee() {
     const username = Cookies.get('username');

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import './CSS/SnowfallEffect.css';
+import './css/SnowfallEffect.css';
 
 const SnowfallEffect = () => {
     const [isSnowing, setIsSnowing] = useState(true);

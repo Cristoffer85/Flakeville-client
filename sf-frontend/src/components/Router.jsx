@@ -1,12 +1,12 @@
 import React from 'react';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
-import Home from './Home';
+import Home from '../pages/Home.jsx';
 import AuthHandler from './AuthHandler.jsx';
-import Store from './Store';
-import Weather from './Weather';
-import AdminAcc from "./AdminAccount.jsx";
-import EmployeeAcc from "./EmployeeAccount.jsx";
-import UserAcc from "./UserAccount.jsx";
+import Store from '../pages/Store.jsx';
+import Weather from '../pages/Weather.jsx';
+import AdminAcc from "../pages/AdminAccount.jsx";
+import EmployeeAcc from "../pages/EmployeeAccount.jsx";
+import UserAcc from "../pages/UserAccount.jsx";
 import Navbar from './Navbar';
 
 // export const that uses the navigate function to navigate to the respective page based on user's role

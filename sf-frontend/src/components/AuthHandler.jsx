@@ -1,7 +1,7 @@
 import React, {useEffect, useState, useRef} from 'react';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
-import './CSS/AuthHandler.css';
+import './css/AuthHandler.css';
 import {navigateBasedOnRole} from "./Router.jsx";
 
 function AuthHandler({ isLoggedIn, handleLogin, handleLogout, setShowPopup, showRegisterForm, formType }) {

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import AuthHandler from './AuthHandler.jsx';
 import SnowfallEffect from './SnowfallEffect.jsx';
-import './CSS/Navbar.css';
+import './css/Navbar.css';
 import logo from '../assets/Logo.png';
 import accountLogo from '../assets/ProfileLogoGold.png';
 import snowflakeImg from '../assets/Snowflake.png'; // Import the Snowflake.png image

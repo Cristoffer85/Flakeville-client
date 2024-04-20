@@ -1,5 +1,5 @@
 import React from 'react';
-import './CSS/Store.css';
+import './css/Store.css';
 
 function Store() {
     return (
