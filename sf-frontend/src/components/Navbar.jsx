@@ -5,14 +5,15 @@ import SnowfallEffect from './SnowfallEffect.jsx';
 import './CSS/Navbar.css';
 import logo from '../assets/Logo.png';
 import accountLogo from '../assets/ProfileLogoGold.png';
+import snowflakeImg from '../assets/Snowflake.png'; // Import the Snowflake.png image
 
 function Navbar({ isLoggedIn, handleLogin, handleLogout }) {
     const [showPopup, setShowPopup] = useState(false);
     const [showButtons, setShowButtons] = useState(false);
     const [showRegisterForm, setShowRegisterForm] = useState(false);
     const [formType, setFormType] = useState('Account');
-    const [isSnowing, setIsSnowing] = useState(false); // State to track if snowfall effect is active
-    const [snowKey, setSnowKey] = useState(0); // Key for forcing re-render of SnowfallEffect component
+    const [isSnowing, setIsSnowing] = useState(false);
+    const [snowKey, setSnowKey] = useState(0);
 
     const handleSignInClick = () => {
         setShowPopup(true);
@@ -36,8 +37,8 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout }) {
     };
 
     const handleStartSnow = () => {
-        setIsSnowing(true); // Set snowing to true to start the snowfall effect
-        setSnowKey(prevKey => prevKey + 1); // Update the key to force re-render of SnowfallEffect component
+        setIsSnowing(true);
+        setSnowKey(prevKey => prevKey + 1);
     };
 
     return (
@@ -57,13 +58,13 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout }) {
                                 <button onClick={handleSignUpClick}>Sign Up</button>
                             </>
                         )}
-                        <button onClick={handleStartSnow}>Start the snow</button> {/* Button to start the snowfall effect */}
+                        <img src={snowflakeImg} alt="Start snow" onClick={handleStartSnow} className="snowflake-button" /> {/* Use the Snowflake.png image as the button */}
                         <img src={accountLogo} alt="AuthHandler" onClick={handleAccountClick} className="account-logo" />
                     </div>
                 </ul>
             </div>
             {showPopup && <AuthHandler isLoggedIn={isLoggedIn} setShowPopup={setShowPopup} handleLogin={handleLogin} handleLogout={handleLogout} showRegisterForm={showRegisterForm} formType={formType} />}
-            <SnowfallEffect key={snowKey} isSnowing={isSnowing} /> {/* Pass the key prop to force re-render of SnowfallEffect */}
+            <SnowfallEffect key={snowKey} isSnowing={isSnowing} />
         </nav>
     );
 }
