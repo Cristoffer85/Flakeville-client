@@ -12,6 +12,7 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout }) {
     const [showRegisterForm, setShowRegisterForm] = useState(false);
     const [formType, setFormType] = useState('Account');
     const [isSnowing, setIsSnowing] = useState(false); // State to track if snowfall effect is active
+    const [snowKey, setSnowKey] = useState(0); // Key for forcing re-render of SnowfallEffect component
 
     const handleSignInClick = () => {
         setShowPopup(true);
@@ -36,6 +37,7 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout }) {
 
     const handleStartSnow = () => {
         setIsSnowing(true); // Set snowing to true to start the snowfall effect
+        setSnowKey(prevKey => prevKey + 1); // Update the key to force re-render of SnowfallEffect component
     };
 
     return (
@@ -61,7 +63,7 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout }) {
                 </ul>
             </div>
             {showPopup && <AuthHandler isLoggedIn={isLoggedIn} setShowPopup={setShowPopup} handleLogin={handleLogin} handleLogout={handleLogout} showRegisterForm={showRegisterForm} formType={formType} />}
-            {isSnowing && <SnowfallEffect />} {/* Render the SnowfallEffect component conditionally */}
+            <SnowfallEffect key={snowKey} isSnowing={isSnowing} /> {/* Pass the key prop to force re-render of SnowfallEffect */}
         </nav>
     );
 }
