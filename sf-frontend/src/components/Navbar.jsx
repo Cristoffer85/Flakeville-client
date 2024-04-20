@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import AuthHandler from './AuthHandler.jsx';
 import './CSS/Navbar.css';
-import logo from '../assets/Logo.jpg';
+import logo from '../assets/Logo.png';
 import accountLogo from '../assets/ProfileLogoGold.png';
 
 function Navbar({ isLoggedIn, handleLogin, handleLogout }) {
