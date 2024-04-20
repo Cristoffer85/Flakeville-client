@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
-import {Link, useNavigate} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import AuthHandler from './AuthHandler.jsx';
+import SnowfallEffect from './SnowfallEffect.jsx';
 import './CSS/Navbar.css';
 import logo from '../assets/Logo.png';
 import accountLogo from '../assets/ProfileLogoGold.png';
 
 function Navbar({ isLoggedIn, handleLogin, handleLogout }) {
-    useNavigate();
     const [showPopup, setShowPopup] = useState(false);
     const [showButtons, setShowButtons] = useState(false);
     const [showRegisterForm, setShowRegisterForm] = useState(false);
     const [formType, setFormType] = useState('Account');
+    const [isSnowing, setIsSnowing] = useState(false); // State to track if snowfall effect is active
 
     const handleSignInClick = () => {
         setShowPopup(true);
@@ -33,6 +34,10 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout }) {
         }
     };
 
+    const handleStartSnow = () => {
+        setIsSnowing(true); // Set snowing to true to start the snowfall effect
+    };
+
     return (
         <nav className="navbar">
             <div className="navbar-content">
@@ -50,11 +55,13 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout }) {
                                 <button onClick={handleSignUpClick}>Sign Up</button>
                             </>
                         )}
-                        <img src={accountLogo} alt="AuthHandler" onClick={handleAccountClick} className="account-logo"/>
+                        <button onClick={handleStartSnow}>Start the snow</button> {/* Button to start the snowfall effect */}
+                        <img src={accountLogo} alt="AuthHandler" onClick={handleAccountClick} className="account-logo" />
                     </div>
                 </ul>
             </div>
             {showPopup && <AuthHandler isLoggedIn={isLoggedIn} setShowPopup={setShowPopup} handleLogin={handleLogin} handleLogout={handleLogout} showRegisterForm={showRegisterForm} formType={formType} />}
+            {isSnowing && <SnowfallEffect />} {/* Render the SnowfallEffect component conditionally */}
         </nav>
     );
 }
