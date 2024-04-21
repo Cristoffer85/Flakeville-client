@@ -9,15 +9,15 @@ function Weather() {
     const [fiveDayConditions, setFiveDayConditions] = useState(null);
 
     useEffect(() => {
-        fetch('/skiResort/currentConditions')
+        fetch('http://localhost:8080/skiResort/currentConditions')
             .then(response => response.json())
             .then(data => setCurrentConditions(data));
 
-        fetch('/skiResort/hourlyConditions')
+        fetch('http://localhost:8080/skiResort/hourlyConditions')
             .then(response => response.json())
             .then(data => setHourlyConditions(data));
 
-        fetch('/skiResort/5DayConditions')
+        fetch('http://localhost:8080/skiResort/5DayConditions')
             .then(response => response.json())
             .then(data => setFiveDayConditions(data));
     }, []);
