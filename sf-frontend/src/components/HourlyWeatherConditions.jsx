@@ -1,8 +1,8 @@
-// HourlyConditions.jsx
+// HourlyWeatherConditions.jsx
 import React, { useState } from 'react';
-import './HourlyConditions.css';
+import './css/HourlyWeatherConditions.css';
 
-function HourlyConditions({ data }) {
+function HourlyWeatherConditions({ data }) {
     if (!data) {
         return null;
     }
@@ -36,4 +36,4 @@ function HourlyConditions({ data }) {
     );
 }
 
-export default HourlyConditions;
+export default HourlyWeatherConditions;

@@ -1,9 +1,9 @@
 // Weather.jsx
 import React, {useEffect, useState} from 'react';
 import './css/Weather.css';
-import CurrentConditions from "./CurrentConditions";
-import HourlyConditions from "./HourlyConditions.jsx";
-import FiveDayConditions from "./FiveDayConditions.jsx";
+import CurrentWeatherConditions from "../components/CurrentWeatherConditions.jsx";
+import HourlyWeatherConditions from "../components/HourlyWeatherConditions.jsx";
+import FiveDayWeatherConditions from "../components/FiveDayWeatherConditions.jsx";
 
 function Weather() {
 
@@ -32,11 +32,11 @@ function Weather() {
             </div>
 
             <div className="weatherContainer">
-                <CurrentConditions data={currentConditions} />
+                <CurrentWeatherConditions data={currentConditions} />
 
-                <HourlyConditions data={hourlyConditions} />
+                <HourlyWeatherConditions data={hourlyConditions} />
 
-                <FiveDayConditions data={fiveDayConditions} />
+                <FiveDayWeatherConditions data={fiveDayConditions} />
             </div>
         </>
     );

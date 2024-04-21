@@ -1,8 +1,8 @@
-// CurrentConditions.jsx
+// CurrentWeatherConditions.jsx
 import React, { useState } from 'react';
-import './CurrentConditions.css';
+import './css/CurrentWeatherConditions.css';
 
-function CurrentConditions({ data }) {
+function CurrentWeatherConditions({ data }) {
     const [isExpanded, setIsExpanded] = useState(false);
 
     if (!data) {
@@ -33,4 +33,4 @@ function CurrentConditions({ data }) {
     );
 }
 
-export default CurrentConditions;
+export default CurrentWeatherConditions;

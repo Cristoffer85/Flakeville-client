@@ -1,6 +1,7 @@
-/* HourlyConditions.css */
+/* HourlyWeatherConditions.css */
 .hourly-conditions {
-    color: white;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: black;
     border: 1px solid #ccc;
     padding: 20px;
     margin-bottom: 20px;

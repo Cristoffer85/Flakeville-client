@@ -1,8 +1,8 @@
-// FiveDayConditions.jsx
+// FiveDayWeatherConditions.jsx
 import React, { useState } from 'react';
-import './FiveDayConditions.css';
+import './css/FiveDayWeatherConditions.css';
 
-function FiveDayConditions({ data }) {
+function FiveDayWeatherConditions({ data }) {
     if (!data) {
         return null;
     }
@@ -57,4 +57,4 @@ function FiveDayConditions({ data }) {
     );
 }
 
-export default FiveDayConditions;
+export default FiveDayWeatherConditions;
