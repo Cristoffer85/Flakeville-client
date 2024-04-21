@@ -1,3 +1,7 @@
+.weatherContainer {
+    padding-top: 120px; /* Adjust this value as needed */
+}
+
 .weatherPageTitleAlign {
     align-self: flex-start;
 }

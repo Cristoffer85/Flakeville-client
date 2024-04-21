@@ -1,16 +1,23 @@
+/* HourlyConditions.css */
 .hourly-conditions {
     color: white;
     border: 1px solid #ccc;
     padding: 20px;
     margin-bottom: 20px;
+    display: flex; /* Add this line */
+    flex-wrap: wrap; /* Add this line */
+    justify-content: space-between; /* Add this line */
 }
 
 .hourly-conditions h2 {
     margin-top: 0;
+    width: 100%; /* Add this line */
 }
 
 .hourly-conditions .forecast {
     margin-bottom: 20px;
+    flex-basis: calc(100% / 12); /* Add this line */
+    box-sizing: border-box; /* Add this line */
 }
 
 .hourly-conditions p {

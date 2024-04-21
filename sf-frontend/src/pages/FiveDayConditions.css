@@ -1,0 +1,31 @@
+/* FiveDayConditions.css */
+.five-day-conditions {
+    color: white;
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.five-day-conditions h2 {
+    margin-top: 0;
+    width: 100%;
+}
+
+.five-day-conditions .forecast {
+    margin-bottom: 20px;
+    flex-basis: calc(100% / 5);
+    box-sizing: border-box;
+}
+
+.five-day-conditions .forecast-details {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.five-day-conditions p {
+    margin: 0 0 10px;
+}
