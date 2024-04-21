@@ -1,0 +1,18 @@
+.hourly-conditions {
+    color: white;
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.hourly-conditions h2 {
+    margin-top: 0;
+}
+
+.hourly-conditions .forecast {
+    margin-bottom: 20px;
+}
+
+.hourly-conditions p {
+    margin: 0 0 10px;
+}

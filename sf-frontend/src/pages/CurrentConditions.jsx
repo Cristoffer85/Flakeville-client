@@ -15,7 +15,7 @@ function CurrentConditions({ data }) {
             <p>Last Snowfall Date: {data.lastSnowfallDate}</p>
             <h3>Basic Info</h3>
             <p>Region: {data.basicInfo.region}</p>
-            <p>Name: {data.basicInfo.name}</p>
+            <p>Name: Snöfjällby (Data might be borrowed from Sälen.. ssh quiet.)</p>
             <p>URL: <a href={data.basicInfo.url}>{data.basicInfo.url}</a></p>
             <p>Top Lift Elevation: {data.basicInfo.topLiftElevation}</p>
             <p>Mid Lift Elevation: {data.basicInfo.midLiftElevation}</p>

@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import './css/Weather.css';
 import CurrentConditions from "./CurrentConditions";
+import HourlyConditions from './HourlyConditions'; // import the HourlyConditions component
 
 function Weather() {
 
@@ -33,8 +34,7 @@ function Weather() {
                 <CurrentConditions data={currentConditions} />
 
                 <h1>Hourly Conditions</h1>
-                {/* Display hourly conditions data here */}
-                {hourlyConditions && <p>{JSON.stringify(hourlyConditions)}</p>}
+                <HourlyConditions data={hourlyConditions} />
 
                 <h1>5 Day Conditions</h1>
                 {/* Display 5 day conditions data here */}
