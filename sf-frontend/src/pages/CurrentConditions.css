@@ -1,0 +1,19 @@
+.current-conditions {
+    color: white;
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.current-conditions h2 {
+    margin-top: 0;
+}
+
+.current-conditions p {
+    margin: 0 0 10px;
+}
+
+.current-conditions a {
+    color: #007bff;
+    text-decoration: none;
+}
