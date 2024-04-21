@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, {useContext, useState} from 'react';
 import { Link } from 'react-router-dom';
 import AuthHandler from './AuthHandler.jsx';
 import SnowfallEffect from './SnowfallEffect.jsx';
 import './css/Navbar.css';
 import logo from '../assets/Logo.png';
 import accountLogo from '../assets/ProfileLogoGold.png';
-import snowflakeImg from '../assets/Snowflake.png'; // Import the Snowflake.png image
+import snowflakeImg from '../assets/Snowflake.png';
+import PageTitleContext from './PageTitleContext';
 
 function Navbar({ isLoggedIn, handleLogin, handleLogout }) {
+    const pageTitle = useContext(PageTitleContext);
     const [showPopup, setShowPopup] = useState(false);
     const [showButtons, setShowButtons] = useState(false);
     const [showRegisterForm, setShowRegisterForm] = useState(false);
@@ -44,10 +46,11 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout }) {
     return (
         <nav className="navbar">
             <div className="navbar-content">
-                <img src={logo} alt="Logo" className="main-logo" />
+                <Link to="/">
+                    <img src={logo} alt="Logo" className="main-logo" />
+                </Link>
                 <ul>
                     <div>
-                        <li><Link to="/">HOME</Link></li>
                         <li><Link to="/store">STORE</Link></li>
                         <li><Link to="/weather">WEATHER</Link></li>
                     </div>
