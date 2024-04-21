@@ -60,10 +60,6 @@ function Weather() {    // Function component Weather, with 30-minute interval f
 
     return (
         <>
-            <div className="weatherPageTitleAlign">
-                <h1 className="pageTitle">SNÖFJÄLLBY WEATHER</h1>
-            </div>
-
             <div className="weatherContainer">
                 <CurrentWeatherConditions data={currentConditions} />
 

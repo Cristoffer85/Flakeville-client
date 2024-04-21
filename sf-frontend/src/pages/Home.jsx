@@ -4,10 +4,6 @@ import './css/Home.css';
 function Home() {
     return (
         <>
-            <div className="userAccPageTitleAlign">
-                <h1 className="pageTitle">SNÖFJÄLLBY HOME</h1>
-            </div>
-
             <div className="box1">
                 <h2>Box Title</h2>
                 <p>Box content...</p>

@@ -61,10 +61,6 @@ function User() {
 
     return (
         <>
-            <div className="userAccPageTitleAlign">
-                <h1 className="pageTitle">USER ACCOUNT PAGE</h1>
-            </div>
-
             <div className="updateUserDetailsBox">
                 <h2>Welcome, {username}!</h2>
                 {userDetails && (

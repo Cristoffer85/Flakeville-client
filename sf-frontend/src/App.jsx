@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import AppRouter from './components/Router.jsx';
 import Cookies from 'js-cookie';
+import PageTitleContext from './components/PageTitleContext';
 
-// Main component that mainly handles the login and logout functionalities, storing in cookies
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [showPopup, setShowPopup] = useState(false);
+    const [pageTitle, setPageTitle] = useState('Home'); // Add this line
 
     useEffect(() => {
         const token = Cookies.get('token');
@@ -15,7 +16,6 @@ function App() {
         }
     }, []);
 
-    // Function to login + save user's data in cookies
     const handleLogin = (username, token, userRole) => {
         setIsLoggedIn(true);
         Cookies.set('isLoggedIn', true);
@@ -24,7 +24,6 @@ function App() {
         Cookies.set('role', userRole);
     };
 
-    // Function to logout + remove user's data from cookies (This app/frontend only)
     const handleLogout = () => {
         setIsLoggedIn(false);
         Cookies.remove('isLoggedIn');
@@ -35,7 +34,9 @@ function App() {
 
     return (
         <div className="App">
-            <AppRouter isLoggedIn={isLoggedIn} handleLogin={handleLogin} handleLogout={handleLogout} showPopup={showPopup} setShowPopup={setShowPopup} /> {}
+            <PageTitleContext.Provider value={pageTitle}> {}
+                <AppRouter isLoggedIn={isLoggedIn} handleLogin={handleLogin} handleLogout={handleLogout} showPopup={showPopup} setShowPopup={setShowPopup} setPageTitle={setPageTitle} /> {/* Pass the setPageTitle function as a prop */}
+            </PageTitleContext.Provider>
         </div>
     );
 }

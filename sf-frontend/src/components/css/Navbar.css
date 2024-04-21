@@ -80,3 +80,15 @@
     border: 2px solid #616161;
     box-shadow: inset 0 0 0 2px #dddddd;
 }
+
+.navbar-title {
+    font-family: Roboto, sans-serif;
+    color: rgba(255, 0, 0, 0.5);
+    font-size: 40px;
+    font-weight: 800;
+    text-align: center;
+    margin-left: 300px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+}

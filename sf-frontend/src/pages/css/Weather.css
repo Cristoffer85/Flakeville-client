@@ -1,14 +1,3 @@
 .weatherContainer {
     padding-top: 120px; /* Adjust this value as needed */
 }
-
-.weatherPageTitleAlign {
-    align-self: flex-start;
-}
-
-.pageTitle {
-    position: absolute;
-    top: 50px;
-    left: 20px;
-    margin-top: 1px;
-}

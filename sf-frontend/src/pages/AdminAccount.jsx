@@ -272,12 +272,6 @@ function Admin() {
 
     return (
         <>
-            {/* #################### Title #################### */}
-            <div className="adminAccPageTitleAlign">
-                <h1 className="pageTitle">ADMIN ACCOUNT PAGE</h1>
-            </div>
-
-
             <div className="adminContainer">
                 {/* #################### Users Column #################### */}
                 <div className="column">

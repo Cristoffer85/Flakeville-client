@@ -1,10 +1,6 @@
-.storePageTitleAlign {
-    align-self: flex-start;
-}
-
-.pageTitle {
+.basic {
     position: absolute;
-    top: 50px;
+    top: 100px;
     left: 20px;
     margin-top: 1px;
 }

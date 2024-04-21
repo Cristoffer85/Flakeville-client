@@ -3,8 +3,8 @@ import './css/Store.css';
 
 function Store() {
     return (
-        <div className="storePageTitleAlign">
-            <h1 className="pageTitle">SNÖFJÄLLBY STORE</h1>
+        <div>
+            <h2 className="basic">Hejhej! Här ska later en Snöfjällby Ski rental + common store implementeras!</h2>
         </div>
     );
 }

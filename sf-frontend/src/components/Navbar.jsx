@@ -53,9 +53,10 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout }) {
                     <div>
                         <li><Link to="/store">STORE</Link></li>
                         <li><Link to="/weather">WEATHER</Link></li>
+                        <h1 className="navbar-title">{pageTitle}</h1>
                     </div>
                     <div>
-                        {!isLoggedIn && showButtons && (
+                    {!isLoggedIn && showButtons && (
                             <>
                                 <button onClick={handleSignInClick}>Sign In</button>
                                 <button onClick={handleSignUpClick} className="signup-button">Sign Up</button>

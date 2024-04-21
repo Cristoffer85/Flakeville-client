@@ -1,5 +1,5 @@
-import React from 'react';
-import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import Home from '../pages/Home.jsx';
 import AuthHandler from './AuthHandler.jsx';
 import Store from '../pages/Store.jsx';
@@ -9,7 +9,6 @@ import EmployeeAcc from "../pages/EmployeeAccount.jsx";
 import UserAcc from "../pages/UserAccount.jsx";
 import Navbar from './Navbar';
 
-// export const that uses the navigate function to navigate to the respective page based on user's role
 export const navigateBasedOnRole = (role, username, navigate) => {
     if (role === 'ADMIN') {
         navigate('/admin');
@@ -20,12 +19,43 @@ export const navigateBasedOnRole = (role, username, navigate) => {
     }
 }
 
-function AppRouter({ isLoggedIn, handleLogin, handleLogout, username, showPopup, setShowPopup }) {
-    // lots of props to keep current user logged in all the time, when browsing through the page. Among others
+function PageTitleUpdater({ setPageTitle }) {
+    const location = useLocation();
+
+    useEffect(() => {
+        const currentPath = location.pathname;
+        let pageTitle;
+        switch (currentPath) {
+            case '/store':
+                pageTitle = 'SNÖFJÄLLBY STORE';
+                break;
+            case '/weather':
+                pageTitle = 'SNÖFJÄLLBY WEATHER';
+                break;
+            case '/admin':
+                pageTitle = 'ADMIN ACCOUNT';
+                break;
+            case '/employee':
+                pageTitle = 'EMPLOYEE ACCOUNT';
+                break;
+            case '/user':
+                pageTitle = 'USER ACCOUNT';
+                break;
+            default:
+                pageTitle = 'SNÖFJÄLLBY HOME';
+        }
+        setPageTitle(pageTitle);
+    }, [location, setPageTitle]);
+
+    return null;
+}
+
+function AppRouter({ isLoggedIn, handleLogin, handleLogout, username, showPopup, setShowPopup, setPageTitle }) {
     const commonProps = { isLoggedIn, handleLogin, handleLogout, username, showPopup, setShowPopup };
 
     return (
         <Router>
+            <PageTitleUpdater setPageTitle={setPageTitle} />
             <div>
                 <Navbar {...commonProps} />
                 <Routes>

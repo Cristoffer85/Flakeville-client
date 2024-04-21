@@ -63,10 +63,6 @@ function Employee() {
 
     return (
         <>
-            <div className="userAccPageTitleAlign">
-                <h1 className="pageTitle">EMPLOYEE ACCOUNT PAGE</h1>
-            </div>
-
             <div className="updateEmployeeDetailsBox">
                 <p>Welcome, {username}!</p>
                 {employeeDetails && (

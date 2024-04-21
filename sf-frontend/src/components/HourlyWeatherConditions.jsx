@@ -9,7 +9,7 @@ function HourlyWeatherConditions({ data }) {
 
     return (
         <div className="hourly-conditions">
-            <h2>Hourly Conditions</h2>
+            <h2>Hourly Conditions (current day)</h2>
             {data.forecast.map((forecast, index) => {
                 const [isExpanded, setIsExpanded] = useState(false);
 
