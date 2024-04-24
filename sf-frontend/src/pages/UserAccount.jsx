@@ -10,6 +10,7 @@ function User() {
     const [telephone, setTelephone] = useState('');
     const [email, setEmail] = useState('');
     const [userDetails, setUserDetails] = useState(null);
+    const [orders, setOrders] = useState([]);
     useNavigate();
 
     useEffect(() => {
@@ -30,6 +31,7 @@ function User() {
         }
         const data = await response.json();
         setUserDetails(data);
+        setOrders(data.orders || []);
 
     };
 
@@ -39,7 +41,7 @@ function User() {
         const token = Cookies.get('token');
 
         try {
-            const response = await fetch(`http://localhost:8080/user/${username}`, {
+            const response = await fetch(`http://localhost:8080/user/updateUser/${username}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -92,6 +94,17 @@ function User() {
                     </div>
                     <button type="submit">Update</button>
                 </form>
+            </div>
+            <div className="userOrdersBox">
+                <h2>Your Orders</h2>
+                {orders.map((order, index) => (
+                    <div key={index} className="order">
+                        <h3>Order {index + 1}</h3>
+                        {order.products.map((product, i) => (
+                            <p key={i}>Product: {product.product.name}, Quantity: {product.quantity}</p>
+                        ))}
+                    </div>
+                ))}
             </div>
         </>
     );

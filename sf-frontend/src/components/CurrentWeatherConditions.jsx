@@ -1,4 +1,3 @@
-// CurrentWeatherConditions.jsx
 import React, { useState } from 'react';
 import './css/CurrentWeatherConditions.css';
 
