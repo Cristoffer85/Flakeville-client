@@ -8,7 +8,7 @@ import AdminAcc from "../pages/AdminAccount.jsx";
 import EmployeeAcc from "../pages/EmployeeAccount.jsx";
 import UserAcc from "../pages/UserAccount.jsx";
 import Navbar from './Navbar';
-import Cart from "./Cart.jsx";
+import Cart from "../pages/Cart.jsx";
 
 export const navigateBasedOnRole = (role, username, navigate) => {
     if (role === 'ADMIN') {
