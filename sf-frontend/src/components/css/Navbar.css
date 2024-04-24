@@ -92,3 +92,9 @@
     margin-bottom: 15px;
     letter-spacing: 2px;
 }
+
+.shopping-cart-logo {
+    margin-top: 8px;
+    width: 30px; /* Adjust as needed */
+    height: 30px; /* Adjust as needed */
+}

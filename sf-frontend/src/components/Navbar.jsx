@@ -6,6 +6,7 @@ import './css/Navbar.css';
 import logo from '../assets/Logo.png';
 import accountLogo from '../assets/ProfileLogoGold.png';
 import snowflakeImg from '../assets/Snowflake.png';
+import shoppingCartLogo from '../assets/Shoppingcartlogo.png';
 import PageTitleContext from './PageTitleContext';
 
 function Navbar({ isLoggedIn, handleLogin, handleLogout }) {
@@ -51,8 +52,10 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout }) {
                 </Link>
                 <ul>
                     <div>
+                        <li><Link to="/weather">POWDERTRACKER</Link></li>
                         <li><Link to="/store">STORE</Link></li>
-                        <li><Link to="/weather">WEATHER</Link></li>
+                        <li><Link to="/cart">
+                            <img src={shoppingCartLogo} alt="Shopping Cart" className="shopping-cart-logo"/></Link></li>
                         <h1 className="navbar-title">{pageTitle}</h1>
                     </div>
                     <div>

@@ -8,6 +8,7 @@ import AdminAcc from "../pages/AdminAccount.jsx";
 import EmployeeAcc from "../pages/EmployeeAccount.jsx";
 import UserAcc from "../pages/UserAccount.jsx";
 import Navbar from './Navbar';
+import Cart from "./Cart.jsx";
 
 export const navigateBasedOnRole = (role, username, navigate) => {
     if (role === 'ADMIN') {
@@ -41,6 +42,9 @@ function PageTitleUpdater({ setPageTitle }) {
             case '/user':
                 pageTitle = 'USER ACCOUNT';
                 break;
+            case '/cart':
+                pageTitle = 'SHOPPING CART';
+                break;
             default:
                 pageTitle = 'SNÖFJÄLLBY HOME';
         }
@@ -66,6 +70,7 @@ function AppRouter({ isLoggedIn, handleLogin, handleLogout, username, showPopup,
                     <Route path="/admin" element={<AdminAcc {...commonProps} />} />
                     <Route path="/employee" element={<EmployeeAcc {...commonProps} />} />
                     <Route path="/user" element={<UserAcc {...commonProps} />} />
+                    <Route path="/cart" element={<Cart {...commonProps} />} /> {/* Remove the cart prop */}
                 </Routes>
             </div>
         </Router>

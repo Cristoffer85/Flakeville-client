@@ -1,0 +1,6 @@
+React Context: is a Component from React API context method that
+stores different data in context (instead of cookies, etc) Its really superuhh... nice.
+
+// TODO-thoughts below
+* First approach of user login was to store login data in cookies, but later now maybe think
+of implementing the context logic to store data for user login as well.
