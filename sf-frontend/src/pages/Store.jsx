@@ -1,11 +1,11 @@
-import React, { useEffect, useState, useContext } from 'react';
-import './css/Store.css';
-import {Link} from "react-router-dom";
+import {useContext, useEffect, useState} from "react";
 import CartContext from "../components/CartContext.jsx";
+import './css/Store.css';
+import Products from "../components/Products.jsx";
 
 function Store() {
     const [products, setProducts] = useState([]);
-    const { cart, setCart } = useContext(CartContext); // Access the cart state and setCart function using the context
+    const { cart, setCart } = useContext(CartContext);
 
     useEffect(() => {
         getAllProducts();
@@ -17,20 +17,15 @@ function Store() {
         setProducts(data);
     };
 
-    const addToCart = (product) => { // New function for adding items to the cart
-        setCart([...cart, product]);
+    const addToCart = (product, quantity) => {
+        const productWithQuantity = { ...product, quantity: Number(quantity) };
+        setCart([...cart, productWithQuantity]);
     };
 
     return (
         <div className="product-container">
             {products.map((product, index) => (
-                <div key={index} className="product-item">
-                    <h3>{product.name}</h3>
-                    <p>{product.description}</p>
-                    <p>{product.price}</p>
-                    <button onClick={() => addToCart(product)}>Add to Cart</button>
-                    <Link to="/cart">View Cart</Link>
-                </div>
+                <Products key={index} product={product} addToCart={addToCart} />
             ))}
         </div>
     );
