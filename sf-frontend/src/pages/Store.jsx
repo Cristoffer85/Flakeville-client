@@ -18,8 +18,19 @@ function Store() {
     };
 
     const addToCart = (product, quantity) => {
-        const productWithQuantity = { ...product, quantity: Number(quantity) };
-        setCart([...cart, productWithQuantity]);
+        const existingProduct = cart.find(item => item.id === product.id);
+
+        if (existingProduct) {
+            // Update the quantity of the existing product
+            const updatedCart = cart.map(item =>
+                item.id === product.id ? { ...item, quantity: item.quantity + Number(quantity) } : item
+            );
+            setCart(updatedCart);
+        } else {
+            // Add the new product to the cart
+            const productWithQuantity = { ...product, quantity: Number(quantity) };
+            setCart([...cart, productWithQuantity]);
+        }
     };
 
     return (

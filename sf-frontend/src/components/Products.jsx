@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
-import {Link} from "react-router-dom";
-
-/*
-Component to handle each product in Store.jsx, (as a child component == nested component) in order to handle quantity
-per product. Otherwise the hookrules would be violated, and all products would share the same quantity.
-*/
 
 function Products({ product, addToCart }) {
     const [quantity, setQuantity] = useState(1);
+    const [message, setMessage] = useState(null);
+
+    const handleAddToCart = (product, quantity) => {
+        addToCart(product, quantity);
+        setMessage("Product added to cart!");
+
+        // Clear the message after 3 seconds
+        setTimeout(() => {
+            setMessage(null);
+        }, 3000);
+    };
 
     return (
         <div className="product-item">
@@ -15,8 +20,8 @@ function Products({ product, addToCart }) {
             <p>{product.description}</p>
             <p>{product.price}</p>
             <input type="number" value={quantity} onChange={(e) => setQuantity(e.target.value)} min="1" />
-            <button onClick={() => addToCart(product, quantity)}>Add to Cart</button>
-            <Link to="/cart">View Cart</Link>
+            <button onClick={() => handleAddToCart(product, quantity)}>Add to Cart</button>
+            {message && <span>{message}</span>}
         </div>
     );
 }
