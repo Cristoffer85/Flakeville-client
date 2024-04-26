@@ -8,8 +8,10 @@ import accountLogo from '../assets/ProfileLogoGold.png';
 import snowflakeImg from '../assets/Snowflake.png';
 import shoppingCartLogo from '../assets/Shoppingcartlogo.png';
 import PageTitleContext from './PageTitleContext';
+import CartContext from "./CartContext.jsx";
 
 function Navbar({ isLoggedIn, handleLogin, handleLogout }) {
+    const { cart } = useContext(CartContext);
     const pageTitle = useContext(PageTitleContext);
     const [showPopup, setShowPopup] = useState(false);
     const [showButtons, setShowButtons] = useState(false);
@@ -17,6 +19,9 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout }) {
     const [formType, setFormType] = useState('Account');
     const [isSnowing, setIsSnowing] = useState(false);
     const [snowKey, setSnowKey] = useState(0);
+
+    // Counter logic for the shopping cart, also present down in the return statement
+    const totalItems = cart.reduce((total, product) => total + product.quantity, 0);
 
     const handleSignInClick = () => {
         setShowPopup(true);
@@ -55,7 +60,13 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout }) {
                         <li><Link to="/weather">POWDERTRACKER</Link></li>
                         <li><Link to="/store">STORE</Link></li>
                         <li><Link to="/cart">
-                            <img src={shoppingCartLogo} alt="Shopping Cart" className="shopping-cart-logo"/></Link></li>
+                            <img src={shoppingCartLogo} alt="Shopping Cart" className="shopping-cart-logo"/>
+                            {totalItems > 0 && (
+                                <div className="cart-count">
+                                    {totalItems}
+                                </div>
+                            )}
+                        </Link></li>
                         <h1 className="navbar-title">{pageTitle}</h1>
                     </div>
                     <div>
