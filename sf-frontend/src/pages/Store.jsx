@@ -6,6 +6,7 @@ import { getAllProducts } from "../components/Products.jsx";
 
 function Store() {
     const [products, setProducts] = useState([]);
+    const [search, setSearch] = useState('');
     const { cart, setCart } = useContext(CartContext);
 
     useEffect(() => {
@@ -21,23 +22,37 @@ function Store() {
         const existingProduct = cart.find(item => item.id === product.id);
 
         if (existingProduct) {
-            // Update the quantity of the existing product
             const updatedCart = cart.map(item =>
                 item.id === product.id ? { ...item, quantity: item.quantity + Number(quantity) } : item
             );
             setCart(updatedCart);
         } else {
-            // Add the new product to the cart
             const productWithQuantity = { ...product, quantity: Number(quantity) };
             setCart([...cart, productWithQuantity]);
         }
     };
 
+    const filteredProducts = products.filter(product =>
+        product.name.toLowerCase().includes(search.toLowerCase())
+    );
+
     return (
-        <div className="product-container">
-            {products.map((product, index) => (
-                <Products key={index} product={product} addToCart={addToCart} />
-            ))}
+        <div className="store-container">
+            <div className="sidebar">
+                {/* Move the search bar here */}
+                <input
+                    type="text"
+                    value={search}
+                    onChange={e => setSearch(e.target.value)}
+                    placeholder="Search products"
+                />
+                {/* Add your other sidebar content here */}
+            </div>
+            <div className="product-container">
+                {filteredProducts.map((product, index) => (
+                    <Products key={index} product={product} addToCart={addToCart} />
+                ))}
+            </div>
         </div>
     );
 }

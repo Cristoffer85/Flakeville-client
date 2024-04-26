@@ -1,11 +1,25 @@
+.store-container {
+    display: flex;
+    flex-wrap: nowrap; /* Add this line */
+    width: 100%; /* Ensure the container takes up the full width */
+}
+
+.sidebar {
+    width: 20%; /* Adjust this value as needed */
+    padding: 20px;
+    border-right: 1px solid #ccc;
+}
+
 .product-container {
-    margin-top: 100px; /* Adjust this value as needed */
+    margin: 20px 10px 10px 220px; /* top, right, bottom, left */
+    width: 80%; /* Adjust this value as needed */
+    padding: 20px;
 }
 
 .product-item {
     width: 480px;
     background: rgba(255, 255, 255, 0.5);
-    margin: 20px 10px 10px 10px; /* top, right, bottom, left */
+    margin: 20px 10px 10px 0; /* top, right, bottom, left */
     padding: 10px;
     border-radius: 5px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
