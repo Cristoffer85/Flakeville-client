@@ -1,6 +1,5 @@
 import React, {useContext, useState} from 'react';
 import { Link } from 'react-router-dom';
-import AuthHandler from './AuthHandler.jsx';
 import SnowfallEffect from './SnowfallEffect.jsx';
 import './css/Navbar.css';
 import logo from '../assets/Logo.png';
@@ -9,30 +8,31 @@ import snowflakeImg from '../assets/Snowflake.png';
 import shoppingCartLogo from '../assets/Shoppingcartlogo.png';
 import PageTitleContext from './PageTitleContext';
 import CartContext from "./CartContext.jsx";
+import SignIn from './SignIn.jsx';
+import SignUp from './SignUp.jsx';
+import LogOut from './LogOut.jsx';
 
 function Navbar({ isLoggedIn, handleLogin, handleLogout }) {
     const { cart } = useContext(CartContext);
     const pageTitle = useContext(PageTitleContext);
     const [showPopup, setShowPopup] = useState(false);
     const [showButtons, setShowButtons] = useState(false);
-    const [showRegisterForm, setShowRegisterForm] = useState(false);
     const [formType, setFormType] = useState('Account');
     const [isSnowing, setIsSnowing] = useState(false);
     const [snowKey, setSnowKey] = useState(0);
+    const popupRef = React.createRef();
 
     // Counter logic for the shopping cart, also present down in the return statement
     const totalItems = cart.reduce((total, product) => total + product.quantity, 0);
 
     const handleSignInClick = () => {
         setShowPopup(true);
-        setShowRegisterForm(false);
-        setFormType('Sign In');
+        setFormType('SignIn');
     };
 
     const handleSignUpClick = () => {
         setShowPopup(true);
-        setShowRegisterForm(true);
-        setFormType('Sign Up');
+        setFormType('SignUp');
     };
 
     const handleAccountClick = () => {
@@ -70,7 +70,7 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout }) {
                         <h1 className="navbar-title">{pageTitle}</h1>
                     </div>
                     <div>
-                    {!isLoggedIn && showButtons && (
+                        {!isLoggedIn && showButtons && (
                             <>
                                 <button onClick={handleSignInClick}>Sign In</button>
                                 <button onClick={handleSignUpClick} className="signup-button">Sign Up</button>
@@ -81,7 +81,14 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout }) {
                     </div>
                 </ul>
             </div>
-            {showPopup && <AuthHandler isLoggedIn={isLoggedIn} setShowPopup={setShowPopup} handleLogin={handleLogin} handleLogout={handleLogout} showRegisterForm={showRegisterForm} formType={formType} />}
+            {showPopup && (
+                <div className="login-and-SignInPopup" ref={popupRef}>
+                    <h2>{formType}</h2>
+                    {formType === 'SignIn' && <SignIn setShowPopup={setShowPopup} handleLogin={handleLogin} />}
+                    {formType === 'SignUp' && <SignUp setShowPopup={setShowPopup} handleLogin={handleLogin} />}
+                    {formType === 'Logout' && <LogOut setShowPopup={setShowPopup} handleLogout={handleLogout} />}
+                </div>
+            )}
             <SnowfallEffect key={snowKey} isSnowing={isSnowing} />
         </nav>
     );

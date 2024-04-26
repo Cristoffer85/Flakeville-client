@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import Home from '../pages/Home.jsx';
-import AuthHandler from './AuthHandler.jsx';
 import Store from '../pages/Store.jsx';
 import Weather from '../pages/Weather.jsx';
 import AdminAcc from "../pages/AdminAccount.jsx";
@@ -63,7 +62,6 @@ function AppRouter({ isLoggedIn, handleLogin, handleLogout, username, showPopup,
             <div>
                 <Navbar {...commonProps} />
                 <Routes>
-                    <Route path="/account" element={<AuthHandler {...commonProps} />} />
                     <Route path="/store" element={<Store {...commonProps} />} />
                     <Route path="/weather" element={<Weather {...commonProps} />} />
                     <Route path="/" element={<Home {...commonProps} />} />
