@@ -1,4 +1,5 @@
-// HourlyWeatherConditions.jsx
+/*
+
 import React, { useState } from 'react';
 import './css/HourlyWeatherConditions.css';
 
@@ -37,3 +38,5 @@ function HourlyWeatherConditions({ data }) {
 }
 
 export default HourlyWeatherConditions;
+
+*/

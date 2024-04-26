@@ -1,5 +1,7 @@
-// FiveDayWeatherConditions.jsx
+/*
+
 import React, { useState } from 'react';
+
 import './css/FiveDayWeatherConditions.css';
 
 function FiveDayWeatherConditions({ data }) {
@@ -58,3 +60,6 @@ function FiveDayWeatherConditions({ data }) {
 }
 
 export default FiveDayWeatherConditions;
+
+
+*/

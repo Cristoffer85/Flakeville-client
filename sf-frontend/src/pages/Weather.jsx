@@ -63,9 +63,9 @@ function Weather() {    // Function component Weather, with 30-minute interval f
             <div className="weatherContainer">
                 <CurrentWeatherConditions data={currentConditions} />
 
-                <HourlyWeatherConditions data={hourlyConditions} />
+                <!-- <HourlyWeatherConditions data={hourlyConditions} /> -->
 
-                <FiveDayWeatherConditions data={fiveDayConditions} />
+                <!-- <FiveDayWeatherConditions data={fiveDayConditions} /> -->
             </div>
         </>
     );

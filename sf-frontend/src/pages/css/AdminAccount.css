@@ -41,7 +41,8 @@
 
 .userManagementBox {
     display: flex;
-    width: calc(100% - 200px);
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .userDisplayBox {
