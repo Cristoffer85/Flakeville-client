@@ -3,6 +3,8 @@ import Cookies from 'js-cookie';
 import './css/AdminAccount.css';
 
 function Admin() {
+    const username = Cookies.get('username');
+    const [currentSection, setCurrentSection] = React.useState('employeeManagement');
     const [searched, setSearched] = useState(false);
 
     const [users, setUsers] = useState([]);
@@ -271,66 +273,15 @@ function Admin() {
     };
 
     return (
-        <>
-            <div className="adminContainer">
-                {/* #################### Users Column #################### */}
-                <div className="column">
-                    <h2>Users</h2>
-                    {users.map(user => (
-                        <div key={user.id} className="userDetails">
-                            <p>Username: {user.username}</p>
-                            {}
-                        </div>
-                    ))}
-                    <h2>Search Users</h2>
-                    <form onSubmit={userSearchSubmit}>
-                        <input type="text" value={searchUsername} onChange={e => setSearchUsername(e.target.value)}
-                               placeholder="Search for a user" required/>
-                        <button type="submit">Search</button>
-                    </form>
-                    {searched && (
-                        searchedUser ? (
-                            <div>
-                                <h2>Searched User</h2>
-                                <p>Username: {searchedUser.username}</p>
-                                {}
-                                <button onClick={() => {
-                                    setSelectedUser(searchedUser);
-                                    setShowUpdateForm(true);
-                                }}>Update
-                                </button>
-                                <button onClick={userDeleteClick}>Delete</button>
-                            </div>
-                        ) : (
-                            <p>User not in database</p>
-                        )
-                    )}
-                    {showUpdateForm && (
-                        <form onSubmit={userUpdateSubmit}>
-                            <input type="email" value={updateEmail} onChange={e => setUpdateEmail(e.target.value)}
-                                   placeholder="Update Email" required/>
-                            <input type="tel" value={updateTelephone} onChange={e => setUpdateTelephone(e.target.value)}
-                                   placeholder="Update Telephone" required/>
-                            <input type="date" value={updateBirthday} onChange={e => setUpdateBirthday(e.target.value)}
-                                   placeholder="Update Birthday" required/>
-                            <input type="text" value={updateAddress} onChange={e => setUpdateAddress(e.target.value)}
-                                   placeholder="Update Address" required/>
-                            <button type="submit">Submit Update</button>
-                        </form>
-                    )}
-                    <h2>Create New User</h2>
-                    <form onSubmit={userNewSubmit}>
-                        <input type="text" value={newUsername} onChange={e => setNewUsername(e.target.value)}
-                               placeholder="Username" required/>
-                        <input type="password" value={newPassword} onChange={e => setNewPassword(e.target.value)}
-                               placeholder="Password" required/>
-                        <button type="submit">Create</button>
-                    </form>
-                    <p>{newUserMessage}</p>
-                </div>
+        <div className="adminAccountContainer">
+            <div className="sidebar">
+                <p className="welcome-message">Welcome, {username}!</p>
+                <p onClick={() => setCurrentSection('employeeManagement')}>Employee Management</p>
+                <p onClick={() => setCurrentSection('userManagement')}>User Management</p>
+            </div>
 
-                {/* #################### Employees Column #################### */}
-                <div className="column">
+            {currentSection === 'employeeManagement' && (
+                <div className="employeeManagementBox">
                     <h2>Employees</h2>
                     {employees.map(employee => (
                         <div key={employee.id} className="employeeDetails">
@@ -350,7 +301,6 @@ function Admin() {
                             <div>
                                 <h2>Searched Employee</h2>
                                 <p>Username: {searchedEmployee.username}</p>
-                                {}
                                 <button onClick={() => {
                                     setSelectedEmployee(searchedEmployee);
                                     setShowUpdateEmployeeForm(true);
@@ -386,8 +336,68 @@ function Admin() {
                     </form>
                     <p>{newEmployeeMessage}</p>
                 </div>
-            </div>
-        </>
+            )}
+
+            {currentSection === 'userManagement' && (
+                <div className="userManagementBox">
+                    <h2>Users</h2>
+                    {users.map(user => (
+                        <div key={user.id} className="userDetails">
+                            <p>Username: {user.username}</p>
+                            {/* Display other user properties as needed */}
+                        </div>
+                    ))}
+                    <h2>Search Users</h2>
+                    <form onSubmit={userSearchSubmit}>
+                        <input type="text" value={searchUsername}
+                               onChange={e => setSearchUsername(e.target.value)} placeholder="Search for a user"
+                               required/>
+                        <button type="submit">Search</button>
+                    </form>
+                    {searched && (
+                        searchedUser ? (
+                            <div>
+                                <h2>Searched User</h2>
+                                <p>Username: {searchedUser.username}</p>
+                                <button onClick={() => {
+                                    setSelectedUser(searchedUser);
+                                    setShowUpdateForm(true);
+                                }}>Update
+                                </button>
+                                <button onClick={userDeleteClick}>Delete</button>
+                            </div>
+                        ) : (
+                            <p>User not in database</p>
+                        )
+                    )}
+                    {showUpdateForm && (
+                        <form onSubmit={userUpdateSubmit}>
+                            <input type="text" value={updateEmail} onChange={e => setUpdateEmail(e.target.value)}
+                                   placeholder="Update Email" required/>
+                            <input type="text" value={updateTelephone}
+                                   onChange={e => setUpdateTelephone(e.target.value)} placeholder="Update Telephone"
+                                   required/>
+                            <input type="text" value={updateBirthday}
+                                   onChange={e => setUpdateBirthday(e.target.value)} placeholder="Update Birthday"
+                                   required/>
+                            <input type="text" value={updateAddress}
+                                   onChange={e => setUpdateAddress(e.target.value)} placeholder="Update Address"
+                                   required/>
+                            <button type="submit">Submit Update</button>
+                        </form>
+                    )}
+                    <h2>Create New User</h2>
+                    <form onSubmit={userNewSubmit}>
+                        <input type="text" value={newUsername} onChange={e => setNewUsername(e.target.value)}
+                               placeholder="Username" required/>
+                        <input type="password" value={newPassword}
+                               onChange={e => setNewPassword(e.target.value)} placeholder="Password" required/>
+                        <button type="submit">Create</button>
+                    </form>
+                    <p>{newUserMessage}</p>
+                </div>
+            )}
+        </div>
     );
 }
 
