@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import './css/LogOut.css';
 
 function Logout({ setShowPopup, handleLogout }) {
     const navigate = useNavigate();
