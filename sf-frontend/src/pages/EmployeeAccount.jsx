@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {useNavigate} from "react-router-dom";
 import Cookies from 'js-cookie';
 import './css/EmployeeAccount.css';
-import { createProduct, updateProduct, deleteProduct } from '../components/Products.jsx';
+import { getOneProduct, getAllProducts, createProduct, updateProduct, deleteProduct } from '../components/Products.jsx';
 
 function Employee() {
     const username = Cookies.get('username');
@@ -13,7 +13,12 @@ function Employee() {
     const [updateProductFormFields, setUpdateProductFormFields] = useState({Id: '', name: '', description: '', price: ''});
     const [deleteProductId, setDeleteProductId] = useState('');
     const [productId, setProductId] = useState('');
+    const [products, setProducts] = useState([]);
+    const [selectedProduct, setSelectedProduct] = useState(null);
+    const [currentSection, setCurrentSection] = useState('employeeDetails');
     useNavigate();
+
+    // #################### EMPLOYEE DATA ####################
 
     useEffect(() => {
         getEmployeeData().catch(error => console.error('Error:', error));
@@ -66,10 +71,26 @@ function Employee() {
         }
     };
 
+    // #################### Product DATA (imported from Products.jsx for easier endpoint logic) ####################
+
     const handleCreateProduct = async (event) => {
         event.preventDefault();
         await createProduct(createProductFormFields);
         setCreateProductFormFields({name: '', description: '', price: ''}); // Clear the form
+    };
+
+    useEffect(() => {
+        const fetchProducts = async () => {
+            const products = await getAllProducts();
+            setProducts(products);
+        };
+
+        fetchProducts();
+    }, []);
+
+    const handleGetOneProduct = async (id) => {
+        const product = await getOneProduct(id);
+        setSelectedProduct(product);
     };
 
     const handleUpdateProduct = async (event) => {
@@ -86,8 +107,13 @@ function Employee() {
 
     return (
         <div className="employeeAccountContainer">
-            <div className="updateEmployeeDetailsBox">
-                <p>Welcome, {username}!</p>
+            <div className="sidebar">
+                <p className="welcome-message">WELCOME, {username}!</p>
+                <p onClick={() => setCurrentSection('employeeDetails')}>Employee Details</p>
+                <p onClick={() => setCurrentSection('productManagement')}>Product Management</p>
+            </div>
+            {currentSection === 'employeeDetails' && (
+                <div className="updateEmployeeDetailsBox">
                 {employeeDetails && (
                     <div className="employeeDetails">
                         <h2>Current Employee Details</h2>
@@ -111,66 +137,105 @@ function Employee() {
                     <p>{successMessage}</p>
                 </form>
             </div>
-            <div className="productManagementBox">
-                <form onSubmit={handleCreateProduct}>
-                    <h2>Create Product</h2>
-                    <div className="form-field">
-                        <label>Name:</label>
-                        <input type="text" value={createProductFormFields.name}
-                               onChange={e => setCreateProductFormFields({...createProductFormFields, name: e.target.value})}
-                               required/>
+            )}
+            {currentSection === 'productManagement' && (
+                <div className="productManagementBox">
+                    <form onSubmit={handleCreateProduct}>
+                        <h2>Create Product</h2>
+                        <div className="form-field">
+                            <label>Name:</label>
+                            <input type="text" value={createProductFormFields.name}
+                                   onChange={e => setCreateProductFormFields({
+                                       ...createProductFormFields,
+                                       name: e.target.value
+                                   })}
+                                   required/>
+                        </div>
+                        <div className="form-field">
+                            <label>Description:</label>
+                            <input type="text" value={createProductFormFields.description}
+                                   onChange={e => setCreateProductFormFields({
+                                       ...createProductFormFields,
+                                       description: e.target.value
+                                   })}
+                                   required/>
+                        </div>
+                        <div className="form-field">
+                            <label>Price:</label>
+                            <input type="number" value={createProductFormFields.price}
+                                   onChange={e => setCreateProductFormFields({
+                                       ...createProductFormFields,
+                                       price: e.target.value
+                                   })}
+                                   required/>
+                        </div>
+                        <button type="submit">Create</button>
+                    </form>
+                    <form onSubmit={handleUpdateProduct}>
+                        <h2>Update Product</h2>
+                        <div className="form-field">
+                            <label>ID:</label>
+                            <input type="text" value={productId}
+                                   onChange={e => setProductId(e.target.value)} required/>
+                        </div>
+                        <div className="form-field">
+                            <label>Name:</label>
+                            <input type="text" value={updateProductFormFields.name}
+                                   onChange={e => setUpdateProductFormFields({
+                                       ...updateProductFormFields,
+                                       name: e.target.value
+                                   })}
+                                   required/>
+                        </div>
+                        <div className="form-field">
+                            <label>Description:</label>
+                            <input type="text" value={updateProductFormFields.description}
+                                   onChange={e => setUpdateProductFormFields({
+                                       ...updateProductFormFields,
+                                       description: e.target.value
+                                   })}
+                                   required/>
+                        </div>
+                        <div className="form-field">
+                            <label>Price:</label>
+                            <input type="number" value={updateProductFormFields.price}
+                                   onChange={e => setUpdateProductFormFields({
+                                       ...updateProductFormFields,
+                                       price: e.target.value
+                                   })}
+                                   required/>
+                        </div>
+                        <button type="submit">Update</button>
+                    </form>
+                    <form onSubmit={handleDeleteProduct}>
+                        <h2>Delete Product</h2>
+                        <div className="form-field">
+                            <label>ID:</label>
+                            <input type="text" value={deleteProductId}
+                                   onChange={e => setDeleteProductId(e.target.value)} required/>
+                        </div>
+                        <button type="submit">Delete</button>
+                    </form>
+                    <div className="productDisplayBox">
+                        {products.map((product, index) => (
+                            <div key={index} onClick={() => handleGetOneProduct(product.id)}>
+                                <h3>{product.name}</h3>
+                                <p>ID: {product.id}</p>
+                                <p>{product.description}</p>
+                                <p>{product.price}</p>
+                            </div>
+                        ))}
+                        {selectedProduct && (
+                            <div>
+                                <h3>{selectedProduct.name}</h3>
+                                <p>ID: {selectedProduct.id}</p>
+                                <p>{selectedProduct.description}</p>
+                                <p>{selectedProduct.price}</p>
+                            </div>
+                        )}
                     </div>
-                    <div className="form-field">
-                        <label>Description:</label>
-                        <input type="text" value={createProductFormFields.description}
-                               onChange={e => setCreateProductFormFields({...createProductFormFields, description: e.target.value})}
-                               required/>
-                    </div>
-                    <div className="form-field">
-                        <label>Price:</label>
-                        <input type="number" value={createProductFormFields.price}
-                               onChange={e => setCreateProductFormFields({...createProductFormFields, price: e.target.value})}
-                               required/>
-                    </div>
-                    <button type="submit">Create</button>
-                </form>
-                <form onSubmit={handleUpdateProduct}>
-                    <h2>Update Product</h2>
-                    <div className="form-field">
-                        <label>ID:</label>
-                        <input type="text" value={productId}
-                               onChange={e => setProductId(e.target.value)} required/>
-                    </div>
-                    <div className="form-field">
-                        <label>Name:</label>
-                        <input type="text" value={updateProductFormFields.name}
-                               onChange={e => setUpdateProductFormFields({...updateProductFormFields, name: e.target.value})}
-                               required/>
-                    </div>
-                    <div className="form-field">
-                        <label>Description:</label>
-                        <input type="text" value={updateProductFormFields.description}
-                               onChange={e => setUpdateProductFormFields({...updateProductFormFields, description: e.target.value})}
-                               required/>
-                    </div>
-                    <div className="form-field">
-                        <label>Price:</label>
-                        <input type="number" value={updateProductFormFields.price}
-                               onChange={e => setUpdateProductFormFields({...updateProductFormFields, price: e.target.value})}
-                               required/>
-                    </div>
-                    <button type="submit">Update</button>
-                </form>
-                <form onSubmit={handleDeleteProduct}>
-                    <h2>Delete Product</h2>
-                    <div className="form-field">
-                        <label>ID:</label>
-                        <input type="text" value={deleteProductId}
-                               onChange={e => setDeleteProductId(e.target.value)} required/>
-                    </div>
-                    <button type="submit">Delete</button>
-                </form>
-            </div>
+                </div>
+            )}
         </div>
     );
 }

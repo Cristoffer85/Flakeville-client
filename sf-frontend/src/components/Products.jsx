@@ -1,5 +1,15 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import Cookies from "js-cookie";
+
+export const getOneProduct = async (id) => {
+    const response = await fetch(`http://localhost:8080/products/getOneProduct/${id}`);
+    return await response.json();
+}
+
+export const getAllProducts = async () => {
+    const response = await fetch('http://localhost:8080/products/getAllProducts');
+    return await response.json();
+};
 
 export const createProduct = async (product) => {
     const token = Cookies.get('token');
@@ -41,10 +51,10 @@ export const updateProduct = async (id, product) => {
     }
 };
 
-export const deleteProduct = async (productId) => {
+export const deleteProduct = async (id) => {
     const token = Cookies.get('token'); // Get the token from cookies
 
-    const response = await fetch(`http://localhost:8080/products/deleteProduct/${productId}`, {
+    const response = await fetch(`http://localhost:8080/products/deleteProduct/${id}`, {
         method: 'DELETE',
         headers: {
             'Authorization': `Bearer ${token}` // Include the token in the Authorization header

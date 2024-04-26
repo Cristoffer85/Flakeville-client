@@ -2,20 +2,20 @@ import {useContext, useEffect, useState} from "react";
 import CartContext from "../components/CartContext.jsx";
 import './css/Store.css';
 import Products from "../components/Products.jsx";
+import { getAllProducts } from "../components/Products.jsx";
 
 function Store() {
     const [products, setProducts] = useState([]);
     const { cart, setCart } = useContext(CartContext);
 
     useEffect(() => {
-        getAllProducts();
-    }, []);
+        const fetchProducts = async () => {
+            const products = await getAllProducts();
+            setProducts(products);
+        };
 
-    const getAllProducts = async () => {
-        const response = await fetch('http://localhost:8080/products/getAllProducts');
-        const data = await response.json();
-        setProducts(data);
-    };
+        fetchProducts();
+    }, []);
 
     const addToCart = (product, quantity) => {
         const existingProduct = cart.find(item => item.id === product.id);
