@@ -12,8 +12,12 @@
 
 .product-container {
     margin: 20px 10px 10px 220px; /* top, right, bottom, left */
-    width: 80%; /* Adjust this value as needed */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Adjust this line */
+    gap: 20px;
+    overflow-y: auto;
     padding: 20px;
+    height: calc(100vh - 100px); /* Adjust as needed */
 }
 
 .product-item {
