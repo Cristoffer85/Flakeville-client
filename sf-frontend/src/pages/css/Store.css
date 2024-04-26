@@ -3,6 +3,7 @@
 }
 
 .product-item {
+    width: 480px;
     background: rgba(255, 255, 255, 0.5);
     margin: 20px 10px 10px 10px; /* top, right, bottom, left */
     padding: 10px;

@@ -1,7 +1,10 @@
+.employeeAccountContainer {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
 .updateEmployeeDetailsBox {
-    position: absolute;
-    top: 110px;
-    left: 50px;
     background-color: rgba(255, 255, 255, 0.8);
     color: rgba(58, 53, 53, 0.5);
     border-radius: 10px;
@@ -19,4 +22,33 @@
 
 .employeeDetails {
     margin-bottom: 20px;
+}
+
+.productManagementBox {
+    background-color: rgba(255, 255, 255, 0.8);
+    color: rgba(58, 53, 53, 0.5);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 10px;
+    width: 300px;
+    height: auto;
+}
+
+.productManagementBox .form-field {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.productManagementBox button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #4CAF50; /* for example */
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.productManagementBox button:hover {
+    background-color: #45a049; /* for example */
 }
