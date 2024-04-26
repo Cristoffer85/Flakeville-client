@@ -16,7 +16,7 @@ function Weather() {    // Function component Weather, with 30-minute interval f
         const cachedCurrentConditionsTime = localStorage.getItem('currentConditionsTime');
 
         if (cachedCurrentConditions && Date.now() - cachedCurrentConditionsTime < 30 * 60 * 1000) {
-            setCurrentConditions(JSON.parse(cachedCurrentConditions));        // Numbers above = 30 minutes interval fetch (numbers are written in milliseconds so 30 * 60 * 1000 = 30 minutes)
+            setCurrentConditions(JSON.parse(cachedCurrentConditions));
         } else {
             fetch('http://localhost:8080/skiResort/currentConditions')
                 .then(response => response.json())
@@ -27,6 +27,8 @@ function Weather() {    // Function component Weather, with 30-minute interval f
                 });
         }
 
+        // Comment out the code for fetching and setting hourly conditions
+        /*
         const cachedHourlyConditions = localStorage.getItem('hourlyConditions');
         const cachedHourlyConditionsTime = localStorage.getItem('hourlyConditionsTime');
 
@@ -41,7 +43,10 @@ function Weather() {    // Function component Weather, with 30-minute interval f
                     localStorage.setItem('hourlyConditionsTime', Date.now());
                 });
         }
+        */
 
+        // Comment out the code for fetching and setting 5-day conditions
+        /*
         const cachedFiveDayConditions = localStorage.getItem('fiveDayConditions');
         const cachedFiveDayConditionsTime = localStorage.getItem('fiveDayConditionsTime');
 
@@ -56,6 +61,7 @@ function Weather() {    // Function component Weather, with 30-minute interval f
                     localStorage.setItem('fiveDayConditionsTime', Date.now());
                 });
         }
+        */
     }, []);
 
     return (
@@ -63,9 +69,9 @@ function Weather() {    // Function component Weather, with 30-minute interval f
             <div className="weatherContainer">
                 <CurrentWeatherConditions data={currentConditions} />
 
-                <!-- <HourlyWeatherConditions data={hourlyConditions} /> -->
-
-                <!-- <FiveDayWeatherConditions data={fiveDayConditions} /> -->
+                // Comment out the components for displaying hourly and 5-day conditions
+                {/* <HourlyWeatherConditions data={hourlyConditions} /> */}
+                {/* <FiveDayWeatherConditions data={fiveDayConditions} /> */}
             </div>
         </>
     );
