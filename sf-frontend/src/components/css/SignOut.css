@@ -1,6 +1,7 @@
-.signUp-box {
+.logout-box {
     width: 200px;
     display: flex;
+    flex-direction: column;
     justify-content: flex-end;
     padding: 20px;
     box-sizing: border-box;

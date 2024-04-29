@@ -10,7 +10,7 @@ import PageTitleContext from './PageTitleContext';
 import CartContext from "./CartContext.jsx";
 import SignIn from './SignIn.jsx';
 import SignUp from './SignUp.jsx';
-import LogOut from './LogOut.jsx';
+import LogOut from './SignOut.jsx';
 
 function Navbar({ isLoggedIn, handleLogin, handleLogout }) {
     const { cart } = useContext(CartContext);
@@ -72,7 +72,7 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout }) {
                     <div>
                         {!isLoggedIn && showButtons && (
                             <>
-                                <button onClick={handleSignInClick}>Sign In</button>
+                                <button onClick={handleSignInClick} className="signin-button">Sign In</button>
                                 <button onClick={handleSignUpClick} className="signup-button">Sign Up</button>
                             </>
                         )}
@@ -83,7 +83,6 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout }) {
             </div>
             {showPopup && (
                 <div className="login-and-SignInPopup" ref={popupRef}>
-                    <h2>{formType}</h2>
                     {formType === 'SignIn' && <SignIn setShowPopup={setShowPopup} handleLogin={handleLogin} />}
                     {formType === 'SignUp' && <SignUp setShowPopup={setShowPopup} handleLogin={handleLogin} />}
                     {formType === 'Logout' && <LogOut setShowPopup={setShowPopup} handleLogout={handleLogout} />}

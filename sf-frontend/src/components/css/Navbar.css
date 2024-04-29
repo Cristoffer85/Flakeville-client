@@ -74,11 +74,18 @@
     height: auto;
 }
 
+.signin-button {
+    margin: 0;
+    background-color: #c5c5c5;
+    border: 2px solid #c5c5c5;
+    box-shadow: inset 0 0 0 2px #c5c5c5;
+}
+
 .signup-button {
     margin: 2px;
-    background-color: #dddddd;
-    border: 2px solid #616161;
-    box-shadow: inset 0 0 0 2px #dddddd;
+    background-color: #ffffff;
+    border: 2px solid #bdbdbd;
+    box-shadow: inset 0 0 0 2px #ffffff;
 }
 
 .navbar-title {

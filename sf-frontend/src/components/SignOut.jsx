@@ -1,8 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import './css/LogOut.css';
+import './css/SignOut.css';
 
-function Logout({ setShowPopup, handleLogout }) {
+function SignOut({ setShowPopup, handleLogout }) {
     const navigate = useNavigate();
 
     const handleUserLogout = (event) => {
@@ -14,9 +14,10 @@ function Logout({ setShowPopup, handleLogout }) {
 
     return (
         <div className="logout-box">
-            <button onClick={handleUserLogout}>Logout</button>
+            <h3>Sign Out</h3>
+            <button onClick={handleUserLogout}>Sign out</button>
         </div>
     );
 }
 
-export default Logout;
+export default SignOut;
