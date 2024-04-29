@@ -1,5 +1,5 @@
-import React, {useContext, useState} from 'react';
-import { Link } from 'react-router-dom';
+import React, {useContext, useEffect, useState} from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import SnowfallEffect from './SnowfallEffect.jsx';
 import './css/Navbar.css';
 import logo from '../assets/Logo.png';
@@ -11,8 +11,10 @@ import CartContext from "./CartContext.jsx";
 import SignIn from './SignIn.jsx';
 import SignUp from './SignUp.jsx';
 import LogOut from './SignOut.jsx';
+import {navigateBasedOnRole} from "./Router.jsx";
+import Cookies from "js-cookie";
 
-function Navbar({ isLoggedIn, handleLogin, handleLogout }) {
+function Navbar({ isLoggedIn, handleLogin, handleLogout, role, username }) {
     const { cart } = useContext(CartContext);
     const pageTitle = useContext(PageTitleContext);
     const [showPopup, setShowPopup] = useState(false);
@@ -21,33 +23,55 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout }) {
     const [isSnowing, setIsSnowing] = useState(false);
     const [snowKey, setSnowKey] = useState(0);
     const popupRef = React.createRef();
+    const navigate = useNavigate();
 
     // Counter logic for the shopping cart, also present down in the return statement
     const totalItems = cart.reduce((total, product) => total + product.quantity, 0);
 
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (popupRef.current && !popupRef.current.contains(event.target)) {
+                setShowPopup(false);
+            }
+        }
+
+        document.addEventListener('mousedown', handleClickOutside);
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        }
+    }, [popupRef]);
+
     const handleSignInClick = () => {
         setShowPopup(true);
         setFormType('SignIn');
-    };
 
+    };
     const handleSignUpClick = () => {
         setShowPopup(true);
         setFormType('SignUp');
-    };
 
+    };
+    const handleLogoutClick = () => {
+            handleLogout();
+            navigate('/');
+        };
     const handleAccountClick = () => {
         if (!isLoggedIn) {
             setShowButtons(!showButtons);
         } else {
-            setShowPopup(!showPopup);
-            setFormType('Logout');
+            const role = Cookies.get('role');
+            const username = Cookies.get('username');
+            navigateBasedOnRole(role, username, navigate);
         }
-    };
 
+    };
     const handleStartSnow = () => {
         setIsSnowing(true);
         setSnowKey(prevKey => prevKey + 1);
+
     };
+
 
     return (
         <nav className="navbar">
@@ -75,6 +99,9 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout }) {
                                 <button onClick={handleSignInClick} className="signin-button">Sign In</button>
                                 <button onClick={handleSignUpClick} className="signup-button">Sign Up</button>
                             </>
+                        )}
+                        {isLoggedIn && (
+                            <button onClick={handleLogoutClick} className="signout-button">Sign Out</button>
                         )}
                         <img src={snowflakeImg} alt="Start snow" onClick={handleStartSnow} className="snowflake-button" /> {/* Use the Snowflake.png image as the button */}
                         <img src={accountLogo} alt="AuthHandler" onClick={handleAccountClick} className="account-logo" />

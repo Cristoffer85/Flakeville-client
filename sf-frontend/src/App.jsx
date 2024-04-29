@@ -10,6 +10,7 @@ function App() {
     const [pageTitle, setPageTitle] = useState('Home');
     const [cart, setCart] = useState([]);
 
+
     useEffect(() => {
         const token = Cookies.get('token');
         const loggedIn = Cookies.get('isLoggedIn');

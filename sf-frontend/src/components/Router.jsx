@@ -10,6 +10,7 @@ import Navbar from './Navbar';
 import Cart from "../pages/Cart.jsx";
 
 export const navigateBasedOnRole = (role, username, navigate) => {
+    console.log('Navigating based on role:', role); // Add this line
     if (role === 'ADMIN') {
         navigate('/admin');
     } else if (role === 'EMPLOYEE') {
@@ -53,8 +54,8 @@ function PageTitleUpdater({ setPageTitle }) {
     return null;
 }
 
-function AppRouter({ isLoggedIn, handleLogin, handleLogout, username, showPopup, setShowPopup, setPageTitle }) {
-    const commonProps = { isLoggedIn, handleLogin, handleLogout, username, showPopup, setShowPopup };
+function AppRouter({ isLoggedIn, handleLogin, handleLogout, username, role, showPopup, setShowPopup, setPageTitle }) {
+    const commonProps = { isLoggedIn, handleLogin, handleLogout, username, role, showPopup, setShowPopup };
 
     return (
         <Router>
