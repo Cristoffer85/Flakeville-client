@@ -1,21 +1,23 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import './css/SignOut.css';
+import {useNavigate} from "react-router-dom";
 
 function SignOut({ setShowPopup, handleLogout }) {
     const navigate = useNavigate();
-
-    const handleUserLogout = (event) => {
-        event.preventDefault();
+    const handleYesClick = () => {
         handleLogout();
-        setShowPopup(false);
         navigate('/');
+        setShowPopup(false);
+    };
+
+    const handleNoClick = () => {
+        setShowPopup(false);
     };
 
     return (
-        <div className="logout-box">
-            <h3>Sign Out</h3>
-            <button onClick={handleUserLogout}>Sign out</button>
+        <div className="signout-box">
+            <p>Are you sure you want to Sign out?</p>
+            <button onClick={handleYesClick}>Yes</button>
+            <button onClick={handleNoClick}>No</button>
         </div>
     );
 }

@@ -13,8 +13,9 @@ import SignUp from './SignUp.jsx';
 import LogOut from './SignOut.jsx';
 import {navigateBasedOnRole} from "./Router.jsx";
 import Cookies from "js-cookie";
+import SignOut from "./SignOut.jsx";
 
-function Navbar({ isLoggedIn, handleLogin, handleLogout, role, username }) {
+function Navbar({ isLoggedIn, handleLogin, handleLogout}) {
     const { cart } = useContext(CartContext);
     const pageTitle = useContext(PageTitleContext);
     const [showPopup, setShowPopup] = useState(false);
@@ -52,10 +53,10 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout, role, username }) {
         setFormType('SignUp');
 
     };
-    const handleLogoutClick = () => {
-            handleLogout();
-            navigate('/');
-        };
+    const handleSignOutClick = () => {
+        setShowPopup(true);
+        setFormType('Logout');
+    };
     const handleAccountClick = () => {
         if (!isLoggedIn) {
             setShowButtons(!showButtons);
@@ -101,7 +102,7 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout, role, username }) {
                             </>
                         )}
                         {isLoggedIn && (
-                            <button onClick={handleLogoutClick} className="signout-button">Sign Out</button>
+                            <button onClick={handleSignOutClick} className="signout-button">Sign Out</button>
                         )}
                         <img src={snowflakeImg} alt="Start snow" onClick={handleStartSnow} className="snowflake-button" /> {/* Use the Snowflake.png image as the button */}
                         <img src={accountLogo} alt="AuthHandler" onClick={handleAccountClick} className="account-logo" />
@@ -112,7 +113,7 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout, role, username }) {
                 <div className="login-and-SignInPopup" ref={popupRef}>
                     {formType === 'SignIn' && <SignIn setShowPopup={setShowPopup} handleLogin={handleLogin} />}
                     {formType === 'SignUp' && <SignUp setShowPopup={setShowPopup} handleLogin={handleLogin} />}
-                    {formType === 'Logout' && <LogOut setShowPopup={setShowPopup} handleLogout={handleLogout} />}
+                    {showPopup && formType === 'Logout' && <SignOut setShowPopup={setShowPopup} handleLogout={handleLogout} />}
                 </div>
             )}
             <SnowfallEffect key={snowKey} isSnowing={isSnowing} />
