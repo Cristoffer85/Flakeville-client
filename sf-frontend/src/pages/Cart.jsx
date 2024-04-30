@@ -55,6 +55,9 @@ function Cart() {
         setCart(updatedCart);
     };
 
+    const totalPrice = cart.reduce((total, item) => total + item.price * item.quantity, 0);
+    const totalCount = cart.reduce((total, item) => total + item.quantity, 0);
+
     return (
         <div className="cart-container">
             <h2>Cart</h2>
@@ -69,15 +72,26 @@ function Cart() {
                     <h4>{item.name}</h4>
                     <p>{item.description}</p>
                     <p>{item.price}</p>
-                    <input type="number" value={item.quantity} onChange={(e) => updateQuantity(item, e.target.value)} min="1" />
+                    <input type="number" value={item.quantity} onChange={(e) => updateQuantity(item, e.target.value)}
+                           min="1"/>
                     <button onClick={() => deleteFromCart(item)}>Delete</button>
                 </div>
             ))}
-            {isLoggedIn && userRole === 'USER' ? (
-                <button onClick={() => sendOrder(cart, setCart, setSuccessMessage)}>Send Order</button>
-            ) : (
-                <p className="signin-text">Sign in or Sign up as a user to send your order!</p>
-            )}
+            <div className="cart-total total-box">
+                <h4></h4>
+                <h4></h4>
+                <h4>Total: {totalPrice} :-</h4>
+                <h4>Total: {totalCount}</h4>
+            </div>
+            <div className="order-container">
+                <h3 className="total-price-text">Total price: {totalPrice} :-</h3>
+                {isLoggedIn && userRole === 'USER' ? (
+                    <button className="send-order-button"
+                            onClick={() => sendOrder(cart, setCart, setSuccessMessage)}>Send Order</button>
+                ) : (
+                    <p className="signin-text">Sign in or sign up as a User to send your order!</p>
+                )}
+            </div>
             {successMessage && <p>{successMessage}</p>}
         </div>
     );

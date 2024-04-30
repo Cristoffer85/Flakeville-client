@@ -35,14 +35,40 @@
     border-bottom: 1px solid #ccc;
 }
 
-.signin-text {
-    color: #5c5c5c;
+.cart-item > p, .cart-item > h4 {
+    margin: 0;
+    flex-basis: 18%;
+    text-align: center; /* Add this line */
+}
+
+.send-order-button {
+    margin: 40px 0 0 0;
+    background-color: green;
     font-size: 20px;
-    font-weight: 600;
+    font-weight: bold;
+    color: white;
+}
+
+.cart-total {
+    display: flex;
+    justify-content: flex-start;
+    padding: 10px 0;
+    border-top: 3px solid #ccc;
+}
+
+.cart-total > h4 {
+    flex-basis: 22%;
+}
+
+.total-price-text {
+    font-weight: bold;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.order-container {
+    background-color: #f0f0f0; /* Replace with your preferred color */
     padding: 10px;
-    border-radius: 10px;
-    background-color: rgba(255, 255, 255, 0.5);
-    position: relative;
-    top: 30px;
-    left: 5px;
+    border-radius: 5px;
+    margin-top: 10px;
 }
