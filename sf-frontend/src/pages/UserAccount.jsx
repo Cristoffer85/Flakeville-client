@@ -11,6 +11,10 @@ function UserAccount() {
     const [updateBirthday, setUpdateBirthday] = useState('');
     const [updateAddress, setUpdateAddress] = useState('');
 
+    const calculateTotalPrice = (order) => {
+        return order.products.reduce((total, product) => total + product.product.price * product.quantity, 0);
+    };
+
     useEffect(() => {
         getUserDetails();
     }, []);
@@ -86,12 +90,26 @@ function UserAccount() {
                     {userDetails.orders && userDetails.orders.map((order, index) => (
                         <div key={index} className="orderDetails">
                             <h3>Order {index + 1}</h3>
-                            {order.products.map((product, i) => (
-                                <div key={i}>
-                                    <p>Product: {product.product.name}</p>
-                                    <p>Quantity: {product.quantity}</p>
-                                </div>
-                            ))}
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Quantity</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {order.products.map((product, i) => (
+                                    <tr key={i}>
+                                        <td>{product.product.name}</td>
+                                        <td>{product.quantity}</td>
+                                    </tr>
+                                ))}
+                                <tr>
+                                    <td>Total Price</td>
+                                    <td>{calculateTotalPrice(order)} :-</td>
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
                     ))}
                 </div>
