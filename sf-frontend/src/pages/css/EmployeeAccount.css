@@ -28,6 +28,8 @@
 
 .updateEmployeeDetailsBox,
 .productManagementBox {
+    display: flex;
+    width: 80%;
     position: absolute;
     top: 70px;
     background-color: rgba(255, 255, 255, 0.8);
@@ -35,13 +37,7 @@
     border-radius: 10px;
     padding: 20px;
     margin: 10px;
-    width: 60%;
     height: auto;
-}
-
-.productManagementBox {
-    display: flex;
-    width: calc(100% - 200px);
 }
 
 .productDisplayBox {

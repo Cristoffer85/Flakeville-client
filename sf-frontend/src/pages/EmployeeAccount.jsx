@@ -217,14 +217,26 @@ function Employee() {
                         <button type="submit">Delete</button>
                     </form>
                     <div className="productDisplayBox">
-                        {products.map((product, index) => (
-                            <div key={index} onClick={() => handleGetOneProduct(product.id)}>
-                                <h3>{product.name}</h3>
-                                <p>ID: {product.id}</p>
-                                <p>{product.description}</p>
-                                <p>{product.price}</p>
-                            </div>
-                        ))}
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>ID</th>
+                                <th>Description</th>
+                                <th>Price</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {products.map((product, index) => (
+                                <tr key={index} onClick={() => handleGetOneProduct(product.id)}>
+                                    <td>{product.name}</td>
+                                    <td>{product.id}</td>
+                                    <td>{product.description}</td>
+                                    <td>{product.price}</td>
+                                </tr>
+                            ))}
+                            </tbody>
+                        </table>
                         {selectedProduct && (
                             <div>
                                 <h3>{selectedProduct.name}</h3>
