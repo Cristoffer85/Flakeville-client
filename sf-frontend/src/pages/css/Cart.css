@@ -23,14 +23,26 @@
 
 .cart-header > h4, .cart-item > h4 {
     margin: 0;
-    flex-basis: 33%; /* Each column takes up a third of the row */
+    flex-basis: 33%;
 }
 
 .cart-header > h4, .cart-item > p {
     margin: 0;
-    flex-basis: 33%; /* Each column takes up a third of the row */
+    flex-basis: 33%;
 }
 
 .cart-item {
     border-bottom: 1px solid #ccc;
+}
+
+.signin-text {
+    color: #5c5c5c;
+    font-size: 20px;
+    font-weight: 600;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+    position: relative;
+    top: 30px;
+    left: 5px;
 }

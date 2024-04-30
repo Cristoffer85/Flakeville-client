@@ -40,6 +40,8 @@ async function sendOrder(cart, setCart, setSuccessMessage) {
 function Cart() {
     const { cart, setCart } = useContext(CartContext);
     const [successMessage, setSuccessMessage] = useState(null);
+    const isLoggedIn = Cookies.get('isLoggedIn');
+    const userRole = Cookies.get('role');
 
     const updateQuantity = (product, quantity) => {
         const updatedCart = cart.map(item =>
@@ -71,7 +73,11 @@ function Cart() {
                     <button onClick={() => deleteFromCart(item)}>Delete</button>
                 </div>
             ))}
-            <button onClick={() => sendOrder(cart, setCart, setSuccessMessage)}>Send Order</button>
+            {isLoggedIn && userRole === 'USER' ? (
+                <button onClick={() => sendOrder(cart, setCart, setSuccessMessage)}>Send Order</button>
+            ) : (
+                <p className="signin-text">Sign in or Sign up as a user to send your order!</p>
+            )}
             {successMessage && <p>{successMessage}</p>}
         </div>
     );
