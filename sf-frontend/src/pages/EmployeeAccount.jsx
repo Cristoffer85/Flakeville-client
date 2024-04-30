@@ -73,36 +73,41 @@ function Employee() {
 
     // #################### Product DATA (imported from Products.jsx for easier endpoint logic) ####################
 
+    useEffect(() => {
+        fetchProducts();
+    }, []);
+
+    const fetchProducts = async () => {
+        const products = await getAllProducts();
+        setProducts(products);
+
+    };
+
     const handleCreateProduct = async (event) => {
         event.preventDefault();
         await createProduct(createProductFormFields);
         setCreateProductFormFields({name: '', description: '', price: ''}); // Clear the form
+        await fetchProducts();
     };
-
-    useEffect(() => {
-        const fetchProducts = async () => {
-            const products = await getAllProducts();
-            setProducts(products);
-        };
-
-        fetchProducts();
-    }, []);
 
     const handleGetOneProduct = async (id) => {
         const product = await getOneProduct(id);
         setSelectedProduct(product);
+        await fetchProducts();
     };
 
     const handleUpdateProduct = async (event) => {
         event.preventDefault();
         await updateProduct(productId, updateProductFormFields);
-        setUpdateProductFormFields({Id: '', name: '', description: '', price: ''}); // Clear the form
+        setUpdateProductFormFields({Id: '', name: '', description: '', price: ''});
+        await fetchProducts();
     };
 
     const handleDeleteProduct = async (event) => {
         event.preventDefault();
         await deleteProduct(deleteProductId);
-        setDeleteProductId(''); // Clear the form
+        setDeleteProductId('');
+        await fetchProducts();
     };
 
     return (
