@@ -17,8 +17,8 @@ function SignOut({ setShowPopup, handleLogout }) {
     return (
         <div className="signout-box">
             <p>Are you sure you want to Sign out?</p>
-            <button onClick={handleYesClick}>Yes</button>
-            <button onClick={handleNoClick}>No</button>
+            <button className="yes-button" onClick={handleYesClick}>Yes</button>
+            <button className="no-button" onClick={handleNoClick}>No</button>
         </div>
     );
 }
