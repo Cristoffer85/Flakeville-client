@@ -13,7 +13,7 @@ function SignIn({ setShowPopup, handleLogin }) {
         event.preventDefault();
 
         try {
-            const response = await fetch('http://localhost:8080/auth/login', {
+            const response = await fetch('https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/auth/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

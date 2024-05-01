@@ -113,7 +113,7 @@ function Admin() {
 
     const createUser = async (user) => {
         const token = Cookies.get('token');
-        const response = await fetch('http://localhost:8080/admin/createUser', {
+        const response = await fetch('https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/admin/createUser', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -135,7 +135,7 @@ function Admin() {
 
     const getAllUsers = async () => {
         const token = Cookies.get('token');
-        const response = await fetch('http://localhost:8080/admin/getAllUsers', {
+        const response = await fetch('https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/admin/getAllUsers', {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -147,7 +147,7 @@ function Admin() {
 
     const getUser = async (username) => {
         const token = Cookies.get('token');
-        const response = await fetch(`http://localhost:8080/admin/getOneUser/${username}`, {
+        const response = await fetch(`https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/admin/getOneUser/${username}`, {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -162,7 +162,7 @@ function Admin() {
 
     const updateUser = async (username, user) => {
         const token = Cookies.get('token');
-        const response = await fetch(`http://localhost:8080/admin/updateUser/${username}`, {
+        const response = await fetch(`https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/admin/updateUser/${username}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -180,7 +180,7 @@ function Admin() {
 
     const deleteUser = async (username) => {
         const token = Cookies.get('token');
-        await fetch(`http://localhost:8080/admin/deleteOneUser/${username}`, {
+        await fetch(`https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/admin/deleteOneUser/${username}`, {
             method: 'DELETE',
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -193,7 +193,7 @@ function Admin() {
 
     const createEmployee = async (employee) => {
         const token = Cookies.get('token');
-        const response = await fetch('http://localhost:8080/admin/createEmployee', {
+        const response = await fetch('https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/admin/createEmployee', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -217,7 +217,7 @@ function Admin() {
 
     const getAllEmployees = async () => {
         const token = Cookies.get('token');
-        const response = await fetch('http://localhost:8080/admin/getAllEmployees', {
+        const response = await fetch('https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/admin/getAllEmployees', {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -229,7 +229,7 @@ function Admin() {
 
     const getEmployee = async (username) => {
         const token = Cookies.get('token');
-        const response = await fetch(`http://localhost:8080/admin/getOneEmployee/${username}`, {
+        const response = await fetch(`https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/admin/getOneEmployee/${username}`, {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -244,7 +244,7 @@ function Admin() {
 
     const updateEmployee = async (username, employee) => {
         const token = Cookies.get('token');
-        const response = await fetch(`http://localhost:8080/admin/updateEmployee/${username}`, {
+        const response = await fetch(`https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/admin/updateEmployee/${username}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -262,7 +262,7 @@ function Admin() {
 
     const deleteEmployee = async (username) => {
         const token = Cookies.get('token');
-        await fetch(`http://localhost:8080/admin/deleteEmployee/${username}`, {
+        await fetch(`https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/admin/deleteEmployee/${username}`, {
             method: 'DELETE',
             headers: {
                 'Authorization': `Bearer ${token}`

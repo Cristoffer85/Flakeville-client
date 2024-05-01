@@ -2,19 +2,19 @@ import React, {useState} from 'react';
 import Cookies from "js-cookie";
 
 export const getOneProduct = async (id) => {
-    const response = await fetch(`http://localhost:8080/products/getOneProduct/${id}`);
+    const response = await fetch(`https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/products/getOneProduct/${id}`);
     return await response.json();
 }
 
 export const getAllProducts = async () => {
-    const response = await fetch('http://localhost:8080/products/getAllProducts');
+    const response = await fetch('https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/products/getAllProducts');
     return await response.json();
 };
 
 export const createProduct = async (product) => {
     const token = Cookies.get('token');
 
-    const response = await fetch('http://localhost:8080/products/createProduct', {
+    const response = await fetch('https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/products/createProduct', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -34,7 +34,7 @@ export const createProduct = async (product) => {
 export const updateProduct = async (id, product) => {
     const token = Cookies.get('token');
 
-    const response = await fetch(`http://localhost:8080/products/updateProduct/${id}`, {
+    const response = await fetch(`https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/products/updateProduct/${id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -54,7 +54,7 @@ export const updateProduct = async (id, product) => {
 export const deleteProduct = async (id) => {
     const token = Cookies.get('token'); // Get the token from cookies
 
-    const response = await fetch(`http://localhost:8080/products/deleteProduct/${id}`, {
+    const response = await fetch(`https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/products/deleteProduct/${id}`, {
         method: 'DELETE',
         headers: {
             'Authorization': `Bearer ${token}` // Include the token in the Authorization header

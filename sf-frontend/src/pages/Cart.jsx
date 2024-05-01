@@ -20,7 +20,7 @@ async function sendOrder(cart, setCart, setSuccessMessage) {
         }))
     };
 
-    const response = await fetch(`http://localhost:8080/user/addOrder/${username}/orders`, {
+    const response = await fetch(`https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/user/addOrder/${username}/orders`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

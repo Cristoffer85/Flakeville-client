@@ -28,7 +28,7 @@ function Employee() {
 
         const token = Cookies.get('token'); // Get the token from cookies
 
-        const response = await fetch(`http://localhost:8080/employee/getOneEmployee/${username}`, {
+        const response = await fetch(`https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/employee/getOneEmployee/${username}`, {
             headers: {
                 'Authorization': `Bearer ${token}` // Include the token in the Authorization header
             }
@@ -49,7 +49,7 @@ function Employee() {
         const token = Cookies.get('token');
 
         try {
-            const response = await fetch(`http://localhost:8080/employee/updateEmployee/${username}`, {
+            const response = await fetch(`https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/employee/updateEmployee/${username}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

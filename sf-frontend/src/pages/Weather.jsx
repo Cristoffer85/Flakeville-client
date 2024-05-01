@@ -16,7 +16,7 @@ function Weather() {    // Function component Weather, with 30-minute interval f
         if (cachedCurrentConditions && Date.now() - cachedCurrentConditionsTime < 30 * 60 * 1000) {
             setCurrentConditions(JSON.parse(cachedCurrentConditions));
         } else {
-            fetch('http://localhost:8080/skiResort/currentConditions')
+            fetch('https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/skiResort/currentConditions')
                 .then(response => response.json())
                 .then(data => {
                     setCurrentConditions(data);

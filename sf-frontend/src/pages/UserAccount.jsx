@@ -21,7 +21,7 @@ function UserAccount() {
 
     const getUserDetails = async () => {
         const token = Cookies.get('token');
-        const response = await fetch(`http://localhost:8080/user/getOneUser/${username}`, {
+        const response = await fetch(`https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/user/getOneUser/${username}`, {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -33,7 +33,7 @@ function UserAccount() {
     const updateUserDetails = async (e) => {
         e.preventDefault();
         const token = Cookies.get('token');
-        const response = await fetch(`http://localhost:8080/user/updateUser/${username}`, {
+        const response = await fetch(`https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/user/updateUser/${username}`, {
             method: 'PUT',
             headers: {
                 'Authorization': `Bearer ${token}`,
