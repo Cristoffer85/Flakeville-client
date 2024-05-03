@@ -3,13 +3,14 @@ import AppRouter from './components/Router.jsx';
 import Cookies from 'js-cookie';
 import PageTitleContext from './components/PageTitleContext';
 import CartContext from "./components/CartContext.jsx";
+import CategoryContext from './components/CategoryContext';
 
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [showPopup, setShowPopup] = useState(false);
     const [pageTitle, setPageTitle] = useState('Home');
     const [cart, setCart] = useState([]);
-
+    const [categories, setCategories] = useState([]);
 
     useEffect(() => {
         const token = Cookies.get('token');
@@ -38,8 +39,11 @@ function App() {
     return (
         <div className="App">
             <PageTitleContext.Provider value={pageTitle}>
-                <CartContext.Provider value={{ cart, setCart }}>
-                    <AppRouter isLoggedIn={isLoggedIn} handleLogin={handleLogin} handleLogout={handleLogout} showPopup={showPopup} setShowPopup={setShowPopup} setPageTitle={setPageTitle} />
+                <CartContext.Provider value={{cart, setCart}}>
+                    <CategoryContext.Provider value={{categories, setCategories}}>
+                        <AppRouter isLoggedIn={isLoggedIn} handleLogin={handleLogin} handleLogout={handleLogout}
+                                   showPopup={showPopup} setShowPopup={setShowPopup} setPageTitle={setPageTitle}/>
+                    </CategoryContext.Provider>
                 </CartContext.Provider>
             </PageTitleContext.Provider>
         </div>

@@ -9,8 +9,8 @@ function Employee() {
     const [employeeDetails, setEmployeeDetails] = useState({name: '', position: ''});
     const [formFields, setFormFields] = useState({name: '', position: ''});
     const [successMessage, setSuccessMessage] = useState('');
-    const [createProductFormFields, setCreateProductFormFields] = useState({name: '', description: '', price: ''});
-    const [updateProductFormFields, setUpdateProductFormFields] = useState({Id: '', name: '', description: '', price: ''});
+    const [createProductFormFields, setCreateProductFormFields] = useState({name: '', description: '', price: '', category: ''});
+    const [updateProductFormFields, setUpdateProductFormFields] = useState({Id: '', name: '', description: '', price: '', category: ''});
     const [deleteProductId, setDeleteProductId] = useState('');
     const [productId, setProductId] = useState('');
     const [products, setProducts] = useState([]);
@@ -86,7 +86,7 @@ function Employee() {
     const handleCreateProduct = async (event) => {
         event.preventDefault();
         await createProduct(createProductFormFields);
-        setCreateProductFormFields({name: '', description: '', price: ''}); // Clear the form
+        setCreateProductFormFields({name: '', description: '', price: '', category: ''}); // Clear the form
         await fetchProducts();
     };
 
@@ -99,7 +99,7 @@ function Employee() {
     const handleUpdateProduct = async (event) => {
         event.preventDefault();
         await updateProduct(productId, updateProductFormFields);
-        setUpdateProductFormFields({Id: '', name: '', description: '', price: ''});
+        setUpdateProductFormFields({Id: '', name: '', description: '', price: '', category: ''});
         await fetchProducts();
     };
 
@@ -174,6 +174,15 @@ function Employee() {
                                    })}
                                    required/>
                         </div>
+                        <div className="form-field">
+                            <label>Category:</label>
+                            <input type="text" value={createProductFormFields.category}
+                                   onChange={e => setCreateProductFormFields({
+                                       ...createProductFormFields,
+                                       category: e.target.value
+                                   })}
+                                   required/>
+                        </div>
                         <button type="submit">Create</button>
                     </form>
                     <form onSubmit={handleUpdateProduct}>
@@ -207,6 +216,15 @@ function Employee() {
                                    onChange={e => setUpdateProductFormFields({
                                        ...updateProductFormFields,
                                        price: e.target.value
+                                   })}
+                                   required/>
+                        </div>
+                        <div className="form-field">
+                            <label>Category:</label>
+                            <input type="text" value={updateProductFormFields.category}
+                                   onChange={e => setUpdateProductFormFields({
+                                       ...updateProductFormFields,
+                                       category: e.target.value
                                    })}
                                    required/>
                         </div>
