@@ -117,3 +117,8 @@
     padding: 2px 4px;
     font-size: 11px;
 }
+
+.snowflake-button:hover,
+.account-logo:hover {
+    cursor: pointer;
+}

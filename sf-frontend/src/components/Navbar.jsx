@@ -10,7 +10,6 @@ import PageTitleContext from './PageTitleContext';
 import CartContext from "./CartContext.jsx";
 import SignIn from './SignIn.jsx';
 import SignUp from './SignUp.jsx';
-import LogOut from './SignOut.jsx';
 import {navigateBasedOnRole} from "./Router.jsx";
 import Cookies from "js-cookie";
 import SignOut from "./SignOut.jsx";
@@ -104,14 +103,15 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout}) {
                         {isLoggedIn && (
                             <button onClick={handleSignOutClick} className="signout-button">Sign Out</button>
                         )}
-                        <img src={snowflakeImg} alt="Start snow" onClick={handleStartSnow} className="snowflake-button" /> {/* Use the Snowflake.png image as the button */}
-                        <img src={accountLogo} alt="AuthHandler" onClick={handleAccountClick} className="account-logo" />
+                        <img src={snowflakeImg} alt="Start snow" onClick={handleStartSnow} className="snowflake-button"
+                             title="Click me for some magic!"/>
+                        <img src={accountLogo} alt="AuthHandler" onClick={handleAccountClick} className="account-logo"/>
                     </div>
                 </ul>
             </div>
             {showPopup && (
                 <div className="login-and-SignInPopup" ref={popupRef}>
-                    {formType === 'SignIn' && <SignIn setShowPopup={setShowPopup} handleLogin={handleLogin} />}
+                {formType === 'SignIn' && <SignIn setShowPopup={setShowPopup} handleLogin={handleLogin} />}
                     {formType === 'SignUp' && <SignUp setShowPopup={setShowPopup} handleLogin={handleLogin} />}
                     {showPopup && formType === 'Logout' && <SignOut setShowPopup={setShowPopup} handleLogout={handleLogout} />}
                 </div>
