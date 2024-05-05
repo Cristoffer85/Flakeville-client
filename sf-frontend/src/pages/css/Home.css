@@ -1,25 +1,35 @@
 .box1 {
     position: absolute;
-    top: 210px;
+    top: 150px;
     left: 50px;
     background-color: rgba(255, 255, 255, 0.8);
     color: rgba(58, 53, 53, 0.5);
     border-radius: 10px;
     padding: 20px;
     margin: 10px;
-    width: 200px;
-    height: 200px;
+    width: 290px;
 }
 
 .box2 {
     position: absolute;
-    top: 200px;
-    left: 320px;
+    top: 180px;
+    left: 450px;
     background-color: rgba(255, 255, 255, 0.8);
     color: rgba(58, 53, 53, 0.5);
     border-radius: 10px;
     padding: 20px;
     margin: 10px;
     width: 200px;
-    height: 200px;
+}
+
+.box3 {
+    position: absolute;
+    top: 220px;
+    left: 750px;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: rgba(58, 53, 53, 0.5);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 10px;
+    width: 200px;
 }
