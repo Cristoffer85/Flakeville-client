@@ -98,3 +98,9 @@
     flex-direction: column;
     align-items: flex-end;
 }
+
+.column {
+    border-right: 1px solid #000; /* Change color as needed */
+    padding-right: 20px; /* Adjust as needed */
+    margin-right: 20px; /* Adjust as needed */
+}

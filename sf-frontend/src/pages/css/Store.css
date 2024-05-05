@@ -1,3 +1,7 @@
+.store-container .sidebar p {
+    cursor: default !important;
+}
+
 .store-container {
     display: flex;
     flex-wrap: nowrap; /* Add this line */
@@ -8,6 +12,7 @@
     width: 20%; /* Adjust this value as needed */
     padding: 20px;
     border-right: 1px solid #ccc;
+
 }
 
 .product-container {

@@ -99,7 +99,23 @@ function Employee() {
 
     const handleUpdateProduct = async (event) => {
         event.preventDefault();
-        await updateProduct(productId, updateProductFormFields);
+
+        // Check if selectedProduct is not null
+        if (!selectedProduct) {
+            console.error('No product selected for update');
+            return;
+        }
+
+        // If a field in updateProductFormFields is empty, use the corresponding value from selectedProduct
+        const updatedProduct = {
+            Id: updateProductFormFields.Id || selectedProduct.Id,
+            name: updateProductFormFields.name || selectedProduct.name,
+            description: updateProductFormFields.description || selectedProduct.description,
+            price: updateProductFormFields.price || selectedProduct.price,
+            category: updateProductFormFields.category || selectedProduct.category
+        };
+
+        await updateProduct(productId, updatedProduct);
         setUpdateProductFormFields({Id: '', name: '', description: '', price: '', category: ''});
         await fetchProducts();
     };
@@ -146,7 +162,8 @@ function Employee() {
             )}
             {currentSection === 'productManagement' && (
                 <div className="productManagementBox">
-                    <form onSubmit={handleCreateProduct}>
+                    <div className="column">
+                        <form onSubmit={handleCreateProduct}>
                         <h2>Create Product</h2>
                         <div className="form-field">
                             <label>Name:</label>
@@ -192,57 +209,63 @@ function Employee() {
                             </div>
                         </div>
                     </form>
-                    <form onSubmit={handleUpdateProduct}>
-                        <h2>Update Product</h2>
-                        <div className="form-field">
-                            <label>ID:</label>
-                            <input type="text" value={productId}
-                                   onChange={e => setProductId(e.target.value)} required/>
+                </div>
+                        <div className="column">
+                            <form onSubmit={handleUpdateProduct}>
+                                <h2>Update Product</h2>
+                                <div className="form-field">
+                                    <label>ID:</label>
+                                    <input type="text" value={productId}
+                                           onChange={e => {
+                                               setProductId(e.target.value);
+                                               handleGetOneProduct(e.target.value);
+                                           }} required/>
+                                </div>
+                                <div className="form-field">
+                                    <label>Name:</label>
+                                    <input type="text" value={updateProductFormFields.name}
+                                           onChange={e => setUpdateProductFormFields({
+                                               ...updateProductFormFields,
+                                               name: e.target.value
+                                           })}
+                                           placeholder="<leave empty for default>"/>
+                                </div>
+                                <div className="form-field">
+                                    <label>Description:</label>
+                                    <input type="text" value={updateProductFormFields.description}
+                                           onChange={e => setUpdateProductFormFields({
+                                               ...updateProductFormFields,
+                                               description: e.target.value
+                                           })}
+                                           placeholder="<leave empty for default>"/>
+                                </div>
+                                <div className="form-field">
+                                    <label>Price:</label>
+                                    <input type="number" value={updateProductFormFields.price}
+                                           onChange={e => setUpdateProductFormFields({
+                                               ...updateProductFormFields,
+                                               price: e.target.value
+                                           })}
+                                           placeholder="<leave empty for default>"/>
+                                </div>
+                                <div className="category-sort">
+                                    <div>
+                                        <select name="category" value={updateProductFormFields.category}
+                                                onChange={e => setUpdateProductFormFields({
+                                                    ...updateProductFormFields,
+                                                    category: e.target.value
+                                                })}
+                                                className="category-dropdown">
+                                            <option value="">Select category</option>
+                                            {categories.map((category, index) => (
+                                                <option key={index} value={category}>{category}</option>
+                                            ))}
+                                        </select>
+                                        <button type="submit" className="create-button">Update</button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-                        <div className="form-field">
-                            <label>Name:</label>
-                            <input type="text" value={updateProductFormFields.name}
-                                   onChange={e => setUpdateProductFormFields({
-                                       ...updateProductFormFields,
-                                       name: e.target.value
-                                   })}
-                                   required/>
-                        </div>
-                        <div className="form-field">
-                            <label>Description:</label>
-                            <input type="text" value={updateProductFormFields.description}
-                                   onChange={e => setUpdateProductFormFields({
-                                       ...updateProductFormFields,
-                                       description: e.target.value
-                                   })}
-                                   required/>
-                        </div>
-                        <div className="form-field">
-                            <label>Price:</label>
-                            <input type="number" value={updateProductFormFields.price}
-                                   onChange={e => setUpdateProductFormFields({
-                                       ...updateProductFormFields,
-                                       price: e.target.value
-                                   })}
-                                   required/>
-                        </div>
-                        <div className="category-sort">
-                            <div>
-                                <select name="category" value={updateProductFormFields.category}
-                                        onChange={e => setUpdateProductFormFields({
-                                            ...updateProductFormFields,
-                                            category: e.target.value
-                                        })}
-                                        className="category-dropdown">
-                                    <option value="">Select category</option>
-                                    {categories.map((category, index) => (
-                                        <option key={index} value={category}>{category}</option>
-                                    ))}
-                                </select>
-                                <button type="submit" className="create-button">Update</button>
-                            </div>
-                        </div>
-                    </form>
                     <form onSubmit={handleDeleteProduct}>
                         <h2>Delete Product</h2>
                         <div className="delete-field">
