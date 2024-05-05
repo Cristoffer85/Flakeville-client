@@ -245,12 +245,14 @@ function Employee() {
                     </form>
                     <form onSubmit={handleDeleteProduct}>
                         <h2>Delete Product</h2>
-                        <div className="form-field">
-                            <label>ID:</label>
-                            <input type="text" value={deleteProductId}
-                                   onChange={e => setDeleteProductId(e.target.value)} required/>
+                        <div className="delete-field">
+                            <div className="form-field">
+                                <label>ID:</label>
+                                <input type="text" value={deleteProductId}
+                                       onChange={e => setDeleteProductId(e.target.value)} required/>
+                            </div>
+                            <button type="submit" className="create-button delete-button">Delete</button>
                         </div>
-                        <button type="submit">Delete</button>
                     </form>
                     <div className="productDisplayBox">
                         <table>

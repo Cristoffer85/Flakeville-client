@@ -90,3 +90,11 @@
 .create-button {
     width: 100px;
 }
+
+/* EmployeeAccount.css */
+
+.delete-field {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
