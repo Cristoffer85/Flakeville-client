@@ -1,9 +1,8 @@
 import {useContext, useEffect, useState} from "react";
 import CartContext from "../components/CartContext.jsx";
 import './css/Store.css';
-import Products from "../components/Products.jsx";
-import { getAllProducts } from "../components/Products.jsx";
-import { categories} from "../components/Categories.jsx";
+import Products, {getAllProducts} from "../components/Products.jsx";
+import {categories} from "../components/Categories.jsx";
 
 function Store() {
     const [products, setProducts] = useState([]);
@@ -15,8 +14,7 @@ function Store() {
     const fetchProductsByCategory = async (categories) => {
         const products = await Promise.all(categories.map(async (category) => {
             const response = await fetch(`https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/products/category/${category}`);
-            const products = await response.json();
-            return products;
+            return await response.json();
         }));
 
         // Flatten the array of arrays into a single array
