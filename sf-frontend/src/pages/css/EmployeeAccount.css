@@ -76,3 +76,17 @@
 .productDisplayBox div {
     cursor: pointer;
 }
+
+.category-sort div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.category-dropdown {
+    width: 158px;
+}
+
+.create-button {
+    width: 100px;
+}

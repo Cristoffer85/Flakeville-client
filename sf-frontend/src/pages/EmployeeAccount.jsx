@@ -3,6 +3,7 @@ import {useNavigate} from "react-router-dom";
 import Cookies from 'js-cookie';
 import './css/EmployeeAccount.css';
 import { getOneProduct, getAllProducts, createProduct, updateProduct, deleteProduct } from '../components/Products.jsx';
+import { categories} from "../components/Categories.jsx";
 
 function Employee() {
     const username = Cookies.get('username');
@@ -174,16 +175,22 @@ function Employee() {
                                    })}
                                    required/>
                         </div>
-                        <div className="form-field">
-                            <label>Category:</label>
-                            <input type="text" value={createProductFormFields.category}
-                                   onChange={e => setCreateProductFormFields({
-                                       ...createProductFormFields,
-                                       category: e.target.value
-                                   })}
-                                   required/>
+                        <div className="category-sort">
+                            <div>
+                                <select name="category" value={createProductFormFields.category}
+                                        onChange={e => setCreateProductFormFields({
+                                            ...createProductFormFields,
+                                            category: e.target.value
+                                        })}
+                                        className="category-dropdown">
+                                    <option value="">Select category</option>
+                                    {categories.map((category, index) => (
+                                        <option key={index} value={category}>{category}</option>
+                                    ))}
+                                </select>
+                                <button type="submit" className="create-button">Create</button>
+                            </div>
                         </div>
-                        <button type="submit">Create</button>
                     </form>
                     <form onSubmit={handleUpdateProduct}>
                         <h2>Update Product</h2>
@@ -219,16 +226,22 @@ function Employee() {
                                    })}
                                    required/>
                         </div>
-                        <div className="form-field">
-                            <label>Category:</label>
-                            <input type="text" value={updateProductFormFields.category}
-                                   onChange={e => setUpdateProductFormFields({
-                                       ...updateProductFormFields,
-                                       category: e.target.value
-                                   })}
-                                   required/>
+                        <div className="category-sort">
+                            <div>
+                                <select name="category" value={updateProductFormFields.category}
+                                        onChange={e => setUpdateProductFormFields({
+                                            ...updateProductFormFields,
+                                            category: e.target.value
+                                        })}
+                                        className="category-dropdown">
+                                    <option value="">Select category</option>
+                                    {categories.map((category, index) => (
+                                        <option key={index} value={category}>{category}</option>
+                                    ))}
+                                </select>
+                                <button type="submit" className="create-button">Update</button>
+                            </div>
                         </div>
-                        <button type="submit">Update</button>
                     </form>
                     <form onSubmit={handleDeleteProduct}>
                         <h2>Delete Product</h2>

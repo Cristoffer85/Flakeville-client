@@ -3,7 +3,7 @@ import CartContext from "../components/CartContext.jsx";
 import './css/Store.css';
 import Products from "../components/Products.jsx";
 import { getAllProducts } from "../components/Products.jsx";
-import categoryContext from "../components/CategoryContext.jsx";
+import { categories} from "../components/Categories.jsx";
 
 function Store() {
     const [products, setProducts] = useState([]);
@@ -59,14 +59,14 @@ function Store() {
                 />
                 <select value={category} onChange={e => setCategory(e.target.value)}>
                     <option value="">All</option>
-                    <option value="Skis">Skis</option>
-                    <option value="category2">Category 2</option>
-                    {/* Add more options as needed */}
+                    {categories.map((category, index) => (
+                        <option key={index} value={category}>{category}</option>
+                    ))}
                 </select>
             </div>
             <div className="product-container">
                 {filteredProducts.map((product, index) => (
-                    <Products key={index} product={product} addToCart={addToCart} />
+                    <Products key={index} product={product} addToCart={addToCart}/>
                 ))}
             </div>
         </div>
