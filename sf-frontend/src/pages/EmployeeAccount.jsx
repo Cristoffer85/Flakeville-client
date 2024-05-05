@@ -262,6 +262,7 @@ function Employee() {
                                 <th>ID</th>
                                 <th>Description</th>
                                 <th>Price</th>
+                                <th>Category</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -271,6 +272,7 @@ function Employee() {
                                     <td>{product.id}</td>
                                     <td>{product.description}</td>
                                     <td>{product.price}</td>
+                                    <td>{product.category}</td>
                                 </tr>
                             ))}
                             </tbody>
