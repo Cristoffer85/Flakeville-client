@@ -10,16 +10,33 @@ function Store() {
     const [search, setSearch] = useState('');
     const [category, setCategory] = useState('');
     const { cart, setCart } = useContext(CartContext);
+    const [selectedCategories, setSelectedCategories] = useState([]);
 
-    const fetchProductsByCategory = async (category) => {
-        const response = await fetch(`https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/products/category/${category}`);
-        const products = await response.json();
-        setProducts(products);
+    const fetchProductsByCategory = async (categories) => {
+        const products = await Promise.all(categories.map(async (category) => {
+            const response = await fetch(`https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/products/category/${category}`);
+            const products = await response.json();
+            return products;
+        }));
+
+        // Flatten the array of arrays into a single array
+        setProducts(products.flat());
+    };
+
+    const handleCategoryChange = (event) => {
+        const category = event.target.name;
+        if (event.target.checked) {
+            setSelectedCategories([...selectedCategories, category]);
+        } else {
+            setSelectedCategories(selectedCategories.filter(item => item !== category));
+        }
     };
 
     useEffect(() => {
-        if (category) {
-            fetchProductsByCategory(category);
+        if (selectedCategories.length > 0) {
+            // Fetch products by selected categories
+            // You need to modify the fetchProductsByCategory function to accept an array of categories
+            fetchProductsByCategory(selectedCategories);
         } else {
             const fetchProducts = async () => {
                 const products = await getAllProducts();
@@ -28,7 +45,7 @@ function Store() {
 
             fetchProducts();
         }
-    }, [category]);
+    }, [selectedCategories]);
 
     const addToCart = (product, quantity) => {
         const existingProduct = cart.find(item => item.id === product.id);
@@ -57,12 +74,17 @@ function Store() {
                     onChange={e => setSearch(e.target.value)}
                     placeholder="Search products"
                 />
-                <select value={category} onChange={e => setCategory(e.target.value)}>
-                    <option value="">All</option>
-                    {categories.map((category, index) => (
-                        <option key={index} value={category}>{category}</option>
-                    ))}
-                </select>
+                <p>Filter by category</p>
+                {categories.map((category, index) => (
+                    <div key={index}>
+                        <input
+                            type="checkbox"
+                            name={category}
+                            onChange={handleCategoryChange}
+                        />
+                        <label>{category}</label>
+                    </div>
+                ))}
             </div>
             <div className="product-container">
                 {filteredProducts.map((product, index) => (
