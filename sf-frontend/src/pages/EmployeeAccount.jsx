@@ -17,6 +17,7 @@ function Employee() {
     const [products, setProducts] = useState([]);
     const [selectedProduct, setSelectedProduct] = useState(null);
     const [currentSection, setCurrentSection] = useState('employeeDetails');
+    const [lifts, setLifts] = useState([]);
     useNavigate();
 
     // #################### EMPLOYEE DATA ####################
@@ -127,12 +128,67 @@ function Employee() {
         await fetchProducts();
     };
 
+    // #################### SKI LIFTS ####################
+
+    useEffect(() => {
+        fetchLifts();
+    }, []);
+
+    const fetchLifts = async () => {
+        const token = Cookies.get('token');
+        const response = await fetch('https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/skilifts/getAllLifts', {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        const data = await response.json();
+        if (Array.isArray(data)) {
+            setLifts(data);
+        } else {
+            console.error('Data is not an array:', data);
+        }
+    };
+
+    const startLift = async (id) => {
+        const token = Cookies.get('token');
+        const response = await fetch(`https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/skilifts/startLift/${id}`, {
+            method: 'POST', // or 'POST', depending on what your endpoint requires
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                // Include any required data here
+            })
+        });
+        const data = await response.json();
+        fetchLifts();
+    };
+
+    const stopLift = async (id) => {
+        const token = Cookies.get('token');
+        const response = await fetch(`https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/skilifts/stopLift/${id}`, {
+            method: 'POST', // or 'POST', depending on what your endpoint requires
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                // Include any required data here
+            })
+        });
+        const data = await response.json();
+        fetchLifts();
+    };
+
     return (
         <div className="employeeAccountContainer">
             <div className="sidebar">
                 <p className="welcome-message">WELCOME, {username}!</p>
                 <p onClick={() => setCurrentSection('employeeDetails')}>Employee Details</p>
                 <p onClick={() => setCurrentSection('productManagement')}>Product Management</p>
+                <p onClick={() => setCurrentSection('liftManagement')}>Lift Management</p>
             </div>
             {currentSection === 'employeeDetails' && (
                 <div className="updateEmployeeDetailsBox">
@@ -309,6 +365,18 @@ function Employee() {
                             </div>
                         )}
                     </div>
+                </div>
+            )}
+            {currentSection === 'liftManagement' && (
+                <div className="liftManagementBox">
+                    <h2>Lifts</h2>
+                    {lifts.map(lift => (
+                        <div key={lift.id} className="liftDetails">
+                            <p>Lift ID: {lift.id}</p>
+                            <button onClick={() => startLift(lift.id)}>Start</button>
+                            <button onClick={() => stopLift(lift.id)}>Stop</button>
+                        </div>
+                    ))}
                 </div>
             )}
         </div>
