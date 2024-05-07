@@ -24,6 +24,7 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout}) {
     const [snowKey, setSnowKey] = useState(0);
     const popupRef = React.createRef();
     const navigate = useNavigate();
+    const [lifts, setLifts] = useState([]);
 
     // Counter logic for the shopping cart, also present down in the return statement
     const totalItems = cart.reduce((total, product) => total + product.quantity, 0);
@@ -41,6 +42,9 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout}) {
             document.removeEventListener('mousedown', handleClickOutside);
         }
     }, [popupRef]);
+    useEffect(() => {
+        fetchLifts();
+    }, []);
 
     const handleSignInClick = () => {
         setShowPopup(true);
@@ -71,6 +75,20 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout}) {
         setSnowKey(prevKey => prevKey + 1);
 
     };
+    const fetchLifts = async () => {
+        const token = Cookies.get('token');
+        const response = await fetch('https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/skilifts/getAllLifts', {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        const data = await response.json();
+        if (Array.isArray(data)) {
+            setLifts(data);
+        } else {
+            console.error('Data is not an array:', data);
+        }
+    };
 
 
     return (
@@ -93,6 +111,14 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout}) {
                             )}
                         </Link></li>
                         <h1 className="navbar-title">{pageTitle}</h1>
+                        <div className="lift-status-container">
+                            {lifts.map(lift => (
+                                <div key={lift.id} className="lift-status">
+                                    <p>Lift {lift.id}:</p>
+                                    <div className={`status-light ${lift.operating ? 'green' : 'red'}`}></div>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                     <div>
                         {!isLoggedIn && showButtons && (

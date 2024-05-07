@@ -122,3 +122,42 @@
 .account-logo:hover {
     cursor: pointer;
 }
+
+
+
+
+
+.lift-status-container {
+    position: absolute;
+    top: 10px; /* Adjust as needed */
+    right: 300px; /* Adjust as needed */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.lift-status {
+    display: flex;
+    align-items: center;
+    margin: -20px 0;
+    color: white;
+    font-weight: bold;
+}
+
+.status-light {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-left: 5px;
+}
+
+.status-light.green {
+    background-color: green;
+}
+
+.status-light.red {
+    background-color: red;
+}

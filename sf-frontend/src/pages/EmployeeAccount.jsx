@@ -153,7 +153,7 @@ function Employee() {
     const startLift = async (id) => {
         const token = Cookies.get('token');
         const response = await fetch(`https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/skilifts/startLift/${id}`, {
-            method: 'POST', // or 'POST', depending on what your endpoint requires
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
@@ -162,14 +162,18 @@ function Employee() {
                 // Include any required data here
             })
         });
-        const data = await response.json();
+
+        if (!response.ok) {
+            console.error('Error starting lift:', response.statusText);
+            return;
+        }
         fetchLifts();
     };
 
     const stopLift = async (id) => {
         const token = Cookies.get('token');
         const response = await fetch(`https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/skilifts/stopLift/${id}`, {
-            method: 'POST', // or 'POST', depending on what your endpoint requires
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
@@ -178,7 +182,11 @@ function Employee() {
                 // Include any required data here
             })
         });
-        const data = await response.json();
+
+        if (!response.ok) {
+            console.error('Error stopping lift:', response.statusText);
+            return;
+        }
         fetchLifts();
     };
 
