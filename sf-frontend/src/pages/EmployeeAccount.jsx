@@ -150,6 +150,7 @@ function Employee() {
         }
     };
 
+
     const startLift = async (id) => {
         const token = Cookies.get('token');
         const response = await fetch(`https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/skilifts/startLift/${id}`, {
