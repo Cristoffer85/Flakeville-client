@@ -2,13 +2,15 @@ import React, { useState, useEffect } from 'react';
 import AppRouter from './components/Router.jsx';
 import Cookies from 'js-cookie';
 import PageTitleContext from './components/PageTitleContext';
-import CartContext from "./components/CartContext.jsx";
+import CartContext from './components/CartContext.jsx';
+import LiftsContext from './components/LiftsContext';
 
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [showPopup, setShowPopup] = useState(false);
     const [pageTitle, setPageTitle] = useState('Home');
     const [cart, setCart] = useState([]);
+    const [lifts, setLifts] = useState([]);
 
     useEffect(() => {
         const token = Cookies.get('token');
@@ -38,8 +40,10 @@ function App() {
         <div className="App">
             <PageTitleContext.Provider value={pageTitle}>
                 <CartContext.Provider value={{cart, setCart}}>
+                    <LiftsContext.Provider value={{lifts, setLifts}}>
                         <AppRouter isLoggedIn={isLoggedIn} handleLogin={handleLogin} handleLogout={handleLogout}
                                    showPopup={showPopup} setShowPopup={setShowPopup} setPageTitle={setPageTitle}/>
+                    </LiftsContext.Provider>
                 </CartContext.Provider>
             </PageTitleContext.Provider>
         </div>

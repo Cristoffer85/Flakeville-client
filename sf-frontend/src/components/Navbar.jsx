@@ -13,6 +13,7 @@ import SignUp from './SignUp.jsx';
 import {navigateBasedOnRole} from "./Router.jsx";
 import Cookies from "js-cookie";
 import SignOut from "./SignOut.jsx";
+import LiftsContext from './LiftsContext';
 
 function Navbar({ isLoggedIn, handleLogin, handleLogout}) {
     const { cart } = useContext(CartContext);
@@ -24,7 +25,7 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout}) {
     const [snowKey, setSnowKey] = useState(0);
     const popupRef = React.createRef();
     const navigate = useNavigate();
-    const [lifts, setLifts] = useState([]);
+    const { lifts, setLifts } = useContext(LiftsContext);
 
     // Counter logic for the shopping cart, also present down in the return statement
     const totalItems = cart.reduce((total, product) => total + product.quantity, 0);
@@ -88,6 +89,7 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout}) {
         } else {
             console.error('Data is not an array:', data);
         }
+        setLifts(data);
     };
 
 

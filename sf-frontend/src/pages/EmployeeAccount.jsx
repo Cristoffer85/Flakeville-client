@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {useNavigate} from "react-router-dom";
 import Cookies from 'js-cookie';
 import './css/EmployeeAccount.css';
 import { getOneProduct, getAllProducts, createProduct, updateProduct, deleteProduct } from '../components/Products.jsx';
 import { categories} from "../components/Categories.jsx";
+import LiftsContext from '../components/LiftsContext';
 
 function Employee() {
     const username = Cookies.get('username');
@@ -17,7 +18,7 @@ function Employee() {
     const [products, setProducts] = useState([]);
     const [selectedProduct, setSelectedProduct] = useState(null);
     const [currentSection, setCurrentSection] = useState('employeeDetails');
-    const [lifts, setLifts] = useState([]);
+    const { lifts, setLifts } = useContext(LiftsContext);
     useNavigate();
 
     // #################### EMPLOYEE DATA ####################
@@ -135,19 +136,14 @@ function Employee() {
     }, []);
 
     const fetchLifts = async () => {
-        const token = Cookies.get('token');
-        const response = await fetch('https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/skilifts/getAllLifts', {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            }
-        });
+        const response = await fetch('https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/skilifts/getAllLifts');
         const data = await response.json();
         if (Array.isArray(data)) {
             setLifts(data);
         } else {
             console.error('Data is not an array:', data);
         }
+        setLifts(data);
     };
 
 
