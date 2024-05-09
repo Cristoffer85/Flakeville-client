@@ -91,8 +91,6 @@
     width: 100px;
 }
 
-/* EmployeeAccount.css */
-
 .delete-field {
     display: flex;
     flex-direction: column;
@@ -100,7 +98,42 @@
 }
 
 .column {
-    border-right: 1px solid #000; /* Change color as needed */
-    padding-right: 20px; /* Adjust as needed */
-    margin-right: 20px; /* Adjust as needed */
+    border-right: 1px solid #000;
+    padding-right: 20px;
+    margin-right: 20px;
+}
+
+.liftDetails1 {
+    border-radius: 10px;
+    background-color: black;
+    color: white;
+    padding: 10px;
+    position: absolute;
+    top: 80px;
+    margin-left: 0;
+}
+
+.liftDetails2 {
+    border-radius: 10px;
+    background-color: black;
+    color: white;
+    padding: 10px;
+    position: absolute;
+    top: 270px;
+    margin-left: 0;
+}
+
+.liftControlBox button {
+    /* Set the color of the text inside the buttons to white */
+    color: white;
+}
+
+.liftControlBox button.start {
+    /* Set the background color of the start button to green */
+    background-color: green;
+}
+
+.liftControlBox button.stop {
+    /* Set the background color of the stop button to red */
+    background-color: red;
 }

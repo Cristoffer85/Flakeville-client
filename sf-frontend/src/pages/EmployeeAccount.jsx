@@ -19,6 +19,7 @@ function Employee() {
     const [selectedProduct, setSelectedProduct] = useState(null);
     const [currentSection, setCurrentSection] = useState('employeeDetails');
     const { lifts, setLifts } = useContext(LiftsContext);
+    const [liftStatus, setLiftStatus] = useState({});
     useNavigate();
 
     // #################### EMPLOYEE DATA ####################
@@ -146,7 +147,6 @@ function Employee() {
         setLifts(data);
     };
 
-
     const startLift = async (id) => {
         const token = Cookies.get('token');
         const response = await fetch(`https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/skilifts/startLift/${id}`, {
@@ -165,6 +165,7 @@ function Employee() {
             return;
         }
         fetchLifts();
+        setLiftStatus(prevStatus => ({...prevStatus, [id]: 'Lift started!'}));
     };
 
     const stopLift = async (id) => {
@@ -185,6 +186,7 @@ function Employee() {
             return;
         }
         fetchLifts();
+        setLiftStatus(prevStatus => ({...prevStatus, [id]: 'Lift stopped!'}));
     };
 
     return (
@@ -374,12 +376,17 @@ function Employee() {
             )}
             {currentSection === 'liftManagement' && (
                 <div className="liftManagementBox">
-                    <h2>Lifts</h2>
-                    {lifts.map(lift => (
-                        <div key={lift.id} className="liftDetails">
-                            <p>Lift ID: {lift.id}</p>
-                            <button onClick={() => startLift(lift.id)}>Start</button>
-                            <button onClick={() => stopLift(lift.id)}>Stop</button>
+                    {lifts.map((lift, index) => (
+                        <div key={lift.id} className={`liftDetails liftDetails${index % 2 === 0 ? '1' : '2'}`}>
+                            <div className="liftControlParent">
+                                <div className="liftControlBox">
+                                    <p>Lift {lift.id}</p>
+                                    <button className="start" onClick={() => startLift(lift.id)}>Start</button>
+                                    <button className="stop" onClick={() => stopLift(lift.id)}>Stop</button>
+                                </div>
+                                {/* Display the lift status */}
+                                <p>{liftStatus[lift.id]}</p>
+                            </div>
                         </div>
                     ))}
                 </div>
