@@ -1,3 +1,19 @@
 .weatherContainer {
-    padding-top: 120px; /* Adjust this value as needed */
+    padding-top: 46px;
+    margin-left: 250px;
+    height: 100vh; /* This makes the container as tall as the viewport */
+    overflow-y: auto; /* This adds a scrollbar when the content overflows */
+}
+
+.five-day-conditions-box {
+    margin-left: 250px;
+}
+
+.current-conditions-box {
+    margin-top: 34px;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: black;
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 20px;
 }

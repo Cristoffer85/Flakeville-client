@@ -1,32 +1,23 @@
-/* FiveDayWeatherConditions.css */
 .five-day-conditions {
-    background-color: rgba(255, 255, 255, 0.8);
-    color: black;
+    display: flex;
+    flex-direction: column;
+}
+
+.forecast {
+    position: relative;
+}
+
+.forecast-details {
+    position: fixed;
+    top: 80px; /* Adjust this value as needed */
+    right: 1100px; /* Adjust this value as needed */
+    width: 300px; /* Adjust this value as needed */
+    background-color: #fff;
+    padding: 10px;
     border: 1px solid #ccc;
-    padding: 20px;
-    margin-bottom: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    display: none;
 }
 
-.five-day-conditions h2 {
-    margin-top: 0;
-    width: 100%;
-}
-
-.five-day-conditions .forecast {
-    margin-bottom: 20px;
-    flex-basis: calc(100% / 5);
-    box-sizing: border-box;
-}
-
-.five-day-conditions .forecast-details {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-
-.five-day-conditions p {
-    margin: 0 0 10px;
+.forecast-details.active {
+    display: block;
 }
