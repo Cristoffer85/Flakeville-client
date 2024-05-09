@@ -27,3 +27,8 @@
 .forecast-details.active {
     display: block;
 }
+
+.forecast.active {
+    background-color: rgba(255, 255, 255, 0.8); /* This sets the background to a semi-transparent white */
+    color: black; /* This sets the text color to black */
+}

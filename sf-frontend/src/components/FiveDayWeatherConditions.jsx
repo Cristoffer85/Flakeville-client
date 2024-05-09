@@ -6,15 +6,17 @@ function FiveDayWeatherConditions({ data }) {
         return null;
     }
 
+    const [expandedForecastIndex, setExpandedForecastIndex] = useState(null);
+
     return (
         <div className="five-day-conditions">
             <h2>5-Day Conditions</h2>
             {data.list.map((forecast, index) => {
-                const [isExpanded, setIsExpanded] = useState(false);
+                const isExpanded = index === expandedForecastIndex;
 
                 return (
-                    <div key={index} className="forecast">
-                        <h3 onClick={() => setIsExpanded(!isExpanded)}>{forecast.dt_txt}</h3>
+                    <div key={index} className={`forecast ${isExpanded ? 'active' : ''}`}>
+                        <h3 onClick={() => setExpandedForecastIndex(isExpanded ? null : index)}>{forecast.dt_txt}</h3>
                         {isExpanded && (
                             <div className="forecast-details active">
                                 <h4>Weather</h4>
