@@ -5,6 +5,11 @@
 
 .forecast {
     position: relative;
+    margin-bottom: 2px; /* Adjust this value as needed */
+    border-radius: 10px; /* This rounds the corners of the box */
+    background-color: rgba(128, 128, 128, 0.5); /* This sets the background to a semi-transparent grey */
+    padding: -10px 10px; /* This adds some space around the content inside the box */
+    color: white; /* This sets the text color to white */
 }
 
 .forecast-details {
@@ -16,6 +21,7 @@
     padding: 10px;
     border: 1px solid #ccc;
     display: none;
+    color: black;
 }
 
 .forecast-details.active {

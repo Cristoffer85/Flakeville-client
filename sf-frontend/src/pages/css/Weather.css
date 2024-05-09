@@ -1,5 +1,5 @@
 .weatherContainer {
-    padding-top: 46px;
+    padding-top: 66px;
     margin-left: 250px;
     height: 100vh; /* This makes the container as tall as the viewport */
     overflow-y: auto; /* This adds a scrollbar when the content overflows */
@@ -10,7 +10,7 @@
 }
 
 .current-conditions-box {
-    margin-top: 34px;
+    margin-top: 14px;
     background-color: rgba(255, 255, 255, 0.8);
     color: black;
     border: 1px solid #ccc;
