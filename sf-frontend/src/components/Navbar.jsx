@@ -77,12 +77,7 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout}) {
 
     };
     const fetchLifts = async () => {
-        const token = Cookies.get('token');
-        const response = await fetch('https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/skilifts/getAllLifts', {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        });
+        const response = await fetch('https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/skilifts/getAllLifts');
         const data = await response.json();
         if (Array.isArray(data)) {
             setLifts(data);
