@@ -352,8 +352,8 @@ function Employee() {
                             </tr>
                             </thead>
                             <tbody>
-                            {products.map((product, index) => (
-                                <tr key={index} onClick={() => handleGetOneProduct(product.id)}>
+                            {products.map((product) => (
+                                <tr>
                                     <td>{product.name}</td>
                                     <td>{product.id}</td>
                                     <td>{product.description}</td>
