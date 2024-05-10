@@ -327,6 +327,14 @@ function Employee() {
                                         <button type="submit" className="create-button">Update</button>
                                     </div>
                                 </div>
+                                {selectedProduct && (
+                                    <div>
+                                        <h3>{selectedProduct.name}</h3>
+                                        <p>ID: {selectedProduct.id}</p>
+                                        <p>{selectedProduct.description}</p>
+                                        <p>{selectedProduct.price}</p>
+                                    </div>
+                                )}
                             </form>
                         </div>
                     <form onSubmit={handleDeleteProduct}>
@@ -363,14 +371,6 @@ function Employee() {
                             ))}
                             </tbody>
                         </table>
-                        {selectedProduct && (
-                            <div>
-                                <h3>{selectedProduct.name}</h3>
-                                <p>ID: {selectedProduct.id}</p>
-                                <p>{selectedProduct.description}</p>
-                                <p>{selectedProduct.price}</p>
-                            </div>
-                        )}
                     </div>
                 </div>
             )}
