@@ -8,6 +8,7 @@ import EmployeeAcc from "../pages/EmployeeAccount.jsx";
 import UserAcc from "../pages/UserAccount.jsx";
 import Navbar from './Navbar';
 import Cart from "../pages/Cart.jsx";
+import HOC from "./HOC.jsx";
 
 export const navigateBasedOnRole = (role, username, navigate) => {
     console.log('Navigating based on role:', role); // Add this line
@@ -57,6 +58,7 @@ function PageTitleUpdater({ setPageTitle }) {
 function AppRouter({ isLoggedIn, handleLogin, handleLogout, username, role, showPopup, setShowPopup, setPageTitle }) {
     const commonProps = { isLoggedIn, handleLogin, handleLogout, username, role, showPopup, setShowPopup };
 
+
     return (
         <Router>
             <PageTitleUpdater setPageTitle={setPageTitle} />
@@ -66,10 +68,10 @@ function AppRouter({ isLoggedIn, handleLogin, handleLogout, username, role, show
                     <Route path="/store" element={<Store {...commonProps} />} />
                     <Route path="/weather" element={<Weather {...commonProps} />} />
                     <Route path="/" element={<Home {...commonProps} />} />
-                    <Route path="/admin" element={<AdminAcc {...commonProps} />} />
-                    <Route path="/employee" element={<EmployeeAcc {...commonProps} />} />
-                    <Route path="/user" element={<UserAcc {...commonProps} />} />
-                    <Route path="/cart" element={<Cart {...commonProps} />} /> {/* Remove the cart prop */}
+                    <Route path="/admin" element={<HOC><AdminAcc {...commonProps} /></HOC>} />
+                    <Route path="/employee" element={<HOC><EmployeeAcc {...commonProps} /></HOC>} />
+                    <Route path="/user" element={<HOC><UserAcc {...commonProps} /></HOC>} />
+                    <Route path="/cart" element={<Cart {...commonProps} />} />
                 </Routes>
             </div>
         </Router>
