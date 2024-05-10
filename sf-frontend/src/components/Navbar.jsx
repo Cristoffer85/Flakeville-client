@@ -50,12 +50,10 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout}) {
     const handleSignInClick = () => {
         setShowPopup(true);
         setFormType('SignIn');
-
     };
     const handleSignUpClick = () => {
         setShowPopup(true);
         setFormType('SignUp');
-
     };
     const handleSignOutClick = () => {
         setShowPopup(true);
@@ -69,12 +67,10 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout}) {
             const username = Cookies.get('username');
             navigateBasedOnRole(role, username, navigate);
         }
-
     };
     const handleStartSnow = () => {
         setIsSnowing(true);
         setSnowKey(prevKey => prevKey + 1);
-
     };
     const fetchLifts = async () => {
         const response = await fetch('https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/skilifts/getAllLifts');
@@ -86,7 +82,6 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout}) {
         }
         setLifts(data);
     };
-
 
     return (
         <nav className="navbar">

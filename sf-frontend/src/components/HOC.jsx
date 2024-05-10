@@ -1,4 +1,3 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
@@ -7,7 +6,7 @@ const HOC = ({ children }) => {
     const navigate = useNavigate();
 
     if (!isAuthenticated) {
-        navigate('/');
+        navigate('*');
     }
 
     return children;

@@ -9,6 +9,7 @@ import UserAcc from "../pages/UserAccount.jsx";
 import Navbar from './Navbar';
 import Cart from "../pages/Cart.jsx";
 import HOC from "./HOC.jsx";
+import NotAuthorized from "../pages/NotAuthorized.jsx";
 
 export const navigateBasedOnRole = (role, username, navigate) => {
     console.log('Navigating based on role:', role); // Add this line
@@ -72,6 +73,7 @@ function AppRouter({ isLoggedIn, handleLogin, handleLogout, username, role, show
                     <Route path="/employee" element={<HOC><EmployeeAcc {...commonProps} /></HOC>} />
                     <Route path="/user" element={<HOC><UserAcc {...commonProps} /></HOC>} />
                     <Route path="/cart" element={<Cart {...commonProps} />} />
+                    <Route path="*" element={<NotAuthorized />} />
                 </Routes>
             </div>
         </Router>
