@@ -55,6 +55,8 @@ function Home() {
                         <h3>Lift {lift.id}</h3>
                         <p className="text">{lift.description}</p>
                         <div className={`sidebar-status-light ${lift.operating ? 'green' : 'red'}`}></div>
+                        <div className="path-rectangle"></div>
+                        <div className="path-rectangle2"></div>
                     </div>
                 ))}
             </div>
