@@ -38,7 +38,7 @@ function Home() {
 
             <div className="box2">
                 <h2>Latest News</h2>
-                <p className={"news1"}><b>2024-05-14</b> Possible sighting of big B (Bjärv) again north of Galenstupet 2
+                <p className={"news1"}><b>2024-05-14</b> Possible sighting of big B (Bjärv) again north of Galenstupet after ski.
                 </p>
                 <p className={"news2"}><b>2024-05-01</b> Summer season and all its activites opened!</p>
                 <p className={"news3"}><b>2024-04-24</b> Someone has forgotten a ski glove near Hvitfjäll summit</p>
@@ -55,8 +55,8 @@ function Home() {
                         <h3>Lift {lift.id}</h3>
                         <p className="text">{lift.description}</p>
                         <div className={`sidebar-status-light ${lift.operating ? 'green' : 'red'}`}></div>
-                        <div className="path-rectangle"></div>
-                        <div className="path-rectangle2"></div>
+                        <div className="path-rectangle"><p className={"Lift-name-1"}>GALENSTUPET</p></div>
+                        <div className="path-rectangle2"><p className={"Lift-name-2"}>BØRIKKEFÆRDAS</p></div>
                     </div>
                 ))}
             </div>

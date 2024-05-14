@@ -39,7 +39,7 @@
     left: 0;
     top: 80px;
     height: 100%;
-    width: 200px;
+    width: 230px;
     background-color: rgba(255, 255, 255, 0.8);
     padding: 20px;
 }
@@ -148,5 +148,23 @@
     border: 1px solid black;
     top: 388px;
     left: 41px;
+}
+
+.Lift-name-1 {
+    position: absolute;
+    top: 10px;
+    left: 50px;
+    font-family: Lato sans-serif;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.Lift-name-2 {
+    position: absolute;
+    top: 10px;
+    left: 50px;
+    font-family: Lato sans-serif;
+    font-weight: bold;
+    font-size: 12px;
 }
 
