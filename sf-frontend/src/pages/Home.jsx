@@ -28,7 +28,7 @@ function Home() {
                     <h2>Welcome!</h2>
                     <p><b>We welcome you to SNÖFJÄLLBY.</b></p>
 
-                    <p>The metropol of both skiing - adventure, haven and utopia at
+                    <p>The metropol of both skiing - adventure, supermart and utopia at
                         the same time!</p>
                     <p>Feel free to navigate across our site as you please.</p>
 
