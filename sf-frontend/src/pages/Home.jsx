@@ -38,10 +38,12 @@ function Home() {
 
             <div className="box2">
                 <h2>Latest News</h2>
-                <p className={"news1"}><b>2024-05-14</b> Possible sighting of big B (Bjärv) again north of Galenstupet after ski.
+                <p className={"news1"}><b>2024-05-14</b> Possible sighting of big B (Bjärv) again north of Galenstupet
+                    after ski.
                 </p>
                 <p className={"news2"}><b>2024-05-01</b> Summer season and all its activites opened!</p>
-                <p className={"news3"}><b>2024-04-24</b> Someone has forgotten a ski glove near Hvitfjäll summit</p>
+                <p className={"news3"}><b>2024-04-25</b> Snowmobile activities no longer available due to lack of snow</p>
+                <p className={"news4"}><b>2024-04-14</b> Someone has forgotten a glove near Hvitfjäll summit</p>
             </div>
 
             <div className="box3">
