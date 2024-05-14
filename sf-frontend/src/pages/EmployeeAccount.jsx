@@ -46,7 +46,6 @@ function Employee() {
         setEmployeeDetails(data);
 
     };
-
     const updateEmployeeData = async (event) => {
         event.preventDefault();
 
@@ -86,20 +85,17 @@ function Employee() {
         setProducts(products);
 
     };
-
     const handleCreateProduct = async (event) => {
         event.preventDefault();
         await createProduct(createProductFormFields);
         setCreateProductFormFields({name: '', description: '', price: '', category: ''}); // Clear the form
         await fetchProducts();
     };
-
     const handleGetOneProduct = async (id) => {
         const product = await getOneProduct(id);
         setSelectedProduct(product);
         await fetchProducts();
     };
-
     const handleUpdateProduct = async (event) => {
         event.preventDefault();
 
@@ -122,7 +118,6 @@ function Employee() {
         setUpdateProductFormFields({Id: '', name: '', description: '', price: '', category: ''});
         await fetchProducts();
     };
-
     const handleDeleteProduct = async (event) => {
         event.preventDefault();
         await deleteProduct(deleteProductId);
@@ -146,7 +141,6 @@ function Employee() {
         }
         setLifts(data);
     };
-
     const startLift = async (id) => {
         const token = Cookies.get('token');
         const response = await fetch(`https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/skilifts/startLift/${id}`, {
@@ -167,7 +161,6 @@ function Employee() {
         fetchLifts();
         setLiftStatus(prevStatus => ({...prevStatus, [id]: 'Lift started!'}));
     };
-
     const stopLift = async (id) => {
         const token = Cookies.get('token');
         const response = await fetch(`https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/skilifts/stopLift/${id}`, {
