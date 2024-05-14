@@ -59,6 +59,12 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout}) {
         setShowPopup(true);
         setFormType('Logout');
     };
+
+    const switchToSignIn = () => {
+        setShowPopup(true);
+        setFormType('SignIn');
+    };
+
     const handleAccountClick = () => {
         if (!isLoggedIn) {
             setShowButtons(!showButtons);
@@ -131,7 +137,7 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout}) {
             {showPopup && (
                 <div className="login-and-SignInPopup" ref={popupRef}>
                 {formType === 'SignIn' && <SignIn setShowPopup={setShowPopup} handleLogin={handleLogin} />}
-                    {formType === 'SignUp' && <SignUp setShowPopup={setShowPopup} handleLogin={handleLogin} />}
+                    {formType === 'SignUp' && <SignUp setShowPopup={setShowPopup} handleLogin={handleLogin} switchToSignIn={switchToSignIn} />}
                     {showPopup && formType === 'Logout' && <SignOut setShowPopup={setShowPopup} handleLogout={handleLogout} />}
                 </div>
             )}

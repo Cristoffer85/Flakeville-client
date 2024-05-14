@@ -2,8 +2,8 @@
     position: absolute;
     top: 120px;
     left: 350px;
-    background-color: rgba(0, 0, 0, 0.6);
-    color: rgba(255, 255, 255);
+    background-color: rgba(255, 255, 255, 0.6);
+    color: rgb(0, 0, 0);
     border-radius: 10px;
     padding: 15px;
     margin: 10px;
