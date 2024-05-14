@@ -51,7 +51,7 @@ function Home() {
                 <p>- New tours and food options added, be sure to check them out!</p>
             </div>
             <div className="sidebar-home">
-                <h2 className={"text"}>Lift Status</h2>
+                <h2 className={"text-header"}>Lift Status</h2>
                 {lifts.map(lift => (
                     <div key={lift.id} className="lift-container">
                         <h3>Lift {lift.id}</h3>

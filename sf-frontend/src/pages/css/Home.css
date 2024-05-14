@@ -2,7 +2,7 @@
     position: absolute;
     top: 120px;
     left: 350px;
-    background-color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(255, 255, 255, 0.9);
     color: rgb(0, 0, 0);
     border-radius: 10px;
     padding: 15px;
@@ -40,12 +40,16 @@
     top: 80px;
     height: 100%;
     width: 240px;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(163, 163, 163, 0.5);
     padding: 20px;
 }
 
 .text {
     color: black;
+}
+
+.text-header {
+    color: #ffffff;
 }
 
 
@@ -130,7 +134,7 @@
     border-radius: 10px;
     padding: 10px;
     margin-bottom: 10px;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255);
     height: 200px;
 }
 
