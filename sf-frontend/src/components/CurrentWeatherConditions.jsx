@@ -1,5 +1,4 @@
 import React from 'react';
-import './css/CurrentWeatherConditions.css';
 
 function CurrentWeatherConditions({ data, className }) {
     if (!data) {
