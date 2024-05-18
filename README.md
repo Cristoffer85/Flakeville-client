@@ -1,8 +1,8 @@
-# Project name Snöfjällby Ski Resort Application (Client) - with PowderTracker®
+# Project: Flakeville Ski Resort Application (Client) - with PowderTracker®
 
 ## Description
 
-The client application for Snöfjällby Ski Resort. This application serves as a client for corresponding server 
+The client application for Flakeville Ski Resort. This application serves as a client for corresponding server 
 https://github.com/Cristoffer85/SnofjallbyWithPT-Backend which is built in Java on primarily framework Spring Boot.
 
 The application is mainly built in Javascript with HTML and CSS, and frameworks React and Vite (.jsx) as help.
