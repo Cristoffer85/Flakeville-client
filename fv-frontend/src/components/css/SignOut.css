@@ -6,7 +6,7 @@
     padding: 20px;
     box-sizing: border-box;
     border: 1px solid #000;
-    border-radius: 10px; /* Adjust as needed */
+    border-radius: 10px;
     background-color: rgba(255, 255, 255, 0.5);
     margin-left: auto;
     margin-right: 50px;
@@ -14,19 +14,19 @@
 }
 
 .signout-box button {
-    width: 150px; /* Adjust as needed */
-    height: 40px; /* Adjust as needed */
-    background-color: #4CAF50; /* Adjust as needed */
-    color: white; /* Adjust as needed */
+    width: 150px;
+    height: 40px;
+    background-color: #4CAF50;
+    color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
 
 .signout-box .yes-button {
-    background-color: rgba(175, 175, 175, 0.9); /* Adjust as needed */
+    background-color: rgba(175, 175, 175, 0.9);
 }
 
 .signout-box .no-button {
-    background-color: rgba(34, 147, 0, 0.9); /* Adjust as needed */
+    background-color: rgba(34, 147, 0, 0.9);
 }
