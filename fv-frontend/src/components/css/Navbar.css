@@ -134,3 +134,20 @@
 .status-light.red {
     background-color: red;
 }
+
+
+/* Mobile */
+@media (max-width: 600px) {
+    .navbar-content {
+        flex-direction: column;
+    }
+
+    .navbar ul {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .navbar-content div {
+        justify-content: flex-start;
+    }
+}

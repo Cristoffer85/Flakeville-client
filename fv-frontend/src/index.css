@@ -15,9 +15,10 @@
 }
 
 
-/*################## General Body Background for application ######################*/
+/*################## General Body Background for application, Mobile or Desktop/Tablet ######################*/
+/* Mobile */
 body {
-  background-image: url('/MainBackground.jpg');
+  background-image: url('/MainBackgroundMobile.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   margin: 0;
@@ -25,6 +26,13 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+}
+
+/* Tablet/Desktop */
+@media (min-width: 600px) {
+  body {
+    background-image: url('/MainBackground.jpg');
+  }
 }
 
 
