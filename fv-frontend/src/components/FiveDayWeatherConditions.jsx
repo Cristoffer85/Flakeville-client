@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './css/FiveDayWeatherConditions.css';
 
 function FiveDayWeatherConditions({ data }) {
     if (!data) {

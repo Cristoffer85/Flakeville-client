@@ -51,7 +51,7 @@ function Weather() {    // Function component Weather, with a 1-minute interval 
                 <p onClick={() => setCurrentSection('fiveDayConditions')}>5-Day Conditions</p>
             </div>
             {currentSection === 'currentConditions' && <CurrentWeatherConditions data={currentConditions} />}
-            {currentSection === 'fiveDayConditions' && <FiveDayWeatherConditions className="five-day-conditions-box" data={fiveDayConditions} />}
+            {currentSection === 'fiveDayConditions' && <FiveDayWeatherConditions data={fiveDayConditions} />}
         </div>
     );
 }

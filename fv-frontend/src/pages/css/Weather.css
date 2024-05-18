@@ -1,10 +1,57 @@
 .weatherContainer {
     margin-top: 79px;
     margin-left: 250px;
-    height: 80vh;
+    height: 90vh;
     overflow-y: auto;
     background-color: rgba(255, 255, 255, 0.8);
     color: black;
     border: 1px solid #ccc;
     margin-bottom: 20px;
 }
+
+
+
+
+/*################ 5-day forecast, main scrollbar links styling ###################*/
+.five-day-conditions {
+    display: flex;
+    flex-direction: column;
+}
+
+.forecast {
+    position: relative;
+    margin-bottom: 2px;
+    border-radius: 10px;
+    background-color: rgba(128, 128, 128, 0.5);
+    padding: -10px 10px;
+    color: white;
+}
+
+/*#################################################################################*/
+
+/*#################### 5-day forecast, popup details styling ######################*/
+.forecast-details {
+    position: fixed;
+    top: 80px;
+    right: 1100px;
+    width: 300px;
+    background-color: #fff;
+    padding: 10px;
+    border: 1px solid #ccc;
+    display: none;
+    color: black;
+}
+/*#################################################################################*/
+
+/*#################### 5-day forecast, show clicked link ##########################*/
+.forecast-details.active {
+    display: block;
+}
+/*#################################################################################*/
+
+/*#################### 5-day forecast, clicked link styling ########################*/
+.forecast.active {
+    background-color: rgba(255, 255, 255, 0.8);
+    color: black;
+}
+/*#################################################################################*/
