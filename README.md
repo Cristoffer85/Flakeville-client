@@ -3,7 +3,7 @@
 ## Description
 
 The client application for Flakeville Ski Resort. This application serves as a client for corresponding server 
-https://github.com/Cristoffer85/SnofjallbyWithPT-Backend which is built in Java on primarily framework Spring Boot.
+https://github.com/Cristoffer85/Flakeville-server which is built in Java on primarily framework Spring Boot.
 
 The application is mainly built in Javascript with HTML and CSS, and frameworks React and Vite (.jsx) as help.
 
@@ -18,7 +18,7 @@ The applications main purpose is meant to be the ultimate Ski Resort application
 ## Installation
 
 1. Make sure you have the server version downloaded and running on your local machine.  
-```https://github.com/Cristoffer85/SnofjallbyWithPT-Backend``` Also follow the instructions there to correctly set it up, and start that server.
+```https://github.com/Cristoffer85/Flakeville-server``` Also follow the instructions there to correctly set it up, and start that server.
 2. Clone this repository to your local machine.
 3. Make sure every component containing API endpoints in this application is correctly set up to match the servers URL (I know, later it will be set in a common API.jsx or similar for correct and better structure).  
 Right now they are:
