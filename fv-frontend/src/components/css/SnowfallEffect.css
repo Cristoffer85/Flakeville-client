@@ -19,11 +19,12 @@ main {
     text-align: center;
 }
 
+/****************** Size of the snowflake button ******************/
 .snowflake-button {
     margin-right: 10px;
     margin-left: 10px;
-    width: 30px; /* Set the width of the image */
-    height: 30px; /* Set the height of the image */
+    width: 30px;
+    height: 30px;
 }
 
 h1 {

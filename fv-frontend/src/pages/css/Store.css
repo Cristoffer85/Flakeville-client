@@ -1,10 +1,11 @@
+/************************** Makes the header in sidebar not a pointer link *************************/
 .store-container .sidebar p {
     cursor: default !important;
 }
 
 .store-container {
     display: flex;
-    flex-wrap: nowrap; /* Add this line */
+    flex-wrap: nowrap;
     width: 100%; /* Ensure the container takes up the full width */
 }
 

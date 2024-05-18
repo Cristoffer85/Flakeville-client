@@ -45,13 +45,27 @@
 }
 
 
+/********************** Navbar title styling *************************/
+.navbar-title {
+    font-family: Roboto, sans-serif;
+    color: rgba(255, 0, 0, 0.5);
+    font-size: 40px;
+    font-weight: 800;
+    text-align: center;
+    margin-left: 300px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+}
+
 /********************** Styling for Logos *************************/
+/* NOTE - Snowflake logo properties are located in SnowfallEffect.css */
+
 /*main Flakeville logo*/
 .main-logo {
     height: 50px;
     margin-left: 15px;
 }
-
 /*Account logo*/
 .account-logo {
     margin-top: 5px;
@@ -59,7 +73,6 @@
     height: 40px;
     width: 40px;
 }
-
 /*Shopping Cart logo*/
 .shopping-cart-logo {
     margin-top: 8px;
@@ -67,7 +80,6 @@
     height: 30px;
     position: relative;
 }
-
 /*Shopping Cart counter*/
 .cart-count {
     position: absolute;
@@ -79,24 +91,10 @@
     padding: 2px 4px;
     font-size: 11px;
 }
-
 /*Makes the snowflake image a pointer-link, instead of a cursor. Indicating it can be clicked*/
 .snowflake-button:hover,
 .account-logo:hover {
     cursor: pointer;
-}
-
-/*Settings for navbar title*/
-.navbar-title {
-    font-family: Roboto, sans-serif;
-    color: rgba(255, 0, 0, 0.5);
-    font-size: 40px;
-    font-weight: 800;
-    text-align: center;
-    margin-left: 300px;
-    margin-top: 10px;
-    margin-bottom: 15px;
-    letter-spacing: 2px;
 }
 
 
