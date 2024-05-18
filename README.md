@@ -1,4 +1,4 @@
-# Project name Flakeville Ski Resort Application (Client) - with PowderTracker®
+# Project: Flakeville Ski Resort Application (Client) - with PowderTracker®
 
 ## Description
 
