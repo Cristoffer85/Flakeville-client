@@ -66,6 +66,27 @@ button {
   padding: 20px;
 }
 
+/* Tablet */
+@media (min-width: 600px) {
+  .sidebar {
+    width: 140px;
+  }
+}
+
+/* Small Laptop */
+@media (min-width: 992px) {
+  .sidebar {
+    width: 180px;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1200px) {
+  .sidebar {
+    width: 220px;
+  }
+}
+
 /*Sidebar links = pointer instead of cursor*/
 .sidebar p {
   cursor: pointer;
@@ -85,5 +106,26 @@ button {
   justify-content: space-between;
   padding: 20px;
   margin-left: 220px;
+}
+
+/* Tablet */
+@media (min-width: 600px) {
+  .accountContainer {
+    margin-left: 140px;
+  }
+}
+
+/* Small Laptop */
+@media (min-width: 992px) {
+  .accountContainer {
+    margin-left: 180px;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1200px) {
+  .accountContainer {
+    margin-left: 220px;
+  }
 }
 
