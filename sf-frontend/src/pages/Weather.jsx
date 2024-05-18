@@ -14,7 +14,7 @@ function Weather() {    // Function component Weather, with a 1-minute interval 
         const cachedCurrentConditions = localStorage.getItem('currentConditions');
         const cachedCurrentConditionsTime = localStorage.getItem('currentConditionsTime');
 
-        if (cachedCurrentConditions && Date.now() - cachedCurrentConditionsTime < 1 * 60 * 1000) {
+        if (cachedCurrentConditions && Date.now() - cachedCurrentConditionsTime < 30 * 60 * 1000) {
             setCurrentConditions(JSON.parse(cachedCurrentConditions));
         } else {
             fetch('https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/skiResort/currentConditions')
@@ -30,7 +30,7 @@ function Weather() {    // Function component Weather, with a 1-minute interval 
         const cachedFiveDayConditions = localStorage.getItem('fiveDayConditions');
         const cachedFiveDayConditionsTime = localStorage.getItem('fiveDayConditionsTime');
 
-        if (cachedFiveDayConditions && Date.now() - cachedFiveDayConditionsTime < 1 * 60 * 1000) {
+        if (cachedFiveDayConditions && Date.now() - cachedFiveDayConditionsTime < 30 * 60 * 1000) {
             setFiveDayConditions(JSON.parse(cachedFiveDayConditions));
         } else {
             fetch('https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/skiResort/5DayConditions')
