@@ -1,24 +1,4 @@
-.sidebar {
-    position: fixed;
-    left: 0;
-    top: 80px;
-    height: 100%;
-    width: 200px;
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 20px;
-}
-
-.sidebar p {
-    cursor: pointer;
-}
-
-.sidebar .welcome-message {
-    cursor: auto;
-    font-family: Lato, sans-serif;
-    font-size: 20px;
-    font-weight: bold;
-}
-
+/***************** Position Employee details, Product management and Lift management boxes *****************/
 .employeeAccountContainer {
     display: flex;
     justify-content: space-between;
@@ -26,6 +6,7 @@
     margin-left: 220px;
 }
 
+/***************** Styling for Employee details, Product management and Lift management boxes *****************/
 .updateEmployeeDetailsBox,
 .productManagementBox {
     display: flex;
@@ -40,6 +21,7 @@
     height: auto;
 }
 
+/***************** Styling displaying all products inside product management box *****************/
 .productDisplayBox {
     flex: 1;
     width: auto;
@@ -48,20 +30,11 @@
     border-radius: 10px;
     padding: 20px;
     margin: 10px;
-    max-height: 80vh; /* adjust this value as needed */
+    max-height: 80vh;
     overflow-y: auto;
 }
 
-.form-field {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.employeeDetails {
-    margin-bottom: 20px;
-}
-
+/**************** Styling for product management box common buttons *****************/
 .productManagementBox button {
     margin-top: 10px;
     padding: 5px 10px;
@@ -69,16 +42,10 @@
     color: white;
     border: none;
     cursor: pointer;
+    width: 100px;
 }
 
-.productManagementBox button:hover {
-    background-color: #45a049;
-}
-
-.productDisplayBox div {
-    cursor: pointer;
-}
-
+/***************** Category dropdown bar styling *****************/
 .category-sort div {
     display: flex;
     flex-direction: column;
@@ -89,22 +56,23 @@
     width: 158px;
 }
 
-.create-button {
-    width: 100px;
-}
-
+/***************** Positions delete button in product management box *****************/
 .delete-field {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
 }
 
+/***************** Adds black border bar between Create, update and delete column in product management box **************/
 .column {
     border-right: 1px solid #000;
     padding-right: 20px;
     margin-right: 20px;
 }
 
+
+
+/***************** Styling for lift management boxes *****************/
 .liftDetails1 {
     border-radius: 10px;
     background-color: black;
@@ -125,17 +93,13 @@
     margin-left: 0;
 }
 
-.liftControlBox button {
-    /* Set the color of the text inside the buttons to white */
-    color: white;
-}
 
 .liftControlBox button.start {
-    /* Set the background color of the start button to green */
+    color: white;
     background-color: green;
 }
 
 .liftControlBox button.stop {
-    /* Set the background color of the stop button to red */
+    color: white;
     background-color: red;
 }
