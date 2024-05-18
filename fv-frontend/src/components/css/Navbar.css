@@ -1,10 +1,17 @@
-/*Makes the navbar visible on the top of the page*/
+/********************** Main Navbar positioning styling *************************/
+/*Makes the navbar visible on the top of the page, and fixates it there*/
 .navbar {
     position: fixed;
     top: 0;
     width: 100%;
     background: linear-gradient(to top, rgba(255, 255, 255, 0), rgba(30, 30, 30, 0.7));
     z-index: 1;
+}
+
+/*More aligning for the navbar on top of the page*/
+.navbar-content {
+    display: flex;
+    align-items: center;
 }
 
 /*Organises the navbar and its contents*/
@@ -15,12 +22,6 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
-}
-
-/*Organises and does some override settings related to index.- and app.css*/
-.navbar-content {
-    display: flex;
-    align-items: center;
 }
 
 /*Organises Home, Store and Weather links*/
@@ -44,15 +45,14 @@
 }
 
 
-
-
-/*Settings for main logo*/
+/********************** Styling for Logos *************************/
+/*main Flakeville logo*/
 .main-logo {
     height: 50px;
     margin-left: 15px;
 }
 
-/*Settings for account logo*/
+/*Account logo*/
 .account-logo {
     margin-top: 5px;
     margin-right: 5px;
@@ -60,34 +60,33 @@
     width: 40px;
 }
 
-/*Settings for sign up/sign in buttons*/
-.initialPopup {
+/*Shopping Cart logo*/
+.shopping-cart-logo {
+    margin-top: 8px;
+    width: 30px; /* Adjust as needed */
+    height: 30px; /* Adjust as needed */
+    position: relative; /* Add this line */
+}
+
+/*Shopping Cart counter*/
+.cart-count {
     position: absolute;
-    top: 1px;
-    right: 45px;
-    background-color: rgba(255, 255, 255, 0.8);
-    color: rgba(58, 53, 53, 0.5);
-    border-radius: 10px;
-    padding: 1px;
-    margin: 1px;
-    width: 184px;
-    height: auto;
+    top: 15px;
+    right: 10px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 4px;
+    font-size: 11px;
 }
 
-.signin-button {
-    margin: 0;
-    background-color: #c5c5c5;
-    border: 2px solid #c5c5c5;
-    box-shadow: inset 0 0 0 2px #c5c5c5;
+/*Makes the snowflake image a pointer-link, instead of a cursor. Indicating it can be clicked*/
+.snowflake-button:hover,
+.account-logo:hover {
+    cursor: pointer;
 }
 
-.signup-button {
-    margin: 2px;
-    background-color: #ffffff;
-    border: 2px solid #bdbdbd;
-    box-shadow: inset 0 0 0 2px #ffffff;
-}
-
+/*Settings for navbar title*/
 .navbar-title {
     font-family: Roboto, sans-serif;
     color: rgba(255, 0, 0, 0.5);
@@ -100,33 +99,8 @@
     letter-spacing: 2px;
 }
 
-.shopping-cart-logo {
-    margin-top: 8px;
-    width: 30px; /* Adjust as needed */
-    height: 30px; /* Adjust as needed */
-    position: relative; /* Add this line */
-}
 
-.cart-count {
-    position: absolute;
-    top: 15px;
-    right: 10px;
-    background-color: red;
-    color: white;
-    border-radius: 50%;
-    padding: 2px 4px;
-    font-size: 11px;
-}
-
-.snowflake-button:hover,
-.account-logo:hover {
-    cursor: pointer;
-}
-
-
-
-
-
+/********************* Lift status styling *************************/
 .lift-status-container {
     position: absolute;
     top: 10px; /* Adjust as needed */
@@ -147,6 +121,7 @@
     font-weight: bold;
 }
 
+/* size of the status light */
 .status-light {
     width: 10px;
     height: 10px;
