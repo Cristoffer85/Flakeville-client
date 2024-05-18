@@ -45,7 +45,6 @@ function Admin() {
         getUser(searchUsername);
         setSearched(true);
     };
-
     const userNewSubmit = async (event) => {
         event.preventDefault();
         const newUser = {
@@ -54,7 +53,6 @@ function Admin() {
         };
         await createUser(newUser);
     };
-
     const userUpdateSubmit = async (event) => {
         event.preventDefault();
         // Get the updated user data from the form
@@ -69,19 +67,15 @@ function Admin() {
         await updateUser(selectedUser.username, updatedUser);
         setShowUpdateForm(false);
     };
-
     const userDeleteClick = async () => {
         await deleteUser(searchedUser.username);
         setSearchedUser(null);
     };
-
-
     const employeeSearchSubmit = (event) => {
         event.preventDefault();
         getEmployee(searchEmployeeUsername);
         setSearched(true);
     };
-
     const employeeNewSubmit = async (event) => {
         event.preventDefault();
         const newEmployee = {
@@ -92,7 +86,6 @@ function Admin() {
         };
         await createEmployee(newEmployee);
     };
-
     const employeeUpdateSubmit = async (event) => {
         event.preventDefault();
         // Get the updated employee data from the form
@@ -103,7 +96,6 @@ function Admin() {
         await updateEmployee(selectedEmployee.username, updatedEmployee);
         setShowUpdateEmployeeForm(false); // Hide the update form after updating
     };
-
     const employeeDeleteClick = async () => {
         await deleteEmployee(searchedEmployee.username);
         setSearchedEmployee(null);
@@ -132,7 +124,6 @@ function Admin() {
             console.error('Creation failed:', await response.text());
         }
     };
-
     const getAllUsers = async () => {
         const token = Cookies.get('token');
         const response = await fetch('https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/admin/getAllUsers', {
@@ -144,7 +135,6 @@ function Admin() {
         setUsers(data);
 
     };
-
     const getUser = async (username) => {
         const token = Cookies.get('token');
         const response = await fetch(`https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/admin/getOneUser/${username}`, {
@@ -159,7 +149,6 @@ function Admin() {
         const data = await response.json();
         setSearchedUser(data); // Update the state with the fetched user data
     };
-
     const updateUser = async (username, user) => {
         const token = Cookies.get('token');
         const response = await fetch(`https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/admin/updateUser/${username}`, {
@@ -177,7 +166,6 @@ function Admin() {
             console.error('Update failed:', data);
         }
     };
-
     const deleteUser = async (username) => {
         const token = Cookies.get('token');
         await fetch(`https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/admin/deleteOneUser/${username}`, {
@@ -214,7 +202,6 @@ function Admin() {
             console.error('Creation failed:', await response.text());
         }
     };
-
     const getAllEmployees = async () => {
         const token = Cookies.get('token');
         const response = await fetch('https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/admin/getAllEmployees', {
@@ -226,7 +213,6 @@ function Admin() {
         setEmployees(data);
 
     };
-
     const getEmployee = async (username) => {
         const token = Cookies.get('token');
         const response = await fetch(`https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/admin/getOneEmployee/${username}`, {
@@ -240,8 +226,7 @@ function Admin() {
         }
         const data = await response.json();
         setSearchedEmployee(data); // Update the state with the fetched employee data
-    };
-
+    }
     const updateEmployee = async (username, employee) => {
         const token = Cookies.get('token');
         const response = await fetch(`https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/admin/updateEmployee/${username}`, {
@@ -259,7 +244,6 @@ function Admin() {
             console.error('Update failed:', data);
         }
     };
-
     const deleteEmployee = async (username) => {
         const token = Cookies.get('token');
         await fetch(`https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/admin/deleteEmployee/${username}`, {
@@ -273,7 +257,7 @@ function Admin() {
     };
 
     return (
-        <div className="adminAccountContainer">
+        <div className="accountContainer">
             <div className="sidebar">
                 <p className="welcome-message">Welcome, {username}!</p>
                 <p onClick={() => setCurrentSection('employeeManagement')}>Employee Management</p>

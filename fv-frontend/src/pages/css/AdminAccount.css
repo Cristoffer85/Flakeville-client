@@ -1,11 +1,3 @@
-/***************** Positions Employee and User management boxes *****************/
-.adminAccountContainer {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
-    margin-left: 220px;
-}
-
 /***************** Styling for Employee and User management boxes *****************/
 .employeeManagementBox,
 .userManagementBox {

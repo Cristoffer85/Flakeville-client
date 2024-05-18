@@ -18,7 +18,6 @@ function UserAccount() {
     useEffect(() => {
         getUserDetails();
     }, []);
-
     const getUserDetails = async () => {
         const token = Cookies.get('token');
         const response = await fetch(`https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/user/getOneUser/${username}`, {
@@ -29,7 +28,6 @@ function UserAccount() {
         const data = await response.json();
         setUserDetails(data);
     };
-
     const updateUserDetails = async (e) => {
         e.preventDefault();
         const token = Cookies.get('token');
@@ -51,7 +49,7 @@ function UserAccount() {
     };
 
     return (
-        <div className="userAccountContainer">
+        <div className="accountContainer">
             <div className="sidebar">
                 <p className="welcome-message">Welcome, {username}!</p>
                 <p onClick={() => setCurrentSection('userDetails')}>User Details</p>

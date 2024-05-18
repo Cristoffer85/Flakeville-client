@@ -1,11 +1,3 @@
-/***************** Position Employee details, Product management and Lift management boxes *****************/
-.employeeAccountContainer {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
-    margin-left: 220px;
-}
-
 /***************** Styling for Employee details, Product management and Lift management boxes *****************/
 .updateEmployeeDetailsBox,
 .productManagementBox {

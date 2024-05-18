@@ -13,7 +13,6 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-/*#################################################################################*/
 
 /*################## General Body Background for application ######################*/
 body {
@@ -54,4 +53,37 @@ button {
     background-color: #f9f9f9;
   }
 }
-/*#################################################################################*/
+
+/*################## General properties for all Account and store pages ######################*/
+/*Sidebar general styling and position*/
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 80px;
+  height: 100%;
+  width: 200px;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+}
+
+/*Sidebar links = pointer instead of cursor*/
+.sidebar p {
+  cursor: pointer;
+}
+
+/*Sidebar header styling*/
+.sidebar .welcome-message {
+  cursor: auto;
+  font-family: Lato, sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/*Positioning of boxes to right of sidebar in account pages*/
+.accountContainer {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  margin-left: 220px;
+}
+

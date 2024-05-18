@@ -183,7 +183,7 @@ function Employee() {
     };
 
     return (
-        <div className="employeeAccountContainer">
+        <div className="accountContainer">
             <div className="sidebar">
                 <p className="welcome-message">WELCOME, {username}!</p>
                 <p onClick={() => setCurrentSection('employeeDetails')}>Employee Details</p>
