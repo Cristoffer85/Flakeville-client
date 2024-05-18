@@ -58,7 +58,7 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout}) {
     };
     const handleSignOutClick = () => {
         setShowPopup(true);
-        setFormType('Logout');
+        setFormType('SignOut');
     };
 
     const switchToSignIn = () => {
@@ -129,9 +129,9 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout}) {
                         {isLoggedIn && (
                             <button onClick={handleSignOutClick} className="signout-button">Sign Out</button>
                         )}
-                        <img src={snowflakeImg} alt="Start snow" onClick={handleStartSnow} className="snowflake-button"
+                        <img src={snowflakeImg} onClick={handleStartSnow} className="snowflake-button"
                              title="Click me for some magic!"/>
-                        <img src={accountLogo} alt="AuthHandler" onClick={handleAccountClick} className="account-logo"/>
+                        <img src={accountLogo} onClick={handleAccountClick} className="account-logo"/>
                     </div>
                 </ul>
             </div>
@@ -139,7 +139,7 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout}) {
                 <div className="login-and-SignInPopup" ref={popupRef}>
                 {formType === 'SignIn' && <SignIn setShowPopup={setShowPopup} handleLogin={handleLogin} />}
                     {formType === 'SignUp' && <SignUp setShowPopup={setShowPopup} handleLogin={handleLogin} switchToSignIn={switchToSignIn} />}
-                    {showPopup && formType === 'Logout' && <SignOut setShowPopup={setShowPopup} handleLogout={handleLogout} />}
+                    {showPopup && formType === 'SignOut' && <SignOut setShowPopup={setShowPopup} handleLogout={handleLogout} />}
                 </div>
             )}
             <SnowfallEffect key={snowKey} isSnowing={isSnowing} />

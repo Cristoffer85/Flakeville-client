@@ -1,3 +1,4 @@
+/********************** Main sign-up box styles **********************/
 .signUp-box {
     width: 200px;
     display: flex;
@@ -11,8 +12,8 @@
     margin-right: 50px;
 }
 
+/********************** Button styles **********************/
 .confirmation-container {
-    /* Add your styles here. For example: */
     background-color: #f0f0f0;
     border-radius: 5px;
     padding: 10px;
@@ -21,10 +22,7 @@
     font-size: 18px;
 }
 
-.username-taken-message {
-    color: red;
-}
-
+/********************** Username already taken styles **********************/
 .username-taken-box {
     border: 1px solid red;
     border-radius: 5px;
