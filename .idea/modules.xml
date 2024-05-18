@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/SnofjallbyWithPtFrontendApplication.iml" filepath="$PROJECT_DIR$/SnofjallbyWithPtFrontendApplication.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Flakeville-client.iml" filepath="$PROJECT_DIR$/Flakeville-client.iml" />
     </modules>
   </component>
 </project>
