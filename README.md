@@ -1,4 +1,4 @@
-# Project name Snöfjällby Ski Resort Application (Client) - with PowderTracker®
+# Project name Flakeville Ski Resort Application (Client) - with PowderTracker®
 
 ## Description
 
