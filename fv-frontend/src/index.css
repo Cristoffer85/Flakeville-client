@@ -100,6 +100,12 @@ button {
   font-weight: bold;
 }
 
+/*Aligns all form fields to the right in every column*/
+.form-field {
+  display: flex;
+  justify-content: flex-end;
+}
+
 /*Positioning of boxes to right of sidebar in account pages*/
 .accountContainer {
   display: flex;
