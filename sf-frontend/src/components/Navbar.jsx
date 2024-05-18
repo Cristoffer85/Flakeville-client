@@ -37,6 +37,7 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout}) {
             }
         }
 
+
         document.addEventListener('mousedown', handleClickOutside);
 
         return () => {
