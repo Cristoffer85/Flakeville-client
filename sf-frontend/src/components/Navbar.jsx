@@ -94,7 +94,7 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout}) {
             <div className="navbar-content">
                 <Link to="/">
                     <img src={logo} alt="Logo" className="main-logo"
-                    title="SnöFjällby home"/>
+                    title="Flakeville home"/>
                 </Link>
                 <ul>
                     <div>

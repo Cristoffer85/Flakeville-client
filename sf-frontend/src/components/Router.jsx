@@ -30,10 +30,10 @@ function PageTitleUpdater({ setPageTitle }) {
         let pageTitle;
         switch (currentPath) {
             case '/store':
-                pageTitle = 'SNÖFJÄLLBY STORE';
+                pageTitle = 'FLAKEVILLE STORE';
                 break;
             case '/weather':
-                pageTitle = 'SNÖFJÄLLBY WEATHER';
+                pageTitle = 'FLAKEVILLE WEATHER';
                 break;
             case '/admin':
                 pageTitle = 'ADMIN ACCOUNT';
@@ -48,7 +48,7 @@ function PageTitleUpdater({ setPageTitle }) {
                 pageTitle = 'SHOPPING CART';
                 break;
             default:
-                pageTitle = 'SNÖFJÄLLBY HOME';
+                pageTitle = 'FLAKEVILLE HOME';
         }
         setPageTitle(pageTitle);
     }, [location, setPageTitle]);

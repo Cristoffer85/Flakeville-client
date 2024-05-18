@@ -26,7 +26,7 @@ function Home() {
             <div className="box1">
                 <div className="welcome-box">
                     <h2>Welcome!</h2>
-                    <p><b>We welcome you to SNÖFJÄLLBY.</b></p>
+                    <p><b>We welcome you to FLAKEVILLE.</b></p>
 
                     <p>The metropol of both skiing - adventure, supermart and utopia at
                         the same time!</p>
