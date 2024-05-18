@@ -1,3 +1,4 @@
+/*********************************** Common styling *******************************/
 .weatherContainer {
     margin-top: 79px;
     margin-left: 250px;
@@ -10,9 +11,8 @@
 }
 
 
-
-
-/*################ 5-day forecast, main scrollbar links styling ###################*/
+/******************************* 5-day forecast styling ****************************/
+/*############### main scrollbar links styling ###################*/
 .five-day-conditions {
     display: flex;
     flex-direction: column;
@@ -27,9 +27,7 @@
     color: white;
 }
 
-/*#################################################################################*/
-
-/*#################### 5-day forecast, popup details styling ######################*/
+/*#################### Popup details styling ######################*/
 .forecast-details {
     position: fixed;
     top: 80px;
@@ -41,17 +39,14 @@
     display: none;
     color: black;
 }
-/*#################################################################################*/
 
-/*#################### 5-day forecast, show clicked link ##########################*/
+/*#################### Show clicked link ##########################*/
 .forecast-details.active {
     display: block;
 }
-/*#################################################################################*/
 
-/*#################### 5-day forecast, clicked link styling ########################*/
+/*###################### Clicked link styling ######################*/
 .forecast.active {
     background-color: rgba(255, 255, 255, 0.8);
     color: black;
 }
-/*#################################################################################*/
