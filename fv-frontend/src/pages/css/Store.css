@@ -1,25 +1,60 @@
-/************************** Makes the header in sidebar not a pointer link *************************/
-.store-container .sidebar p {
-    cursor: default !important;
+/*################################ TABLET/DESKTOP ################################*/
+@media (min-width: 600px) {
+    /************************** Makes the header in sidebar not a pointer link *************************/
+    .store-container .sidebar p {
+        cursor: default !important;
+    }
+
+    /************************** Organizing products into 3x3 grid viewing *************************/
+    .product-container {
+        margin: 20px 10px 10px 220px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        overflow-y: auto;
+        padding: 20px;
+        height: calc(100vh - 100px);
+    }
+
+    /************************** Styling for each product item *************************/
+    .product-item {
+        width: 480px;
+        background: rgba(255, 255, 255, 0.5);
+        margin: 20px 10px 10px 0;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
 }
 
-/************************** Organizing products into 3x3 grid viewing *************************/
-.product-container {
-    margin: 20px 10px 10px 220px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    overflow-y: auto;
-    padding: 20px;
-    height: calc(100vh - 100px);
-}
 
-/************************** Styling for each product item *************************/
-.product-item {
-    width: 480px;
-    background: rgba(255, 255, 255, 0.5);
-    margin: 20px 10px 10px 0;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+
+
+/*################################ MOBILE ################################*/
+
+@media (max-width: 600px) {
+    /************************** Makes the header in sidebar not a pointer link *************************/
+    .store-container .sidebar p {
+        cursor: default !important;
+    }
+
+    /************************** Organizing products into 3x3 grid viewing *************************/
+    .product-container {
+        margin: 20px 10px 10px;
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: -5px;
+        overflow-y: auto;
+        padding: 20px;
+        height: calc(100vh - 100px);
+    }
+
+    /************************** Styling for each product item *************************/
+    .product-item {
+        background: rgba(255, 255, 255, 0.5);
+        margin: 20px 10px 10px 0;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
 }

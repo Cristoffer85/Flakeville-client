@@ -20,12 +20,6 @@ main {
 }
 
 /****************** Size of the snowflake button ******************/
-.snowflake-button {
-    margin-right: 10px;
-    margin-left: 10px;
-    width: 5vw;
-    height: 5vw;
-}
 
 h1 {
     color: white;

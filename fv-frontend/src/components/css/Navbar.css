@@ -95,6 +95,13 @@
         padding: 2px 4px;
         font-size: 11px;
     }
+    /*Snowflake button*/
+    .snowflake-button {
+        margin-right: 10px;
+        margin-left: 10px;
+        width: 5vw;
+        height: 5vw;
+    }
     /*Makes the snowflake image a pointer-link, instead of a cursor. Indicating it can be clicked*/
     .snowflake-button:hover,
     .account-logo:hover {
@@ -210,7 +217,6 @@
     }
 
     /********************** Styling for Logos *************************/
-    /* NOTE - Snowflake logo properties are located in SnowfallEffect.css */
     /*main Flakeville logo*/
     .main-logo {
         width: 5vw;
@@ -242,6 +248,12 @@
         border-radius: 50%;
         padding: 2px 4px;
         font-size: 11px;
+    }
+    .snowflake-button {
+        margin-right: 10px;
+        margin-left: 10px;
+        width: 5vw;
+        height: 5vw;
     }
     /*Makes the snowflake image a pointer-link, instead of a cursor. Indicating it can be clicked*/
     .snowflake-button:hover,

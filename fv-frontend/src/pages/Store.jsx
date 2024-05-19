@@ -66,23 +66,26 @@ function Store() {
     return (
         <div className="store-container">
             <div className="sidebar">
-                <input
-                    type="text"
-                    value={search}
-                    onChange={e => setSearch(e.target.value)}
-                    placeholder="Search products"
-                />
-                <p>Filter by category</p>
-                {categories.map((category, index) => (
-                    <div key={index}>
-                        <input
-                            type="checkbox"
-                            name={category}
-                            onChange={handleCategoryChange}
-                        />
-                        <label>{category}</label>
-                    </div>
-                ))}
+                <div className="search-container">
+                    <input
+                        type="text"
+                        value={search}
+                        onChange={e => setSearch(e.target.value)}
+                        placeholder="Search products"
+                    />
+                </div>
+                <div className="filter-container">
+                    {categories.map((category, index) => (
+                        <div key={index}>
+                            <input
+                                type="checkbox"
+                                name={category}
+                                onChange={handleCategoryChange}
+                            />
+                            <label>{category}</label>
+                        </div>
+                    ))}
+                </div>
             </div>
             <div className="product-container">
                 {filteredProducts.map((product, index) => (
