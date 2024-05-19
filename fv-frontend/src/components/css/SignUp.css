@@ -41,16 +41,16 @@
 @media (max-width: 600px) {
     /********************** Main sign-up box styles **********************/
     .signUp-box {
-        width: 200px;
-        display: flex;
-        justify-content: flex-end;
-        padding: 20px;
+        max-width: 200px;
+        width: 85%;
+        padding: 5px;
         box-sizing: border-box;
         border: 1px solid #000;
         border-radius: 10px;
-        background-color: rgba(255, 255, 255);
+        background-color: rgb(255, 255, 255);
         margin-right: 10px;
         margin-left: auto;
+        align-content: center;
     }
 
     /********************** Button styles **********************/
