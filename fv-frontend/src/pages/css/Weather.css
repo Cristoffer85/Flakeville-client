@@ -2,7 +2,8 @@
 @media (min-width: 600px) {
     /*********************************** Common styling *******************************/
     .currentWeatherConditionsBox {
-        margin-top: -175px;
+        margin-top: 60px;
+        margin-bottom: 47%;
         max-height: 90vh;
         overflow-y: auto;
         position: relative;

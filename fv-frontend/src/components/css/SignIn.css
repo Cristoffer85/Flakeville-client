@@ -1,12 +1,32 @@
-.signIn-box {
-    width: 200px;
-    display: flex;
-    justify-content: flex-end;
-    padding: 20px;
-    box-sizing: border-box;
-    border: 1px solid #000;
-    border-radius: 10px;
-    background-color: rgba(197, 197, 197, 0.5);
-    margin-left: auto;
-    margin-right: 150px;
+/*################################ TABLET/DESKTOP ################################*/
+@media (min-width: 600px) {
+    .signIn-box {
+        width: 200px;
+        display: flex;
+        justify-content: flex-end;
+        padding: 20px;
+        box-sizing: border-box;
+        border: 1px solid #000;
+        border-radius: 10px;
+        background-color: rgba(197, 197, 197, 0.5);
+        margin-left: auto;
+        margin-right: 150px;
+    }
+}
+
+/*################################ MOBILE ################################*/
+
+@media (max-width: 600px) {
+    .signIn-box {
+        width: 200px;
+        display: flex;
+        justify-content: flex-end;
+        padding: 20px;
+        box-sizing: border-box;
+        border: 1px solid #000;
+        border-radius: 10px;
+        background-color: rgb(255, 255, 255);
+        margin-right: 10px;
+        margin-left: auto;
+    }
 }
