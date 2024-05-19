@@ -1,24 +1,57 @@
-/***************** Styling for Employee and User management boxes *****************/
-.employeeManagementBox,
-.userManagementBox {
-    position: absolute;
-    top: 70px;
-    background-color: rgba(255, 255, 255, 0.8);
-    color: rgba(58, 53, 53, 0.5);
-    border-radius: 10px;
-    padding: 20px;
-    margin: 10px;
-    width: 60%;
-    height: auto;
+/*################################ TABLET/DESKTOP ################################*/
+@media (min-width: 600px) {
+    /***************** Styling for Employee and User management boxes *****************/
+    .employeeManagementBox,
+    .userManagementBox {
+        position: absolute;
+        top: 70px;
+        background-color: rgba(255, 255, 255, 0.8);
+        color: rgba(58, 53, 53, 0.5);
+        border-radius: 10px;
+        padding: 20px;
+        margin: 10px;
+        width: 60%;
+        height: auto;
+    }
+
+    /***************** Styling for Employee and User management boxes common buttons *****************/
+    .employeeManagementBox button,
+    .userManagementBox button {
+        margin-top: 10px;
+        padding: 5px 10px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
 }
 
-/***************** Styling for Employee and User management boxes common buttons *****************/
-.employeeManagementBox button,
-.userManagementBox button {
-    margin-top: 10px;
-    padding: 5px 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    cursor: pointer;
+/*################################ MOBILE ################################*/
+
+@media (max-width: 600px) {
+    /***************** Styling for Employee and User management boxes *****************/
+    .employeeManagementBox,
+    .userManagementBox {
+        max-height: 90vh;
+        overflow-y: auto;
+        position: absolute;
+        top: 250px; /* Adjust this value to the height of your .accountContainer */
+        background-color: rgba(255, 255, 255, 0.8);
+        color: rgba(58, 53, 53, 0.5);
+        border-radius: 10px;
+        padding: 20px;
+        width: 90%;
+        height: auto;
+    }
+
+    /***************** Styling for Employee and User management boxes common buttons *****************/
+    .employeeManagementBox button,
+    .userManagementBox button {
+        margin-top: 10px;
+        padding: 5px 10px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
 }

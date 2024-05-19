@@ -99,8 +99,8 @@
     .snowflake-button {
         margin-right: 10px;
         margin-left: 10px;
-        width: 5vw;
-        height: 5vw;
+        width: 2vw;
+        height: 2vw;
     }
     /*Makes the snowflake image a pointer-link, instead of a cursor. Indicating it can be clicked*/
     .snowflake-button:hover,

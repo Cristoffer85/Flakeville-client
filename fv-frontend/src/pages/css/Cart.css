@@ -1,81 +1,170 @@
-/********************************** Main cart container styling **********************************/
-.cart-container {
-    position: absolute;
-    top: 100px;
-    left: 25%;
-    background: rgba(255, 255, 255, 0.5);
-    border-radius: 5px;
-    padding: 20px;
-    margin: 20px auto;
-    width: 800px !important;
+/*################################ TABLET/DESKTOP ################################*/
+@media (min-width: 600px) {
+    /********************************** Main cart container styling **********************************/
+    .cart-container {
+        position: absolute;
+        top: 100px;
+        left: 25%;
+        background: rgba(255, 255, 255, 0.5);
+        border-radius: 5px;
+        padding: 20px;
+        margin: 20px auto;
+        width: 800px !important;
+    }
+
+    /*Centers cart header*/
+    .cart-container h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    /*Positions cart headers horizontally*/
+    .cart-header, .cart-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 0;
+    }
+
+    /*Reduces the space between header and products in cart*/
+    .cart-header > h4, .cart-item > p {
+        margin: 0;
+        flex-basis: 33%;
+    }
+
+    /*Bar between every product in cart*/
+    .cart-item {
+        border-bottom: 1px solid #ccc;
+    }
+
+    /*Center the text in columns*/
+    .cart-item > p, .cart-item > h4 {
+        margin: 0;
+        flex-basis: 18%;
+        text-align: center;
+    }
+
+    /*Style for bar below all products in cart*/
+    .cart-total {
+        display: flex;
+        justify-content: flex-start;
+        padding: 10px 0;
+        border-top: 3px solid #ccc;
+    }
+
+    /*Positions the total values for price and quantity in the cart, below the columns*/
+    .cart-total > h4 {
+        flex-basis: 22%;
+    }
+
+
+    /*************************** Style for final box at bottom ***************************/
+    .order-container {
+        background-color: #f0f0f0;
+        padding: 10px;
+        border-radius: 5px;
+        margin-top: 10px;
+    }
+
+    /*Total price header*/
+    .total-price-text {
+        font-weight: bold;
+        font-size: 1.5em;
+        margin-bottom: 10px;
+    }
+
+    /*Send order button*/
+    .send-order-button {
+        margin: 40px 0 0 0;
+        background-color: green;
+        font-size: 20px;
+        font-weight: bold;
+        color: white;
+    }
 }
 
-/*Centers cart header*/
-.cart-container h2 {
-    text-align: center;
-    margin-bottom: 20px;
-}
 
-/*Positions cart headers horizontally*/
-.cart-header, .cart-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 0;
-}
+/*################################ MOBILE ################################*/
 
-/*Reduces the space between header and products in cart*/
-.cart-header > h4, .cart-item > p {
-    margin: 0;
-    flex-basis: 33%;
-}
+@media (max-width: 600px) {
+    /********************************** Main cart container styling **********************************/
+    .cart-container {
+        position: absolute;
+        top: 100px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(255, 255, 255, 0.5);
+        border-radius: 5px;
+        padding: 20px;
+    }
 
-/*Bar between every product in cart*/
-.cart-item {
-    border-bottom: 1px solid #ccc;
-}
+    /*Centers cart header*/
+    .cart-container h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
 
-/*Center the text in columns*/
-.cart-item > p, .cart-item > h4 {
-    margin: 0;
-    flex-basis: 18%;
-    text-align: center;
-}
+    /*Positions cart headers horizontally*/
+    .cart-header, .cart-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 0;
+    }
 
-/*Style for bar below all products in cart*/
-.cart-total {
-    display: flex;
-    justify-content: flex-start;
-    padding: 10px 0;
-    border-top: 3px solid #ccc;
-}
+    /*Reduces the space between header and products in cart*/
+    .cart-header > h4, .cart-item > p {
+        margin: 0;
+        flex-basis: 33%;
+    }
 
-/*Positions the total values for price and quantity in the cart, below the columns*/
-.cart-total > h4 {
-    flex-basis: 22%;
-}
+    /*Bar between every product in cart*/
+    .cart-item {
+        border-bottom: 1px solid #ccc;
+    }
+
+    /*Center the text in columns*/
+    .cart-item > p, .cart-item > h4 {
+        margin: 0;
+        flex-basis: 18%;
+        text-align: center;
+    }
+
+    /*Style for bar below all products in cart*/
+    .cart-total {
+        display: flex;
+        justify-content: flex-start;
+        padding: 10px 0;
+        border-top: 3px solid #ccc;
+    }
+
+    /*Positions the total values for price and quantity in the cart, below the columns*/
+    .cart-total > h4 {
+        flex-basis: 22%;
+    }
 
 
-/*************************** Style for final box at bottom ***************************/
-.order-container {
-    background-color: #f0f0f0;
-    padding: 10px;
-    border-radius: 5px;
-    margin-top: 10px;
-}
+    /*************************** Style for final box at bottom ***************************/
+    .order-container {
+        background-color: #f0f0f0;
+        padding: 10px;
+        border-radius: 5px;
+        margin-top: 10px;
+    }
 
-/*Total price header*/
-.total-price-text {
-    font-weight: bold;
-    font-size: 1.5em;
-    margin-bottom: 10px;
-}
+    /*Total price header*/
+    .total-price-text {
+        font-weight: bold;
+        font-size: 1.5em;
+        margin-bottom: 10px;
+    }
 
-/*Send order button*/
-.send-order-button {
-    margin: 40px 0 0 0;
-    background-color: green;
-    font-size: 20px;
-    font-weight: bold;
-    color: white;
+    /*Send order button*/
+    .send-order-button {
+        margin: 40px 0 0 0;
+        background-color: green;
+        font-size: 20px;
+        font-weight: bold;
+        color: white;
+    }
 }
