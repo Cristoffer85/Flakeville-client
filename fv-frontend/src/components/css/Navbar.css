@@ -188,8 +188,9 @@
 
     .nav-icon {
         display: block;
-        width: 30px;
-        height: 30px;
+        width: 5vw;
+        height: 5vw;
+        margin: 0 -10px;
     }
 
     .nav-text {
@@ -212,23 +213,24 @@
     /* NOTE - Snowflake logo properties are located in SnowfallEffect.css */
     /*main Flakeville logo*/
     .main-logo {
-        height: 50px;
-        margin-left: 15px;
+        width: 5vw;
+        height: 5vw;
+        margin-left: 5px;
     }
     /*Account logo*/
     .account-logo {
         margin-top: 5px;
         margin-right: 5px;
-        height: 40px;
-        width: 40px;
+        width: 5vw;
+        height: 5vw;
     }
 
     /*Shopping Cart logo*/
     .shopping-cart-logo {
         margin-top: 8px;
-        width: 30px;
-        height: 30px;
-        position: relative;
+        width: 5vw;
+        height: 5vw;
+        margin-left: -10px;
     }
     /*Shopping Cart counter*/
     .cart-count {
@@ -250,12 +252,13 @@
     /********************* Lift status styling *************************/
     .lift-status-container {
         position: relative;
+        margin-left: -10px;
         display: flex;
         flex-direction: column;
         align-items: center;
         background-color: rgba(0, 0, 0, 0.5);
         border-radius: 10px;
-        padding: 10px;
+        padding: 5px;
     }
     .lift-status {
         display: flex;
