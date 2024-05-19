@@ -1,156 +1,280 @@
-/*################################ DESKTOP/TABLET ################################*/
+/*################################ TABLET/DESKTOP ################################*/
+@media (min-width: 600px) {
+    /******************** Main Navbar positioning styling **********************/
+    /*Makes the navbar visible on the top of the page, and fixates it there*/
+    .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: linear-gradient(to top, rgba(255, 255, 255, 0), rgba(30, 30, 30, 0.7));
+        z-index: 1;
+    }
+    /*More aligning for the navbar on top of the page*/
+    .navbar-content {
+        display: flex;
+        align-items: center;
+    }
+    /*Organises the navbar and its contents*/
+    .navbar ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+    /*Organises Weather, Store and Cart links*/
+    .navbar li a {
+        display: block;
+        color: #ffffff;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        position: relative;
+        font-family: Lato;
+        font-size: 20px;
+        font-weight: bold;
+    }
+    /*Settings Weather, Store and Cart - Stores the links horizontally instead of vertical*/
+    .navbar-content div {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
 
-/********************** Main Navbar positioning styling *************************/
-/*Makes the navbar visible on the top of the page, and fixates it there*/
-.navbar {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background: linear-gradient(to top, rgba(255, 255, 255, 0), rgba(30, 30, 30, 0.7));
-    z-index: 1;
-}
+    .nav-icon {
+        display: none;
+    }
 
-/*More aligning for the navbar on top of the page*/
-.navbar-content {
-    display: flex;
-    align-items: center;
-}
+    .nav-text {
+        display: block;
+    }
 
-/*Organises the navbar and its contents*/
-.navbar ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-}
+    /********************** Navbar title styling *************************/
+    .navbar-title {
+        font-family: Roboto, sans-serif;
+        color: rgba(255, 0, 0, 0.5);
+        font-size: 40px;
+        font-weight: 800;
+        text-align: center;
+        margin-left: 300px;
+        margin-top: 10px;
+        margin-bottom: 15px;
+        letter-spacing: 2px;
+    }
 
-/*Organises Home, Store and Weather links*/
-.navbar li a {
-    display: block;
-    color: #ffffff;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    position: relative;
-    font-family: Lato;
-    font-size: 20px;
-    font-weight: bold;
-}
+    /********************** Styling for Logos *************************/
+    /* NOTE - Snowflake logo properties are located in SnowfallEffect.css */
+    /*main Flakeville logo*/
+    .main-logo {
+        height: 50px;
+        margin-left: 15px;
+    }
+    /*Account logo*/
+    .account-logo {
+        margin-top: 5px;
+        margin-right: 5px;
+        height: 40px;
+        width: 40px;
+    }
+    /*Shopping Cart logo*/
+    .shopping-cart-logo {
+        margin-top: 8px;
+        width: 30px;
+        height: 30px;
+        position: relative;
+    }
+    /*Shopping Cart counter*/
+    .cart-count {
+        position: absolute;
+        top: 15px;
+        right: 10px;
+        background-color: red;
+        color: white;
+        border-radius: 50%;
+        padding: 2px 4px;
+        font-size: 11px;
+    }
+    /*Makes the snowflake image a pointer-link, instead of a cursor. Indicating it can be clicked*/
+    .snowflake-button:hover,
+    .account-logo:hover {
+        cursor: pointer;
+    }
 
-/*Settings Home, Store, Weather - Stores the links horizontally instead of vertical*/
-.navbar-content div {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-}
-
-
-/********************** Navbar title styling *************************/
-.navbar-title {
-    font-family: Roboto, sans-serif;
-    color: rgba(255, 0, 0, 0.5);
-    font-size: 40px;
-    font-weight: 800;
-    text-align: center;
-    margin-left: 300px;
-    margin-top: 10px;
-    margin-bottom: 15px;
-    letter-spacing: 2px;
-}
-
-/********************** Styling for Logos *************************/
-/* NOTE - Snowflake logo properties are located in SnowfallEffect.css */
-
-/*main Flakeville logo*/
-.main-logo {
-    height: 50px;
-    margin-left: 15px;
-}
-/*Account logo*/
-.account-logo {
-    margin-top: 5px;
-    margin-right: 5px;
-    height: 40px;
-    width: 40px;
-}
-/*Shopping Cart logo*/
-.shopping-cart-logo {
-    margin-top: 8px;
-    width: 30px;
-    height: 30px;
-    position: relative;
-}
-/*Shopping Cart counter*/
-.cart-count {
-    position: absolute;
-    top: 15px;
-    right: 10px;
-    background-color: red;
-    color: white;
-    border-radius: 50%;
-    padding: 2px 4px;
-    font-size: 11px;
-}
-/*Makes the snowflake image a pointer-link, instead of a cursor. Indicating it can be clicked*/
-.snowflake-button:hover,
-.account-logo:hover {
-    cursor: pointer;
+    /********************* Lift status styling *************************/
+    .lift-status-container {
+        position: absolute;
+        top: 10px;
+        right: 300px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 10px;
+        padding: 10px;
+    }
+    .lift-status {
+        display: flex;
+        align-items: center;
+        margin: -20px 0;
+        color: white;
+        font-weight: bold;
+    }
+    /* size of the status light */
+    .status-light {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        margin-left: 5px;
+    }
+    .status-light.green {
+        background-color: green;
+    }
+    .status-light.red {
+        background-color: red;
+    }
 }
 
 
-/********************* Lift status styling *************************/
-.lift-status-container {
-    position: absolute;
-    top: 10px;
-    right: 300px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 10px;
-    padding: 10px;
-}
 
-.lift-status {
-    display: flex;
-    align-items: center;
-    margin: -20px 0;
-    color: white;
-    font-weight: bold;
-}
 
-/* size of the status light */
-.status-light {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    margin-left: 5px;
-}
 
-.status-light.green {
-    background-color: green;
-}
 
-.status-light.red {
-    background-color: red;
-}
+
+
+
+
+
 
 
 /*################################ MOBILE ################################*/
 
 @media (max-width: 600px) {
+    /******************** Main Navbar positioning styling **********************/
+    /*Makes the navbar visible on the top of the page, and fixates it there*/
+    .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: linear-gradient(to top, rgba(255, 255, 255, 0), rgba(30, 30, 30, 0.7));
+        z-index: 1;
+    }
+    /*More aligning for the navbar on top of the page*/
     .navbar-content {
-        flex-direction: column;
+        display: flex;
+        align-items: center;
     }
-
+    /*Organises the navbar and its contents*/
     .navbar ul {
-        flex-direction: column;
-        align-items: flex-start;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+    /*Organises Weather, Store and Cart links*/
+    .navbar li a {
+        display: block;
+        color: #ffffff;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        position: relative;
+        font-family: Lato;
+        font-size: 20px;
+        font-weight: bold;
     }
 
+    .nav-icon {
+        display: block;
+        width: 30px;
+        height: 30px;
+    }
+
+    .nav-text {
+        display: none;
+    }
+
+    /*Settings Weather, Store and Cart - Stores the links horizontally instead of vertical*/
     .navbar-content div {
-        justify-content: flex-start;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    /********************** Navbar title styling *************************/
+    .navbar-title {
+        display:none
+    }
+
+    /********************** Styling for Logos *************************/
+    /* NOTE - Snowflake logo properties are located in SnowfallEffect.css */
+    /*main Flakeville logo*/
+    .main-logo {
+        height: 50px;
+        margin-left: 15px;
+    }
+    /*Account logo*/
+    .account-logo {
+        margin-top: 5px;
+        margin-right: 5px;
+        height: 40px;
+        width: 40px;
+    }
+
+    /*Shopping Cart logo*/
+    .shopping-cart-logo {
+        margin-top: 8px;
+        width: 30px;
+        height: 30px;
+        position: relative;
+    }
+    /*Shopping Cart counter*/
+    .cart-count {
+        position: absolute;
+        top: 15px;
+        right: 10px;
+        background-color: red;
+        color: white;
+        border-radius: 50%;
+        padding: 2px 4px;
+        font-size: 11px;
+    }
+    /*Makes the snowflake image a pointer-link, instead of a cursor. Indicating it can be clicked*/
+    .snowflake-button:hover,
+    .account-logo:hover {
+        cursor: pointer;
+    }
+
+    /********************* Lift status styling *************************/
+    .lift-status-container {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 10px;
+        padding: 10px;
+    }
+    .lift-status {
+        display: flex;
+        align-items: center;
+        margin: -20px 0;
+        color: white;
+        font-weight: bold;
+    }
+    /* size of the status light */
+    .status-light {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        margin-left: 5px;
+    }
+    .status-light.green {
+        background-color: green;
+    }
+    .status-light.red {
+        background-color: red;
     }
 }

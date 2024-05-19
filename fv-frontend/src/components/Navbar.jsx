@@ -6,6 +6,8 @@ import logo from '../assets/Logo.png';
 import accountLogo from '../assets/ProfileLogoGold.png';
 import snowflakeImg from '../assets/Snowflake.png';
 import shoppingCartLogo from '../assets/Shoppingcartlogo.png';
+import weatherIcon from '../assets/cloudy.png';
+import storeIcon from '../assets/store.png';
 import PageTitleContext from './PageTitleContext';
 import CartContext from "./CartContext.jsx";
 import SignIn from './SignIn.jsx';
@@ -99,8 +101,18 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout}) {
                 </Link>
                 <ul>
                     <div>
-                        <li><Link to="/weather">POWDERTRACKER</Link></li>
-                        <li><Link to="/store">STORE</Link></li>
+                        <li>
+                            <Link to="/weather">
+                                <img className="nav-icon" src={weatherIcon} alt="Weather Icon"/>
+                                <span className="nav-text">POWDERTRACKER</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/store">
+                                <img className="nav-icon" src={storeIcon} alt="Store Icon"/>
+                                <span className="nav-text">STORE</span>
+                            </Link>
+                        </li>
                         <li><Link to="/cart">
                             <img src={shoppingCartLogo} alt="Shopping Cart" className="shopping-cart-logo"/>
                             {totalItems > 0 && (
@@ -108,7 +120,8 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout}) {
                                     {totalItems}
                                 </div>
                             )}
-                        </Link></li>
+                        </Link>
+                        </li>
                         <h1 className="navbar-title">{pageTitle}</h1>
                         <div className="lift-status-container">
                             {lifts.map(lift => (

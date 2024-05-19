@@ -16,7 +16,6 @@
 
 
 /*################## General Body Background for application, Mobile or Desktop/Tablet ######################*/
-/* Mobile */
 body {
   background-image: url('/MainBackgroundMobile.jpg');
   background-repeat: no-repeat;
@@ -28,7 +27,7 @@ body {
   min-height: 100vh;
 }
 
-/* Tablet/Desktop */
+/* Desktop/Tablet */
 @media (min-width: 600px) {
   body {
     background-image: url('/MainBackground.jpg');
@@ -40,7 +39,7 @@ body {
 button {
   border-radius: 8px;
   border: 1px solid transparent;
-  padding: 0.6em 1.2em;
+  padding: 0.4em 0.6em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
@@ -75,27 +74,6 @@ button {
   padding: 20px;
 }
 
-/* Tablet */
-@media (min-width: 600px) {
-  .sidebar {
-    width: 140px;
-  }
-}
-
-/* Small Laptop */
-@media (min-width: 992px) {
-  .sidebar {
-    width: 180px;
-  }
-}
-
-/* Desktop */
-@media (min-width: 1200px) {
-  .sidebar {
-    width: 220px;
-  }
-}
-
 /*Sidebar links = pointer instead of cursor*/
 .sidebar p {
   cursor: pointer;
@@ -121,26 +99,5 @@ button {
   justify-content: space-between;
   padding: 20px;
   margin-left: 220px;
-}
-
-/* Tablet */
-@media (min-width: 600px) {
-  .accountContainer {
-    margin-left: 140px;
-  }
-}
-
-/* Small Laptop */
-@media (min-width: 992px) {
-  .accountContainer {
-    margin-left: 180px;
-  }
-}
-
-/* Desktop */
-@media (min-width: 1200px) {
-  .accountContainer {
-    margin-left: 220px;
-  }
 }
 
