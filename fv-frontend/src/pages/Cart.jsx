@@ -85,11 +85,11 @@ function Cart() {
             </div>
             <div className="order-container">
                 <h3 className="total-price-text">Total price: {totalPrice} :-</h3>
-                {isLoggedIn && userRole === 'USER' ? (
+                {isLoggedIn && userRole === 'USER' && cart.length > 0 ? (
                     <button className="send-order-button"
                             onClick={() => sendOrder(cart, setCart, setSuccessMessage)}>Send Order</button>
                 ) : (
-                    <p className="signin-text">Sign in or sign up as a User to send your order!</p>
+                    <p className="signin-text">{cart.length > 0 ? "Sign in or sign up as a User to send your order!" : "Your cart is empty."}</p>
                 )}
             </div>
             {successMessage && <p>{successMessage}</p>}
