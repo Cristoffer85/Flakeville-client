@@ -8,14 +8,14 @@ import snowflakeImg from '../assets/Snowflake.png';
 import shoppingCartLogo from '../assets/Shoppingcartlogo.png';
 import weatherIcon from '../assets/cloudy.png';
 import storeIcon from '../assets/store.png';
-import PageTitleContext from './PageTitleContext';
+import PageTitleContext from './PageTitleContext.jsx';
 import CartContext from "./CartContext.jsx";
 import SignIn from './SignIn.jsx';
 import SignUp from './SignUp.jsx';
 import {navigateBasedOnRole} from "./Router.jsx";
 import Cookies from "js-cookie";
 import SignOut from "./SignOut.jsx";
-import LiftsContext from './LiftsContext';
+import LiftsContext from './LiftsContext.jsx';
 
 function Navbar({ isLoggedIn, handleLogin, handleLogout}) {
     const { cart } = useContext(CartContext);

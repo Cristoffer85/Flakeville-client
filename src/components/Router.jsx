@@ -6,7 +6,7 @@ import Weather from '../pages/Weather.jsx';
 import AdminAcc from "../pages/AdminAccount.jsx";
 import EmployeeAcc from "../pages/EmployeeAccount.jsx";
 import UserAcc from "../pages/UserAccount.jsx";
-import Navbar from './Navbar';
+import Navbar from './Navbar.jsx';
 import Cart from "../pages/Cart.jsx";
 import HOC from "./HOC.jsx";
 import NotAuthorized from "../pages/NotAuthorized.jsx";

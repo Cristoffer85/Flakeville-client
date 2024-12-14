@@ -4,7 +4,7 @@ import Cookies from 'js-cookie';
 import './css/EmployeeAccount.css';
 import { getOneProduct, getAllProducts, createProduct, updateProduct, deleteProduct } from '../components/Products.jsx';
 import { categories} from "../components/Categories.jsx";
-import LiftsContext from '../components/LiftsContext';
+import LiftsContext from '../components/LiftsContext.jsx';
 
 function Employee() {
     const username = Cookies.get('username');
