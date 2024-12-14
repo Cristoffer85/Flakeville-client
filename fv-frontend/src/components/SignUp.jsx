@@ -12,7 +12,7 @@ function SignUp({ switchToSignIn }) {
         event.preventDefault();
 
         try {
-            const response = await fetch('https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/auth/register', {
+            const response = await fetch('https://flakeville-server.onrender.com/auth/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -26,7 +26,6 @@ function SignUp({ switchToSignIn }) {
                 setIsRegistered(true);
                 setUsernameTaken(false);
             } else {
-                // If the response is not ok, handle the error
                 console.log('Registration failed:', response.status);
                 if (response.status === 401) {
                     setUsernameTaken(true);
@@ -39,7 +38,7 @@ function SignUp({ switchToSignIn }) {
 
     const checkUsername = async () => {
         try {
-            const response = await fetch(`https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/auth/checkUsername/${username}`);
+            const response = await fetch(`https://flakeville-server.onrender.com/checkUsername/${username}`);
             if (response.status === 409) {
                 setUsernameTaken(true);
             } else {

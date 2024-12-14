@@ -13,7 +13,7 @@ function Store() {
 
     const fetchProductsByCategory = async (categories) => {
         const products = await Promise.all(categories.map(async (category) => {
-            const response = await fetch(`https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/products/category/${category}`);
+            const response = await fetch(`https://flakeville-server.onrender.com/products/category/${category}`);
             return await response.json();
         }));
 

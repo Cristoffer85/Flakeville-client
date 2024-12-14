@@ -17,7 +17,7 @@ function Weather() {    // Function component Weather, with a 1-minute interval 
         if (cachedCurrentConditions && Date.now() - cachedCurrentConditionsTime < 30 * 60 * 1000) {
             setCurrentConditions(JSON.parse(cachedCurrentConditions));
         } else {
-            fetch('https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/skiResort/currentConditions')
+            fetch('https://flakeville-server.onrender.com/skiResort/currentConditions')
                 .then(response => response.json())
                 .then(data => {
                     setCurrentConditions(data);
@@ -33,7 +33,7 @@ function Weather() {    // Function component Weather, with a 1-minute interval 
         if (cachedFiveDayConditions && Date.now() - cachedFiveDayConditionsTime < 30 * 60 * 1000) {
             setFiveDayConditions(JSON.parse(cachedFiveDayConditions));
         } else {
-            fetch('https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/skiResort/5DayConditions')
+            fetch('https://flakeville-server.onrender.com/skiResort/5DayConditions')
                 .then(response => response.json())
                 .then(data => {
                     setFiveDayConditions(data);

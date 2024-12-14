@@ -105,7 +105,7 @@ function Admin() {
 
     const createUser = async (user) => {
         const token = Cookies.get('token');
-        const response = await fetch('https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/admin/createUser', {
+        const response = await fetch('https://flakeville-server.onrender.com/admin/createUser', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -126,7 +126,7 @@ function Admin() {
     };
     const getAllUsers = async () => {
         const token = Cookies.get('token');
-        const response = await fetch('https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/admin/getAllUsers', {
+        const response = await fetch('https://flakeville-server.onrender.com/admin/getAllUsers', {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -137,7 +137,7 @@ function Admin() {
     };
     const getUser = async (username) => {
         const token = Cookies.get('token');
-        const response = await fetch(`https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/admin/getOneUser/${username}`, {
+        const response = await fetch(`https://flakeville-server.onrender.com/admin/getOneUser/${username}`, {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -151,7 +151,7 @@ function Admin() {
     };
     const updateUser = async (username, user) => {
         const token = Cookies.get('token');
-        const response = await fetch(`https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/admin/updateUser/${username}`, {
+        const response = await fetch(`https://flakeville-server.onrender.com/admin/updateUser/${username}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -168,7 +168,7 @@ function Admin() {
     };
     const deleteUser = async (username) => {
         const token = Cookies.get('token');
-        await fetch(`https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/admin/deleteOneUser/${username}`, {
+        await fetch(`https://flakeville-server.onrender.com/admin/deleteOneUser/${username}`, {
             method: 'DELETE',
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -181,7 +181,7 @@ function Admin() {
 
     const createEmployee = async (employee) => {
         const token = Cookies.get('token');
-        const response = await fetch('https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/admin/createEmployee', {
+        const response = await fetch('https://flakeville-server.onrender.com/admin/createEmployee', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -204,7 +204,7 @@ function Admin() {
     };
     const getAllEmployees = async () => {
         const token = Cookies.get('token');
-        const response = await fetch('https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/admin/getAllEmployees', {
+        const response = await fetch('https://flakeville-server.onrender.com/admin/getAllEmployees', {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -215,7 +215,7 @@ function Admin() {
     };
     const getEmployee = async (username) => {
         const token = Cookies.get('token');
-        const response = await fetch(`https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/admin/getOneEmployee/${username}`, {
+        const response = await fetch(`https://flakeville-server.onrender.com/admin/getOneEmployee/${username}`, {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -229,7 +229,7 @@ function Admin() {
     }
     const updateEmployee = async (username, employee) => {
         const token = Cookies.get('token');
-        const response = await fetch(`https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/admin/updateEmployee/${username}`, {
+        const response = await fetch(`https://flakeville-server.onrender.com/admin/updateEmployee/${username}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -246,7 +246,7 @@ function Admin() {
     };
     const deleteEmployee = async (username) => {
         const token = Cookies.get('token');
-        await fetch(`https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/admin/deleteEmployee/${username}`, {
+        await fetch(`https://flakeville-server.onrender.com/admin/deleteEmployee/${username}`, {
             method: 'DELETE',
             headers: {
                 'Authorization': `Bearer ${token}`

@@ -12,7 +12,7 @@ import HOC from "./HOC.jsx";
 import NotAuthorized from "../pages/NotAuthorized.jsx";
 
 export const navigateBasedOnRole = (role, username, navigate) => {
-    console.log('Navigating based on role:', role); // Add this line
+    console.log('Navigating based on role:', role);
     if (role === 'ADMIN') {
         navigate('/admin');
     } else if (role === 'EMPLOYEE') {

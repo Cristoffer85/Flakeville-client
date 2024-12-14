@@ -1,0 +1,535 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a403347f-a6c5-4224-917a-27095da634b9" name="Changes" comment="Fixed overflow-y (scrollbar when height becomes larger than view on web browser) in ProductDisplayBox in EmployeeAccount.jsx" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="dev" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Cristoffer85&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Cristoffer85/SnofjallbyWithPtFrontendApplication.git",
+    "accountId": "d2ed79a6-b801-4689-8b47-0c965ca1345d"
+  }
+}]]></component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="2ewnmnL5VsmkclgRA2hjVCeYWOJ" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Node.js.Account.jsx.executor": "Run",
+    "Node.js.App.jsx.executor": "Run",
+    "Node.js.main.jsx.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Crist/OneDrive/Skrivbord/Ny skola - Systemutvecklare Campus Mölndal/IntelliJProjects/HoneyComb Odyssey",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2023.2.5\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Crist\OneDrive\Skrivbord\Ny skola - Systemutvecklare Campus Mölndal\IntelliJProjects\SnofjallbyWithPtFrontendApplication\sf-frontend\src\pages" />
+      <recent name="C:\Users\Crist\OneDrive\Skrivbord\Ny skola - Systemutvecklare Campus Mölndal\IntelliJProjects\SnofjallbyWithPtFrontendApplication\sf-frontend\src\assets" />
+      <recent name="C:\Users\Crist\OneDrive\Skrivbord\Ny skola - Systemutvecklare Campus Mölndal\IntelliJProjects\SnofjallbyWithPtFrontendApplication\sf-frontend\src\components" />
+      <recent name="C:\Users\Crist\OneDrive\Skrivbord\Ny skola - Systemutvecklare Campus Mölndal\IntelliJProjects\SnofjallbyWithPtFrontendApplication\sf-frontend\public" />
+      <recent name="C:\Users\Crist\OneDrive\Skrivbord\Ny skola - Systemutvecklare Campus Mölndal\IntelliJProjects\SnofjallbyWithPtFrontendApplication\sf-frontend\src\components\css" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="AZURE_FUNCTION_SUPPORT" factoryName="Run Functions">
+      <option name="appName" />
+      <option name="appServicePlanName" />
+      <option name="appServicePlanResourceGroup" />
+      <option name="appSettingsKey" value="ee897c04-df06-4461-b48f-811469e7f18a" />
+      <option name="artifact" />
+      <option name="debugOptions" />
+      <option name="deployment" />
+      <option name="deploymentStagingDirectoryPath" />
+      <option name="funcPath" />
+      <option name="functionHostArguments" />
+      <option name="hostJsonPath" />
+      <option name="insightsName" />
+      <option name="instrumentationKey" />
+      <option name="javaVersion" />
+      <option name="localSettingsJsonPath" />
+      <option name="moduleName" />
+      <option name="os" />
+      <option name="pricingTier" />
+      <option name="providerMap">
+        <map />
+      </option>
+      <option name="region" />
+      <option name="resourceGroup" />
+      <option name="stagingFolder" />
+      <option name="subscription" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.15989.150" />
+        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-IU-241.15989.150" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a403347f-a6c5-4224-917a-27095da634b9" name="Changes" comment="" />
+      <created>1712824671646</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1712824671646</updated>
+      <workItem from="1712824672735" duration="3935000" />
+      <workItem from="1712829070215" duration="55503000" />
+      <workItem from="1713164293004" duration="18911000" />
+      <workItem from="1713252495717" duration="68000" />
+      <workItem from="1713252577065" duration="33570000" />
+      <workItem from="1713511153909" duration="76000" />
+      <workItem from="1713511253271" duration="27943000" />
+      <workItem from="1713541987649" duration="7904000" />
+      <workItem from="1713616628833" duration="11865000" />
+      <workItem from="1713703377518" duration="22525000" />
+      <workItem from="1713778125770" duration="35912000" />
+      <workItem from="1714113909918" duration="22362000" />
+      <workItem from="1714325045693" duration="153000" />
+      <workItem from="1714325469014" duration="577000" />
+      <workItem from="1714381131238" duration="7679000" />
+      <workItem from="1714410101008" duration="807000" />
+      <workItem from="1714576554001" duration="73000" />
+      <workItem from="1715064838272" duration="16000" />
+      <workItem from="1715064865789" duration="63000" />
+      <workItem from="1715064942006" duration="43000" />
+      <workItem from="1715064997023" duration="14000" />
+      <workItem from="1715074513141" duration="8774000" />
+      <workItem from="1715171594754" duration="23214000" />
+      <workItem from="1715283415994" duration="5000" />
+      <workItem from="1715322381589" duration="248000" />
+      <workItem from="1715322647487" duration="7493000" />
+      <workItem from="1715434229430" duration="731000" />
+    </task>
+    <task id="LOCAL−00056" summary="Snowfall effect, start wirh click on snowflakes next to accountlogo implemented and working :)">
+      <option name="closed" value="true" />
+      <created>1713629683888</created>
+      <option name="number" value="LOCAL−00056" />
+      <option name="presentableId" value="LOCAL−00056" />
+      <updated>1713629683888</updated>
+    </task>
+    <task id="LOCAL−00057" summary="Adjusted size + color of snowflakes">
+      <option name="closed" value="true" />
+      <created>1713630724483</created>
+      <option name="number" value="LOCAL−00057" />
+      <option name="presentableId" value="LOCAL−00057" />
+      <updated>1713630724483</updated>
+    </task>
+    <task id="LOCAL−00058" summary="Rearranged folders + structure">
+      <option name="closed" value="true" />
+      <created>1713631177211</created>
+      <option name="number" value="LOCAL−00058" />
+      <option name="presentableId" value="LOCAL−00058" />
+      <updated>1713631177211</updated>
+    </task>
+    <task id="LOCAL−00059" summary="Weather API PowderTracker start implement. Current conditions are being displayed readable.&#10;&#10;Work left on Hourly and 5-Day forecast">
+      <option name="closed" value="true" />
+      <created>1713709960305</created>
+      <option name="number" value="LOCAL−00059" />
+      <option name="presentableId" value="LOCAL−00059" />
+      <updated>1713709960305</updated>
+    </task>
+    <task id="LOCAL−00060" summary="Weather API PowderTracker start implement. Current conditions are being displayed readable.&#10;&#10;Work left on Hourly and 5-Day forecast">
+      <option name="closed" value="true" />
+      <created>1713712080356</created>
+      <option name="number" value="LOCAL−00060" />
+      <option name="presentableId" value="LOCAL−00060" />
+      <updated>1713712080356</updated>
+    </task>
+    <task id="LOCAL−00061" summary="Weather API PowderTracker start implement. Current conditions and Hourly are being displayed readable.&#10;&#10;Work left on 5-Day forecast">
+      <option name="closed" value="true" />
+      <created>1713712416526</created>
+      <option name="number" value="LOCAL−00061" />
+      <option name="presentableId" value="LOCAL−00061" />
+      <updated>1713712416526</updated>
+    </task>
+    <task id="LOCAL−00062" summary="Base for weather APi implemented on Weather.jsx&#10;&#10;If crash there/no data viewing, it might be because the API is a bit unstable (as read on API site comments)&#10;&#10;Try reloading the API-page to see if it works then. If it keeps malfunctioning, cut down the weather data to just one Endpoint (Current?)&#10;Since having to many request to the API could make it freeze/mix all the different GET:s into one same for all endpoints. Making the pressure less on the server could get the pressure down on it.">
+      <option name="closed" value="true" />
+      <created>1713716675189</created>
+      <option name="number" value="LOCAL−00062" />
+      <option name="presentableId" value="LOCAL−00062" />
+      <updated>1713716675189</updated>
+    </task>
+    <task id="LOCAL−00063" summary="Basic .css styling for weather components">
+      <option name="closed" value="true" />
+      <created>1713717061942</created>
+      <option name="number" value="LOCAL−00063" />
+      <option name="presentableId" value="LOCAL−00063" />
+      <updated>1713717061942</updated>
+    </task>
+    <task id="LOCAL−00064" summary="Reduced call-interval for WeatherAPI-endpoints to 30min per each (store in local cache) to avoid API to crash (it does that if too many calls in short time.">
+      <option name="closed" value="true" />
+      <created>1713720816177</created>
+      <option name="number" value="LOCAL−00064" />
+      <option name="presentableId" value="LOCAL−00064" />
+      <updated>1713720816177</updated>
+    </task>
+    <task id="LOCAL−00065" summary="Title fix, move to navbar and centrally stored in PageTitleContext.jsx and Page-titles edited in Router (where you anyway add new routes) so its a much easier logic">
+      <option name="closed" value="true" />
+      <created>1713725049898</created>
+      <option name="number" value="LOCAL−00065" />
+      <option name="presentableId" value="LOCAL−00065" />
+      <updated>1713725049898</updated>
+    </task>
+    <task id="LOCAL−00066" summary="Title changed in index.html">
+      <option name="closed" value="true" />
+      <created>1713725197587</created>
+      <option name="number" value="LOCAL−00066" />
+      <option name="presentableId" value="LOCAL−00066" />
+      <updated>1713725197587</updated>
+    </task>
+    <task id="LOCAL−00067" summary="Title changed in index.html">
+      <option name="closed" value="true" />
+      <created>1713726771302</created>
+      <option name="number" value="LOCAL−00067" />
+      <option name="presentableId" value="LOCAL−00067" />
+      <updated>1713726771302</updated>
+    </task>
+    <task id="LOCAL−00068" summary="Changed UserAcc to be able view all orders previously made">
+      <option name="closed" value="true" />
+      <created>1713951890183</created>
+      <option name="number" value="LOCAL−00068" />
+      <option name="presentableId" value="LOCAL−00068" />
+      <updated>1713951890183</updated>
+    </task>
+    <task id="LOCAL−00069" summary="First steps of Store and cart Implemented and working. Users can view their previous orders as well (working through postman to POST a request by new order, but havent implemented/tried that yet here in Frontend)">
+      <option name="closed" value="true" />
+      <created>1713958853607</created>
+      <option name="number" value="LOCAL−00069" />
+      <option name="presentableId" value="LOCAL−00069" />
+      <updated>1713958853607</updated>
+    </task>
+    <task id="LOCAL−00070" summary="First steps of Store and cart Implemented and working. Users can view their previous orders as well (working through postman to POST a request by new order, but havent implemented/tried that yet here in Frontend)">
+      <option name="closed" value="true" />
+      <created>1713959620125</created>
+      <option name="number" value="LOCAL−00070" />
+      <option name="presentableId" value="LOCAL−00070" />
+      <updated>1713959620125</updated>
+    </task>
+    <task id="LOCAL−00071" summary="First fully step of Store is working!!! Yey! Can add products present in database and in separate controllers in to a cart in frontend, and make a &quot;Send&quot; order only if you are logged in as a user!! Cool huh!">
+      <option name="closed" value="true" />
+      <created>1713960513842</created>
+      <option name="number" value="LOCAL−00071" />
+      <option name="presentableId" value="LOCAL−00071" />
+      <updated>1713960513843</updated>
+    </task>
+    <task id="LOCAL−00072" summary="First main base of (more) functioning store with all other extra functions working">
+      <option name="closed" value="true" />
+      <created>1714030190853</created>
+      <option name="number" value="LOCAL−00072" />
+      <option name="presentableId" value="LOCAL−00072" />
+      <updated>1714030190853</updated>
+    </task>
+    <task id="LOCAL−00073" summary="First main base of (more) functioning store with all other extra functions working">
+      <option name="closed" value="true" />
+      <created>1714031867556</created>
+      <option name="number" value="LOCAL−00073" />
+      <option name="presentableId" value="LOCAL−00073" />
+      <updated>1714031867556</updated>
+    </task>
+    <task id="LOCAL−00074" summary="Create, update and deleteproduct endpoints working">
+      <option name="closed" value="true" />
+      <created>1714118161093</created>
+      <option name="number" value="LOCAL−00074" />
+      <option name="presentableId" value="LOCAL−00074" />
+      <updated>1714118161093</updated>
+    </task>
+    <task id="LOCAL−00075" summary="Base-UI for EmployeeAccount implemented">
+      <option name="closed" value="true" />
+      <created>1714124279430</created>
+      <option name="number" value="LOCAL−00075" />
+      <option name="presentableId" value="LOCAL−00075" />
+      <updated>1714124279430</updated>
+    </task>
+    <task id="LOCAL−00076" summary="Base-UI for AdminAccount implemented">
+      <option name="closed" value="true" />
+      <created>1714125758105</created>
+      <option name="number" value="LOCAL−00076" />
+      <option name="presentableId" value="LOCAL−00076" />
+      <updated>1714125758105</updated>
+    </task>
+    <task id="LOCAL−00077" summary="Base-UI for UserAccount implemented">
+      <option name="closed" value="true" />
+      <created>1714127227717</created>
+      <option name="number" value="LOCAL−00077" />
+      <option name="presentableId" value="LOCAL−00077" />
+      <updated>1714127227717</updated>
+    </task>
+    <task id="LOCAL−00078" summary="Base-UI for all Accounts implemented">
+      <option name="closed" value="true" />
+      <created>1714127948880</created>
+      <option name="number" value="LOCAL−00078" />
+      <option name="presentableId" value="LOCAL−00078" />
+      <updated>1714127948880</updated>
+    </task>
+    <task id="LOCAL−00079" summary="Tested commenting out Hourly+5-day conditions (all from same API) to maybe help reduce WeatherAPI-crash. Also disabled endpoint in Server.">
+      <option name="closed" value="true" />
+      <created>1714128540615</created>
+      <option name="number" value="LOCAL−00079" />
+      <option name="presentableId" value="LOCAL−00079" />
+      <updated>1714128540615</updated>
+    </task>
+    <task id="LOCAL−00080" summary="Base UI for Store.jsx implemented (Searchbar added)">
+      <option name="closed" value="true" />
+      <created>1714129802299</created>
+      <option name="number" value="LOCAL−00080" />
+      <option name="presentableId" value="LOCAL−00080" />
+      <updated>1714129802299</updated>
+    </task>
+    <task id="LOCAL−00081" summary="Counter for cart implemented">
+      <option name="closed" value="true" />
+      <created>1714131171377</created>
+      <option name="number" value="LOCAL−00081" />
+      <option name="presentableId" value="LOCAL−00081" />
+      <updated>1714131171377</updated>
+    </task>
+    <task id="LOCAL−00082" summary="Counter for cart implemented">
+      <option name="closed" value="true" />
+      <created>1714131461870</created>
+      <option name="number" value="LOCAL−00082" />
+      <option name="presentableId" value="LOCAL−00082" />
+      <updated>1714131461870</updated>
+    </task>
+    <task id="LOCAL−00083" summary="Further UI/UX for Store.jsx. Displaying of products more appealing">
+      <option name="closed" value="true" />
+      <created>1714132287028</created>
+      <option name="number" value="LOCAL−00083" />
+      <option name="presentableId" value="LOCAL−00083" />
+      <updated>1714132287029</updated>
+    </task>
+    <task id="LOCAL−00084" summary="Base UI/UX for Cart.jsx implemented">
+      <option name="closed" value="true" />
+      <created>1714132471835</created>
+      <option name="number" value="LOCAL−00084" />
+      <option name="presentableId" value="LOCAL−00084" />
+      <updated>1714132471835</updated>
+    </task>
+    <task id="LOCAL−00085" summary="Refactoring of both Sign in, Sign up, and Log Out components and logic. Now instead of one component in AuthHandler.jsx which is now removed, its split into 3 different Sign in, Sign up and Log out components which are way more easier to keep track of code and customize as well">
+      <option name="closed" value="true" />
+      <created>1714144629339</created>
+      <option name="number" value="LOCAL−00085" />
+      <option name="presentableId" value="LOCAL−00085" />
+      <updated>1714144629340</updated>
+    </task>
+    <task id="LOCAL−00086" summary="Refactoring of both Sign in, Sign up, and Log Out components and logic. Now instead of one component in AuthHandler.jsx which is now removed, its split into 3 different Sign in, Sign up and Log out components which are way more easier to keep track of code and customize as well">
+      <option name="closed" value="true" />
+      <created>1714145313510</created>
+      <option name="number" value="LOCAL−00086" />
+      <option name="presentableId" value="LOCAL−00086" />
+      <updated>1714145313510</updated>
+    </task>
+    <task id="LOCAL−00087" summary="Refactoring of both Sign in, Sign up, and Log Out components and logic. Now instead of one component in AuthHandler.jsx which is now removed, its split into 3 different Sign in, Sign up and Log out components which are way more easier to keep track of code and customize as well">
+      <option name="closed" value="true" />
+      <created>1714145348107</created>
+      <option name="number" value="LOCAL−00087" />
+      <option name="presentableId" value="LOCAL−00087" />
+      <updated>1714145348107</updated>
+    </task>
+    <task id="LOCAL−00088" summary="Nicer ui+logic and imp for signin signup and signout">
+      <option name="closed" value="true" />
+      <created>1714389617126</created>
+      <option name="number" value="LOCAL−00088" />
+      <option name="presentableId" value="LOCAL−00088" />
+      <updated>1714389617126</updated>
+    </task>
+    <task id="LOCAL−00089" summary="Nicer ui+logic and imp for signin signup and signout">
+      <option name="closed" value="true" />
+      <created>1714392860402</created>
+      <option name="number" value="LOCAL−00089" />
+      <option name="presentableId" value="LOCAL−00089" />
+      <updated>1714392860402</updated>
+    </task>
+    <task id="LOCAL−00090" summary="Ski lift basic operations added and working for the EmployeeAccount.jsx!">
+      <option name="closed" value="true" />
+      <created>1715078379130</created>
+      <option name="number" value="LOCAL−00090" />
+      <option name="presentableId" value="LOCAL−00090" />
+      <updated>1715078379130</updated>
+    </task>
+    <task id="LOCAL−00091" summary="Ski lift current status added to navbar. Doesnt refresh automatically when button pressed in employeeaccount though">
+      <option name="closed" value="true" />
+      <created>1715081382948</created>
+      <option name="number" value="LOCAL−00091" />
+      <option name="presentableId" value="LOCAL−00091" />
+      <updated>1715081382948</updated>
+    </task>
+    <task id="LOCAL−00092" summary="Ski lift current status added to navbar. Doesnt refresh automatically when button pressed in employeeaccount though">
+      <option name="closed" value="true" />
+      <created>1715188129412</created>
+      <option name="number" value="LOCAL−00092" />
+      <option name="presentableId" value="LOCAL−00092" />
+      <updated>1715188129413</updated>
+    </task>
+    <task id="LOCAL−00093" summary="Ski lift current status automatically updated when pressing start/stop button in EmployeeAccount.jsx, fixed.">
+      <option name="closed" value="true" />
+      <created>1715196764004</created>
+      <option name="number" value="LOCAL−00093" />
+      <option name="presentableId" value="LOCAL−00093" />
+      <updated>1715196764004</updated>
+    </task>
+    <task id="LOCAL−00094" summary="Ski lift current status automatically updated when pressing start/stop button in EmployeeAccount.jsx, fixed.">
+      <option name="closed" value="true" />
+      <created>1715273106829</created>
+      <option name="number" value="LOCAL−00094" />
+      <option name="presentableId" value="LOCAL−00094" />
+      <updated>1715273106829</updated>
+    </task>
+    <task id="LOCAL−00095" summary="Weather 5-day implementations">
+      <option name="closed" value="true" />
+      <created>1715280033932</created>
+      <option name="number" value="LOCAL−00095" />
+      <option name="presentableId" value="LOCAL−00095" />
+      <updated>1715280033932</updated>
+    </task>
+    <task id="LOCAL−00096" summary="Weather 5-day implementations">
+      <option name="closed" value="true" />
+      <created>1715281251561</created>
+      <option name="number" value="LOCAL−00096" />
+      <option name="presentableId" value="LOCAL−00096" />
+      <updated>1715281251561</updated>
+    </task>
+    <task id="LOCAL−00097" summary="Weather 5-day implementations">
+      <option name="closed" value="true" />
+      <created>1715281704042</created>
+      <option name="number" value="LOCAL−00097" />
+      <option name="presentableId" value="LOCAL−00097" />
+      <updated>1715281704042</updated>
+    </task>
+    <task id="LOCAL−00098" summary="Lift control css added">
+      <option name="closed" value="true" />
+      <created>1715283237111</created>
+      <option name="number" value="LOCAL−00098" />
+      <option name="presentableId" value="LOCAL−00098" />
+      <updated>1715283237111</updated>
+    </task>
+    <task id="LOCAL−00099" summary="Account routes protected with HOC help/HOC component">
+      <option name="closed" value="true" />
+      <created>1715324409739</created>
+      <option name="number" value="LOCAL−00099" />
+      <option name="presentableId" value="LOCAL−00099" />
+      <updated>1715324409740</updated>
+    </task>
+    <task id="LOCAL−00100" summary="Account routes protected with HOC help/HOC component">
+      <option name="closed" value="true" />
+      <created>1715326450766</created>
+      <option name="number" value="LOCAL−00100" />
+      <option name="presentableId" value="LOCAL−00100" />
+      <updated>1715326450766</updated>
+    </task>
+    <task id="LOCAL−00101" summary="Account routes protected with HOC help/HOC component">
+      <option name="closed" value="true" />
+      <created>1715326514286</created>
+      <option name="number" value="LOCAL−00101" />
+      <option name="presentableId" value="LOCAL−00101" />
+      <updated>1715326514286</updated>
+    </task>
+    <task id="LOCAL−00102" summary="Account routes protected with HOC help/HOC component">
+      <option name="closed" value="true" />
+      <created>1715326576872</created>
+      <option name="number" value="LOCAL−00102" />
+      <option name="presentableId" value="LOCAL−00102" />
+      <updated>1715326576872</updated>
+    </task>
+    <task id="LOCAL−00103" summary="Fixed overflow-y (scrollbar when height becomes larger than view on web browser) in ProductDisplayBox in EmployeeAccount.jsx">
+      <option name="closed" value="true" />
+      <created>1715329696560</created>
+      <option name="number" value="LOCAL−00103" />
+      <option name="presentableId" value="LOCAL−00103" />
+      <updated>1715329696560</updated>
+    </task>
+    <task id="LOCAL−00104" summary="Fixed overflow-y (scrollbar when height becomes larger than view on web browser) in ProductDisplayBox in EmployeeAccount.jsx">
+      <option name="closed" value="true" />
+      <created>1715330242495</created>
+      <option name="number" value="LOCAL−00104" />
+      <option name="presentableId" value="LOCAL−00104" />
+      <updated>1715330242496</updated>
+    </task>
+    <option name="localTasksCounter" value="105" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Title fix, move to navbar and centrally stored in PageTitleContext.jsx and Page-titles edited in Router (where you anyway add new routes) so its a much easier logic" />
+    <MESSAGE value="Title changed in index.html" />
+    <MESSAGE value="Changed UserAcc to be able view all orders previously made" />
+    <MESSAGE value="First steps of Store and cart Implemented and working. Users can view their previous orders as well (working through postman to POST a request by new order, but havent implemented/tried that yet here in Frontend)" />
+    <MESSAGE value="First fully step of Store is working!!! Yey! Can add products present in database and in separate controllers in to a cart in frontend, and make a &quot;Send&quot; order only if you are logged in as a user!! Cool huh!" />
+    <MESSAGE value="First main base of (more) functioning store with all other extra functions working" />
+    <MESSAGE value="Create, update and deleteproduct endpoints working" />
+    <MESSAGE value="Base-UI for EmployeeAccount implemented" />
+    <MESSAGE value="Base-UI for AdminAccount implemented" />
+    <MESSAGE value="Base-UI for UserAccount implemented" />
+    <MESSAGE value="Base-UI for all Accounts implemented" />
+    <MESSAGE value="Tested commenting out Hourly+5-day conditions (all from same API) to maybe help reduce WeatherAPI-crash. Also disabled endpoint in Server." />
+    <MESSAGE value="Base UI for Store.jsx implemented (Searchbar added)" />
+    <MESSAGE value="Counter for cart implemented" />
+    <MESSAGE value="Further UI/UX for Store.jsx. Displaying of products more appealing" />
+    <MESSAGE value="Base UI/UX for Cart.jsx implemented" />
+    <MESSAGE value="Refactoring of both Sign in, Sign up, and Log Out components and logic. Now instead of one component in AuthHandler.jsx which is now removed, its split into 3 different Sign in, Sign up and Log out components which are way more easier to keep track of code and customize as well" />
+    <MESSAGE value="Nicer ui+logic and imp for signin signup and signout" />
+    <MESSAGE value="Ski lift basic operations added and working for the EmployeeAccount.jsx!" />
+    <MESSAGE value="Ski lift current status added to navbar. Doesnt refresh automatically when button pressed in employeeaccount though" />
+    <MESSAGE value="Ski lift current status automatically updated when pressing start/stop button in EmployeeAccount.jsx, fixed." />
+    <MESSAGE value="Weather 5-day implementations" />
+    <MESSAGE value="Lift control css added" />
+    <MESSAGE value="Account routes protected with HOC help/HOC component" />
+    <MESSAGE value="Fixed overflow-y (scrollbar when height becomes larger than view on web browser) in ProductDisplayBox in EmployeeAccount.jsx" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed overflow-y (scrollbar when height becomes larger than view on web browser) in ProductDisplayBox in EmployeeAccount.jsx" />
+  </component>
+</project>

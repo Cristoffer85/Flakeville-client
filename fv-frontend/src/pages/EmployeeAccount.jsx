@@ -32,7 +32,7 @@ function Employee() {
 
         const token = Cookies.get('token'); // Get the token from cookies
 
-        const response = await fetch(`https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/employee/getOneEmployee/${username}`, {
+        const response = await fetch(`https://flakeville-server.onrender.com/employee/getOneEmployee/${username}`, {
             headers: {
                 'Authorization': `Bearer ${token}` // Include the token in the Authorization header
             }
@@ -52,7 +52,7 @@ function Employee() {
         const token = Cookies.get('token');
 
         try {
-            const response = await fetch(`https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/employee/updateEmployee/${username}`, {
+            const response = await fetch(`https://flakeville-server.onrender.com/employee/updateEmployee/${username}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -132,7 +132,7 @@ function Employee() {
     }, []);
 
     const fetchLifts = async () => {
-        const response = await fetch('https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/skilifts/getAllLifts');
+        const response = await fetch('https://flakeville-server.onrender.com/skilifts/getAllLifts');
         const data = await response.json();
         if (Array.isArray(data)) {
             setLifts(data);
@@ -143,7 +143,7 @@ function Employee() {
     };
     const startLift = async (id) => {
         const token = Cookies.get('token');
-        const response = await fetch(`https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/skilifts/startLift/${id}`, {
+        const response = await fetch(`https://flakeville-server.onrender.com/skilifts/startLift/${id}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -163,7 +163,7 @@ function Employee() {
     };
     const stopLift = async (id) => {
         const token = Cookies.get('token');
-        const response = await fetch(`https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/skilifts/stopLift/${id}`, {
+        const response = await fetch(`https://flakeville-server.onrender.com/skilifts/stopLift/${id}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

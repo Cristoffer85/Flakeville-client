@@ -11,7 +11,7 @@ function Home() {
     }, []);
 
     const fetchLifts = async () => {
-        const response = await fetch('https://snofjallbyservice-snofjallbywithpt.azuremicroservices.io/skilifts/getAllLifts');
+        const response = await fetch('https://flakeville-server.onrender.com/skilifts/getAllLifts');
         const data = await response.json();
         if (Array.isArray(data)) {
             setLifts(data);
