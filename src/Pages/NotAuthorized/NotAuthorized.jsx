@@ -1,5 +1,5 @@
 import React from 'react';
-import './css/NotAuthorized.css';
+import './NotAuthorized.css';
 
 function NotAuthorized() {
     return (

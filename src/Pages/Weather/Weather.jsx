@@ -1,7 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import './css/Weather.css';
-import CurrentWeatherConditions from "../components/CurrentWeatherConditions.jsx";
-import FiveDayWeatherConditions from "../components/FiveDayWeatherConditions.jsx";
+
+import CurrentWeatherConditions from "../../Components/CurrentWeatherConditions/CurrentWeatherConditions.jsx";
+import FiveDayWeatherConditions from "../../Components/FiveDayWeatherConditions/FiveDayWeatherConditions.jsx";
+
+import './Weather.css';
 
 function Weather() {    // Function component Weather, with a 1-minute interval fetch for current and hourly and 5-day weather conditions.
                         // Caches in local storage to avoid to many calls to API (Its a free good one, and it crashes otherwise)

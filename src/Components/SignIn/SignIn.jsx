@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
-import { navigateBasedOnRole } from "./Router.jsx";
-import './css/SignIn.css';
+import { navigateBasedOnRole } from '../Router/Router';
+import Cookies from 'js-cookie';
+
+import './SignIn.css';
 
 function SignIn({ setShowPopup, handleLogin }) {
     const [username, setUsername] = useState('');

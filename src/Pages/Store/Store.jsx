@@ -1,8 +1,11 @@
 import {useContext, useEffect, useState} from "react";
-import CartContext from "../components/CartContext.jsx";
-import './css/Store.css';
-import Products, {getAllProducts} from "../components/Products.jsx";
-import {categories} from "../components/Categories.jsx";
+
+import Products, {getAllProducts} from "../../Components/Products/Products.jsx";
+import {categories} from "../../Components/Categories/Categories.jsx";
+
+import CartContext from "../../Contexts/CartContext/CartContext.jsx";
+
+import './Store.css';
 
 function Store() {
     const [products, setProducts] = useState([]);

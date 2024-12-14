@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
-import './css/AdminAccount.css';
+
+import './AdminAccount.css';
 
 function Admin() {
     const username = Cookies.get('username');

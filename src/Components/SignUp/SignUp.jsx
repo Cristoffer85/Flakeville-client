@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import './css/SignUp.css';
+import './SignUp.css';
 
 function SignUp({ switchToSignIn }) {
     const [username, setUsername] = useState('');

@@ -1,15 +1,16 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
-import Home from '../pages/Home.jsx';
-import Store from '../pages/Store.jsx';
-import Weather from '../pages/Weather.jsx';
-import AdminAcc from "../pages/AdminAccount.jsx";
-import EmployeeAcc from "../pages/EmployeeAccount.jsx";
-import UserAcc from "../pages/UserAccount.jsx";
-import Navbar from './Navbar.jsx';
-import Cart from "../pages/Cart.jsx";
-import HOC from "./HOC.jsx";
-import NotAuthorized from "../pages/NotAuthorized.jsx";
+import HOC from "../../Components/HOC/HOC.jsx";
+
+import Navbar from "../../Components/Navbar/Navbar.jsx";
+import Home from '../../Pages/Home/Home.jsx';
+import AdminAcc from "../../Pages/AdminAccount/AdminAccount.jsx";
+import EmployeeAcc from "../../Pages/EmployeeAccount/EmployeeAccount.jsx";
+import UserAcc from "../../Pages/UserAccount/UserAccount.jsx";
+import Store from '../../Pages/Store/Store.jsx';
+import Cart from "../../Pages/Cart/Cart.jsx";
+import Weather from '../../Pages/Weather/Weather.jsx';
+import NotAuthorized from "../../Pages/NotAuthorized/NotAuthorized.jsx";
 
 export const navigateBasedOnRole = (role, username, navigate) => {
     console.log('Navigating based on role:', role);

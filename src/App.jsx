@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import AppRouter from './components/Router.jsx';
+import AppRouter from './Components/Router/Router.jsx';
 import Cookies from 'js-cookie';
-import PageTitleContext from './components/PageTitleContext.jsx';
-import CartContext from './components/CartContext.jsx';
-import LiftsContext from './components/LiftsContext.jsx';
+import PageTitleContext from './Contexts/PageTitleContext/PageTitleContext.jsx';
+import CartContext from './Contexts/CartContext/CartContext.jsx';
+import LiftsContext from './Contexts/LiftsContext/LiftsContext.jsx';
 
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);

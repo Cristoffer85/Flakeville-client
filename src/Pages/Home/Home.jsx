@@ -1,6 +1,8 @@
 import React, {useContext, useEffect} from 'react';
-import './css/Home.css';
-import LiftsContext from "../components/LiftsContext.jsx";
+
+import LiftsContext from '../../Contexts/LiftsContext/LiftsContext';
+
+import './Home.css';
 
 function Home() {
 

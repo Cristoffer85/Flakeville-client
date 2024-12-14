@@ -1,21 +1,24 @@
 import React, {useContext, useEffect, useState} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import SnowfallEffect from './SnowfallEffect.jsx';
-import './css/Navbar.css';
-import logo from '../assets/Logo.png';
-import accountLogo from '../assets/ProfileLogoGold.png';
-import snowflakeImg from '../assets/Snowflake.png';
-import shoppingCartLogo from '../assets/Shoppingcartlogo.png';
-import weatherIcon from '../assets/cloudy.png';
-import storeIcon from '../assets/store.png';
-import PageTitleContext from './PageTitleContext.jsx';
-import CartContext from "./CartContext.jsx";
-import SignIn from './SignIn.jsx';
-import SignUp from './SignUp.jsx';
-import {navigateBasedOnRole} from "./Router.jsx";
 import Cookies from "js-cookie";
-import SignOut from "./SignOut.jsx";
-import LiftsContext from './LiftsContext.jsx';
+
+import '../Navbar/Navbar.css';
+import logo from '../../Assets/Logo.png';
+import accountLogo from '../../Assets/ProfileLogoGold.png';
+import snowflakeImg from '../../Assets/Snowflake.png';
+import shoppingCartLogo from '../../Assets/Shoppingcartlogo.png';
+import weatherIcon from '../../Assets/cloudy.png';
+import storeIcon from '../../Assets/store.png';
+
+import PageTitleContext from '../../Contexts/PageTitleContext/PageTitleContext.jsx';
+import CartContext from '../../Contexts/CartContext/CartContext.jsx';
+import LiftsContext from '../../Contexts/LiftsContext/LiftsContext.jsx';
+
+import {navigateBasedOnRole} from "../Router/Router.jsx";
+import SignIn from '../SignIn/SignIn.jsx';
+import SignUp from '../SignUp/SignUp.jsx';
+import SignOut from "../SignOut/SignOut.jsx";
+import SnowfallEffect from '../SnowfallEffect/SnowfallEffect.jsx';
 
 function Navbar({ isLoggedIn, handleLogin, handleLogout}) {
     const { cart } = useContext(CartContext);

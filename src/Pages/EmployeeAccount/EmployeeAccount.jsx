@@ -1,10 +1,13 @@
 import React, {useState, useEffect, useContext} from 'react';
 import {useNavigate} from "react-router-dom";
 import Cookies from 'js-cookie';
-import './css/EmployeeAccount.css';
-import { getOneProduct, getAllProducts, createProduct, updateProduct, deleteProduct } from '../components/Products.jsx';
-import { categories} from "../components/Categories.jsx";
-import LiftsContext from '../components/LiftsContext.jsx';
+
+import { getOneProduct, getAllProducts, createProduct, updateProduct, deleteProduct } from '../../Components/Products/Products.jsx';
+import { categories } from '../../Components/Categories/Categories.jsx';
+
+import LiftsContext from '../../Contexts/LiftsContext/LiftsContext.jsx';
+
+import './EmployeeAccount.css';
 
 function Employee() {
     const username = Cookies.get('username');

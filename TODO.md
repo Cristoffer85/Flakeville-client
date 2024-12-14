@@ -1,0 +1,1 @@
+* change login storage from cookies to context instead == safer

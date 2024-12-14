@@ -1,7 +1,8 @@
 import React, {useContext, useState} from 'react';
-import CartContext from "../components/CartContext.jsx";
-import './css/Cart.css';
+import CartContext from '../../Contexts/CartContext/CartContext.jsx';
 import Cookies from 'js-cookie';
+
+import './Cart.css';
 
 async function sendOrder(cart, setCart, setSuccessMessage) {
     const token = Cookies.get('token');
