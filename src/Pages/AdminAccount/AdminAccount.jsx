@@ -1,6 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 
+import {
+    createUser,
+    getAllUsers,
+    getUser,
+    updateUser,
+    deleteUser,
+    createEmployee,
+    getAllEmployees,
+    getEmployee,
+    updateEmployee,
+    deleteEmployee
+} from '../../Api/AdminApi/AdminApi';
+
 import './AdminAccount.css';
 
 function Admin() {
@@ -35,15 +48,15 @@ function Admin() {
     const [updateEmployeePosition, setUpdateEmployeePosition] = useState('');
 
     useEffect(() => {
-        getAllUsers();
-        getAllEmployees();
+        getAllUsers().then(setUsers);
+        getAllEmployees().then(setEmployees);
     }, []);
 
     // #################### HELPER METHODS ####################
 
     const userSearchSubmit = (event) => {
         event.preventDefault();
-        getUser(searchUsername);
+        getUser(searchUsername).then(setSearchedUser);
         setSearched(true);
     };
     const userNewSubmit = async (event) => {
@@ -52,29 +65,45 @@ function Admin() {
             username: newUsername,
             password: newPassword
         };
-        await createUser(newUser);
+        try {
+            const createdUser = await createUser(newUser);
+            setUsers([...users, createdUser]);
+            setNewUserMessage('New user created');
+            setNewUsername('');
+            setNewPassword('');
+        } catch (error) {
+            console.error(error);
+        }
     };
     const userUpdateSubmit = async (event) => {
         event.preventDefault();
-        // Get the updated user data from the form
         const updatedUser = {
-            username: selectedUser.username, // Keep the current username
-            password: selectedUser.password, // Keep the current password
+            username: selectedUser.username,
+            password: selectedUser.password,
             email: updateEmail,
             telephone: updateTelephone,
             birthday: updateBirthday,
             address: updateAddress
         };
-        await updateUser(selectedUser.username, updatedUser);
-        setShowUpdateForm(false);
+        try {
+            const updatedUserData = await updateUser(selectedUser.username, updatedUser);
+            setSearchedUser(updatedUserData);
+            setShowUpdateForm(false);
+        } catch (error) {
+            console.error(error);
+        }
     };
     const userDeleteClick = async () => {
-        await deleteUser(searchedUser.username);
-        setSearchedUser(null);
+        try {
+            await deleteUser(searchedUser.username);
+            setSearchedUser(null);
+        } catch (error) {
+            console.error(error);
+        }
     };
     const employeeSearchSubmit = (event) => {
         event.preventDefault();
-        getEmployee(searchEmployeeUsername);
+        getEmployee(searchEmployeeUsername).then(setSearchedEmployee);
         setSearched(true);
     };
     const employeeNewSubmit = async (event) => {
@@ -85,176 +114,39 @@ function Admin() {
             username: newEmployeeUsername,
             password: newEmployeePassword
         };
-        await createEmployee(newEmployee);
-    };
-    const employeeUpdateSubmit = async (event) => {
-        event.preventDefault();
-        // Get the updated employee data from the form
-        const updatedEmployee = {
-            name: updateEmployeeName,
-            position: updateEmployeePosition
-        };
-        await updateEmployee(selectedEmployee.username, updatedEmployee);
-        setShowUpdateEmployeeForm(false); // Hide the update form after updating
-    };
-    const employeeDeleteClick = async () => {
-        await deleteEmployee(searchedEmployee.username);
-        setSearchedEmployee(null);
-    };
-
-    // #################### USERS ####################
-
-    const createUser = async (user) => {
-        const token = Cookies.get('token');
-        const response = await fetch('https://flakeville-server.onrender.com/admin/createUser', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            },
-            body: JSON.stringify(user)
-        });
-        if (response.ok) {
-            const data = await response.json();
-            setUsers([...users, data]); // Add the new user to the users list
-            setNewUserMessage('New user created'); // Set the user newEmployeeMessage
-            // Reset the form fields
-            setNewUsername('');
-            setNewPassword('');
-        } else {
-            console.error('Creation failed:', await response.text());
-        }
-    };
-    const getAllUsers = async () => {
-        const token = Cookies.get('token');
-        const response = await fetch('https://flakeville-server.onrender.com/admin/getAllUsers', {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        });
-        const data = await response.json();
-        setUsers(data);
-
-    };
-    const getUser = async (username) => {
-        const token = Cookies.get('token');
-        const response = await fetch(`https://flakeville-server.onrender.com/admin/getOneUser/${username}`, {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        });
-        if (!response.ok || response.headers.get('Content-Length') === '0') {
-            setSearchedUser(null); // Set searchedUser to null if the user is not found
-            return;
-        }
-        const data = await response.json();
-        setSearchedUser(data); // Update the state with the fetched user data
-    };
-    const updateUser = async (username, user) => {
-        const token = Cookies.get('token');
-        const response = await fetch(`https://flakeville-server.onrender.com/admin/updateUser/${username}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            },
-            body: JSON.stringify(user)
-        });
-        const data = await response.json();
-        if (response.ok) {
-            setSearchedUser(data); // Update the searchedUser state with the updated user data
-        } else {
-            console.error('Update failed:', data);
-        }
-    };
-    const deleteUser = async (username) => {
-        const token = Cookies.get('token');
-        await fetch(`https://flakeville-server.onrender.com/admin/deleteOneUser/${username}`, {
-            method: 'DELETE',
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        });
-        // Handle the deletion
-    };
-
-    // #################### EMPLOYEES ####################
-
-    const createEmployee = async (employee) => {
-        const token = Cookies.get('token');
-        const response = await fetch('https://flakeville-server.onrender.com/admin/createEmployee', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            },
-            body: JSON.stringify(employee)
-        });
-        if (response.ok) {
-            const data = await response.json();
-            setEmployees([...employees, data]); // Add the new employee to the employees list
-            setNewEmployeeMessage('New employee created'); // Set the newEmployeeMessage
-            // Reset the form fields
+        try {
+            const createdEmployee = await createEmployee(newEmployee);
+            setEmployees([...employees, createdEmployee]);
+            setNewEmployeeMessage('New employee created');
             setNewEmployeeName('');
             setNewEmployeePosition('');
             setNewEmployeeUsername('');
             setNewEmployeePassword('');
-        } else {
-            console.error('Creation failed:', await response.text());
+        } catch (error) {
+            console.error(error);
         }
     };
-    const getAllEmployees = async () => {
-        const token = Cookies.get('token');
-        const response = await fetch('https://flakeville-server.onrender.com/admin/getAllEmployees', {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        });
-        const data = await response.json();
-        setEmployees(data);
-
-    };
-    const getEmployee = async (username) => {
-        const token = Cookies.get('token');
-        const response = await fetch(`https://flakeville-server.onrender.com/admin/getOneEmployee/${username}`, {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        });
-        if (!response.ok || response.headers.get('Content-Length') === '0') {
-            setSearchedEmployee(null); // Set searchedEmployee to null if the employee is not found
-            return;
-        }
-        const data = await response.json();
-        setSearchedEmployee(data); // Update the state with the fetched employee data
-    }
-    const updateEmployee = async (username, employee) => {
-        const token = Cookies.get('token');
-        const response = await fetch(`https://flakeville-server.onrender.com/admin/updateEmployee/${username}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            },
-            body: JSON.stringify(employee)
-        });
-        const data = await response.json();
-        if (response.ok) {
-            setSearchedEmployee(data); // Update the searchedEmployee state with the updated employee data
-        } else {
-            console.error('Update failed:', data);
+    const employeeUpdateSubmit = async (event) => {
+        event.preventDefault();
+        const updatedEmployee = {
+            name: updateEmployeeName,
+            position: updateEmployeePosition
+        };
+        try {
+            const updatedEmployeeData = await updateEmployee(selectedEmployee.username, updatedEmployee);
+            setSearchedEmployee(updatedEmployeeData);
+            setShowUpdateEmployeeForm(false);
+        } catch (error) {
+            console.error(error);
         }
     };
-    const deleteEmployee = async (username) => {
-        const token = Cookies.get('token');
-        await fetch(`https://flakeville-server.onrender.com/admin/deleteEmployee/${username}`, {
-            method: 'DELETE',
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        });
-        // Handle the deletion
-        setSearchedEmployee(null); // Set searchedEmployee to null after deletion
+    const employeeDeleteClick = async () => {
+        try {
+            await deleteEmployee(searchedEmployee.username);
+            setSearchedEmployee(null);
+        } catch (error) {
+            console.error(error);
+        }
     };
 
     return (
@@ -271,7 +163,6 @@ function Admin() {
                     {employees.map(employee => (
                         <div key={employee.id} className="employeeDetails">
                             <p>Username: {employee.username}</p>
-                            {/* Display other employee properties as needed */}
                         </div>
                     ))}
                     <h2>Search Employees</h2>
@@ -329,7 +220,6 @@ function Admin() {
                     {users.map(user => (
                         <div key={user.id} className="userDetails">
                             <p>Username: {user.username}</p>
-                            {/* Display other user properties as needed */}
                         </div>
                     ))}
                     <h2>Search Users</h2>

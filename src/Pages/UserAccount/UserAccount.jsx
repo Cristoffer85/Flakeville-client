@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
+import { getUserDetails, updateUserDetails } from '../../Api/UserApi/UserApi.jsx';
 
 import './UserAccount.css';
 
@@ -17,35 +18,11 @@ function UserAccount() {
     };
 
     useEffect(() => {
-        getUserDetails();
+        fetchUserDetails();
     }, []);
-    const getUserDetails = async () => {
-        const token = Cookies.get('token');
-        const response = await fetch(`https://flakeville-server.onrender.com/user/getOneUser/${username}`, {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        });
-        const data = await response.json();
-        setUserDetails(data);
-    };
-    const updateUserDetails = async (e) => {
-        e.preventDefault();
-        const token = Cookies.get('token');
-        const response = await fetch(`https://flakeville-server.onrender.com/user/updateUser/${username}`, {
-            method: 'PUT',
-            headers: {
-                'Authorization': `Bearer ${token}`,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                email: updateEmail,
-                telephone: updateTelephone,
-                birthday: updateBirthday,
-                address: updateAddress
-            })
-        });
-        const data = await response.json();
+
+    const fetchUserDetails = async () => {
+        const data = await getUserDetails(username);
         setUserDetails(data);
     };
 

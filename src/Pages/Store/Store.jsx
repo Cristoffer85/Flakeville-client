@@ -1,28 +1,18 @@
-import {useContext, useEffect, useState} from "react";
+import { useContext, useEffect, useState } from "react";
 
-import Products, {getAllProducts} from "../../Components/Products/Products.jsx";
-import {categories} from "../../Components/Categories/Categories.jsx";
+import Products from "../../Components/Products/Products.jsx";
+import { categories } from "../../Components/Categories/Categories.jsx";
 
 import CartContext from "../../Contexts/CartContext/CartContext.jsx";
+import { fetchProductsByCategory, getAllProducts } from "../../Api/StoreApi/StoreApi.jsx";
 
 import './Store.css';
 
 function Store() {
     const [products, setProducts] = useState([]);
     const [search, setSearch] = useState('');
-    const [category, setCategory] = useState('');
     const { cart, setCart } = useContext(CartContext);
     const [selectedCategories, setSelectedCategories] = useState([]);
-
-    const fetchProductsByCategory = async (categories) => {
-        const products = await Promise.all(categories.map(async (category) => {
-            const response = await fetch(`https://flakeville-server.onrender.com/products/category/${category}`);
-            return await response.json();
-        }));
-
-        // Flatten the array of arrays into a single array
-        setProducts(products.flat());
-    };
 
     const handleCategoryChange = (event) => {
         const category = event.target.name;
@@ -35,16 +25,9 @@ function Store() {
 
     useEffect(() => {
         if (selectedCategories.length > 0) {
-            // Fetch products by selected categories
-            // You need to modify the fetchProductsByCategory function to accept an array of categories
-            fetchProductsByCategory(selectedCategories);
+            fetchProductsByCategory(selectedCategories).then(setProducts);
         } else {
-            const fetchProducts = async () => {
-                const products = await getAllProducts();
-                setProducts(products);
-            };
-
-            fetchProducts();
+            getAllProducts().then(setProducts);
         }
     }, [selectedCategories]);
 
@@ -92,7 +75,7 @@ function Store() {
             </div>
             <div className="product-container">
                 {filteredProducts.map((product, index) => (
-                    <Products key={index} product={product} addToCart={addToCart}/>
+                    <Products key={index} product={product} addToCart={addToCart} />
                 ))}
             </div>
         </div>

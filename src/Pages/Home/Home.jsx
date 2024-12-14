@@ -1,27 +1,18 @@
-import React, {useContext, useEffect} from 'react';
+import React, { useContext, useEffect } from 'react';
 
 import LiftsContext from '../../Contexts/LiftsContext/LiftsContext';
+import { fetchLifts } from '../../Api/HomeApi/HomeApi';
 
 import './Home.css';
 
 function Home() {
-
     const { lifts, setLifts } = useContext(LiftsContext);
 
     useEffect(() => {
-        fetchLifts();
+        fetchLifts()
+            .then(data => setLifts(data))
+            .catch(error => console.error('Error fetching lifts:', error));
     }, []);
-
-    const fetchLifts = async () => {
-        const response = await fetch('https://flakeville-server.onrender.com/skilifts/getAllLifts');
-        const data = await response.json();
-        if (Array.isArray(data)) {
-            setLifts(data);
-        } else {
-            console.error('Data is not an array:', data);
-        }
-        setLifts(data);
-    };
 
     return (
         <>
@@ -29,11 +20,8 @@ function Home() {
                 <div className="welcome-box">
                     <h2>Welcome!</h2>
                     <p><b>We welcome you to FLAKEVILLE.</b></p>
-
-                    <p>The metropol of both skiing - adventure, supermart and utopia at
-                        the same time!</p>
+                    <p>The metropol of both skiing - adventure, supermart and utopia at the same time!</p>
                     <p>Feel free to navigate across our site as you please.</p>
-
                     <p>We guarantee you an utmost chillingly adventure!</p>
                 </div>
             </div>
