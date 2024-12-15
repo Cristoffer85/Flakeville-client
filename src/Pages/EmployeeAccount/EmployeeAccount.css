@@ -1,6 +1,7 @@
 /***************** Styling for Employee details, Product management and Lift management boxes *****************/
-.updateEmployeeDetailsBox,
-.productManagementBox {
+.employeeDetailsBox,
+.productManagementBox,
+.liftManagementBox {
     display: flex;
     width: 80%;
     position: absolute;
