@@ -1,312 +1,173 @@
-/*################################ TABLET/DESKTOP ################################*/
-@media (min-width: 600px) {
-    /************ Sidebar ************/
-    .sidebar-home {
-        position: fixed;
-        left: 0;
-        top: 80px;
-        height: 100%;
-        width: 240px;
-        background-color: rgba(163, 163, 163, 0.5);
-        padding: 20px;
-    }
+.sidebar-home {
+    position: fixed;
+    left: 0;
+    top: 80px;
+    height: 100%;
+    width: 240px;
+    background-color: rgba(163, 163, 163, 0.5);
+    padding: 20px;
+}
 
-    /*Sidebar header*/
-    .text-header {
-        color: #ffffff;
-    }
+/*Sidebar header*/
+.text-header {
+    color: #ffffff;
+}
 
-    /************ Welcome box ************/
-    .box1 {
-        position: absolute;
-        top: 120px;
-        left: 350px;
-        background-color: rgba(255, 255, 255, 0.9);
-        color: rgb(0, 0, 0);
-        border-radius: 10px;
-        padding: 15px;
-        margin: 10px;
-        width: 400px;
-    }
+/************ Welcome box ************/
+.box1 {
+    position: absolute;
+    top: 120px;
+    left: 350px;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: rgb(0, 0, 0);
+    border-radius: 10px;
+    padding: 15px;
+    margin: 10px;
+    width: 400px;
+}
 
-    /************ News box ************/
-    .box2 {
-        position: absolute;
-        top: 250px;
-        left: 830px;
-        background-color: rgba(255, 255, 255, 0.8);
-        color: rgba(58, 53, 53, 0.5);
-        border-radius: 10px;
-        padding: 20px;
-        margin: 10px;
-        width: 300px;
-    }
+/************ News box ************/
+.box2 {
+    position: absolute;
+    top: 250px;
+    left: 830px;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: rgba(58, 53, 53, 0.5);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 10px;
+    width: 300px;
+}
 
-    .news1 {
-        position: relative;
-        background-color: rgba(255, 255, 255, 1);
-        color: rgba(58, 53, 53, 0.5);
-        border-radius: 5px;
-        padding: 3px;
-        margin: 1px;
-    }
+.news1 {
+    position: relative;
+    background-color: rgba(255, 255, 255, 1);
+    color: rgba(58, 53, 53, 0.5);
+    border-radius: 5px;
+    padding: 3px;
+    margin: 1px;
+}
+.news2 {
+    position: relative;
+    background-color: rgba(255, 255, 255, 1);
+    color: rgba(58, 53, 53, 0.5);
+    border-radius: 5px;
+    padding: 3px;
+    margin: 1px;
+}
+.news3 {
+    position: relative;
+    background-color: rgba(255, 255, 255, 1);
+    color: rgba(58, 53, 53, 0.5);
+    border-radius: 5px;
+    padding: 3px;
+    margin: 1px;
+}
+.news4 {
+    position: relative;
+    background-color: rgba(255, 255, 255, 1);
+    color: rgba(58, 53, 53, 0.5);
+    border-radius: 5px;
+    padding: 3px;
+    margin: 1px;
+}
 
-    .news2 {
-        position: relative;
-        background-color: rgba(255, 255, 255, 1);
-        color: rgba(58, 53, 53, 0.5);
-        border-radius: 5px;
-        padding: 3px;
-        margin: 1px;
-    }
+/************ Store updates box ************/
+.box3 {
+    position: absolute;
+    top: 300px;
+    left: 1200px;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: rgba(58, 53, 53, 0.5);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 10px;
+    width: 250px;
+}
 
-    .news3 {
-        position: relative;
-        background-color: rgba(255, 255, 255, 1);
-        color: rgba(58, 53, 53, 0.5);
-        border-radius: 5px;
-        padding: 3px;
-        margin: 1px;
+/*************************** Lifts, animations, sizes, colors and header styles ***************************/
+/*Animation logic*/
+@keyframes moveInRectangle {
+    0% {
+        transform: translate(0, 0);
     }
-
-    .news4 {
-        position: relative;
-        background-color: rgba(255, 255, 255, 1);
-        color: rgba(58, 53, 53, 0.5);
-        border-radius: 5px;
-        padding: 3px;
-        margin: 1px;
+    25% {
+        transform: translate(40px, 0);
     }
-
-    /************ Store updates box ************/
-    .box3 {
-        position: absolute;
-        top: 300px;
-        left: 1200px;
-        background-color: rgba(255, 255, 255, 0.8);
-        color: rgba(58, 53, 53, 0.5);
-        border-radius: 10px;
-        padding: 20px;
-        margin: 10px;
-        width: 250px;
+    50% {
+        transform: translate(40px, 100px);
     }
-
-    /*************************** Lifts, animations, sizes, colors and header styles ***************************/
-    /*Animation logic*/
-    @keyframes moveInRectangle {
-        0% {
-            transform: translate(0, 0);
-        }
-        25% {
-            transform: translate(40px, 0);
-        }
-        50% {
-            transform: translate(40px, 100px);
-        }
-        75% {
-            transform: translate(0, 100px);
-        }
-        100% {
-            transform: translate(0, 0);
-        }
+    75% {
+        transform: translate(0, 100px);
     }
-
-    /*Common Lift container styling*/
-    .lift-container {
-        border: 1px solid #000;
-        border-radius: 10px;
-        padding: 10px;
-        margin-bottom: 10px;
-        background-color: rgba(255, 255, 255);
-        height: 200px;
-    }
-
-    /*Green light rules and styles*/
-    .sidebar-status-light.green {
-        background-color: green;
-        animation: moveInRectangle 18s linear infinite;
-        margin-left: 5px;
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-    }
-
-    /*Red light rules and styles*/
-    .sidebar-status-light.red {
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        background-color: red;
-        margin-left: 5px;
-    }
-
-    /*Rectangle path for lift 1 to follow style*/
-    .path-rectangle {
-        position: absolute;
-        width: 40px;
-        height: 100px;
-        border: 1px solid black;
-        top: 178px;
-        left: 41px;
-    }
-
-    /*Rectangle path for lift 2 to follow style*/
-    .path-rectangle2 {
-        position: absolute;
-        width: 40px;
-        height: 100px;
-        border: 1px solid black;
-        top: 388px;
-        left: 41px;
-    }
-
-    /*Lift name styling for lift 1*/
-    .Lift-name-1 {
-        background-color: rgb(255, 154, 100);
-        border-radius: 5px;
-        padding: 3px;
-        margin: 1px;
-        position: absolute;
-        top: 10px;
-        left: 50px;
-        font-family: Lato sans-serif;
-        font-weight: bold;
-        font-size: 12px;
-    }
-
-    /*Lift name styling for lift 2*/
-    .Lift-name-2 {
-        background-color: rgba(255, 154, 100);
-        border-radius: 5px;
-        padding: 3px;
-        margin: 1px;
-        position: absolute;
-        top: 10px;
-        left: 50px;
-        font-family: Lato sans-serif;
-        font-weight: bold;
-        font-size: 12px;
+    100% {
+        transform: translate(0, 0);
     }
 }
 
-
-
-
-
-
-
-/*################################ MOBILE ################################*/
-@media (max-width: 600px) {
-    /************ Sidebar ************/
-    .sidebar-home {
-        display:none
-    }
-
-    /*Sidebar header*/
-    .text-header {
-        display:none
-    }
-
-    /************ Welcome box ************/
-    .box1 {
-        position: relative;
-        background-color: rgba(255, 255, 255, 0.9);
-        color: rgb(0, 0, 0);
-        border-radius: 10px;
-        padding: 15px;
-        margin: 20% 10px 10px;
-    }
-
-    /************ News box ************/
-    .box2 {
-        position: relative;
-        background-color: rgba(255, 255, 255, 0.8);
-        color: rgba(58, 53, 53, 0.5);
-        border-radius: 10px;
-        padding: 10px;
-        margin: 40px;
-        overflow-y: auto;
-        max-height: 20vh;
-    }
-
-    .news1 {
-        position: relative;
-        background-color: rgba(255, 255, 255, 1);
-        color: rgba(58, 53, 53, 0.5);
-        border-radius: 5px;
-        padding: 3px;
-        margin: 1px;
-    }
-
-    .news2 {
-        position: relative;
-        background-color: rgba(255, 255, 255, 1);
-        color: rgba(58, 53, 53, 0.5);
-        border-radius: 5px;
-        padding: 3px;
-        margin: 1px;
-    }
-
-    .news3 {
-        position: relative;
-        background-color: rgba(255, 255, 255, 1);
-        color: rgba(58, 53, 53, 0.5);
-        border-radius: 5px;
-        padding: 3px;
-        margin: 1px;
-    }
-
-    .news4 {
-        position: relative;
-        background-color: rgba(255, 255, 255, 1);
-        color: rgba(58, 53, 53, 0.5);
-        border-radius: 5px;
-        padding: 3px;
-        margin: 1px;
-    }
-
-    /************ Store updates box ************/
-    .box3 {
-        position: relative;
-        background-color: rgba(255, 255, 255, 0.8);
-        color: rgba(58, 53, 53, 0.5);
-        border-radius: 10px;
-        padding: 20px;
-        margin: 10px;
-        overflow-y: auto;
-        max-height: 20vh;
-    }
-
-    /*************************** Lifts - animations, sizes, colors and header styles ***************************/
-    /*Animation logic = none/removed*/
-
-    /*Common Lift container styling*/
-    .lift-container {
-        display:none
-    }
-    /*Green light rules and styles*/
-    .sidebar-status-light.green {
-        display:none
-    }
-    /*Red light rules and styles*/
-    .sidebar-status-light.red {
-        display:none
-    }
-    /*Rectangle path for lift 1 to follow style*/
-    .path-rectangle {
-        display:none
-    }
-    /*Rectangle path for lift 2 to follow style*/
-    .path-rectangle2 {
-        display:none
-    }
-    /*Lift name styling for lift 1*/
-    .Lift-name-1 {
-        display:none
-    }
-    /*Lift name styling for lift 2*/
-    .Lift-name-2 {
-        display:none
-    }
+.lift-container {
+    border: 1px solid #000;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: rgba(255, 255, 255);
+    height: 200px;
 }
 
+.sidebar-status-light.green {
+    background-color: green;
+    animation: moveInRectangle 18s linear infinite;
+    margin-left: 5px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+.sidebar-status-light.red {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: red;
+    margin-left: 5px;
+}
+
+.path-rectangle {
+    position: absolute;
+    width: 40px;
+    height: 100px;
+    border: 1px solid black;
+    top: 178px;
+    left: 41px;
+}
+.path-rectangle2 {
+    position: absolute;
+    width: 40px;
+    height: 100px;
+    border: 1px solid black;
+    top: 388px;
+    left: 41px;
+}
+
+.Lift-name-1 {
+    background-color: rgb(255, 154, 100);
+    border-radius: 5px;
+    padding: 3px;
+    margin: 1px;
+    position: absolute;
+    top: 10px;
+    left: 50px;
+    font-family: Lato sans-serif;
+    font-weight: bold;
+    font-size: 12px;
+}
+.Lift-name-2 {
+    background-color: rgba(255, 154, 100);
+    border-radius: 5px;
+    padding: 3px;
+    margin: 1px;
+    position: absolute;
+    top: 10px;
+    left: 50px;
+    font-family: Lato sans-serif;
+    font-weight: bold;
+    font-size: 12px;
+}

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { getEmployee, createEmployee, updateEmployee, deleteEmployee } from '../../../Api/AdminApi/AdminApi.jsx';
 import '../AdminAccount.css';
 
-function AdminEmployeeManagement({ employees, setEmployees, searchedEmployee, setSearchedEmployee }) {
+function EmployeeManagement({ employees, setEmployees, searchedEmployee, setSearchedEmployee }) {
     const [searchEmployeeUsername, setSearchEmployeeUsername] = useState('');
     const [newEmployeeName, setNewEmployeeName] = useState('');
     const [newEmployeePosition, setNewEmployeePosition] = useState('');
@@ -121,4 +121,4 @@ function AdminEmployeeManagement({ employees, setEmployees, searchedEmployee, se
     );
 }
 
-export default AdminEmployeeManagement;
+export default EmployeeManagement;

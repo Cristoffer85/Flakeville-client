@@ -40,21 +40,21 @@ function Weather() {
     }, []);
 
     return (
-        <div className="accountContainer">
+        <div>
             <div className="sidebar">
                 <p onClick={() => setCurrentSection('currentConditions')}>Current Conditions</p>
                 <p onClick={() => setCurrentSection('fiveDayConditions')}>5-Day Conditions</p>
             </div>
-                {currentSection === 'currentConditions' && (
-                    <div className="currentWeatherConditionsBox">
-                        <CurrentWeatherConditions data={currentConditions}/>
-                    </div>
-                )}
-                {currentSection === 'fiveDayConditions' && (
-                    <div className="fiveDayWeatherConditionsBox">
-                        <FiveDayWeatherConditions data={fiveDayConditions}/>
-                    </div>
-                )}
+            {currentSection === 'currentConditions' && (
+                <div className="currentWeatherConditionsBox">
+                    <CurrentWeatherConditions data={currentConditions}/>
+                </div>
+            )}
+            {currentSection === 'fiveDayConditions' && (
+                <div className="fiveDayWeatherConditionsBox">
+                    <FiveDayWeatherConditions data={fiveDayConditions}/>
+                </div>
+            )}
         </div>
     );
 }
