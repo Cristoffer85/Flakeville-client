@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import CartContext from '../../Contexts/CartContext/CartContext.jsx';
 import { sendOrder } from '../../Api/CartApi/CartApi';
+import Cookies from 'js-cookie';
 
 import './Cart.css';
 

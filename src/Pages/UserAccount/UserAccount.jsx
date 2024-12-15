@@ -27,9 +27,9 @@ function UserAccount() {
     };
 
     return (
-        <div className="accountContainer">
+        <div>
             <div className="sidebar">
-                <p className="welcome-message">Welcome, {username}!</p>
+                <p className="sidebar-welcome-message">Welcome, {username}!</p>
                 <p onClick={() => setCurrentSection('userDetails')}>User Details</p>
                 <p onClick={() => setCurrentSection('previousOrders')}>Previous Orders</p>
             </div>

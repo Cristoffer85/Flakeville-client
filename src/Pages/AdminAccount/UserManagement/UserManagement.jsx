@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { getUser, createUser, updateUser, deleteUser } from '../../../Api/AdminApi/AdminApi.jsx';
 import '../AdminAccount.css';
 
-function AdminUserManagement({ users, setUsers, searchedUser, setSearchedUser }) {
+function UserManagement({ users, setUsers, searchedUser, setSearchedUser }) {
     const [searchUsername, setSearchUsername] = useState('');
     const [newUsername, setNewUsername] = useState('');
     const [newPassword, setNewPassword] = useState('');
@@ -131,4 +131,4 @@ function AdminUserManagement({ users, setUsers, searchedUser, setSearchedUser })
     );
 }
 
-export default AdminUserManagement;
+export default UserManagement;

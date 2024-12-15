@@ -1,133 +1,57 @@
-/*################################ TABLET/DESKTOP ################################*/
-@media (min-width: 600px) {
-    /*********************************** Common styling *******************************/
-    .currentWeatherConditionsBox {
-        margin-top: 60px;
-        margin-bottom: 47%;
-        max-height: 90vh;
-        overflow-y: auto;
-        position: relative;
-        background-color: rgba(255, 255, 255);
-        color: rgba(58, 53, 53, 0.5);
-        border-radius: 10px;
-        padding: 20px;
-        width: 90%;
-        height: auto;
-    }
+.currentWeatherConditionsBox {
+    position: fixed;
+    left: 0;
+    top: 80px;
+    margin-left: 220px;
+    background-color: rgba(255, 255, 255);
+    color: rgba(58, 53, 53, 0.5);
+    border-radius: 10px;
+    padding: 20px;
+    width: 25%;
+}
 
-    .fiveDayWeatherConditionsBox {
-        margin-top: 60px;
-        max-height: 90vh;
-        overflow-y: auto;
-        position: relative;
-        background-color: rgba(255, 255, 255);
-        color: rgba(58, 53, 53, 0.5);
-        border-radius: 10px;
-        padding: 20px;
-        width: 90%;
-        height: auto;
-    }
-
-
-    /******************************* 5-day forecast styling ****************************/
-    /*############### main scrollbar links styling ###################*/
-
-    .forecast {
-        width: 30vw;
-        position: relative;
-        margin-bottom: -10px;
-        margin-right: 120px;
-        border-radius: 10px;
-        background-color: rgba(128, 128, 128, 0.5);
-        color: white;
-    }
-
-    /*#################### Popup details styling ######################*/
-    .forecast-details {
-        position: relative;
-        background-color: #fff;
-        padding: 10px;
-        border: 1px solid #ccc;
-        display: none;
-        color: black;
-        width: 30vw;
-    }
-
-    /*#################### Show clicked link ##########################*/
-    .forecast-details.active {
-        display: block;
-    }
-
-    /*###################### Clicked link styling ######################*/
-    .forecast.active {
-        background-color: rgba(255, 255, 255, 0.8);
-        color: black;
-    }
+.fiveDayWeatherConditionsBox {
+    position: fixed;
+    left: 0;
+    top: 80px;
+    margin-left: 220px;
+    overflow-y: auto;
+    background-color: rgba(255, 255, 255);
+    color: rgba(58, 53, 53, 0.5);
+    border-radius: 10px;
+    padding: 20px;
+    width: 40%;
 }
 
 
+/******************************* 5-day forecast styling ****************************/
+/*############### main scrollbar links styling ###################*/
 
-
-/*################################ MOBILE ################################*/
-
-@media (max-width: 600px) {
-    /*********************************** Common styling *******************************/
-    .currentWeatherConditionsBox {
-        margin-top: 200px;
-        max-height: 90vh;
-        overflow-y: auto;
-        position: absolute;
-        background-color: rgba(255, 255, 255);
-        color: rgba(58, 53, 53, 0.5);
-        border-radius: 10px;
-        padding: 20px;
-        width: 90%;
-        height: auto;
-    }
-
-    .fiveDayWeatherConditionsBox {
-        margin-top: 200px;
-        max-height: 90vh;
-        overflow-y: auto;
-        position: absolute;
-        background-color: rgba(255, 255, 255);
-        color: rgba(58, 53, 53, 0.5);
-        border-radius: 10px;
-        padding: 20px;
-        width: 90%;
-        height: auto;
-    }
-
-    /******************************* 5-day forecast styling ****************************/
-    /*############### main scrollbar links styling ###################*/
-
-    .forecast {
-        width: 80vw;
-        position: relative;
-        margin-bottom: -10px;
-        border-radius: 10px;
-        background-color: rgba(128, 128, 128, 0.5);
-        color: white;
-    }
-
-    /*#################### Popup details styling ######################*/
-    .forecast-details {
-        position: relative;
-        background-color: #fff;
-        padding: 10px;
-        border: 1px solid #ccc;
-        display: none;
-        color: black;
-    }
-
-    /*#################### Show clicked link ##########################*/
-    .forecast-details.active {
-        display: block;
-    }
-
-    /*###################### Clicked link styling ######################*/
-    .forecast.active {
-        background-color: rgba(255, 255, 255, 0.8);
-        color: black;
-    }
+.forecast {
+    width: 30vw;
+    position: relative;
+    margin-bottom: -10px;
+    margin-right: 120px;
+    border-radius: 10px;
+    background-color: rgba(128, 128, 128, 0.5);
+    color: white;
+}
+/*#################### Popup details styling ######################*/
+.forecast-details {
+    position: relative;
+    background-color: #fff;
+    padding: 10px;
+    border: 1px solid #ccc;
+    display: none;
+    color: black;
+    width: 30vw;
+}
+/*#################### Show clicked link ##########################*/
+.forecast-details.active {
+    display: block;
+}
+/*###################### Clicked link styling ######################*/
+.forecast.active {
+    background-color: rgba(255, 255, 255, 0.8);
+    color: black;
 }

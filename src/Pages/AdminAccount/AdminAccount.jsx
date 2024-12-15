@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 
-import AdminUserManagement from '../../Pages/AdminAccount/AdminUserManagement/AdminUserManagement.jsx';
-import AdminEmployeeManagement from '../../Pages/AdminAccount/AdminEmployeeManagement/AdminEmployeeManagement.jsx';
+import UserManagement from '../../Pages/AdminAccount/UserManagement/UserManagement.jsx';
+import EmployeeManagement from '../../Pages/AdminAccount/EmployeeManagement/EmployeeManagement.jsx';
 import { getAllUsers, getAllEmployees } from '../../Api/AdminApi/AdminApi.jsx';
 
 import './AdminAccount.css';
@@ -21,15 +21,15 @@ function AdminAccount() {
     }, []);
 
     return (
-        <div className="accountContainer">
+        <div>
             <div className="sidebar">
-                <p className="welcome-message">Welcome, {username}!</p>
+                <p className="sidebar-welcome-message">Welcome, {username}!</p>
                 <p onClick={() => setCurrentSection('employeeManagement')}>Employee Management</p>
                 <p onClick={() => setCurrentSection('userManagement')}>User Management</p>
             </div>
 
             {currentSection === 'userManagement' && (
-                <AdminUserManagement
+                <UserManagement
                     users={users}
                     setUsers={setUsers}
                     searchedUser={searchedUser}
@@ -38,7 +38,7 @@ function AdminAccount() {
             )}
 
             {currentSection === 'employeeManagement' && (
-                <AdminEmployeeManagement
+                <EmployeeManagement
                     employees={employees}
                     setEmployees={setEmployees}
                     searchedEmployee={searchedEmployee}

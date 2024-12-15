@@ -62,7 +62,7 @@ function Employee() {
     const handleCreateProduct = async (event) => {
         event.preventDefault();
         await createProduct(createProductFormFields);
-        setCreateProductFormFields({ name: '', description: '', price: '', category: '' }); // Clear the form
+        setCreateProductFormFields({ name: '', description: '', price: '', category: '' }); 
         await fetchProducts();
     };
 
@@ -103,13 +103,11 @@ function Employee() {
     };
 
     // #################### SKI LIFTS ####################
-
     useEffect(() => {
         fetchLifts()
             .then(data => setLifts(data))
             .catch(error => console.error('Error:', error));
     }, []);
-
     const handleStartLift = async (id) => {
         try {
             await startLift(id);
@@ -121,7 +119,6 @@ function Employee() {
             console.error('Error starting lift:', error);
         }
     };
-
     const handleStopLift = async (id) => {
         try {
             await stopLift(id);
@@ -135,9 +132,9 @@ function Employee() {
     };
 
     return (
-        <div className="accountContainer">
+        <div>
             <div className="sidebar">
-                <p className="welcome-message">WELCOME, {username}!</p>
+                <p className="sidebar-welcome-message">WELCOME, {username}!</p>
                 <p onClick={() => setCurrentSection('employeeDetails')}>Employee Details</p>
                 <p onClick={() => setCurrentSection('productManagement')}>Product Management</p>
                 <p onClick={() => setCurrentSection('liftManagement')}>Lift Management</p>
