@@ -1,8 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 
-import Products from "../../Components/Products/Products.jsx";
 import { categories } from "../../Components/Categories/Categories.jsx";
-
 import CartContext from "../../Contexts/CartContext/CartContext.jsx";
 import { fetchProductsByCategory, getAllProducts } from "../../Api/StoreApi/StoreApi.jsx";
 
@@ -75,7 +73,12 @@ function Store() {
             </div>
             <div className="product-container">
                 {filteredProducts.map((product, index) => (
-                    <Products key={index} product={product} addToCart={addToCart} />
+                    <div key={index} className="product-item">
+                        <h3>{product.name}</h3>
+                        <p>{product.description}</p>
+                        <p>${product.price}</p>
+                        <button onClick={() => addToCart(product, 1)}>Add to Cart</button>
+                    </div>
                 ))}
             </div>
         </div>
