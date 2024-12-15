@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { getOneProduct, getAllProducts, createProduct, updateProduct, deleteProduct } from '../../Api/ProductApi/ProductApi.jsx';
+import { getAllProducts, createProduct, getOneProduct, updateProduct, deleteProduct } from '../../../Api/ProductApi/ProductApi.jsx';
 
-function Products() {
+import '../EmployeeAccount.css';
+
+function ProductManagement() {
     const [products, setProducts] = useState([]);
     const [createProductFormFields, setCreateProductFormFields] = useState({ name: '', description: '', price: '', category: '' });
     const [updateProductFormFields, setUpdateProductFormFields] = useState({ Id: '', name: '', description: '', price: '', category: '' });
@@ -127,4 +129,4 @@ function Products() {
     );
 }
 
-export default Products;
+export default ProductManagement;
