@@ -1,4 +1,3 @@
-import Cookies from 'js-cookie';
 import config from '../Apiconfig';
 
 export const registerUser = async (username, password) => {
