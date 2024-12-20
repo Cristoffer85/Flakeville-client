@@ -49,7 +49,7 @@ const Chat = () => {
     try {
       const response = await sendMessage(msgDto);
       alert(response);
-      fetchMessages(sender); // Refresh messages after sending a new one
+      fetchMessages(receiver); // Refresh messages for the receiver after sending a new one
     } catch (error) {
       console.error('Error sending message:', error);
       alert('Failed to send message');
