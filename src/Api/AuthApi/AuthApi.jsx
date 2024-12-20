@@ -31,12 +31,3 @@ export const loginUser = async (username, password) => {
         throw new Error('Login failed: ' + await response.text());
     }
 };
-
-export const checkUsername = async (username) => {
-    const response = await fetch(`${config.backendUrl}/checkUsername/${username}`);
-    if (response.status === 409) {
-        return true; // Username is taken
-    } else {
-        return false; // Username is available
-    }
-};
