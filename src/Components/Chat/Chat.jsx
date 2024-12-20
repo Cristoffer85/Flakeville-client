@@ -1,18 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
-import { sendMessage } from '../../Api/ChatApi/ChatApi'; // Import sendMessage from ChatApi
+import { sendMessage } from '../../Api/ChatApi/ChatApi';
+import { getAllUserNames } from '../../Api/UserApi/UserApi'; // Import getAllUserNames
 import './Chat.css';
 
 const Chat = () => {
   const [sender, setSender] = useState('');
   const [receiver, setReceiver] = useState('');
   const [message, setMessage] = useState('');
+  const [userNames, setUserNames] = useState([]);
 
   useEffect(() => {
     const username = Cookies.get('username');
     if (username) {
       setSender(username);
     }
+
+    const fetchUserNames = async () => {
+      try {
+        const data = await getAllUserNames();
+        setUserNames(data);
+      } catch (error) {
+        console.error('Error fetching user names:', error);
+      }
+    };
+
+    fetchUserNames();
   }, []);
 
   const handleSubmit = async (e) => {
@@ -32,11 +45,13 @@ const Chat = () => {
     <div className="chat-container">
       <form onSubmit={handleSubmit} className="chat-form">
         <div>
-          <input type="text" value={sender} readOnly />
-        </div>
-        <div>
-          <label>Receiver:</label>
-          <input type="text" value={receiver} onChange={(e) => setReceiver(e.target.value)} required />
+          <label>Send message to:</label>
+          <select value={receiver} onChange={(e) => setReceiver(e.target.value)} required>
+            <option value="">Select a user</option>
+            {userNames.map((user, index) => (
+              <option key={index} value={user.username}>{user.username}</option>
+            ))}
+          </select>
         </div>
         <div>
           <label>Message:</label>

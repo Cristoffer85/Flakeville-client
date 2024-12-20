@@ -28,3 +28,11 @@ export const updateUserDetails = async (username, email, telephone, birthday, ad
     });
     return await response.json();
 };
+
+export const getAllUserNames = async () => {
+    const response = await fetch(`${config.backendUrl}/chat/getAllUserNames`);
+    if (!response.ok) {
+        throw new Error('Failed to fetch user names: ' + await response.text());
+    }
+    return await response.json();
+};
