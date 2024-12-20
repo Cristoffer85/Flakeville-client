@@ -16,8 +16,12 @@ const Chat = () => {
     if (username) {
       setSender(username);
       fetchMessages(username);
+      const interval = setInterval(() => fetchMessages(username), 5000); // Poll every 5 seconds
+      return () => clearInterval(interval); // Cleanup on unmount
     }
+  }, []);
 
+  useEffect(() => {
     const fetchUserNames = async () => {
       try {
         const data = await getAllUserNames();
@@ -49,6 +53,7 @@ const Chat = () => {
     try {
       const response = await sendMessage(msgDto);
       alert(response);
+      fetchMessages(sender); // Refresh messages for the sender after sending a new one
       fetchMessages(receiver); // Refresh messages for the receiver after sending a new one
     } catch (error) {
       console.error('Error sending message:', error);
