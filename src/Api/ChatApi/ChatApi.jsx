@@ -16,3 +16,17 @@ export const sendMessage = async (msgDto) => {
 
     return response.data;
 };
+
+export const getMessages = async (username) => {
+    const token = Cookies.get('token');
+    const response = await axios.get(`${config.backendUrl}/rabbitmq/subscribe/${username}`, {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    });
+
+    if (response.status !== 200) {
+        throw new Error('Failed to fetch messages: ' + response.statusText);
+    }
+    return response.data;
+};
