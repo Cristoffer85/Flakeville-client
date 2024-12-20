@@ -1,45 +1,51 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import Cookies from 'js-cookie';
+import { sendMessage } from '../../Api/ChatApi/ChatApi'; // Import sendMessage from ChatApi
+import './Chat.css';
 
-function Chat() {
-    const [messages, setMessages] = useState([]);
-    const [newMessage, setNewMessage] = useState('');
-    const [sender, setSender] = useState('Pelle72');
-    const [receiver, setReceiver] = useState('Receiver');
+const Chat = () => {
+  const [sender, setSender] = useState('');
+  const [receiver, setReceiver] = useState('');
+  const [message, setMessage] = useState('');
 
-    useEffect(() => {
-        const eventSource = new EventSource('http://localhost:8080/rabbitmq/subscribe');
-        eventSource.onmessage = (event) => {
-            setMessages((prevMessages) => [...prevMessages, event.data]);
-        };
-        return () => {
-            eventSource.close();
-        };
-    }, []);
+  useEffect(() => {
+    const username = Cookies.get('username');
+    if (username) {
+      setSender(username);
+    }
+  }, []);
 
-    const sendMessage = async () => {
-        const msgDto = { sender, receiver, message: newMessage };
-        await axios.post('http://localhost:8080/rabbitmq/publish', msgDto);
-        setNewMessage('');
-    };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const msgDto = { sender, receiver, message };
 
-    return (
+    try {
+      const response = await sendMessage(msgDto);
+      alert(response);
+    } catch (error) {
+      console.error('Error sending message:', error);
+      alert('Failed to send message');
+    }
+  };
+
+  return (
+    <div className="chat-container">
+      <form onSubmit={handleSubmit} className="chat-form">
         <div>
-            <h2>Chat</h2>
-            <div>
-                {messages.map((msg, index) => (
-                    <p key={index}>{msg}</p>
-                ))}
-            </div>
-            <input
-                type="text"
-                value={newMessage}
-                onChange={(e) => setNewMessage(e.target.value)}
-                placeholder="Type a message"
-            />
-            <button onClick={sendMessage}>Send</button>
+          <input type="text" value={sender} readOnly />
         </div>
-    );
-}
+        <div>
+          <label>Receiver:</label>
+          <input type="text" value={receiver} onChange={(e) => setReceiver(e.target.value)} required />
+        </div>
+        <div>
+          <label>Message:</label>
+          <textarea value={message} onChange={(e) => setMessage(e.target.value)} required />
+        </div>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  );
+};
 
 export default Chat;

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 import { getUserDetails, updateUserDetails } from '../../Api/UserApi/UserApi.jsx';
+import Chat from '../../Components/Chat/Chat.jsx';
 
 import './UserAccount.css';
 
@@ -32,6 +33,7 @@ function UserAccount() {
                 <p className="sidebar-welcome-message">Welcome, {username}!</p>
                 <p onClick={() => setCurrentSection('userDetails')}>User Details</p>
                 <p onClick={() => setCurrentSection('previousOrders')}>Previous Orders</p>
+                <Chat />
             </div>
 
             {currentSection === 'userDetails' && (

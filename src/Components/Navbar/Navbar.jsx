@@ -15,6 +15,7 @@ import CartContext from '../../Contexts/CartContext/CartContext.jsx';
 import LiftsContext from '../../Contexts/LiftsContext/LiftsContext.jsx';
 
 import {navigateBasedOnRole} from "../Router/Router.jsx";
+import { fetchLifts } from '../../Api/EmployeeApi/EmployeeApi';
 import SignIn from '../SignIn/SignIn.jsx';
 import SignUp from '../SignUp/SignUp.jsx';
 import SignOut from "../SignOut/SignOut.jsx";
@@ -84,16 +85,22 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout}) {
         setIsSnowing(true);
         setSnowKey(prevKey => prevKey + 1);
     };
-    const fetchLifts = async () => {
-        const response = await fetch('https://flakeville-server.onrender.com/skilifts/getAllLifts');
-        const data = await response.json();
-        if (Array.isArray(data)) {
-            setLifts(data);
-        } else {
-            console.error('Data is not an array:', data);
-        }
-        setLifts(data);
-    };
+    useEffect(() => {
+        const fetchLiftsData = async () => {
+            try {
+                const data = await fetchLifts();
+                if (Array.isArray(data)) {
+                    setLifts(data);
+                } else {
+                    console.error('Data is not an array:', data);
+                }
+            } catch (error) {
+                console.error('Failed to fetch lifts:', error);
+            }
+        };
+    
+        fetchLiftsData();
+    }, []);
 
     return (
         <nav className="navbar">

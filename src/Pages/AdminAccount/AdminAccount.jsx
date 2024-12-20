@@ -4,6 +4,7 @@ import Cookies from 'js-cookie';
 import UserManagement from '../../Pages/AdminAccount/UserManagement/UserManagement.jsx';
 import EmployeeManagement from '../../Pages/AdminAccount/EmployeeManagement/EmployeeManagement.jsx';
 import { getAllUsers, getAllEmployees } from '../../Api/AdminApi/AdminApi.jsx';
+import Chat from '../../Components/Chat/Chat.jsx';
 
 import './AdminAccount.css';
 
@@ -26,6 +27,7 @@ function AdminAccount() {
                 <p className="sidebar-welcome-message">Welcome, {username}!</p>
                 <p onClick={() => setCurrentSection('employeeManagement')}>Employee Management</p>
                 <p onClick={() => setCurrentSection('userManagement')}>User Management</p>
+                <Chat />
             </div>
 
             {currentSection === 'userManagement' && (

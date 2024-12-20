@@ -46,12 +46,9 @@ function App() {
                     <LiftsContext.Provider value={{lifts, setLifts}}>
                         <AppRouter isLoggedIn={isLoggedIn} handleLogin={handleLogin} handleLogout={handleLogout}
                                    showPopup={showPopup} setShowPopup={setShowPopup} setPageTitle={setPageTitle}/>
-                                   <Chat />
                     </LiftsContext.Provider>
                 </CartContext.Provider>
             </PageTitleContext.Provider>
-            
-            <Footer />
         </div>
     );
 }
