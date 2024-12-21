@@ -18,7 +18,6 @@ import { navigateBasedOnRole } from "../Router/Router.jsx";
 import { fetchLifts } from '../../Api/EmployeeApi/EmployeeApi';
 import SignIn from '../SignIn/SignIn.jsx';
 import SignUp from '../SignUp/SignUp.jsx';
-import SignOut from "../SignOut/SignOut.jsx";
 import SnowfallEffect from '../SnowfallEffect/SnowfallEffect.jsx';
 
 function Navbar({ isLoggedIn, handleLogin, handleLogout }) {
@@ -77,8 +76,10 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout }) {
     };
 
     const handleSignOutClick = () => {
-        setShowPopup(true);
-        setFormType('SignOut');
+        handleLogout();
+        setTimeout(() => {
+            navigate('/');
+        }, 5);
     };
 
     const switchToSignIn = () => {
@@ -159,7 +160,6 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout }) {
                 <div className="login-and-SignInPopup" ref={popupRef}>
                     {formType === 'SignIn' && <SignIn setShowPopup={setShowPopup} handleLogin={handleLogin} />}
                     {formType === 'SignUp' && <SignUp setShowPopup={setShowPopup} handleLogin={handleLogin} switchToSignIn={switchToSignIn} />}
-                    {formType === 'SignOut' && <SignOut setShowPopup={setShowPopup} handleLogout={handleLogout} />}
                 </div>
             )}
             <SnowfallEffect key={snowKey} isSnowing={isSnowing} />
