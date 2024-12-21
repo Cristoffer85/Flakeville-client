@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import Cookies from "js-cookie";
+import Cookies from 'js-cookie';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import '../Navbar/Navbar.css';
 import logo from '../../Assets/Logo.png';
@@ -14,7 +16,7 @@ import PageTitleContext from '../../Contexts/PageTitleContext/PageTitleContext.j
 import CartContext from '../../Contexts/CartContext/CartContext.jsx';
 import LiftsContext from '../../Contexts/LiftsContext/LiftsContext.jsx';
 
-import { navigateBasedOnRole } from "../Router/Router.jsx";
+import { navigateBasedOnRole } from '../Router/Router.jsx';
 import { fetchLifts } from '../../Api/EmployeeApi/EmployeeApi';
 import SnowfallEffect from '../SnowfallEffect/SnowfallEffect.jsx';
 
@@ -50,15 +52,12 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout }) {
         navigate('/signin');
     };
 
-    const handleSignUpClick = () => {
-        navigate('/signup');
-    };
-
     const handleSignOutClick = () => {
         handleLogout();
+        toast.success('Successfully logged out.');
         setTimeout(() => {
             navigate('/');
-        }, 100); // Add a small delay to ensure state updates
+        }, 5); // Add a small delay to ensure state updates
     };
 
     const handleAccountClick = () => {

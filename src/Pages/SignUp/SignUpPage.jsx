@@ -28,10 +28,8 @@ function SignUpPage({ handleLogin }) {
             Cookies.set('token', data.jwt);
             handleLogin(data.username, data.jwt, data.role);
 
-            // Display success toast notification
             toast.success("User successfully registered!");
 
-            // Navigate to the respective page based on the user's role
             console.log('Navigating based on role:', data.role);
             navigateBasedOnRole(data.role, navigate);
         } catch (error) {
