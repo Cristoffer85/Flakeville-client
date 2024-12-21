@@ -48,9 +48,9 @@ function SignUpPage({ handleLogin }) {
             <form onSubmit={handleUserRegister}>
                 <Link to="/signin" className="back-to-signin">← Sign In</Link>
                 <h3>Sign Up</h3>
-                <input type="text" value={username} onChange={e => setUsername(e.target.value)} placeholder="Username" required />
-                <input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Password" required />
-                <input type="password" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} placeholder="Confirm Password" required />
+                <input type="text" value={username} onChange={e => setUsername(e.target.value)} placeholder="Username" required className="username-input" />
+                <input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Password" required className="password-input" />
+                <input type="password" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} placeholder="Confirm Password" required className="password-input" />
                 {usernameTaken && <p className="error">Username taken</p>}
                 <button type="submit">Register</button>
             </form>
