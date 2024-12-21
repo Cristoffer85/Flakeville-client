@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import AppRouter from './Components/Router/Router.jsx';
 import Cookies from 'js-cookie';
 
-import Chat from './Components/Chat/Chat.jsx';
 import Footer from './Components/Footer/Footer.jsx';
 import PageTitleContext from './Contexts/PageTitleContext/PageTitleContext.jsx';
 import CartContext from './Contexts/CartContext/CartContext.jsx';

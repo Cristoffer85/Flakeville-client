@@ -12,7 +12,7 @@ import Cart from "../../Pages/Cart/Cart.jsx";
 import Weather from '../../Pages/Weather/Weather.jsx';
 import NotAuthorized from "../../Pages/NotAuthorized/NotAuthorized.jsx";
 
-export const navigateBasedOnRole = (role, username, navigate) => {
+export const navigateBasedOnRole = (role, navigate) => {
     console.log('Navigating based on role:', role);
     if (role === 'ADMIN') {
         navigate('/admin');

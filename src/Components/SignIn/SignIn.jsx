@@ -20,7 +20,7 @@ function SignIn({ setShowPopup, handleLogin }) {
             handleLogin(data.user.username, data.jwt, data.role.authority);
 
             // Navigate to the respective page based on the user's role
-            navigateBasedOnRole(data.role.authority, data.user.username, navigate);
+            navigateBasedOnRole(data.role.authority, navigate);
         } catch (error) {
             console.log('Login failed:', error.message);
         }
