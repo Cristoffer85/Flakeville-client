@@ -16,37 +16,18 @@ import LiftsContext from '../../Contexts/LiftsContext/LiftsContext.jsx';
 
 import { navigateBasedOnRole } from "../Router/Router.jsx";
 import { fetchLifts } from '../../Api/EmployeeApi/EmployeeApi';
-import SignIn from '../SignIn/SignIn.jsx';
-import SignUp from '../SignUp/SignUp.jsx';
 import SnowfallEffect from '../SnowfallEffect/SnowfallEffect.jsx';
 
 function Navbar({ isLoggedIn, handleLogin, handleLogout }) {
     const { cart } = useContext(CartContext);
     const pageTitle = useContext(PageTitleContext);
-    const [showPopup, setShowPopup] = useState(false);
-    const [formType, setFormType] = useState('Account');
     const [isSnowing, setIsSnowing] = useState(false);
     const [snowKey, setSnowKey] = useState(0);
-    const popupRef = React.createRef();
     const navigate = useNavigate();
     const { lifts, setLifts } = useContext(LiftsContext);
 
     // Counter logic for the shopping cart, also present down in the return statement
     const totalItems = cart.reduce((total, product) => total + product.quantity, 0);
-
-    useEffect(() => {
-        const handleClickOutside = (event) => {
-            if (popupRef.current && !popupRef.current.contains(event.target)) {
-                setShowPopup(false);
-            }
-        }
-
-        document.addEventListener('mousedown', handleClickOutside);
-
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        }
-    }, [popupRef]);
 
     useEffect(() => {
         const fetchLiftsData = async () => {
@@ -66,25 +47,18 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout }) {
     }, []);
 
     const handleSignInClick = () => {
-        setShowPopup(true);
-        setFormType('SignIn');
+        navigate('/signin');
     };
 
     const handleSignUpClick = () => {
-        setShowPopup(true);
-        setFormType('SignUp');
+        navigate('/signup');
     };
 
     const handleSignOutClick = () => {
         handleLogout();
         setTimeout(() => {
             navigate('/');
-        }, 5);
-    };
-
-    const switchToSignIn = () => {
-        setShowPopup(true);
-        setFormType('SignIn');
+        }, 5); // Add a small delay to ensure state updates
     };
 
     const handleAccountClick = () => {
@@ -156,12 +130,6 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout }) {
                     </div>
                 </ul>
             </div>
-            {showPopup && (
-                <div className="login-and-SignInPopup" ref={popupRef}>
-                    {formType === 'SignIn' && <SignIn setShowPopup={setShowPopup} handleLogin={handleLogin} />}
-                    {formType === 'SignUp' && <SignUp setShowPopup={setShowPopup} handleLogin={handleLogin} switchToSignIn={switchToSignIn} />}
-                </div>
-            )}
             <SnowfallEffect key={snowKey} isSnowing={isSnowing} />
         </nav>
     );

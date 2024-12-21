@@ -11,6 +11,8 @@ import Store from '../../Pages/Store/Store.jsx';
 import Cart from "../../Pages/Cart/Cart.jsx";
 import Weather from '../../Pages/Weather/Weather.jsx';
 import NotAuthorized from "../../Pages/NotAuthorized/NotAuthorized.jsx";
+import SignInPage from '../../Pages/SignIn/SignInPage.jsx';
+import SignUpPage from '../../Pages/SignUp/SignUpPage.jsx';
 
 export const navigateBasedOnRole = (role, navigate) => {
     console.log('Navigating based on role:', role);
@@ -19,7 +21,7 @@ export const navigateBasedOnRole = (role, navigate) => {
     } else if (role === 'EMPLOYEE') {
         navigate('/employee');
     } else if (role === 'USER') {
-        navigate(`/user`);
+        navigate('/user');
     }
 }
 
@@ -48,6 +50,12 @@ function PageTitleUpdater({ setPageTitle }) {
             case '/cart':
                 pageTitle = 'SHOPPING CART';
                 break;
+            case '/signin':
+                pageTitle = 'SIGN IN';
+                break;
+            case '/signup':
+                pageTitle = 'SIGN UP';
+                break;
             default:
                 pageTitle = 'FLAKEVILLE HOME';
         }
@@ -73,6 +81,8 @@ function AppRouter({ isLoggedIn, handleLogin, handleLogout, username, role, show
                     <Route path="/employee" element={<HOC><EmployeeAcc {...commonProps} /></HOC>} />
                     <Route path="/user" element={<HOC><UserAcc {...commonProps} /></HOC>} />
                     <Route path="/cart" element={<Cart {...commonProps} />} />
+                    <Route path="/signin" element={<SignInPage {...commonProps} />} />
+                    <Route path="/signup" element={<SignUpPage {...commonProps} />} />
                     <Route path="*" element={<NotAuthorized />} />
                 </Routes>
             </div>
