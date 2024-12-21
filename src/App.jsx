@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import AppRouter from './Components/Router/Router.jsx';
 import Cookies from 'js-cookie';
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import PageTitleContext from './Contexts/PageTitleContext/PageTitleContext.jsx';
@@ -49,7 +49,17 @@ function App() {
                     </LiftsContext.Provider>
                 </CartContext.Provider>
             </PageTitleContext.Provider>
-            <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
+            <ToastContainer 
+                position="top-right" 
+                autoClose={5000} 
+                hideProgressBar={false} 
+                newestOnTop={false} 
+                closeOnClick 
+                rtl={false} 
+                pauseOnFocusLoss 
+                draggable 
+                pauseOnHover 
+            />
         </div>
     );
 }
