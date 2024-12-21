@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import AppRouter from './Components/Router/Router.jsx';
 import Cookies from 'js-cookie';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-import Footer from './Components/Footer/Footer.jsx';
 import PageTitleContext from './Contexts/PageTitleContext/PageTitleContext.jsx';
 import CartContext from './Contexts/CartContext/CartContext.jsx';
 import LiftsContext from './Contexts/LiftsContext/LiftsContext.jsx';
@@ -41,13 +42,14 @@ function App() {
     return (
         <div className="App">
             <PageTitleContext.Provider value={pageTitle}>
-                <CartContext.Provider value={{cart, setCart}}>
-                    <LiftsContext.Provider value={{lifts, setLifts}}>
+                <CartContext.Provider value={{ cart, setCart }}>
+                    <LiftsContext.Provider value={{ lifts, setLifts }}>
                         <AppRouter isLoggedIn={isLoggedIn} handleLogin={handleLogin} handleLogout={handleLogout}
-                                   showPopup={showPopup} setShowPopup={setShowPopup} setPageTitle={setPageTitle}/>
+                                   showPopup={showPopup} setShowPopup={setShowPopup} setPageTitle={setPageTitle} />
                     </LiftsContext.Provider>
                 </CartContext.Provider>
             </PageTitleContext.Provider>
+            <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
         </div>
     );
 }

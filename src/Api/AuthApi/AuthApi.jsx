@@ -12,7 +12,8 @@ export const registerUser = async (username, password) => {
     if (response.ok) {
         return await response.json();
     } else {
-        throw new Error('Registration failed: ' + await response.text());
+        const errorText = await response.text();
+        throw new Error(`Registration failed: ${errorText}`);
     }
 };
 
@@ -28,6 +29,7 @@ export const loginUser = async (username, password) => {
     if (response.ok) {
         return await response.json();
     } else {
-        throw new Error('Login failed: ' + await response.text());
+        const errorText = await response.text();
+        throw new Error(`Login failed: ${errorText}`);
     }
 };
