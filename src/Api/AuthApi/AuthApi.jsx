@@ -10,7 +10,9 @@ export const registerUser = async (username, password) => {
     });
 
     if (response.ok) {
-        return await response.json();
+        const data = await response.json();
+        // Ensure the role is included in the response
+        return { ...data, role: 'USER' };
     } else {
         const errorText = await response.text();
         throw new Error(`Registration failed: ${errorText}`);

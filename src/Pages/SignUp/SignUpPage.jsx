@@ -24,11 +24,16 @@ function SignUpPage({ handleLogin }) {
 
         try {
             const data = await registerUser(username, password);
+            console.log('Registration successful:', data);
             Cookies.set('token', data.jwt);
-            handleLogin(data.user.username, data.jwt, data.role.authority);
+            handleLogin(data.username, data.jwt, data.role);
+
+            // Display success toast notification
+            toast.success("User successfully registered!");
 
             // Navigate to the respective page based on the user's role
-            navigateBasedOnRole(data.role.authority, navigate);
+            console.log('Navigating based on role:', data.role);
+            navigateBasedOnRole(data.role, navigate);
         } catch (error) {
             console.log('Registration failed:', error.message);
             if (error.message.includes('already exists')) {
