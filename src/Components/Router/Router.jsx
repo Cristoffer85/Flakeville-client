@@ -60,7 +60,6 @@ function PageTitleUpdater({ setPageTitle }) {
 function AppRouter({ isLoggedIn, handleLogin, handleLogout, username, role, showPopup, setShowPopup, setPageTitle }) {
     const commonProps = { isLoggedIn, handleLogin, handleLogout, username, role, showPopup, setShowPopup };
 
-
     return (
         <Router>
             <PageTitleUpdater setPageTitle={setPageTitle} />

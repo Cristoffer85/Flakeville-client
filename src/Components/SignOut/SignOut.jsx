@@ -1,13 +1,16 @@
 import React from 'react';
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import './SignOut.css';
 
 function SignOut({ setShowPopup, handleLogout }) {
     const navigate = useNavigate();
+
     const handleYesClick = () => {
         handleLogout();
-        navigate('/');
         setShowPopup(false);
+        setTimeout(() => {
+            navigate('/');
+        }, 5); // Add a small delay to ensure state updates (Not redirected to unauthorized page and instead to home)
     };
 
     const handleNoClick = () => {
