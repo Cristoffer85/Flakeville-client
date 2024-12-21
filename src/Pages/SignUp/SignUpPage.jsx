@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
-import { registerUser } from '../../Api/AuthApi/AuthApi.jsx';
+import { registerUser } from '../../Api/AuthApi/AuthApi';
 import { navigateBasedOnRole } from '../../Components/Router/Router.jsx';
 import './SignUpPage.css';
 
@@ -32,6 +32,7 @@ function SignUpPage({ handleLogin }) {
     return (
         <div className="signUpPage">
             <form onSubmit={handleUserRegister}>
+                <Link to="/signin" className="back-to-signin">← Sign In</Link>
                 <h3>Sign Up</h3>
                 <input type="text" value={username} onChange={e => setUsername(e.target.value)} placeholder="Username" required />
                 <input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Password" required />

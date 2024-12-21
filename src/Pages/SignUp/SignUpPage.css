@@ -14,6 +14,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative; /* Add relative positioning to the form */
 }
 
 .signUpPage h3 {
@@ -44,4 +45,17 @@
 .signUpPage .error {
     color: red;
     margin-bottom: 10px;
+}
+
+.back-to-signin {
+    position: absolute;
+    top: 10px; 
+    left: 10px;
+    font-size: x-small;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.back-to-signin:hover {
+    text-decoration: underline;
 }
