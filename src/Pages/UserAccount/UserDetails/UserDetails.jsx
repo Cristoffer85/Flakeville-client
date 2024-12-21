@@ -16,12 +16,25 @@ function UserDetails({ username }) {
     const fetchUserDetails = async () => {
         const data = await getUserDetails(username);
         setUserDetails(data);
+        setUpdateEmail(data.email || '');
+        setUpdateTelephone(data.telephone || '');
+        setUpdateBirthday(data.birthday || '');
+        setUpdateAddress(data.address || '');
     };
 
     const handleUpdateUserDetails = async (event) => {
         event.preventDefault();
-        await updateUserDetails(username, updateEmail, updateTelephone, updateBirthday, updateAddress);
-        fetchUserDetails(); // Refresh user details after update
+        try {
+            await updateUserDetails(username, updateEmail, updateTelephone, updateBirthday, updateAddress);
+            fetchUserDetails(); // Fetch updated user details
+            // Clear the form inputs
+            setUpdateEmail('');
+            setUpdateTelephone('');
+            setUpdateBirthday('');
+            setUpdateAddress('');
+        } catch (error) {
+            console.error('Failed to update user details:', error);
+        }
     };
 
     return (
@@ -32,20 +45,24 @@ function UserDetails({ username }) {
             <p>Telephone: {userDetails.telephone}</p>
             <p>Birthday: {userDetails.birthday}</p>
             <p>Address: {userDetails.address}</p>
-            <h2>Update User Details</h2>
             <form onSubmit={handleUpdateUserDetails}>
-                <input type="text" value={updateEmail} onChange={e => setUpdateEmail(e.target.value)}
-                       placeholder="Update Email" required/>
-                <input type="text" value={updateTelephone}
-                       onChange={e => setUpdateTelephone(e.target.value)} placeholder="Update Telephone"
-                       required/>
-                <input type="text" value={updateBirthday}
-                       onChange={e => setUpdateBirthday(e.target.value)} placeholder="Update Birthday"
-                       required/>
-                <input type="text" value={updateAddress}
-                       onChange={e => setUpdateAddress(e.target.value)} placeholder="Update Address"
-                       required/>
-                <button type="submit">Submit Update</button>
+                <label>
+                    Email:
+                    <input type="email" value={updateEmail} onChange={(e) => setUpdateEmail(e.target.value)} />
+                </label>
+                <label>
+                    Telephone:
+                    <input type="tel" value={updateTelephone} onChange={(e) => setUpdateTelephone(e.target.value)} />
+                </label>
+                <label>
+                    Birthday:
+                    <input type="date" value={updateBirthday} onChange={(e) => setUpdateBirthday(e.target.value)} />
+                </label>
+                <label>
+                    Address:
+                    <input type="text" value={updateAddress} onChange={(e) => setUpdateAddress(e.target.value)} />
+                </label>
+                <button type="submit">Update Details</button>
             </form>
         </div>
     );

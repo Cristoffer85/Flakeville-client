@@ -26,7 +26,13 @@ export const updateUserDetails = async (username, email, telephone, birthday, ad
             address
         })
     });
-    return await response.json();
+
+    if (response.ok) {
+        return await response.json();
+    } else {
+        const errorText = await response.text();
+        throw new Error(`Failed to update user details: ${errorText}`);
+    }
 };
 
 export const getAllUserNames = async () => {
