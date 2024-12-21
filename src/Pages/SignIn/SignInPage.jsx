@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
-import { loginUser } from '../../Api/AuthApi/AuthApi.jsx';
+import { loginUser } from '../../Api/AuthApi/AuthApi';
 import { navigateBasedOnRole } from '../../Components/Router/Router.jsx';
 import './SignInPage.css';
 
@@ -32,6 +32,8 @@ function SignInPage({ handleLogin }) {
                 <input type="text" value={username} onChange={e => setUsername(e.target.value)} placeholder="Username" required />
                 <input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Password" required />
                 <button type="submit">Login</button>
+                <span className="register-text">Not a user yet? Register </span>
+                <Link to="/signup" className="register-button">here</Link>
             </form>
         </div>
     );

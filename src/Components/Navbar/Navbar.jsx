@@ -58,7 +58,7 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout }) {
         handleLogout();
         setTimeout(() => {
             navigate('/');
-        }, 5); // Add a small delay to ensure state updates
+        }, 100); // Add a small delay to ensure state updates
     };
 
     const handleAccountClick = () => {
@@ -117,7 +117,6 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout }) {
                         {!isLoggedIn && (
                             <>
                                 <button onClick={handleSignInClick} className="signin-button">Sign In</button>
-                                <button onClick={handleSignUpClick} className="signup-button">Sign Up</button>
                             </>
                         )}
                         {isLoggedIn && (
