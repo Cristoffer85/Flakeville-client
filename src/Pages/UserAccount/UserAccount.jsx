@@ -34,11 +34,12 @@ function UserAccount() {
                 <p className="sidebar-welcome-message">Welcome, {username}!</p>
                 <p onClick={() => setCurrentSection('userDetails')}>User Details</p>
                 <p onClick={() => setCurrentSection('previousOrders')}>Previous Orders</p>
-                <Chat />
+                <p onClick={() => setCurrentSection('chat')}>Chat</p>
             </div>
 
             {currentSection === 'userDetails' && <UserDetails username={username} />}
             {currentSection === 'previousOrders' && <PreviousOrders orders={userDetails.orders || []} />}
+            {currentSection === 'chat' && <Chat />}
         </div>
     );
 }

@@ -17,12 +17,13 @@ function EmployeeAccount() {
                 <p onClick={() => setCurrentSection('employeeDetails')}>Employee Details</p>
                 <p onClick={() => setCurrentSection('productManagement')}>Product Management</p>
                 <p onClick={() => setCurrentSection('liftManagement')}>Lift Management</p>
-                <Chat />
+                <p onClick={() => setCurrentSection('chat')}>Chat</p>
             </div>
 
             {currentSection === 'employeeDetails' && <EmployeeDetails username={username} />}
             {currentSection === 'productManagement' && <ProductManagement />}
             {currentSection === 'liftManagement' && <LiftManagement />}
+            {currentSection === 'chat' && <Chat />}
         </div>
     );
 }

@@ -27,7 +27,7 @@ function AdminAccount() {
                 <p className="sidebar-welcome-message">Welcome, {username}!</p>
                 <p onClick={() => setCurrentSection('employeeManagement')}>Employee Management</p>
                 <p onClick={() => setCurrentSection('userManagement')}>User Management</p>
-                <Chat />
+                <p onClick={() => setCurrentSection('chat')}>Chat</p>
             </div>
 
             {currentSection === 'userManagement' && (
@@ -38,7 +38,6 @@ function AdminAccount() {
                     setSearchedUser={setSearchedUser}
                 />
             )}
-
             {currentSection === 'employeeManagement' && (
                 <EmployeeManagement
                     employees={employees}
@@ -47,6 +46,7 @@ function AdminAccount() {
                     setSearchedEmployee={setSearchedEmployee}
                 />
             )}
+            {currentSection === 'chat' && <Chat />}
         </div>
     );
 }

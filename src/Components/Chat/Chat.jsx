@@ -15,11 +15,12 @@ const Chat = () => {
     const username = Cookies.get('username');
     if (username) {
       setSender(username);
-      fetchMessages(username);
-      const interval = setInterval(() => fetchMessages(username), 5000); // Poll every 5 seconds
+      const interval = setInterval(() => {
+        if (receiver) fetchMessages(receiver);
+      }, 5000); // Poll every 5 seconds
       return () => clearInterval(interval); // Cleanup on unmount
     }
-  }, []);
+  }, [receiver]);
 
   useEffect(() => {
     const fetchUserNames = async () => {
@@ -53,8 +54,7 @@ const Chat = () => {
     try {
       const response = await sendMessage(msgDto);
       alert(response);
-      fetchMessages(sender); // Refresh messages for the sender after sending a new one
-      fetchMessages(receiver); // Refresh messages for the receiver after sending a new one
+      fetchMessages(receiver);
     } catch (error) {
       console.error('Error sending message:', error);
       alert('Failed to send message');
@@ -62,41 +62,41 @@ const Chat = () => {
   };
 
   return (
-    <div className="chat-container">
-      <form onSubmit={handleSubmit} className="chat-form">
-        <div>
-          <label>Sender:</label>
-          <input type="text" value={sender} readOnly />
-        </div>
-        <div>
-          <label>Receiver:</label>
-          <select value={receiver} onChange={(e) => setReceiver(e.target.value)} required>
-            <option value="">Select a user</option>
+      <div className="chat-container">
+        {!receiver ? (
+          <div className="user-list">
             {userNames.map((user, index) => (
-              <option key={index} value={user.username}>{user.username}</option>
+              <div key={index} className="user" onClick={() => setReceiver(user.username)}>
+                {user.username}
+              </div>
             ))}
-          </select>
-        </div>
-        <div>
-          <label>Message:</label>
-          <textarea value={message} onChange={(e) => setMessage(e.target.value)} required />
-        </div>
-        <button type="submit">Send Message</button>
-      </form>
-      <div className="messages-container">
-        <h3>Messages</h3>
-        {messages.length > 0 ? (
-          messages.map((msg, index) => (
-            <div key={index} className="message">
-              <p><strong>{msg.sender}:</strong> {msg.message}</p>
-            </div>
-          ))
+          </div>
         ) : (
-          <p>No messages</p>
+          <>
+            <button onClick={() => setReceiver('')} className="back-button">Back</button>
+            <div className="messages-container">
+              <h3>Messages with {receiver}</h3>
+              {messages.length > 0 ? (
+                messages.map((msg, index) => (
+                  <div key={index} className="message">
+                    <p><strong>{msg.sender}:</strong> {msg.message}</p>
+                  </div>
+                ))
+              ) : (
+                <p>No messages</p>
+              )}
+            </div>
+            <form onSubmit={handleSubmit} className="chat-form">
+              <div>
+                <label>Message:</label>
+                <textarea value={message} onChange={(e) => setMessage(e.target.value)} required />
+              </div>
+              <button type="submit">Send Message</button>
+            </form>
+          </>
         )}
       </div>
-    </div>
   );
-};
+}
 
 export default Chat;
