@@ -3,7 +3,7 @@
 const config = {
             // 
     backendUrl: 'http://localhost:8080'      
- // backendUrl: 'https://flakeville-server.onrender.com' 
+ // backendUrl: 'https://flakeville.onrender.com' 
 };
 
 export default config;
