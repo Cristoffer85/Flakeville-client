@@ -15,12 +15,8 @@ const Chat = () => {
     const username = Cookies.get('username');
     if (username) {
       setSender(username);
-      const interval = setInterval(() => {
-        if (receiver) fetchMessages(receiver);
-      }, 5000); // Poll every 5 seconds
-      return () => clearInterval(interval); // Cleanup on unmount
     }
-  }, [receiver]);
+  }, []);
 
   useEffect(() => {
     const fetchUserNames = async () => {
@@ -37,14 +33,25 @@ const Chat = () => {
 
   const fetchMessages = async (username) => {
     try {
-      const data = await getMessages(username);
+      const data = await getMessages(username, sender); // Pass the sender as the logged-in user
       setMessages(data.map(msg => {
-        const [sender, message] = msg.split(':');
-        return { sender, message };
+        const [msgSender, message] = msg.split(':');
+        return { sender: msgSender, message };
       }));
     } catch (error) {
       console.error('Error fetching messages:', error);
     }
+  };
+
+  const handleUserClick = (username) => {
+    setReceiver(username);
+    setMessages([]); // Clear messages
+    fetchMessages(username); // Fetch new messages for the selected user
+  };
+
+  const handleClose = () => {
+    setReceiver('');
+    setMessages([]); // Clear messages
   };
 
   const handleSubmit = async (e) => {
@@ -52,9 +59,9 @@ const Chat = () => {
     const msgDto = { sender, receiver, message };
 
     try {
-      const response = await sendMessage(msgDto);
-      alert(response);
-      fetchMessages(receiver);
+      await sendMessage(msgDto);
+      setMessages(prevMessages => [...prevMessages, { sender, message }]); // Add the new message to the state
+      setMessage(''); // Clear the form
     } catch (error) {
       console.error('Error sending message:', error);
       alert('Failed to send message');
@@ -62,18 +69,22 @@ const Chat = () => {
   };
 
   return (
+    <div className="chat-background">
       <div className="chat-container">
         <div className="chat-content">
           <div className="user-list">
             {userNames.map((user, index) => (
-              <div key={index} className="user" onClick={() => setReceiver(user.username)}>
+              <div key={index} className="user" onClick={() => handleUserClick(user.username)}>
                 {user.username}
               </div>
             ))}
+            <div className="user" onClick={() => handleUserClick(sender)}>
+              {sender} (You)
+            </div>
           </div>
           {receiver && (
             <div className="chat-form-container">
-              <button onClick={() => setReceiver('')} className="close-button">X</button>
+              <button onClick={handleClose} className="close-button">X</button>
               <div className="messages-container">
                 <h3>Messages with {receiver}</h3>
                 {messages.length > 0 ? (
@@ -97,6 +108,7 @@ const Chat = () => {
           )}
         </div>
       </div>
+    </div>
   );
 }
 

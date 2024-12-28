@@ -2,11 +2,12 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import config from '../Apiconfig';
 
-export const getMessages = async (username) => {
+export const getMessages = async (username, loggedInUsername) => {
     const token = Cookies.get('token');
     const response = await axios.get(`${config.backendUrl}/rabbitmq/subscribe/${username}`, {
         headers: {
-            'Authorization': `Bearer ${token}`
+            'Authorization': `Bearer ${token}`,
+            'X-Username': loggedInUsername // Include the logged-in user's username
         }
     });
 
