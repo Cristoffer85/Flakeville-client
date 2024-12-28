@@ -26,14 +26,14 @@ const Chat = () => {
     const fetchUserNames = async () => {
       try {
         const data = await getAllUserNames();
-        setUserNames(data);
+        setUserNames(data.filter(user => user.username !== sender)); // Exclude the current user
       } catch (error) {
         console.error('Error fetching user names:', error);
       }
     };
 
     fetchUserNames();
-  }, []);
+  }, [sender]);
 
   const fetchMessages = async (username) => {
     try {
@@ -63,7 +63,7 @@ const Chat = () => {
 
   return (
       <div className="chat-container">
-        {!receiver ? (
+        <div className="chat-content">
           <div className="user-list">
             {userNames.map((user, index) => (
               <div key={index} className="user" onClick={() => setReceiver(user.username)}>
@@ -71,30 +71,31 @@ const Chat = () => {
               </div>
             ))}
           </div>
-        ) : (
-          <>
-            <button onClick={() => setReceiver('')} className="back-button">Back</button>
-            <div className="messages-container">
-              <h3>Messages with {receiver}</h3>
-              {messages.length > 0 ? (
-                messages.map((msg, index) => (
-                  <div key={index} className="message">
-                    <p><strong>{msg.sender}:</strong> {msg.message}</p>
-                  </div>
-                ))
-              ) : (
-                <p>No messages</p>
-              )}
-            </div>
-            <form onSubmit={handleSubmit} className="chat-form">
-              <div>
-                <label>Message:</label>
-                <textarea value={message} onChange={(e) => setMessage(e.target.value)} required />
+          {receiver && (
+            <div className="chat-form-container">
+              <button onClick={() => setReceiver('')} className="close-button">X</button>
+              <div className="messages-container">
+                <h3>Messages with {receiver}</h3>
+                {messages.length > 0 ? (
+                  messages.map((msg, index) => (
+                    <div key={index} className="message">
+                      <p><strong>{msg.sender}:</strong> {msg.message}</p>
+                    </div>
+                  ))
+                ) : (
+                  <p>No messages</p>
+                )}
               </div>
-              <button type="submit">Send Message</button>
-            </form>
-          </>
-        )}
+              <form onSubmit={handleSubmit} className="chat-form">
+                <div>
+                  <label>Message:</label>
+                  <textarea value={message} onChange={(e) => setMessage(e.target.value)} required />
+                </div>
+                <button type="submit">Send Message</button>
+              </form>
+            </div>
+          )}
+        </div>
       </div>
   );
 }

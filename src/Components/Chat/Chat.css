@@ -1,5 +1,5 @@
 .chat-container {
-  width: 300px;
+  width: 600px; /* Adjust the width as needed */
   padding: 20px;
   background-color: white;
   border: 1px solid #ccc;
@@ -7,8 +7,56 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   position: fixed;
   top: 80px;
-  left: 250px; 
-  z-index: 1000;
+  left: 220px; /* Adjust this value as needed to position it properly */
+  z-index: 2; /* Higher z-index to ensure it appears above the background */
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-content {
+  display: flex;
+}
+
+.user-list {
+  width: 200px; /* Adjust the width as needed */
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #ccc;
+  padding-right: 10px;
+}
+
+.user-list .user {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.user-list .user:hover {
+  background-color: #f0f0f0;
+}
+
+.chat-form-container {
+  flex-grow: 1;
+  padding-left: 10px;
+  position: relative;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.close-button:hover {
+  color: red;
+}
+
+.messages-container {
+  margin-bottom: 20px;
 }
 
 .chat-form div {
@@ -20,7 +68,6 @@
   margin-bottom: 5px;
 }
 
-.chat-form input,
 .chat-form textarea {
   width: 100%;
   padding: 8px;
@@ -39,19 +86,4 @@
 
 .chat-form button:hover {
   background-color: #0056b3;
-}
-
-.user-list {
-  display: flex;
-  flex-direction: column;
-}
-
-.user-list .user {
-  padding: 10px;
-  border-bottom: 1px solid #ccc;
-  cursor: pointer;
-}
-
-.user-list .user:hover {
-  background-color: #f0f0f0;
 }
