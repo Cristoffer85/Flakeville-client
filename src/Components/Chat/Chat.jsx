@@ -10,6 +10,7 @@ const Chat = () => {
   const [message, setMessage] = useState('');
   const [userNames, setUserNames] = useState([]);
   const [messages, setMessages] = useState([]);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     const username = Cookies.get('username');
@@ -38,15 +39,22 @@ const Chat = () => {
         const [msgSender, message] = msg.split(':');
         return { sender: msgSender, message };
       }));
+      setError('');
     } catch (error) {
-      console.error('Error fetching messages:', error);
+      if (error.response && error.response.status === 403) {
+        setError('You can only view your own messages.');
+      } else {
+        console.error('Error fetching messages:', error);
+      }
     }
   };
 
   const handleUserClick = (username) => {
     setReceiver(username);
     setMessages([]); // Clear messages
-    fetchMessages(username); // Fetch new messages for the selected user
+    if (username === sender) {
+      fetchMessages(username); // Fetch messages for the logged-in user
+    }
   };
 
   const handleClose = () => {
@@ -69,44 +77,43 @@ const Chat = () => {
   };
 
   return (
-    <div className="chat-background">
-      <div className="chat-container">
-        <div className="chat-content">
-          <div className="user-list">
-            {userNames.map((user, index) => (
-              <div key={index} className="user" onClick={() => handleUserClick(user.username)}>
-                {user.username}
-              </div>
-            ))}
-            <div className="user" onClick={() => handleUserClick(sender)}>
-              {sender} (You)
+    <div className="chat-container">
+      <div className="chat-content">
+        <div className="user-list">
+          {userNames.map((user, index) => (
+            <div key={index} className="user" onClick={() => handleUserClick(user.username)}>
+              {user.username}
             </div>
+          ))}
+          <div className="user" onClick={() => handleUserClick(sender)}>
+            {sender} (You)
           </div>
-          {receiver && (
-            <div className="chat-form-container">
-              <button onClick={handleClose} className="close-button">X</button>
-              <div className="messages-container">
-                <h3>Messages with {receiver}</h3>
-                {messages.length > 0 ? (
-                  messages.map((msg, index) => (
-                    <div key={index} className="message">
-                      <p><strong>{msg.sender}:</strong> {msg.message}</p>
-                    </div>
-                  ))
-                ) : (
-                  <p>No messages</p>
-                )}
-              </div>
-              <form onSubmit={handleSubmit} className="chat-form">
-                <div>
-                  <label>Message:</label>
-                  <textarea value={message} onChange={(e) => setMessage(e.target.value)} required />
-                </div>
-                <button type="submit">Send Message</button>
-              </form>
-            </div>
-          )}
         </div>
+        {receiver && (
+          <div className="chat-form-container">
+            <button onClick={handleClose} className="close-button">X</button>
+            <div className="messages-container">
+              <h3>Messages with {receiver}</h3>
+              {error && <p className="error-message">{error}</p>}
+              {messages.length > 0 ? (
+                messages.map((msg, index) => (
+                  <div key={index} className="message">
+                    <p><strong>{msg.sender}:</strong> {msg.message}</p>
+                  </div>
+                ))
+              ) : (
+                <p>No messages</p>
+              )}
+            </div>
+            <form onSubmit={handleSubmit} className="chat-form">
+              <div>
+                <label>Message:</label>
+                <textarea value={message} onChange={(e) => setMessage(e.target.value)} required />
+              </div>
+              <button type="submit">Send Message</button>
+            </form>
+          </div>
+        )}
       </div>
     </div>
   );
