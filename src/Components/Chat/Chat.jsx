@@ -36,12 +36,16 @@ const Chat = () => {
   const fetchMessages = async (username) => {
     try {
       const data = await getMessages(username, sender); // Pass the sender as the logged-in user
-      const fetchedMessages = data.map(msg => {
+      const groupedMessages = data.reduce((acc, msg) => {
         const [msgSender, message] = msg.split(':');
-        return { sender: msgSender, message };
-      });
-      setMessages(fetchedMessages);
-      setUserMessages(prev => ({ ...prev, [username]: fetchedMessages })); // Save fetched messages
+        if (!acc[msgSender]) {
+          acc[msgSender] = [];
+        }
+        acc[msgSender].push({ sender: msgSender, message });
+        return acc;
+      }, {});
+      setMessages(groupedMessages);
+      setUserMessages(prev => ({ ...prev, [username]: groupedMessages })); // Save fetched messages
       setError('');
     } catch (error) {
       if (error.response && error.response.status === 403) {
@@ -54,7 +58,7 @@ const Chat = () => {
 
   const handleUserClick = (username) => {
     setReceiver(username);
-    const userMsgs = userMessages[username] || [];
+    const userMsgs = userMessages[username] || {};
     setMessages(userMsgs); // Load messages for the selected user
     if (username === sender) {
       fetchMessages(username); // Fetch messages for the logged-in user
@@ -73,7 +77,10 @@ const Chat = () => {
     try {
       await sendMessage(msgDto);
       const newMessage = { sender, message };
-      setMessages(prevMessages => [...prevMessages, newMessage]); // Add the new message to the state
+      setMessages(prevMessages => ({
+        ...prevMessages,
+        [receiver]: [...(prevMessages[receiver] || []), newMessage]
+      })); // Add the new message to the state
       setUserMessages(prev => ({
         ...prev,
         [receiver]: [...(prev[receiver] || []), newMessage]
@@ -106,10 +113,17 @@ const Chat = () => {
             <div className="messages-container">
               <h3>Messages with {receiver}</h3>
               {error && <p className="error-message">{error}</p>}
-              {messages.length > 0 ? (
-                messages.map((msg, index) => (
-                  <div key={index} className="message">
-                    <p><strong>{msg.sender}:</strong> {msg.message}</p>
+              {Object.keys(messages).length > 0 ? (
+                Object.keys(messages).map((msgSender, index) => (
+                  <div key={index} className="message-group">
+                    <h4>{msgSender}</h4>
+                    {Array.isArray(messages[msgSender]) && messages[msgSender]
+                      .filter(msg => !(msg.sender === sender && receiver === sender))
+                      .map((msg, i) => (
+                        <div key={i} className="message">
+                          <p><strong>{msg.sender}:</strong> {msg.message}</p>
+                        </div>
+                      ))}
                   </div>
                 ))
               ) : (
