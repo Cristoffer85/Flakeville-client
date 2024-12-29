@@ -24,7 +24,7 @@ const Chat = () => {
     const fetchUserNames = async () => {
       try {
         const data = await getAllUserNames();
-        setUserNames(data.filter(user => user.username !== sender)); // Exclude the current user
+        setUserNames(data);
       } catch (error) {
         console.error('Error fetching user names:', error);
       }
