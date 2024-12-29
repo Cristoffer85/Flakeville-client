@@ -99,9 +99,6 @@ const Chat = () => {
               {user.username}
             </div>
           ))}
-          <div className="user" onClick={() => handleUserClick(sender)}>
-            {sender} (You)
-          </div>
         </div>
         {receiver && (
           <div className="chat-form-container">
