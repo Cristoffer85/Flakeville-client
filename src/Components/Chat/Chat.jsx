@@ -11,6 +11,7 @@ const Chat = () => {
   const [userNames, setUserNames] = useState([]);
   const [messages, setMessages] = useState([]);
   const [error, setError] = useState('');
+  const [userMessages, setUserMessages] = useState({}); // New state for user messages
 
   useEffect(() => {
     const username = Cookies.get('username');
@@ -35,10 +36,12 @@ const Chat = () => {
   const fetchMessages = async (username) => {
     try {
       const data = await getMessages(username, sender); // Pass the sender as the logged-in user
-      setMessages(data.map(msg => {
+      const fetchedMessages = data.map(msg => {
         const [msgSender, message] = msg.split(':');
         return { sender: msgSender, message };
-      }));
+      });
+      setMessages(fetchedMessages);
+      setUserMessages(prev => ({ ...prev, [username]: fetchedMessages })); // Save fetched messages
       setError('');
     } catch (error) {
       if (error.response && error.response.status === 403) {
@@ -51,7 +54,8 @@ const Chat = () => {
 
   const handleUserClick = (username) => {
     setReceiver(username);
-    setMessages([]); // Clear messages
+    const userMsgs = userMessages[username] || [];
+    setMessages(userMsgs); // Load messages for the selected user
     if (username === sender) {
       fetchMessages(username); // Fetch messages for the logged-in user
     }
@@ -68,12 +72,22 @@ const Chat = () => {
 
     try {
       await sendMessage(msgDto);
-      setMessages(prevMessages => [...prevMessages, { sender, message }]); // Add the new message to the state
+      const newMessage = { sender, message };
+      setMessages(prevMessages => [...prevMessages, newMessage]); // Add the new message to the state
+      setUserMessages(prev => ({
+        ...prev,
+        [receiver]: [...(prev[receiver] || []), newMessage]
+      })); // Update user messages
       setMessage(''); // Clear the form
     } catch (error) {
       console.error('Error sending message:', error);
       alert('Failed to send message');
     }
+  };
+
+  const handleMessageChange = (e) => {
+    const newMessage = e.target.value;
+    setMessage(newMessage);
   };
 
   return (
@@ -108,7 +122,7 @@ const Chat = () => {
             <form onSubmit={handleSubmit} className="chat-form">
               <div>
                 <label>Message:</label>
-                <textarea value={message} onChange={(e) => setMessage(e.target.value)} required />
+                <textarea value={message} onChange={handleMessageChange} required />
               </div>
               <button type="submit">Send Message</button>
             </form>
@@ -117,6 +131,6 @@ const Chat = () => {
       </div>
     </div>
   );
-}
+};
 
 export default Chat;
