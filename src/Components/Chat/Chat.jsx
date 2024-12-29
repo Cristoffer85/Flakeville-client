@@ -9,14 +9,13 @@ const Chat = () => {
   const [receiver, setReceiver] = useState('');
   const [message, setMessage] = useState('');
   const [userNames, setUserNames] = useState([]);
-  const [messages, setMessages] = useState({});
+  const [messages, setMessages] = useState([]);
   const [error, setError] = useState('');
 
   useEffect(() => {
     const username = Cookies.get('username');
     if (username) {
       setSender(username);
-      fetchMessages(username); // Fetch messages for the logged-in user on load
     }
   }, []);
 
@@ -36,30 +35,31 @@ const Chat = () => {
   const fetchMessages = async (username) => {
     try {
       const data = await getMessages(username, sender); // Pass the sender as the logged-in user
-      setMessages(prevMessages => ({
-        ...prevMessages,
-        [username]: data.map(msg => {
-          const [msgSender, message] = msg.split(':');
-          return { sender: msgSender, message };
-        })
+      setMessages(data.map(msg => {
+        const [msgSender, message] = msg.split(':');
+        return { sender: msgSender, message };
       }));
       setError('');
     } catch (error) {
-      console.error('Error fetching messages:', error);
+      if (error.response && error.response.status === 403) {
+        setError('You can only view your own messages.');
+      } else {
+        console.error('Error fetching messages:', error);
+      }
     }
   };
 
   const handleUserClick = (username) => {
     setReceiver(username);
-    setError(''); // Clear any previous error message
-    if (username === sender && !messages[username]) {
-      fetchMessages(username); // Fetch messages for the logged-in user if not already fetched
+    setMessages([]); // Clear messages
+    if (username === sender) {
+      fetchMessages(username); // Fetch messages for the logged-in user
     }
   };
 
   const handleClose = () => {
     setReceiver('');
-    setError(''); // Clear any previous error message
+    setMessages([]); // Clear messages
   };
 
   const handleSubmit = async (e) => {
@@ -68,10 +68,7 @@ const Chat = () => {
 
     try {
       await sendMessage(msgDto);
-      setMessages(prevMessages => ({
-        ...prevMessages,
-        [receiver]: [...(prevMessages[receiver] || []), { sender, message }]
-      }));
+      setMessages(prevMessages => [...prevMessages, { sender, message }]); // Add the new message to the state
       setMessage(''); // Clear the form
     } catch (error) {
       console.error('Error sending message:', error);
@@ -98,8 +95,8 @@ const Chat = () => {
             <div className="messages-container">
               <h3>Messages with {receiver}</h3>
               {error && <p className="error-message">{error}</p>}
-              {messages[receiver] && messages[receiver].length > 0 ? (
-                messages[receiver].map((msg, index) => (
+              {messages.length > 0 ? (
+                messages.map((msg, index) => (
                   <div key={index} className="message">
                     <p><strong>{msg.sender}:</strong> {msg.message}</p>
                   </div>
