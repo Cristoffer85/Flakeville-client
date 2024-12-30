@@ -1,9 +1,8 @@
 /* One file to change the backend URL. So much time saver.. right? */
 
 const config = {
-            // 
-       backendUrl: 'http://localhost:8080'      
-      //   backendUrl: 'https://flakeville-server-2.onrender.com' 
+            // backendUrl: 'http://localhost:8080'      
+         backendUrl: 'https://flakeville-server-2.onrender.com' 
 };
 
 export default config;
