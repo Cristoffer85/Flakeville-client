@@ -61,16 +61,20 @@ const Chat = () => {
     e.preventDefault();
     const msgDto = { sender, receiver, message };
     console.log('Sending message:', msgDto); // Debug log
-
+  
     try {
       await sendMessage(msgDto);
-      await fetchMessages(receiver); // Fetch messages again after sending a new message
+      // Optimistically update the local state
+      setMessages(prevMessages => [...prevMessages, `${sender}: ${message}`]);
       setMessage('');
+      // Optionally, refresh messages after a short delay
+      setTimeout(() => fetchMessages(receiver), 500);
     } catch (error) {
       console.error('Error sending message:', error);
       alert('Failed to send message');
     }
   };
+  
 
   const handleMessageChange = (e) => {
     setMessage(e.target.value);
