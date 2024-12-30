@@ -47,9 +47,9 @@ const Chat = () => {
     }
   };
 
-  const handleUserClick = (username) => {
+  const handleUserClick = async (username) => {
     setReceiver(username);
-    fetchMessages(username);
+    await fetchMessages(username);
   };
 
   const handleClose = () => {
@@ -64,7 +64,7 @@ const Chat = () => {
 
     try {
       await sendMessage(msgDto);
-      setMessages(prevMessages => [...prevMessages, `To ${receiver}: ${message}`]);
+      await fetchMessages(receiver); // Fetch messages again after sending a new message
       setMessage('');
     } catch (error) {
       console.error('Error sending message:', error);
@@ -94,8 +94,7 @@ const Chat = () => {
               {error && <p className="error-message">{error}</p>}
               {messages.length > 0 ? (
                 messages.map((msg, index) => {
-                  const [prefix, messageContent] = msg.split(': ');
-                  const messageSender = prefix.split(' ')[1];
+                  const [messageSender, messageContent] = msg.split(': ');
                   return (
                     <div key={index} className="message">
                       <p><strong>{messageSender}:</strong> {messageContent}</p>
