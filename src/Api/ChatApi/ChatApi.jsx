@@ -2,18 +2,19 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import config from '../Apiconfig';
 
-export const getMessages = async (username, loggedInUsername) => {
+export const getMessages = async (user1, user2) => {
     const token = Cookies.get('token');
-    const response = await axios.get(`${config.backendUrl}/rabbitmq/subscribe/${username}`, {
+    const response = await axios.get(`${config.backendUrl}/rabbitmq/subscribe/${user1}/${user2}`, {
         headers: {
             'Authorization': `Bearer ${token}`,
-            'X-Username': loggedInUsername // Include the logged-in user's username
+            'X-Username': user1 // Include the logged-in user's username
         }
     });
 
     if (response.status !== 200) {
         throw new Error('Failed to fetch messages: ' + response.statusText);
     }
+
     return response.data;
 };
 

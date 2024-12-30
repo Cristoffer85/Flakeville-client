@@ -11,7 +11,6 @@ const Chat = () => {
   const [userNames, setUserNames] = useState([]);
   const [messages, setMessages] = useState([]);
   const [error, setError] = useState('');
-  const [userMessages, setUserMessages] = useState({}); // New state for user messages
 
   useEffect(() => {
     const username = Cookies.get('username');
@@ -33,19 +32,11 @@ const Chat = () => {
     fetchUserNames();
   }, [sender]);
 
-  const fetchMessages = async (username) => {
+  const fetchMessages = async (receiver) => {
     try {
-      const data = await getMessages(username, sender); // Pass the sender as the logged-in user
-      const groupedMessages = data.reduce((acc, msg) => {
-        const [msgSender, message] = msg.split(':');
-        if (!acc[msgSender]) {
-          acc[msgSender] = [];
-        }
-        acc[msgSender].push({ sender: msgSender, message });
-        return acc;
-      }, {});
-      setMessages(groupedMessages);
-      setUserMessages(prev => ({ ...prev, [username]: groupedMessages })); // Save fetched messages
+      const data = await getMessages(sender, receiver);
+      console.log('Fetched messages:', data); // Debug log
+      setMessages(data);
       setError('');
     } catch (error) {
       if (error.response && error.response.status === 403) {
@@ -58,34 +49,23 @@ const Chat = () => {
 
   const handleUserClick = (username) => {
     setReceiver(username);
-    const userMsgs = userMessages[username] || {};
-    setMessages(userMsgs); // Load messages for the selected user
-    if (username === sender) {
-      fetchMessages(username); // Fetch messages for the logged-in user
-    }
+    fetchMessages(username);
   };
 
   const handleClose = () => {
     setReceiver('');
-    setMessages([]); // Clear messages
+    setMessages([]);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const msgDto = { sender, receiver, message };
+    console.log('Sending message:', msgDto); // Debug log
 
     try {
       await sendMessage(msgDto);
-      const newMessage = { sender, message };
-      setMessages(prevMessages => ({
-        ...prevMessages,
-        [receiver]: [...(prevMessages[receiver] || []), newMessage]
-      })); // Add the new message to the state
-      setUserMessages(prev => ({
-        ...prev,
-        [receiver]: [...(prev[receiver] || []), newMessage]
-      })); // Update user messages
-      setMessage(''); // Clear the form
+      setMessages(prevMessages => [...prevMessages, `To ${receiver}: ${message}`]);
+      setMessage('');
     } catch (error) {
       console.error('Error sending message:', error);
       alert('Failed to send message');
@@ -93,15 +73,14 @@ const Chat = () => {
   };
 
   const handleMessageChange = (e) => {
-    const newMessage = e.target.value;
-    setMessage(newMessage);
+    setMessage(e.target.value);
   };
 
   return (
     <div className="chat-container">
       <div className="chat-content">
         <div className="user-list">
-          {userNames.map((user, index) => (
+          {userNames.filter(user => user.username !== sender).map((user, index) => (
             <div key={index} className="user" onClick={() => handleUserClick(user.username)}>
               {user.username}
             </div>
@@ -113,19 +92,16 @@ const Chat = () => {
             <div className="messages-container">
               <h3>Messages with {receiver}</h3>
               {error && <p className="error-message">{error}</p>}
-              {Object.keys(messages).length > 0 ? (
-                Object.keys(messages).map((msgSender, index) => (
-                  <div key={index} className="message-group">
-                    <h4>{msgSender}</h4>
-                    {Array.isArray(messages[msgSender]) && messages[msgSender]
-                      .filter(msg => !(msg.sender === sender && receiver === sender))
-                      .map((msg, i) => (
-                        <div key={i} className="message">
-                          <p><strong>{msg.sender}:</strong> {msg.message}</p>
-                        </div>
-                      ))}
-                  </div>
-                ))
+              {messages.length > 0 ? (
+                messages.map((msg, index) => {
+                  const [prefix, messageContent] = msg.split(': ');
+                  const messageSender = prefix.split(' ')[1];
+                  return (
+                    <div key={index} className="message">
+                      <p><strong>{messageSender}:</strong> {messageContent}</p>
+                    </div>
+                  );
+                })
               ) : (
                 <p>No messages</p>
               )}
