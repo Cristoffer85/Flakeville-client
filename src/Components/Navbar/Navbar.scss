@@ -18,6 +18,14 @@ $logo-size: 3rem;
     align-items: center;
     justify-content: space-between;
   }
+
+  .menu-toggle {
+    display: none;
+  }
+
+  .navbar-menu {
+    display: none;
+  }
 }
 
 // ########### GROUP CONTAINERS ###########
@@ -109,25 +117,75 @@ $logo-size: 3rem;
 // Mobile
 @media (max-width: $mobile-max) {
   .navbar {
-    top: -0.35rem;
+    top: -0.35rem; 
 
-    .navbar-content {
-      flex-direction: row;
-    }
+    /* Base prop to set logo sizes, hide regular link+title content */
+    .main-logo,
+      .shoppingcart-logo {
+        margin-right: 1rem;
+        width: $logo-size;
+        height: $logo-size;
+        object-fit: contain;
+      }
 
-    .navbar-title {
+    .navbar-left-links,
+    .navbar-center {
       display: none;
     }
+      .menu-toggle {
+      display: block;
+      background: none;
+      border: none;
+      cursor: pointer;
+      img {
+        width: 2.5rem;
+        height: 2.5rem;
+      }
+    }
+
+    /* Styling for menu itself */
+    .navbar-menu {
+      display: none;
+      flex-direction: column;
+      align-items: flex-start;
+      position: absolute;
+      top: 4rem;
+      left: 0;
+      background: rgba(20, 1, 1, 0.97);
+      width: 100%;
+      padding: 1rem;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+      &.open {
+        display: flex;
+      }
+
+      /* Left links container */
+      .navbar-left-links {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        
+        li {
+          margin-bottom: 0.5rem;
+        }
+      }
+
+      /* Lift status container */
+      .lift-status-container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-top: 1rem;
+
+        .lift-status {
+          margin-bottom: 0.5rem;
+          font-size: 1rem;
+        }
+      }
+    }
   }
-  
-  // Uncomment these lines if you wish to stack items on mobile:
-  // .navbar-content {
-  //   flex-direction: column;
-  // }
-  // .navbar-left,
-  // .navbar-center,
-  // .navbar-right {
-  //   justify-content: center;
-  //   margin: 0.5rem 0;
-  // }
 }
