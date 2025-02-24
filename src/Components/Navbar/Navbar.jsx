@@ -4,7 +4,7 @@ import Cookies from 'js-cookie';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import '../Navbar/Navbar.css';
+import '../Navbar/Navbar.scss';
 import logo from '../../Assets/Logo.png';
 import accountLogo from '../../Assets/ProfileLogoGold.png';
 import snowflakeImg from '../../Assets/Snowflake.png';
@@ -57,7 +57,7 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout }) {
         toast.success('Successfully logged out.');
         setTimeout(() => {
             navigate('/');
-        }, 5); // Add a small delay to ensure state updates
+        }, 5); // Add a small delay to ensure state updates (This is important for the navbar to update correctly right now, dont remove it)
     };
 
     const handleAccountClick = () => {
@@ -75,60 +75,68 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout }) {
     return (
         <nav className="navbar">
             <div className="navbar-content">
+
+                {/* ------------- navbar-left -------------*/}
+                <div className="navbar-left">
                 <Link to="/">
                     <img src={logo} alt="Logo" className="main-logo" title="Flakeville home" />
                 </Link>
-                <ul>
-                    <div>
+
+                    {/* ------------- navbar-left-links -------------*/}
+                    <ul className="navbar-left-links">
                         <li>
-                            <Link to="/weather">
-                                <img className="nav-icon" src={weatherIcon} alt="Weather Icon" />
-                                <span className="nav-text">POWDERTRACKER</span>
-                            </Link>
+                        <Link to="/weather">
+                            <span className="weather-text">POWDERTRACKER</span>
+                        </Link>
                         </li>
                         <li>
-                            <Link to="/store">
-                                <img className="nav-icon" src={storeIcon} alt="Store Icon" />
-                                <span className="nav-text">STORE</span>
-                            </Link>
+                        <Link to="/store">
+                            <span className="store-text">STORE</span>
+                        </Link>
                         </li>
                         <li>
-                            <Link to="/cart">
-                                <img src={shoppingCartLogo} alt="Shopping Cart" className="shopping-cart-logo" />
-                                {totalItems > 0 && (
-                                    <div className="cart-count">
-                                        {totalItems}
-                                    </div>
-                                )}
-                            </Link>
+                        <Link to="/cart">
+                            <img src={shoppingCartLogo} alt="Shopping Cart" className="shoppingcart-logo" />
+                            {totalItems > 0 && (
+                            <div className="cart-count">{totalItems}</div>
+                            )}
+                        </Link>
                         </li>
-                        <h1 className="navbar-title">{pageTitle}</h1>
-                        <div className="lift-status-container">
-                            {lifts.map(lift => (
-                                <div key={lift.id} className="lift-status">
-                                    <p>Lift {lift.id}:</p>
-                                    <div className={`status-light ${lift.operating ? 'green' : 'red'}`}></div>
-                                </div>
-                            ))}
+                    </ul>
+                    </div>
+
+                {/* ------------- navbar-center -------------*/}
+                <div className="navbar-center">
+
+                    {/* Page title from context == Meaning altering this navbar-title here in navbar.scss alters the title style for all pages */}
+                    <h1 className="navbar-title">{pageTitle}</h1>
+
+                    {/* ------------- lift-status-container -------------*/}
+                    <div className="lift-status-container">
+                        {lifts.map(lift => (
+                        <div key={lift.id} className="lift-status">
+                            <p>Lift {lift.id}:</p>
+                            <div className={`status-light ${lift.operating ? 'green' : 'red'}`}></div>
                         </div>
+                        ))}
                     </div>
-                    <div>
-                        {!isLoggedIn && (
-                            <>
-                                <button onClick={handleSignInClick} className="signin-button">Sign In</button>
-                            </>
-                        )}
-                        {isLoggedIn && (
-                            <>
-                                <button onClick={handleSignOutClick} className="signout-button">Sign Out</button>
-                                <img src={accountLogo} onClick={handleAccountClick} className="account-logo" />
-                            </>
-                        )}
-                        <img src={snowflakeImg} onClick={handleStartSnow} className="snowflake-button" title="Click me for some magic!" />
-                    </div>
-                </ul>
+                </div>
+
+                {/* ------------- navbar-right -------------*/}
+                <div className="navbar-right">
+                {!isLoggedIn ? (
+                    <button onClick={handleSignInClick} className="signin-button">Sign In</button>
+                ) : (
+                    <>
+                    <button onClick={handleSignOutClick} className="signout-button">Sign Out</button>
+                    <img src={accountLogo} onClick={handleAccountClick} className="account-logo" />
+                    </>
+                )}
+                <img src={snowflakeImg} onClick={handleStartSnow} className="snowfall-logo" title="Click me for some magic!" />
+                </div>
+
             </div>
-            <SnowfallEffect key={snowKey} isSnowing={isSnowing} />
+        <SnowfallEffect key={snowKey} isSnowing={isSnowing} />
         </nav>
     );
 }
