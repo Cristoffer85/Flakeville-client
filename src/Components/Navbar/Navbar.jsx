@@ -99,7 +99,7 @@ function Navbar({ isLoggedIn, handleLogout }) {
                   src={accountLogo}
                   alt="Account"
                   onClick={handleAccountClick}
-                  style={{ width: '3rem', height: '3rem', cursor: 'pointer' }}
+                  style={{ width: '3rem', height: '3rem', cursor: 'pointer', marginRight: '0.8rem' }}
                   className="nav-link d-md-none"
                 />
               )}
@@ -152,44 +152,44 @@ function Navbar({ isLoggedIn, handleLogout }) {
               </ul>
 
               {/* Center Title */}
-              {!menuOpen && (
-                <span className="navbar-text text-danger h4 mb-0 position-absolute top-50 start-50 translate-middle" style={{ fontSize: '1.8rem', fontWeight: 'bold' }}>
-                  {pageTitle}
-                </span>
-              )}
+                
+                    <span className="navbar-text text-danger h4 mb-0 position-absolute top-50 start-50 translate-middle" style={{ fontSize: '1.8rem', fontWeight: 'bold' }}>
+                        {pageTitle}
+                    </span>
+               
     
               {/* Right Icons/Actions */}
               <ul className="navbar-nav align-items-center">
                 {isLoggedIn ? (
                   <>
                     <li className="nav-item" style={{ order: menuOpen ? 4 : 3 }}>
-                      <button onClick={handleSignOutClick} className="btn btn-link nav-link">
-                        Sign Out
-                      </button>
-                    </li>
-                    <li className="nav-item d-none d-md-block" style={{ order: menuOpen ? 4 : 4 }}>
-                      <img
-                        src={accountLogo}
-                        alt="Account"
-                        onClick={handleAccountClick}
-                        style={{ width: '3rem', height: '3rem', cursor: 'pointer' }}
-                        className="nav-link"
-                      />
-                    </li>
-                  </>
-                ) : (
-                  <li className="nav-item">
-                    <button onClick={handleSignInClick} className="btn btn-link nav-link">
-                      Sign In
-                    </button>
-                  </li>
-                )}
+                                <button onClick={handleSignOutClick} className="btn btn-link nav-link" style={{ backgroundColor: 'darkgrey', color: 'white', borderRadius: '5px', padding: '0.1rem 1.3rem' }}>
+                                    Sign Out
+                                </button>
+                            </li>
+                            <li className="nav-item d-none d-md-block" style={{ order: menuOpen ? 4 : 4 }}>
+                                <img
+                                    src={accountLogo}
+                                    alt="Account"
+                                    onClick={handleAccountClick}
+                                    style={{ width: '3rem', height: '3rem', cursor: 'pointer' }}
+                                    className="nav-link"
+                                />
+                            </li>
+                        </>
+                    ) : (
+                        <li className="nav-item">
+                            <button onClick={handleSignInClick} className="btn btn-link nav-link" style={{ backgroundColor: 'darkgrey', color: 'white', borderRadius: '5px', padding: '0.1rem 1.3rem' }}>
+                                Sign In
+                            </button>
+                        </li>
+                    )}
                 <li className="nav-item" style={{ order: menuOpen ? 3 : 3 }}>
                   <img
                     src={snowflakeImg}
                     alt="Snowfall effect"
                     onClick={handleStartSnow}
-                    style={{ width: '3rem', height: '3rem', cursor: 'pointer' }}
+                    style={menuOpen ? { width: '3rem', height: '3rem', cursor: 'pointer' } : { width: '3rem', height: '3rem', cursor: 'pointer' }}
                     title="Click me for some magic!"
                     className="nav-link"
                   />
