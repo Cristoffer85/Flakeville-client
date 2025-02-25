@@ -87,11 +87,12 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout }) {
               <img
                 src={logo}
                 alt="Logo"
-                style={{ width: '3rem', height: '3rem' }}
+                style={{ width: '3.5rem', height: '3.5rem' }}
                 title="Flakeville home"
               />
             </Link>
 
+    {/* ############### MENU TOGGLE BUTTON - 768px AND UP ###############*/}
             <button
               className="navbar-toggler"
               type="button"
