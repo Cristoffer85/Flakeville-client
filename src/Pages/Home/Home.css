@@ -1,173 +1,26 @@
-.sidebar-home {
-    position: fixed;
-    left: 0px;
-    top: 80px;
-    height: 100%;
-    width: 240px;
-    background-color: rgba(163, 163, 163, 0.5);
-    padding: 20px;
-}
-
-/*Sidebar header*/
-.text-header {
-    color: #ffffff;
-}
-
-/************ Welcome box ************/
-.box1 {
-    position: absolute;
-    top: 120px;
-    left: 350px;
-    background-color: rgba(255, 255, 255, 0.9);
-    color: rgb(0, 0, 0);
-    border-radius: 10px;
-    padding: 15px;
-    margin: 10px;
-    width: 400px;
-}
-
-/************ News box ************/
-.box2 {
-    position: absolute;
-    top: 250px;
-    left: 830px;
-    background-color: rgba(255, 255, 255, 0.8);
-    color: rgba(58, 53, 53, 0.5);
-    border-radius: 10px;
-    padding: 20px;
-    margin: 10px;
-    width: 300px;
-}
-
-.news1 {
-    position: relative;
-    background-color: rgba(255, 255, 255, 1);
-    color: rgba(58, 53, 53, 0.5);
-    border-radius: 5px;
-    padding: 3px;
-    margin: 1px;
-}
-.news2 {
-    position: relative;
-    background-color: rgba(255, 255, 255, 1);
-    color: rgba(58, 53, 53, 0.5);
-    border-radius: 5px;
-    padding: 3px;
-    margin: 1px;
-}
-.news3 {
-    position: relative;
-    background-color: rgba(255, 255, 255, 1);
-    color: rgba(58, 53, 53, 0.5);
-    border-radius: 5px;
-    padding: 3px;
-    margin: 1px;
-}
-.news4 {
-    position: relative;
-    background-color: rgba(255, 255, 255, 1);
-    color: rgba(58, 53, 53, 0.5);
-    border-radius: 5px;
-    padding: 3px;
-    margin: 1px;
-}
-
-/************ Store updates box ************/
-.box3 {
-    position: absolute;
-    top: 300px;
-    left: 1200px;
-    background-color: rgba(255, 255, 255, 0.8);
-    color: rgba(58, 53, 53, 0.5);
-    border-radius: 10px;
-    padding: 20px;
-    margin: 10px;
-    width: 250px;
-}
-
-/*************************** Lifts, animations, sizes, colors and header styles ***************************/
-/*Animation logic*/
-@keyframes moveInRectangle {
-    0% {
-        transform: translate(0, 0);
-    }
-    25% {
-        transform: translate(40px, 0);
-    }
-    50% {
-        transform: translate(40px, 100px);
-    }
-    75% {
-        transform: translate(0, 100px);
-    }
-    100% {
-        transform: translate(0, 0);
-    }
-}
+/* One .css class just for the "animation" of the green+red lights of liftstatus to work*/
 
 .lift-container {
-    border: 1px solid #000;
-    border-radius: 10px;
-    padding: 10px;
-    margin-bottom: 10px;
-    background-color: rgba(255, 255, 255);
-    height: 200px;
-}
-
-.sidebar-status-light.green {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: white;
+    align-items: center;
+  }
+  
+  .sidebar-status-light {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .green {
     background-color: green;
-    animation: moveInRectangle 18s linear infinite;
-    margin-left: 5px;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-}
-.sidebar-status-light.red {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
+  }
+  
+  .red {
     background-color: red;
-    margin-left: 5px;
-}
-
-.path-rectangle {
-    position: absolute;
-    width: 40px;
-    height: 100px;
-    border: 1px solid black;
-    top: 178px;
-    left: 41px;
-}
-.path-rectangle2 {
-    position: absolute;
-    width: 40px;
-    height: 100px;
-    border: 1px solid black;
-    top: 388px;
-    left: 41px;
-}
-
-.Lift-name-1 {
-    background-color: rgb(255, 154, 100);
-    border-radius: 5px;
-    padding: 3px;
-    margin: 1px;
-    position: absolute;
-    top: 10px;
-    left: 50px;
-    font-family: Lato sans-serif;
-    font-weight: bold;
-    font-size: 12px;
-}
-.Lift-name-2 {
-    background-color: rgba(255, 154, 100);
-    border-radius: 5px;
-    padding: 3px;
-    margin: 1px;
-    position: absolute;
-    top: 10px;
-    left: 50px;
-    font-family: Lato sans-serif;
-    font-weight: bold;
-    font-size: 12px;
-}
+  }

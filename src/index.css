@@ -9,9 +9,7 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
+  min-width: 250px;
   min-height: 100vh;
 }
 
