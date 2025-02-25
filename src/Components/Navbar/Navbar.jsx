@@ -20,7 +20,7 @@ import { navigateBasedOnRole } from '../Router/Router.jsx';
 import { fetchLifts } from '../../Api/EmployeeApi/EmployeeApi';
 import SnowfallEffect from '../SnowfallEffect/SnowfallEffect.jsx';
 
-function Navbar({ isLoggedIn, handleLogin, handleLogout }) {
+function Navbar({ isLoggedIn, handleLogout }) {
     const { cart } = useContext(CartContext);
     const pageTitle = useContext(PageTitleContext);
     const [isSnowing, setIsSnowing] = useState(false);
@@ -78,8 +78,8 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout }) {
     };
 
     return (
-        <nav className="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
-          <div className="container-fluid position-relative">
+        <nav className={`navbar navbar-expand-md fixed-top navbar-dark bg-dark ${menuOpen ? 'menu-open' : ''}`}>
+          <div className="container-fluid position-relative d-flex justify-content-between align-items-center">
             
     {/* ############### NOT COLLAPSIBLE CONTENT - 768px AND UP ###############*/}
             {/* Left side: Brand (Logo) */}
@@ -92,35 +92,50 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout }) {
               />
             </Link>
 
-    {/* ############### MENU TOGGLE BUTTON - 768px AND UP ###############*/}
-            <button
-              className="navbar-toggler"
-              type="button"
-              onClick={toggleMenu}
-              aria-label="Toggle navigation"
-            >
-              <img
-                src={menuOpen ? menuCloseIcon : menuOpenIcon}
-                alt="Menu Toggle"
-                style={{ width: '2.5rem', height: '2.5rem' }}
-              />
-            </button>
+            <div className="d-flex align-items-center">
+              {/* Account Icon */}
+              {isLoggedIn && (
+                <img
+                  src={accountLogo}
+                  alt="Account"
+                  onClick={handleAccountClick}
+                  style={{ width: '3rem', height: '3rem', cursor: 'pointer' }}
+                  className="nav-link d-md-none"
+                />
+              )}
+
+              {/* Menu Toggle Button */}
+              <button
+                className="navbar-toggler"
+                type="button"
+                onClick={toggleMenu}
+                aria-label="Toggle navigation"
+              >
+                <img
+                  src={menuOpen ? menuCloseIcon : menuOpenIcon}
+                  alt="Menu Toggle"
+                  style={{ width: '2.5rem', height: '2.5rem' }}
+                />
+              </button>
+            </div>
 
     {/* ############### COLLAPSIBLE CONTENT - UP TO 768px ###############*/}
             <div className={`collapse navbar-collapse ${menuOpen ? 'show' : ''}`}>
               {/* Left Links */}
               <ul className="navbar-nav me-auto mb-2 mb-md-0 align-items-center" style={{ fontSize: '1.3rem', fontWeight: '600' }}>
-                <li className="nav-item">
+                
+                {/* FIRST INTEGER/ORDER == MOBILE MENU OPEN : SECOND INTEGER/ORDER == REGULAR NAVBAR */}
+                <li className="nav-item" style={{ order: menuOpen ? 1 : 1 }}>
                   <Link className="nav-link" to="/weather">
                     POWDERTRACKER
                   </Link>
                 </li>
-                <li className="nav-item">
+                <li className="nav-item" style={{ order: menuOpen ? 2 : 2 }}>
                   <Link className="nav-link" to="/store">
                     STORE
                   </Link>
                 </li>
-                <li className="nav-item position-relative">
+                <li className="nav-item position-relative" style={{ order: menuOpen ? 3 : 2 }}>
                   <Link className="nav-link" to="/cart">
                     <img
                       src={shoppingCartLogo}
@@ -137,20 +152,22 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout }) {
               </ul>
 
               {/* Center Title */}
-            <span className="navbar-text text-danger h4 mb-0 position-absolute top-50 start-50 translate-middle" style={{ fontSize: '1.8rem', fontWeight: 'bold' }}>
-              {pageTitle}
-            </span>
+              {!menuOpen && (
+                <span className="navbar-text text-danger h4 mb-0 position-absolute top-50 start-50 translate-middle" style={{ fontSize: '1.8rem', fontWeight: 'bold' }}>
+                  {pageTitle}
+                </span>
+              )}
     
               {/* Right Icons/Actions */}
               <ul className="navbar-nav align-items-center">
                 {isLoggedIn ? (
                   <>
-                    <li className="nav-item">
+                    <li className="nav-item" style={{ order: menuOpen ? 4 : 3 }}>
                       <button onClick={handleSignOutClick} className="btn btn-link nav-link">
                         Sign Out
                       </button>
                     </li>
-                    <li className="nav-item">
+                    <li className="nav-item d-none d-md-block" style={{ order: menuOpen ? 4 : 4 }}>
                       <img
                         src={accountLogo}
                         alt="Account"
@@ -167,7 +184,7 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout }) {
                     </button>
                   </li>
                 )}
-                <li className="nav-item">
+                <li className="nav-item" style={{ order: menuOpen ? 3 : 3 }}>
                   <img
                     src={snowflakeImg}
                     alt="Snowfall effect"
@@ -186,4 +203,4 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout }) {
       );
     };
     
-    export default Navbar;
+export default Navbar;
