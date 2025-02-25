@@ -80,8 +80,6 @@ function Navbar({ isLoggedIn, handleLogout }) {
     return (
         <nav className={`navbar navbar-expand-md fixed-top navbar-dark bg-dark ${menuOpen ? 'menu-open' : ''}`}>
           <div className="container-fluid position-relative d-flex justify-content-between align-items-center">
-            
-    {/* ############### NOT COLLAPSIBLE CONTENT - 768px AND UP ###############*/}
             {/* Left side: Brand (Logo) */}
             <Link className="navbar-brand" to="/">
               <img
@@ -91,7 +89,7 @@ function Navbar({ isLoggedIn, handleLogout }) {
                 title="Flakeville home"
               />
             </Link>
-
+      
             <div className="d-flex align-items-center">
               {/* Account Icon */}
               {isLoggedIn && (
@@ -103,7 +101,7 @@ function Navbar({ isLoggedIn, handleLogout }) {
                   className="nav-link d-md-none"
                 />
               )}
-
+      
               {/* Menu Toggle Button */}
               <button
                 className="navbar-toggler"
@@ -118,24 +116,21 @@ function Navbar({ isLoggedIn, handleLogout }) {
                 />
               </button>
             </div>
-
-    {/* ############### COLLAPSIBLE CONTENT - UP TO 768px ###############*/}
+      
             <div className={`collapse navbar-collapse ${menuOpen ? 'show' : ''}`}>
               {/* Left Links */}
               <ul className="navbar-nav me-auto mb-2 mb-md-0 align-items-center" style={{ fontSize: '1.3rem', fontWeight: '600' }}>
-                
-                {/* FIRST INTEGER/ORDER == MOBILE MENU OPEN : SECOND INTEGER/ORDER == REGULAR NAVBAR */}
-                <li className="nav-item" style={{ order: menuOpen ? 1 : 1 }}>
+                <li className="nav-item" style={{ order: 1 }}>
                   <Link className="nav-link" to="/weather">
                     POWDERTRACKER
                   </Link>
                 </li>
-                <li className="nav-item" style={{ order: menuOpen ? 2 : 2 }}>
+                <li className="nav-item" style={{ order: 2 }}>
                   <Link className="nav-link" to="/store">
                     STORE
                   </Link>
                 </li>
-                <li className="nav-item position-relative" style={{ order: menuOpen ? 3 : 2 }}>
+                <li className="nav-item position-relative" style={{ order: 3 }}>
                   <Link className="nav-link" to="/cart">
                     <img
                       src={shoppingCartLogo}
@@ -150,46 +145,55 @@ function Navbar({ isLoggedIn, handleLogout }) {
                   </Link>
                 </li>
               </ul>
-
+      
               {/* Center Title */}
-                
-                    <span className="navbar-text text-danger h4 mb-0 position-absolute top-50 start-50 translate-middle" style={{ fontSize: '1.8rem', fontWeight: 'bold' }}>
-                        {pageTitle}
-                    </span>
-               
-    
+              <span
+                className="navbar-text d-none d-md-block text-danger h4 mb-0 position-absolute top-50 start-50 translate-middle"
+                style={{ fontSize: '1.8rem', fontWeight: 'bold' }}
+              >
+                {pageTitle}
+              </span>
+      
               {/* Right Icons/Actions */}
               <ul className="navbar-nav align-items-center">
                 {isLoggedIn ? (
                   <>
-                    <li className="nav-item" style={{ order: menuOpen ? 4 : 3 }}>
-                                <button onClick={handleSignOutClick} className="btn btn-link nav-link" style={{ backgroundColor: 'darkgrey', color: 'white', borderRadius: '5px', padding: '0.1rem 1.3rem' }}>
-                                    Sign Out
-                                </button>
-                            </li>
-                            <li className="nav-item d-none d-md-block" style={{ order: menuOpen ? 4 : 4 }}>
-                                <img
-                                    src={accountLogo}
-                                    alt="Account"
-                                    onClick={handleAccountClick}
-                                    style={{ width: '3rem', height: '3rem', cursor: 'pointer' }}
-                                    className="nav-link"
-                                />
-                            </li>
-                        </>
-                    ) : (
-                        <li className="nav-item">
-                            <button onClick={handleSignInClick} className="btn btn-link nav-link" style={{ backgroundColor: 'darkgrey', color: 'white', borderRadius: '5px', padding: '0.1rem 1.3rem' }}>
-                                Sign In
-                            </button>
-                        </li>
-                    )}
-                <li className="nav-item" style={{ order: menuOpen ? 3 : 3 }}>
+                    <li className="nav-item" style={{ order: 4 }}>
+                      <button
+                        onClick={handleSignOutClick}
+                        className="btn btn-link nav-link"
+                        style={{ backgroundColor: 'darkgrey', color: 'white', borderRadius: '5px', padding: '0.1rem 1.3rem' }}
+                      >
+                        Sign Out
+                      </button>
+                    </li>
+                    <li className="nav-item d-none d-md-block" style={{ order: 6 }}>
+                      <img
+                        src={accountLogo}
+                        alt="Account"
+                        onClick={handleAccountClick}
+                        style={{ width: '3rem', height: '3rem', cursor: 'pointer' }}
+                        className="nav-link"
+                      />
+                    </li>
+                  </>
+                ) : (
+                  <li className="nav-item">
+                    <button
+                      onClick={handleSignInClick}
+                      className="btn btn-link nav-link"
+                      style={{ backgroundColor: 'darkgrey', color: 'white', borderRadius: '5px', padding: '0.1rem 1.3rem' }}
+                    >
+                      Sign In
+                    </button>
+                  </li>
+                )}
+                <li className="nav-item" style={{ order: 5 }}>
                   <img
                     src={snowflakeImg}
                     alt="Snowfall effect"
                     onClick={handleStartSnow}
-                    style={menuOpen ? { width: '3rem', height: '3rem', cursor: 'pointer' } : { width: '3rem', height: '3rem', cursor: 'pointer' }}
+                    style={{ width: '3rem', height: '3rem', cursor: 'pointer' }}
                     title="Click me for some magic!"
                     className="nav-link"
                   />
@@ -197,10 +201,10 @@ function Navbar({ isLoggedIn, handleLogout }) {
               </ul>
             </div>
           </div>
-    
+      
           <SnowfallEffect key={snowKey} isSnowing={isSnowing} />
         </nav>
       );
-    };
+}      
     
 export default Navbar;
