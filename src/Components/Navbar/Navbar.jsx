@@ -79,18 +79,19 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout }) {
 
     return (
         <nav className="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
-          <div className="container-fluid">
-            {/* Left side: Brand and Toggler */}
-            <Link className="navbar-brand d-flex align-items-center" to="/">
+          <div className="container-fluid position-relative">
+            
+    {/* ############### NOT COLLAPSIBLE CONTENT - 768px AND UP ###############*/}
+            {/* Left side: Brand (Logo) */}
+            <Link className="navbar-brand" to="/">
               <img
                 src={logo}
                 alt="Logo"
                 style={{ width: '3rem', height: '3rem' }}
                 title="Flakeville home"
-                className="me-2"
               />
-              <span className="d-none d-md-inline h4 text-danger mb-0">{pageTitle}</span>
             </Link>
+
             <button
               className="navbar-toggler"
               type="button"
@@ -103,11 +104,11 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout }) {
                 style={{ width: '2.5rem', height: '2.5rem' }}
               />
             </button>
-    
-            {/* Collapsible content */}
+
+    {/* ############### COLLAPSIBLE CONTENT - UP TO 768px ###############*/}
             <div className={`collapse navbar-collapse ${menuOpen ? 'show' : ''}`}>
               {/* Left Links */}
-              <ul className="navbar-nav me-auto mb-2 mb-md-0">
+              <ul className="navbar-nav me-auto mb-2 mb-md-0 align-items-center" style={{ fontSize: '1.3rem', fontWeight: '600' }}>
                 <li className="nav-item">
                   <Link className="nav-link" to="/weather">
                     POWDERTRACKER
@@ -133,6 +134,11 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout }) {
                   </Link>
                 </li>
               </ul>
+
+              {/* Center Title */}
+            <span className="navbar-text text-danger h4 mb-0 position-absolute top-50 start-50 translate-middle" style={{ fontSize: '1.8rem', fontWeight: 'bold' }}>
+              {pageTitle}
+            </span>
     
               {/* Right Icons/Actions */}
               <ul className="navbar-nav align-items-center">
@@ -174,10 +180,9 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout }) {
             </div>
           </div>
     
-          {/* You can include your SnowfallEffect component below or as part of your layout */}
           <SnowfallEffect key={snowKey} isSnowing={isSnowing} />
         </nav>
       );
     };
-
+    
     export default Navbar;
