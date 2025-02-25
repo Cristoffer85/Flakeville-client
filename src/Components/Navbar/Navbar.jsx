@@ -80,12 +80,14 @@ function Navbar({ isLoggedIn, handleLogout }) {
     return (
         <nav className={`navbar navbar-expand-md fixed-top navbar-dark bg-dark ${menuOpen ? 'menu-open' : ''}`}>
           <div className="container-fluid position-relative d-flex justify-content-between align-items-center">
+            
+            {/*#################### NOT COLLAPSIBLE CONTENT ################### */}
             {/* Left side: Brand (Logo) */}
             <Link className="navbar-brand" to="/">
               <img
                 src={logo}
                 alt="Logo"
-                style={{ width: '3.5rem', height: '3.5rem' }}
+                style={{ width: '3.5rem', height: '3.5rem' , marginRight: '-0.8rem'}}
                 title="Flakeville home"
               />
             </Link>
@@ -112,43 +114,43 @@ function Navbar({ isLoggedIn, handleLogout }) {
                 <img
                   src={menuOpen ? menuCloseIcon : menuOpenIcon}
                   alt="Menu Toggle"
-                  style={{ width: '2.5rem', height: '2.5rem' }}
+                  style={{ width: '2.2rem', height: '2.2rem' }}
                 />
               </button>
             </div>
       
+            {/* ################### COLLAPSIBLE MENU ################### */}
             <div className={`collapse navbar-collapse ${menuOpen ? 'show' : ''}`}>
               {/* Left Links */}
               <ul className="navbar-nav me-auto mb-2 mb-md-0 align-items-center" style={{ fontSize: '1.3rem', fontWeight: '600' }}>
-                <li className="nav-item" style={{ order: 1 }}>
-                  <Link className="nav-link" to="/weather">
-                    POWDERTRACKER
-                  </Link>
-                </li>
-                <li className="nav-item" style={{ order: 2 }}>
-                  <Link className="nav-link" to="/store">
-                    STORE
-                  </Link>
-                </li>
-                <li className="nav-item position-relative" style={{ order: 3 }}>
-                  <Link className="nav-link" to="/cart">
-                    <img
-                      src={shoppingCartLogo}
-                      alt="Shopping Cart"
-                      style={{ width: '3rem', height: '3rem' }}
-                    />
-                    {totalItems > 0 && (
-                      <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
-                        {totalItems}
-                      </span>
-                    )}
-                  </Link>
-                </li>
-              </ul>
-      
+                  <li className="nav-item" style={{ order: 1, marginRight: '-0.5rem' }}>
+                    <Link className="nav-link" to="/weather">
+                      POWDERTRACKER
+                    </Link>
+                  </li>
+                  <li className="nav-item" style={{ order: 2, marginRight: '-0.5rem' }}>
+                    <Link className="nav-link" to="/store">
+                      STORE
+                    </Link>
+                  </li>
+                  <li className="nav-item position-relative" style={{ order: 3, marginRight: '-0.5rem' }}>
+                    <Link className="nav-link" to="/cart">
+                      <img
+                        src={shoppingCartLogo}
+                        alt="Shopping Cart"
+                        style={{ width: '2.2rem', height: '2.2rem' }}
+                      />
+                      {totalItems > 0 && (
+                        <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
+                          {totalItems}
+                        </span>
+                      )}
+                    </Link>
+                  </li>
+                </ul>   
               {/* Center Title */}
               <span
-                className="navbar-text d-none d-md-block text-danger h4 mb-0 position-absolute top-50 start-50 translate-middle"
+                className="navbar-text d-none d-lg-block text-danger h4 mb-0 position-absolute top-50 start-50 translate-middle"
                 style={{ fontSize: '1.8rem', fontWeight: 'bold' }}
               >
                 {pageTitle}
