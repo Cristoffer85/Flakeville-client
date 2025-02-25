@@ -3,8 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-import '../Navbar/Navbar.scss';
 import logo from '../../Assets/Logo.png';
 import accountLogo from '../../Assets/ProfileLogoGold.png';
 import snowflakeImg from '../../Assets/Snowflake.png';
@@ -78,114 +78,106 @@ function Navbar({ isLoggedIn, handleLogin, handleLogout }) {
     };
 
     return (
-        <nav className="navbar">
-            <div className="navbar-content">
-
-                {/* ------------- MENUS BIGGER THAN MOBILE -------------*/}
-                {/* ------------- navbar-left -------------*/}
-                <div className="navbar-left">
-                    <button className="menu-toggle" onClick={toggleMenu}>
-                        <img src={menuOpen ? menuCloseIcon : menuOpenIcon} alt="Menu Toggle" />
-                    </button>
-                
-                    {/* ------------- navbar-left-links -------------*/}
-                    <ul className="navbar-left-links">
-                        <li>
-                            <Link to="/">
-                                <img src={logo} alt="Logo" className="main-logo" title="Flakeville home" />
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/weather">
-                                <span className="weather-text">POWDERTRACKER</span>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/store">
-                                <span className="store-text">STORE</span>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/cart">
-                                <img src={shoppingCartLogo} alt="Shopping Cart" className="shoppingcart-logo" />
-                                {totalItems > 0 && (
-                                    <div className="cart-count">{totalItems}</div>
-                                )}
-                            </Link>
-                        </li>
-                    </ul>
-                </div>
-
-                {/* ------------- navbar-center -------------*/}
-                <div className="navbar-center">
-                    <h1 className="navbar-title">{pageTitle}</h1>
-                    <div className="lift-status-container">
-                        {lifts.map(lift => (
-                            <div key={lift.id} className="lift-status">
-                                <p>Lift {lift.id}:</p>
-                                <div className={`status-light ${lift.operating ? 'green' : 'red'}`}></div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-
-                {/* ------------- navbar-right -------------*/}
-                <div className="navbar-right">
-                    {!isLoggedIn ? (
-                        <button onClick={handleSignInClick} className="signin-button">Sign In</button>
-                    ) : (
-                        <>
-                            <button onClick={handleSignOutClick} className="signout-button">Sign Out</button>
-                            <img src={accountLogo} onClick={handleAccountClick} className="account-logo" />
-                        </>
+        <nav className="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
+          <div className="container-fluid">
+            {/* Left side: Brand and Toggler */}
+            <Link className="navbar-brand d-flex align-items-center" to="/">
+              <img
+                src={logo}
+                alt="Logo"
+                style={{ width: '3rem', height: '3rem' }}
+                title="Flakeville home"
+                className="me-2"
+              />
+              <span className="d-none d-md-inline h4 text-danger mb-0">{pageTitle}</span>
+            </Link>
+            <button
+              className="navbar-toggler"
+              type="button"
+              onClick={toggleMenu}
+              aria-label="Toggle navigation"
+            >
+              <img
+                src={menuOpen ? menuCloseIcon : menuOpenIcon}
+                alt="Menu Toggle"
+                style={{ width: '2.5rem', height: '2.5rem' }}
+              />
+            </button>
+    
+            {/* Collapsible content */}
+            <div className={`collapse navbar-collapse ${menuOpen ? 'show' : ''}`}>
+              {/* Left Links */}
+              <ul className="navbar-nav me-auto mb-2 mb-md-0">
+                <li className="nav-item">
+                  <Link className="nav-link" to="/weather">
+                    POWDERTRACKER
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/store">
+                    STORE
+                  </Link>
+                </li>
+                <li className="nav-item position-relative">
+                  <Link className="nav-link" to="/cart">
+                    <img
+                      src={shoppingCartLogo}
+                      alt="Shopping Cart"
+                      style={{ width: '3rem', height: '3rem' }}
+                    />
+                    {totalItems > 0 && (
+                      <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
+                        {totalItems}
+                      </span>
                     )}
-                    <img src={snowflakeImg} onClick={handleStartSnow} className="snowfall-logo" title="Click me for some magic!" />
-                </div>
+                  </Link>
+                </li>
+              </ul>
+    
+              {/* Right Icons/Actions */}
+              <ul className="navbar-nav align-items-center">
+                {isLoggedIn ? (
+                  <>
+                    <li className="nav-item">
+                      <button onClick={handleSignOutClick} className="btn btn-link nav-link">
+                        Sign Out
+                      </button>
+                    </li>
+                    <li className="nav-item">
+                      <img
+                        src={accountLogo}
+                        alt="Account"
+                        onClick={handleAccountClick}
+                        style={{ width: '3rem', height: '3rem', cursor: 'pointer' }}
+                        className="nav-link"
+                      />
+                    </li>
+                  </>
+                ) : (
+                  <li className="nav-item">
+                    <button onClick={handleSignInClick} className="btn btn-link nav-link">
+                      Sign In
+                    </button>
+                  </li>
+                )}
+                <li className="nav-item">
+                  <img
+                    src={snowflakeImg}
+                    alt="Snowfall effect"
+                    onClick={handleStartSnow}
+                    style={{ width: '3rem', height: '3rem', cursor: 'pointer' }}
+                    title="Click me for some magic!"
+                    className="nav-link"
+                  />
+                </li>
+              </ul>
             </div>
-
-            {/* ------------- MOBILE MENU -------------*/}
-            {/*(I know its an ugly solution, but this was right now to able keep menustates as clean as possible in the .css file. Able to customize it a bit more)*/}
-            <div className={`navbar-menu ${menuOpen ? 'open' : ''}`}>
-                <ul className="navbar-left-links">
-                    <li>
-                        <Link to="/">
-                            <img src={logo} alt="Logo" className="main-logo" title="Flakeville home" />
-                        </Link>
-                        </li>
-                    <li>
-                        <Link to="/weather">
-                            <span className="weather-text">POWDERTRACKER</span>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/store">
-                            <span className="store-text">STORE</span>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/cart">
-                            <img src={shoppingCartLogo} alt="Shopping Cart" className="shoppingcart-logo" />
-                            {totalItems > 0 && (
-                                <div className="cart-count">{totalItems}</div>
-                            )}
-                        </Link>
-                    </li>
-
-                    <div className="lift-status-container">
-                        {lifts.map(lift => (
-                            <div key={lift.id} className="lift-status">
-                                <p>Lift {lift.id}:</p>
-                                <div className={`status-light ${lift.operating ? 'green' : 'red'}`}></div>
-                            </div>
-                        ))}
-                    </div>
-
-                </ul>
-            </div>
-
-            <SnowfallEffect key={snowKey} isSnowing={isSnowing} />
+          </div>
+    
+          {/* You can include your SnowfallEffect component below or as part of your layout */}
+          <SnowfallEffect key={snowKey} isSnowing={isSnowing} />
         </nav>
-    );
-}
+      );
+    };
 
-export default Navbar;
+    export default Navbar;
