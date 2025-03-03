@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 import { sendMessage, getMessages } from '../../Api/ChatApi/ChatApi';
 import { getAllUserNames } from '../../Api/UserApi/UserApi';
-import './Chat.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Chat = () => {
   const [sender, setSender] = useState('');
@@ -35,7 +35,6 @@ const Chat = () => {
   const fetchMessages = async (receiver) => {
     try {
       const data = await getMessages(sender, receiver);
-      console.log('Fetched messages:', data); // Debug log
       setMessages(data);
       setError('');
     } catch (error) {
@@ -60,7 +59,6 @@ const Chat = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const msgDto = { sender, receiver, message };
-    console.log('Sending message:', msgDto); // Debug log
   
     try {
       await sendMessage(msgDto);
@@ -74,48 +72,53 @@ const Chat = () => {
       alert('Failed to send message');
     }
   };
-  
 
   const handleMessageChange = (e) => {
     setMessage(e.target.value);
   };
 
   return (
-    <div className="chat-container">
-      <div className="chat-content">
-        <div className="user-list">
-          {userNames.filter(user => user.username !== sender).map((user, index) => (
-            <div key={index} className="user" onClick={() => handleUserClick(user.username)}>
-              {user.username}
-            </div>
-          ))}
+    <div className="container mt-4">
+      <div className="row">
+        <div className="col-md-3">
+          <div className="list-group">
+            {userNames.filter(user => user.username !== sender).map((user, index) => (
+              <button key={index} className="list-group-item list-group-item-action" onClick={() => handleUserClick(user.username)}>
+                {user.username}
+              </button>
+            ))}
+          </div>
         </div>
         {receiver && (
-          <div className="chat-form-container">
-            <button onClick={handleClose} className="close-button">X</button>
-            <div className="messages-container">
-              <h3>Messages with {receiver}</h3>
-              {error && <p className="error-message">{error}</p>}
-              {messages.length > 0 ? (
-                messages.map((msg, index) => {
-                  const [messageSender, messageContent] = msg.split(': ');
-                  return (
-                    <div key={index} className="message">
-                      <p><strong>{messageSender}:</strong> {messageContent}</p>
-                    </div>
-                  );
-                })
-              ) : (
-                <p>No messages</p>
-              )}
-            </div>
-            <form onSubmit={handleSubmit} className="chat-form">
-              <div>
-                <label>Message:</label>
-                <textarea value={message} onChange={handleMessageChange} required />
+          <div className="col-md-9">
+            <div className="card">
+              <div className="card-body">
+                <button onClick={handleClose} className="btn btn-danger btn-sm float-end">X</button>
+                <h3>Messages with {receiver}</h3>
+                {error && <p className="text-danger">{error}</p>}
+                <div className="mb-3">
+                  {messages.length > 0 ? (
+                    messages.map((msg, index) => {
+                      const [messageSender, messageContent] = msg.split(': ');
+                      return (
+                        <div key={index} className="mb-2">
+                          <strong>{messageSender}:</strong> {messageContent}
+                        </div>
+                      );
+                    })
+                  ) : (
+                    <p>No messages</p>
+                  )}
+                </div>
+                <form onSubmit={handleSubmit}>
+                  <div className="mb-3">
+                    <label className="form-label">Message:</label>
+                    <textarea className="form-control" value={message} onChange={handleMessageChange} required />
+                  </div>
+                  <button type="submit" className="btn btn-primary">Send Message</button>
+                </form>
               </div>
-              <button type="submit">Send Message</button>
-            </form>
+            </div>
           </div>
         )}
       </div>

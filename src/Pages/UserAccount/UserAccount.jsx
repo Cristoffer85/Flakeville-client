@@ -4,7 +4,7 @@ import UserDetails from './UserDetails/UserDetails.jsx';
 import PreviousOrders from './PreviousOrders/PreviousOrders.jsx';
 import Chat from '../../Components/Chat/Chat.jsx';
 import { getUserDetails } from '../../Api/UserApi/UserApi';
-import './UserAccount.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function UserAccount() {
     const username = Cookies.get('username');
@@ -29,17 +29,58 @@ function UserAccount() {
     }, [username]);
 
     return (
-        <div>
-            <div className="sidebar">
-                <p className="sidebar-welcome-message">Welcome, {username}!</p>
-                <p onClick={() => setCurrentSection('userDetails')}>User Details</p>
-                <p onClick={() => setCurrentSection('previousOrders')}>Previous Orders</p>
-                <p onClick={() => setCurrentSection('chat')}>Chat</p>
+        <div className="container-fluid" style={{ marginTop: '7rem' }}>
+            <div className="row">
+                <div className="col-md-3">
+                    <div className="list-group">
+                        <p className="list-group-item list-group-item-action active">Welcome, {username}!</p>
+                        <button
+                            type="button"
+                            className={`list-group-item list-group-item-action ${currentSection === 'userDetails' ? 'active' : ''}`}
+                            onClick={() => setCurrentSection('userDetails')}
+                        >
+                            User Details
+                        </button>
+                        <button
+                            type="button"
+                            className={`list-group-item list-group-item-action ${currentSection === 'previousOrders' ? 'active' : ''}`}
+                            onClick={() => setCurrentSection('previousOrders')}
+                        >
+                            Previous Orders
+                        </button>
+                        <button
+                            type="button"
+                            className={`list-group-item list-group-item-action ${currentSection === 'chat' ? 'active' : ''}`}
+                            onClick={() => setCurrentSection('chat')}
+                        >
+                            Chat
+                        </button>
+                    </div>
+                </div>
+                <div className="col-md-9">
+                    {currentSection === 'userDetails' && (
+                        <div className="card">
+                            <div className="card-body">
+                                <UserDetails username={username} />
+                            </div>
+                        </div>
+                    )}
+                    {currentSection === 'previousOrders' && (
+                        <div className="card">
+                            <div className="card-body">
+                                <PreviousOrders orders={userDetails.orders || []} />
+                            </div>
+                        </div>
+                    )}
+                    {currentSection === 'chat' && (
+                        <div className="card">
+                            <div className="card-body">
+                                <Chat />
+                            </div>
+                        </div>
+                    )}
+                </div>
             </div>
-
-            {currentSection === 'userDetails' && <UserDetails username={username} />}
-            {currentSection === 'previousOrders' && <PreviousOrders orders={userDetails.orders || []} />}
-            {currentSection === 'chat' && <Chat />}
         </div>
     );
 }

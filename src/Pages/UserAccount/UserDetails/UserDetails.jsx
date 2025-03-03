@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getUserDetails, updateUserDetails } from '../../../Api/UserApi/UserApi';
-import '../UserAccount.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function UserDetails({ username }) {
     const [userDetails, setUserDetails] = useState({});
@@ -38,31 +38,31 @@ function UserDetails({ username }) {
     };
 
     return (
-        <div className="userDetailsBox">
-            <h2>User Details</h2>
-            <p>Username: {userDetails.username}</p>
-            <p>Email: {userDetails.email}</p>
-            <p>Telephone: {userDetails.telephone}</p>
-            <p>Birthday: {userDetails.birthday}</p>
-            <p>Address: {userDetails.address}</p>
+        <div className="container">
+            <h2 className="mb-4">User Details</h2>
+            <p><strong>Username:</strong> {userDetails.username}</p>
+            <p><strong>Email:</strong> {userDetails.email}</p>
+            <p><strong>Telephone:</strong> {userDetails.telephone}</p>
+            <p><strong>Birthday:</strong> {userDetails.birthday}</p>
+            <p><strong>Address:</strong> {userDetails.address}</p>
             <form onSubmit={handleUpdateUserDetails}>
-                <label>
-                    Email:
-                    <input type="email" value={updateEmail} onChange={(e) => setUpdateEmail(e.target.value)} />
-                </label>
-                <label>
-                    Telephone:
-                    <input type="tel" value={updateTelephone} onChange={(e) => setUpdateTelephone(e.target.value)} />
-                </label>
-                <label>
-                    Birthday:
-                    <input type="date" value={updateBirthday} onChange={(e) => setUpdateBirthday(e.target.value)} />
-                </label>
-                <label>
-                    Address:
-                    <input type="text" value={updateAddress} onChange={(e) => setUpdateAddress(e.target.value)} />
-                </label>
-                <button type="submit">Update Details</button>
+                <div className="mb-3">
+                    <label className="form-label">Email:</label>
+                    <input type="email" className="form-control" value={updateEmail} onChange={(e) => setUpdateEmail(e.target.value)} />
+                </div>
+                <div className="mb-3">
+                    <label className="form-label">Telephone:</label>
+                    <input type="tel" className="form-control" value={updateTelephone} onChange={(e) => setUpdateTelephone(e.target.value)} />
+                </div>
+                <div className="mb-3">
+                    <label className="form-label">Birthday:</label>
+                    <input type="date" className="form-control" value={updateBirthday} onChange={(e) => setUpdateBirthday(e.target.value)} />
+                </div>
+                <div className="mb-3">
+                    <label className="form-label">Address:</label>
+                    <input type="text" className="form-control" value={updateAddress} onChange={(e) => setUpdateAddress(e.target.value)} />
+                </div>
+                <button type="submit" className="btn btn-primary">Update Details</button>
             </form>
         </div>
     );
