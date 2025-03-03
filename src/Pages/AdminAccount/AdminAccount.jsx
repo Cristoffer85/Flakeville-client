@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
-
-import UserManagement from '../../Pages/AdminAccount/UserManagement/UserManagement.jsx';
-import EmployeeManagement from '../../Pages/AdminAccount/EmployeeManagement/EmployeeManagement.jsx';
+import UserManagement from './UserManagement/UserManagement.jsx';
+import EmployeeManagement from './EmployeeManagement/EmployeeManagement.jsx';
 import { getAllUsers, getAllEmployees } from '../../Api/AdminApi/AdminApi.jsx';
 import Chat from '../../Components/Chat/Chat.jsx';
-
-import './AdminAccount.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function AdminAccount() {
     const username = Cookies.get('username');
@@ -22,31 +20,68 @@ function AdminAccount() {
     }, []);
 
     return (
-        <div>
-            <div className="sidebar">
-                <p className="sidebar-welcome-message">Welcome, {username}!</p>
-                <p onClick={() => setCurrentSection('employeeManagement')}>Employee Management</p>
-                <p onClick={() => setCurrentSection('userManagement')}>User Management</p>
-                <p onClick={() => setCurrentSection('chat')}>Chat</p>
+        <div className="container-fluid" style={{ marginTop: '7rem' }}>
+            <div className="row">
+                <div className="col-md-3">
+                    <div className="list-group">
+                        <p className="list-group-item list-group-item-action active">Welcome, {username}!</p>
+                        <button
+                            type="button"
+                            className={`list-group-item list-group-item-action ${currentSection === 'employeeManagement' ? 'active' : ''}`}
+                            onClick={() => setCurrentSection('employeeManagement')}
+                        >
+                            Employee Management
+                        </button>
+                        <button
+                            type="button"
+                            className={`list-group-item list-group-item-action ${currentSection === 'userManagement' ? 'active' : ''}`}
+                            onClick={() => setCurrentSection('userManagement')}
+                        >
+                            User Management
+                        </button>
+                        <button
+                            type="button"
+                            className={`list-group-item list-group-item-action ${currentSection === 'chat' ? 'active' : ''}`}
+                            onClick={() => setCurrentSection('chat')}
+                        >
+                            Chat
+                        </button>
+                    </div>
+                </div>
+                <div className="col-md-9">
+                    {currentSection === 'userManagement' && (
+                        <div className="card">
+                            <div className="card-body">
+                                <UserManagement
+                                    users={users}
+                                    setUsers={setUsers}
+                                    searchedUser={searchedUser}
+                                    setSearchedUser={setSearchedUser}
+                                />
+                            </div>
+                        </div>
+                    )}
+                    {currentSection === 'employeeManagement' && (
+                        <div className="card">
+                            <div className="card-body">
+                                <EmployeeManagement
+                                    employees={employees}
+                                    setEmployees={setEmployees}
+                                    searchedEmployee={searchedEmployee}
+                                    setSearchedEmployee={setSearchedEmployee}
+                                />
+                            </div>
+                        </div>
+                    )}
+                    {currentSection === 'chat' && (
+                        <div className="card">
+                            <div className="card-body">
+                                <Chat />
+                            </div>
+                        </div>
+                    )}
+                </div>
             </div>
-
-            {currentSection === 'userManagement' && (
-                <UserManagement
-                    users={users}
-                    setUsers={setUsers}
-                    searchedUser={searchedUser}
-                    setSearchedUser={setSearchedUser}
-                />
-            )}
-            {currentSection === 'employeeManagement' && (
-                <EmployeeManagement
-                    employees={employees}
-                    setEmployees={setEmployees}
-                    searchedEmployee={searchedEmployee}
-                    setSearchedEmployee={setSearchedEmployee}
-                />
-            )}
-            {currentSection === 'chat' && <Chat />}
         </div>
     );
 }
