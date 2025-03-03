@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { loginUser } from '../../Api/AuthApi/AuthApi';
 import { navigateBasedOnRole } from '../../Components/Router/Router.jsx';
-import './SignInPage.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function SignInPage({ handleLogin }) {
     const [username, setUsername] = useState('');
@@ -26,15 +26,23 @@ function SignInPage({ handleLogin }) {
     };
 
     return (
-        <div className="signInPage">
-            <form onSubmit={handleUserLogin}>
-                <h3>Sign In</h3>
-                <input type="text" value={username} onChange={e => setUsername(e.target.value)} placeholder="Username" required />
-                <input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Password" required />
-                <button type="submit">Login</button>
-                <span className="register-text">Not a user yet? Register </span>
-                <Link to="/signup" className="register-button">here</Link>
-            </form>
+        <div className="d-flex justify-content-center align-items-center vh-100">
+            <div className="card p-4">
+                <form onSubmit={handleUserLogin}>
+                    <h3 className="mb-3">Sign In</h3>
+                    <div className="mb-3">
+                        <input type="text" value={username} onChange={e => setUsername(e.target.value)} placeholder="Username" required className="form-control" />
+                    </div>
+                    <div className="mb-3">
+                        <input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Password" required className="form-control" />
+                    </div>
+                    <button type="submit" className="btn btn-primary w-100">Login</button>
+                    <div className="mt-3 text-center">
+                        <span className="register-text">Not a user yet? Register </span>
+                        <Link to="/signup" className="btn btn-link p-0" style={{ verticalAlign: 'baseline' }}>here</Link>
+                    </div>
+                </form>
+            </div>
         </div>
     );
 }

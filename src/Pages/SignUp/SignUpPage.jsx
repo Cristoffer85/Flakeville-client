@@ -5,7 +5,7 @@ import { registerUser } from '../../Api/AuthApi/AuthApi';
 import { navigateBasedOnRole } from '../../Components/Router/Router.jsx';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import './SignUpPage.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function SignUpPage({ handleLogin }) {
     const [username, setUsername] = useState('');
@@ -44,16 +44,24 @@ function SignUpPage({ handleLogin }) {
     };
 
     return (
-        <div className="signUpPage">
-            <form onSubmit={handleUserRegister}>
-                <Link to="/signin" className="back-to-signin">← Sign In</Link>
-                <h3>Sign Up</h3>
-                <input type="text" value={username} onChange={e => setUsername(e.target.value)} placeholder="Username" required className="username-input" />
-                <input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Password" required className="password-input" />
-                <input type="password" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} placeholder="Confirm Password" required className="password-input" />
-                {usernameTaken && <p className="error">Username taken</p>}
-                <button type="submit">Register</button>
-            </form>
+        <div className="d-flex justify-content-center align-items-center vh-100">
+            <div className="card p-4">
+                <form onSubmit={handleUserRegister}>
+                    <Link to="/signin" className="btn btn-link p-0 mb-3">← Sign In</Link>
+                    <h3 className="mb-3">Sign Up</h3>
+                    <div className="mb-3">
+                        <input type="text" value={username} onChange={e => setUsername(e.target.value)} placeholder="Username" required className="form-control" />
+                    </div>
+                    <div className="mb-3">
+                        <input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Password" required className="form-control" style={{ backgroundColor: 'lightgray' }} />
+                    </div>
+                    <div className="mb-3">
+                        <input type="password" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} placeholder="Confirm Password" required className="form-control" style={{ backgroundColor: 'lightgray' }} />
+                    </div>
+                    {usernameTaken && <p className="text-danger">Username taken</p>}
+                    <button type="submit" className="btn btn-primary w-100">Register</button>
+                </form>
+            </div>
         </div>
     );
 }
