@@ -4,7 +4,7 @@ import CurrentWeatherConditions from "../../Components/CurrentWeatherConditions/
 import FiveDayWeatherConditions from "../../Components/FiveDayWeatherConditions/FiveDayWeatherConditions.jsx";
 import { fetchCurrentConditions, fetchFiveDayConditions } from '../../Api/WeatherApi/WeatherApi.jsx';
 
-import './Weather.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Weather() {
     const [currentConditions, setCurrentConditions] = useState(null);
@@ -40,21 +40,43 @@ function Weather() {
     }, []);
 
     return (
-        <div>
-            <div className="sidebar">
-                <p onClick={() => setCurrentSection('currentConditions')}>Current Conditions</p>
-                <p onClick={() => setCurrentSection('fiveDayConditions')}>5-Day Conditions</p>
+        <div className="container-fluid" style={{ marginTop: '7rem' }}>
+            <div className="row">
+                <div className="col-md-3 mb-3">
+                    <div className="list-group">
+                        <button
+                            type="button"
+                            className={`list-group-item list-group-item-action ${currentSection === 'currentConditions' ? 'active' : ''}`}
+                            onClick={() => setCurrentSection('currentConditions')}
+                        >
+                            Current Conditions
+                        </button>
+                        <button
+                            type="button"
+                            className={`list-group-item list-group-item-action ${currentSection === 'fiveDayConditions' ? 'active' : ''}`}
+                            onClick={() => setCurrentSection('fiveDayConditions')}
+                        >
+                            5-Day Conditions
+                        </button>
+                    </div>
+                </div>
+                <div className="col-md-9">
+                    {currentSection === 'currentConditions' && (
+                        <div className="card mb-3">
+                            <div className="card-body">
+                                <CurrentWeatherConditions data={currentConditions} />
+                            </div>
+                        </div>
+                    )}
+                    {currentSection === 'fiveDayConditions' && (
+                        <div className="card mb-3" style={{ overflowY: 'auto', maxHeight: '80vh' }}>
+                            <div className="card-body">
+                                <FiveDayWeatherConditions data={fiveDayConditions} />
+                            </div>
+                        </div>
+                    )}
+                </div>
             </div>
-            {currentSection === 'currentConditions' && (
-                <div className="currentWeatherConditionsBox">
-                    <CurrentWeatherConditions data={currentConditions}/>
-                </div>
-            )}
-            {currentSection === 'fiveDayConditions' && (
-                <div className="fiveDayWeatherConditionsBox">
-                    <FiveDayWeatherConditions data={fiveDayConditions}/>
-                </div>
-            )}
         </div>
     );
 }
