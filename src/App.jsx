@@ -8,7 +8,6 @@ import PageTitleContext from './Contexts/PageTitleContext/PageTitleContext.jsx';
 import CartContext from './Contexts/CartContext/CartContext.jsx';
 import LiftsContext from './Contexts/LiftsContext/LiftsContext.jsx';
 import { RoleProvider } from './Contexts/RoleContext/RoleContext.jsx';
-import { UserProvider } from './Contexts/UserNameContext/UserNameContext.jsx';
 
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -17,7 +16,6 @@ function App() {
     const [cart, setCart] = useState([]);
     const [lifts, setLifts] = useState([]);
     const [role, setRole] = useState(null);
-    const [username, setUsername] = useState(null);
 
     useEffect(() => {
         const token = Cookies.get('token');
@@ -31,7 +29,7 @@ function App() {
         setIsLoggedIn(true);
         Cookies.set('isLoggedIn', true);
         Cookies.set('token', token);
-        setUsername(username);
+        Cookies.set('username', username);
         setRole(userRole);
     };
 
@@ -39,7 +37,7 @@ function App() {
         setIsLoggedIn(false);
         Cookies.remove('isLoggedIn');
         Cookies.remove('token');
-        setUsername(null);
+        Cookies.remove('username');
         setRole(null);
     };
 
@@ -49,10 +47,8 @@ function App() {
                 <CartContext.Provider value={{ cart, setCart }}>
                     <LiftsContext.Provider value={{ lifts, setLifts }}>
                         <RoleProvider>
-                            <UserProvider>
-                                <AppRouter isLoggedIn={isLoggedIn} handleLogin={handleLogin} handleLogout={handleLogout}
-                                           showPopup={showPopup} setShowPopup={setShowPopup} setPageTitle={setPageTitle} />
-                            </UserProvider>
+                            <AppRouter isLoggedIn={isLoggedIn} handleLogin={handleLogin} handleLogout={handleLogout}
+                                       showPopup={showPopup} setShowPopup={setShowPopup} setPageTitle={setPageTitle} />
                         </RoleProvider>
                     </LiftsContext.Provider>
                 </CartContext.Provider>
