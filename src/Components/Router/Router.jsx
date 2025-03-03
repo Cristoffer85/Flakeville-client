@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import HOC from "../../Components/HOC/HOC.jsx";
 
@@ -13,6 +13,7 @@ import Weather from '../../Pages/Weather/Weather.jsx';
 import NotAuthorized from "../../Pages/NotAuthorized/NotAuthorized.jsx";
 import SignInPage from '../../Pages/SignIn/SignInPage.jsx';
 import SignUpPage from '../../Pages/SignUp/SignUpPage.jsx';
+import RoleContext from '../../Contexts/RoleContext/RoleContext.jsx';
 
 export const navigateBasedOnRole = (role, navigate) => {
     console.log('Navigating based on role:', role);
@@ -65,8 +66,9 @@ function PageTitleUpdater({ setPageTitle }) {
     return null;
 }
 
-function AppRouter({ isLoggedIn, handleLogin, handleLogout, username, role, showPopup, setShowPopup, setPageTitle }) {
-    const commonProps = { isLoggedIn, handleLogin, handleLogout, username, role, showPopup, setShowPopup };
+function AppRouter({ isLoggedIn, handleLogin, handleLogout, showPopup, setShowPopup, setPageTitle }) {
+    const { role, setRole } = useContext(RoleContext);
+    const commonProps = { isLoggedIn, handleLogin, handleLogout, showPopup, setShowPopup, role, setRole };
 
     return (
         <Router>
