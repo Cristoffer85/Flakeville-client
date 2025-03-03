@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getAllProducts, createProduct, getOneProduct, updateProduct, deleteProduct } from '../../../Api/ProductApi/ProductApi.jsx';
-
-import '../EmployeeAccount.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function ProductManagement() {
     const [products, setProducts] = useState([]);
@@ -58,71 +57,105 @@ function ProductManagement() {
     };
 
     return (
-        <div className="productManagementBox">
-            <h2>Product Management</h2>
-            <form onSubmit={handleCreateProduct}>
-                <input
-                    type="text"
-                    value={createProductFormFields.name}
-                    onChange={(e) => setCreateProductFormFields({ ...createProductFormFields, name: e.target.value })}
-                    placeholder="Product Name"
-                />
-                <input
-                    type="text"
-                    value={createProductFormFields.description}
-                    onChange={(e) => setCreateProductFormFields({ ...createProductFormFields, description: e.target.value })}
-                    placeholder="Product Description"
-                />
-                <input
-                    type="text"
-                    value={createProductFormFields.price}
-                    onChange={(e) => setCreateProductFormFields({ ...createProductFormFields, price: e.target.value })}
-                    placeholder="Product Price"
-                />
-                <input
-                    type="text"
-                    value={createProductFormFields.category}
-                    onChange={(e) => setCreateProductFormFields({ ...createProductFormFields, category: e.target.value })}
-                    placeholder="Product Category"
-                />
-                <button type="submit">Create Product</button>
+        <div className="container">
+            <h2 className="mb-4">Product Management</h2>
+            <form onSubmit={handleCreateProduct} className="mb-4">
+                <div className="mb-3">
+                    <label className="form-label">Product Name:</label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        value={createProductFormFields.name}
+                        onChange={(e) => setCreateProductFormFields({ ...createProductFormFields, name: e.target.value })}
+                        placeholder="Product Name"
+                    />
+                </div>
+                <div className="mb-3">
+                    <label className="form-label">Product Description:</label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        value={createProductFormFields.description}
+                        onChange={(e) => setCreateProductFormFields({ ...createProductFormFields, description: e.target.value })}
+                        placeholder="Product Description"
+                    />
+                </div>
+                <div className="mb-3">
+                    <label className="form-label">Product Price:</label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        value={createProductFormFields.price}
+                        onChange={(e) => setCreateProductFormFields({ ...createProductFormFields, price: e.target.value })}
+                        placeholder="Product Price"
+                    />
+                </div>
+                <div className="mb-3">
+                    <label className="form-label">Product Category:</label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        value={createProductFormFields.category}
+                        onChange={(e) => setCreateProductFormFields({ ...createProductFormFields, category: e.target.value })}
+                        placeholder="Product Category"
+                    />
+                </div>
+                <button type="submit" className="btn btn-primary">Create Product</button>
             </form>
-            <ul>
+            <ul className="list-group mb-4">
                 {products.map((product) => (
-                    <li key={product.Id}>
+                    <li key={product.Id} className="list-group-item d-flex justify-content-between align-items-center">
                         {product.name} - ${product.price}
-                        <button onClick={() => handleGetOneProduct(product.Id)}>Edit</button>
-                        <button onClick={() => handleDeleteProduct(product.Id)}>Delete</button>
+                        <div>
+                            <button onClick={() => handleGetOneProduct(product.Id)} className="btn btn-secondary btn-sm me-2">Edit</button>
+                            <button onClick={() => handleDeleteProduct(product.Id)} className="btn btn-danger btn-sm">Delete</button>
+                        </div>
                     </li>
                 ))}
             </ul>
             {selectedProduct && (
                 <form onSubmit={handleUpdateProduct}>
-                    <input
-                        type="text"
-                        value={updateProductFormFields.name}
-                        onChange={(e) => setUpdateProductFormFields({ ...updateProductFormFields, name: e.target.value })}
-                        placeholder="Product Name"
-                    />
-                    <input
-                        type="text"
-                        value={updateProductFormFields.description}
-                        onChange={(e) => setUpdateProductFormFields({ ...updateProductFormFields, description: e.target.value })}
-                        placeholder="Product Description"
-                    />
-                    <input
-                        type="text"
-                        value={updateProductFormFields.price}
-                        onChange={(e) => setUpdateProductFormFields({ ...updateProductFormFields, price: e.target.value })}
-                        placeholder="Product Price"
-                    />
-                    <input
-                        type="text"
-                        value={updateProductFormFields.category}
-                        onChange={(e) => setUpdateProductFormFields({ ...updateProductFormFields, category: e.target.value })}
-                        placeholder="Product Category"
-                    />
-                    <button type="submit">Update Product</button>
+                    <div className="mb-3">
+                        <label className="form-label">Product Name:</label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            value={updateProductFormFields.name}
+                            onChange={(e) => setUpdateProductFormFields({ ...updateProductFormFields, name: e.target.value })}
+                            placeholder="Product Name"
+                        />
+                    </div>
+                    <div className="mb-3">
+                        <label className="form-label">Product Description:</label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            value={updateProductFormFields.description}
+                            onChange={(e) => setUpdateProductFormFields({ ...updateProductFormFields, description: e.target.value })}
+                            placeholder="Product Description"
+                        />
+                    </div>
+                    <div className="mb-3">
+                        <label className="form-label">Product Price:</label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            value={updateProductFormFields.price}
+                            onChange={(e) => setUpdateProductFormFields({ ...updateProductFormFields, price: e.target.value })}
+                            placeholder="Product Price"
+                        />
+                    </div>
+                    <div className="mb-3">
+                        <label className="form-label">Product Category:</label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            value={updateProductFormFields.category}
+                            onChange={(e) => setUpdateProductFormFields({ ...updateProductFormFields, category: e.target.value })}
+                            placeholder="Product Category"
+                        />
+                    </div>
+                    <button type="submit" className="btn btn-primary">Update Product</button>
                 </form>
             )}
         </div>

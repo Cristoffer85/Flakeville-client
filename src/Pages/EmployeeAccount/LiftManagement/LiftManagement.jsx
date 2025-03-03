@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { fetchLifts, startLift, stopLift } from '../../../Api/EmployeeApi/EmployeeApi.jsx';
-import '../EmployeeAccount.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function LiftManagement() {
     const [lifts, setLifts] = useState([]);
-    const [liftStatus, setLiftStatus] = useState({});
 
     useEffect(() => {
         fetchLifts().then(setLifts);
@@ -23,14 +22,16 @@ function LiftManagement() {
     };
 
     return (
-        <div className="liftManagementBox">
-            <h2>Lift Management</h2>
-            <ul>
+        <div className="container">
+            <h2 className="mb-4">Lift Management</h2>
+            <ul className="list-group">
                 {lifts.map((lift) => (
-                    <li key={lift.id}>
+                    <li key={lift.id} className="list-group-item d-flex justify-content-between align-items-center">
                         {lift.name} - {lift.status}
-                        <button onClick={() => handleStartLift(lift.id)}>Start</button>
-                        <button onClick={() => handleStopLift(lift.id)}>Stop</button>
+                        <div>
+                            <button onClick={() => handleStartLift(lift.id)} className="btn btn-success btn-sm me-2">Start</button>
+                            <button onClick={() => handleStopLift(lift.id)} className="btn btn-danger btn-sm">Stop</button>
+                        </div>
                     </li>
                 ))}
             </ul>

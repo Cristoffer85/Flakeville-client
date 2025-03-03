@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getEmployeeData, updateEmployeeData } from '../../../Api/EmployeeApi/EmployeeApi.jsx';
-
-import '../EmployeeAccount.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function EmployeeDetails({ username }) {
     const [employeeDetails, setEmployeeDetails] = useState({ name: '', position: '' });
@@ -29,26 +28,34 @@ function EmployeeDetails({ username }) {
     };
 
     return (
-        <div className="employeeDetailsBox">
-            <h2>Employee Details</h2>
-            <p>Name: {employeeDetails.name}</p>
-            <p>Position: {employeeDetails.position}</p>
+        <div className="container">
+            <h2 className="mb-4">Employee Details</h2>
+            <p><strong>Name:</strong> {employeeDetails.name}</p>
+            <p><strong>Position:</strong> {employeeDetails.position}</p>
             <form onSubmit={handleUpdateEmployeeData}>
-                <input
-                    type="text"
-                    value={formFields.name}
-                    onChange={(e) => setFormFields({ ...formFields, name: e.target.value })}
-                    placeholder="Name"
-                />
-                <input
-                    type="text"
-                    value={formFields.position}
-                    onChange={(e) => setFormFields({ ...formFields, position: e.target.value })}
-                    placeholder="Position"
-                />
-                <button type="submit">Update</button>
+                <div className="mb-3">
+                    <label className="form-label">Name:</label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        value={formFields.name}
+                        onChange={(e) => setFormFields({ ...formFields, name: e.target.value })}
+                        placeholder="Name"
+                    />
+                </div>
+                <div className="mb-3">
+                    <label className="form-label">Position:</label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        value={formFields.position}
+                        onChange={(e) => setFormFields({ ...formFields, position: e.target.value })}
+                        placeholder="Position"
+                    />
+                </div>
+                <button type="submit" className="btn btn-primary">Update</button>
             </form>
-            {successMessage && <p>{successMessage}</p>}
+            {successMessage && <p className="text-success mt-3">{successMessage}</p>}
         </div>
     );
 }
