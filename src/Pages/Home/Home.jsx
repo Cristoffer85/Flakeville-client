@@ -14,9 +14,9 @@ function Home() {
   }, [setLifts]);
 
   return (
-    <div className="d-flex flex-column min-vh-100">
+    <div className="d-flex flex-column min-vh-100" style={{ marginTop: '7rem' }}>
       <div className="d-flex flex-grow-1">
-        <div className="p-3" style={{ width: '200px', marginTop: '5rem' }}>
+        <div className="p-3" style={{ width: '200px' }}>
           
           {/* Sidebar content */}
           <div>
@@ -36,7 +36,7 @@ function Home() {
 
         {/* Main content */}
         <div className="flex-grow-1 p-3">
-          <p>This is the main content area.</p>
+          <p></p>
         </div>
       </div>
       <Footer />

@@ -29,7 +29,6 @@ function Cart() {
 
     return (
         <div className="container-fluid" style={{ marginTop: '7rem' }}>
-            <h2 className="text-center mb-4">Cart</h2>
             <div className="row justify-content-center">
                 <div className="col-12 col-md-10">
                     <div className="card">
@@ -48,7 +47,7 @@ function Cart() {
                                     <h4>Quantity</h4>
                                 </div>
                                 <div className="col-2 text-center">
-                                    <h4>Action</h4>
+                                    <h4></h4>
                                 </div>
                             </div>
                             {cart.map((item, index) => (
