@@ -16,7 +16,6 @@ import SignUpPage from '../../Pages/SignUp/SignUpPage.jsx';
 import RoleContext from '../../Contexts/RoleContext/RoleContext.jsx';
 
 export const navigateBasedOnRole = (role, navigate) => {
-    console.log('Navigating based on role:', role);
     if (role === 'ADMIN') {
         navigate('/admin');
     } else if (role === 'EMPLOYEE') {
