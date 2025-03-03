@@ -8,7 +8,7 @@ import PageTitleContext from './Contexts/PageTitleContext/PageTitleContext.jsx';
 import CartContext from './Contexts/CartContext/CartContext.jsx';
 import LiftsContext from './Contexts/LiftsContext/LiftsContext.jsx';
 import { RoleProvider } from './Contexts/RoleContext/RoleContext.jsx';
-import { UserProvider } from './Contexts/UserContext/UserContext.jsx';
+import { UserProvider } from './Contexts/UserNameContext/UserNameContext.jsx';
 
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);

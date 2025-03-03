@@ -14,7 +14,7 @@ import NotAuthorized from "../../Pages/NotAuthorized/NotAuthorized.jsx";
 import SignInPage from '../../Pages/SignIn/SignInPage.jsx';
 import SignUpPage from '../../Pages/SignUp/SignUpPage.jsx';
 import RoleContext from '../../Contexts/RoleContext/RoleContext.jsx';
-import UserContext from '../../Contexts/UserContext/UserContext.jsx';
+import UserContext from '../../Contexts/UserNameContext/UserNameContext.jsx';
 
 export const navigateBasedOnRole = (role, navigate) => {
     console.log('Navigating based on role:', role);
