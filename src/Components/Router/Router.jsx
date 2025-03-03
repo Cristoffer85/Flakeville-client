@@ -1,6 +1,7 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import HOC from "../../Components/HOC/HOC.jsx";
+import Cookies from 'js-cookie';
 
 import Navbar from "../../Components/Navbar/Navbar.jsx";
 import Home from '../../Pages/Home/Home.jsx';
@@ -13,7 +14,6 @@ import Weather from '../../Pages/Weather/Weather.jsx';
 import NotAuthorized from "../../Pages/NotAuthorized/NotAuthorized.jsx";
 import SignInPage from '../../Pages/SignIn/SignInPage.jsx';
 import SignUpPage from '../../Pages/SignUp/SignUpPage.jsx';
-import RoleContext from '../../Contexts/RoleContext/RoleContext.jsx';
 
 export const navigateBasedOnRole = (role, navigate) => {
     if (role === 'ADMIN') {
@@ -66,8 +66,8 @@ function PageTitleUpdater({ setPageTitle }) {
 }
 
 function AppRouter({ isLoggedIn, handleLogin, handleLogout, showPopup, setShowPopup, setPageTitle }) {
-    const { role, setRole } = useContext(RoleContext);
-    const commonProps = { isLoggedIn, handleLogin, handleLogout, showPopup, setShowPopup, role, setRole };
+    const role = Cookies.get('role');
+    const commonProps = { isLoggedIn, handleLogin, handleLogout, showPopup, setShowPopup, role };
 
     return (
         <Router>

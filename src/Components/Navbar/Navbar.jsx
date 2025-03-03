@@ -15,7 +15,6 @@ import menuCloseIcon from '../../Assets/menu_close.svg';
 import PageTitleContext from '../../Contexts/PageTitleContext/PageTitleContext.jsx';
 import CartContext from '../../Contexts/CartContext/CartContext.jsx';
 import LiftsContext from '../../Contexts/LiftsContext/LiftsContext.jsx';
-import RoleContext from '../../Contexts/RoleContext/RoleContext.jsx';
 
 import { navigateBasedOnRole } from '../Router/Router.jsx';
 import { fetchLifts } from '../../Api/EmployeeApi/EmployeeApi';
@@ -24,7 +23,6 @@ import SnowfallEffect from '../SnowfallEffect/SnowfallEffect.jsx';
 function Navbar({ isLoggedIn, handleLogout }) {
     const { cart } = useContext(CartContext);
     const pageTitle = useContext(PageTitleContext);
-    const { role } = useContext(RoleContext); // Use RoleContext
     const [isSnowing, setIsSnowing] = useState(false);
     const [snowKey, setSnowKey] = useState(0);
     const [menuOpen, setMenuOpen] = useState(false);
@@ -64,9 +62,10 @@ function Navbar({ isLoggedIn, handleLogout }) {
     };
 
     const handleAccountClick = () => {
-        if (isLoggedIn) {
-            navigateBasedOnRole(role, navigate);
-        }
+      if (isLoggedIn) {
+          const role = Cookies.get('role'); // Retrieve role from cookies
+          navigateBasedOnRole(role, navigate);
+      }
     };
 
     const handleStartSnow = () => {

@@ -7,7 +7,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import PageTitleContext from './Contexts/PageTitleContext/PageTitleContext.jsx';
 import CartContext from './Contexts/CartContext/CartContext.jsx';
 import LiftsContext from './Contexts/LiftsContext/LiftsContext.jsx';
-import { RoleProvider } from './Contexts/RoleContext/RoleContext.jsx';
 
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -20,8 +19,10 @@ function App() {
     useEffect(() => {
         const token = Cookies.get('token');
         const loggedIn = Cookies.get('isLoggedIn');
+        const userRole = Cookies.get('role');
         if (token && loggedIn) {
             setIsLoggedIn(true);
+            setRole(userRole); 
         }
     }, []);
 
@@ -30,6 +31,7 @@ function App() {
         Cookies.set('isLoggedIn', true);
         Cookies.set('token', token);
         Cookies.set('username', username);
+        Cookies.set('role', userRole);
         setRole(userRole);
     };
 
@@ -38,6 +40,7 @@ function App() {
         Cookies.remove('isLoggedIn');
         Cookies.remove('token');
         Cookies.remove('username');
+        Cookies.remove('role');
         setRole(null);
     };
 
@@ -46,10 +49,8 @@ function App() {
             <PageTitleContext.Provider value={pageTitle}>
                 <CartContext.Provider value={{ cart, setCart }}>
                     <LiftsContext.Provider value={{ lifts, setLifts }}>
-                        <RoleProvider>
-                            <AppRouter isLoggedIn={isLoggedIn} handleLogin={handleLogin} handleLogout={handleLogout}
-                                       showPopup={showPopup} setShowPopup={setShowPopup} setPageTitle={setPageTitle} />
-                        </RoleProvider>
+                        <AppRouter isLoggedIn={isLoggedIn} handleLogin={handleLogin} handleLogout={handleLogout}
+                                   showPopup={showPopup} setShowPopup={setShowPopup} setPageTitle={setPageTitle} />
                     </LiftsContext.Provider>
                 </CartContext.Provider>
             </PageTitleContext.Provider>

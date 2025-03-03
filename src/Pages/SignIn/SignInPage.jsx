@@ -1,16 +1,14 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { loginUser } from '../../Api/AuthApi/AuthApi';
 import { navigateBasedOnRole } from '../../Components/Router/Router.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import RoleContext from '../../Contexts/RoleContext/RoleContext.jsx';
 
 function SignInPage({ handleLogin }) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
-    const { setRole } = useContext(RoleContext); // Use RoleContext
 
     const handleUserLogin = async (event) => {
         event.preventDefault();
@@ -18,10 +16,8 @@ function SignInPage({ handleLogin }) {
         try {
             const data = await loginUser(username, password);
             Cookies.set('token', data.jwt);
+            Cookies.set('role', data.role.authority);
             handleLogin(data.user.username, data.jwt, data.role.authority);
-
-            // Set the role in RoleContext
-            setRole(data.role.authority);
 
             // Navigate to the respective page based on the user's role
             navigateBasedOnRole(data.role.authority, navigate);
