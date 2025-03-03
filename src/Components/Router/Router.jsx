@@ -14,6 +14,7 @@ import NotAuthorized from "../../Pages/NotAuthorized/NotAuthorized.jsx";
 import SignInPage from '../../Pages/SignIn/SignInPage.jsx';
 import SignUpPage from '../../Pages/SignUp/SignUpPage.jsx';
 import RoleContext from '../../Contexts/RoleContext/RoleContext.jsx';
+import UserContext from '../../Contexts/UserContext/UserContext.jsx';
 
 export const navigateBasedOnRole = (role, navigate) => {
     console.log('Navigating based on role:', role);
@@ -68,7 +69,8 @@ function PageTitleUpdater({ setPageTitle }) {
 
 function AppRouter({ isLoggedIn, handleLogin, handleLogout, showPopup, setShowPopup, setPageTitle }) {
     const { role, setRole } = useContext(RoleContext);
-    const commonProps = { isLoggedIn, handleLogin, handleLogout, showPopup, setShowPopup, role, setRole };
+    const { username, setUsername } = useContext(UserContext);
+    const commonProps = { isLoggedIn, handleLogin, handleLogout, showPopup, setShowPopup, role, setRole, username, setUsername };
 
     return (
         <Router>
