@@ -14,7 +14,7 @@ function Home() {
   }, [setLifts]);
 
   return (
-    <div className="d-flex flex-column min-vh-100" style={{ marginTop: '7rem' }}>
+    <div className="d-flex flex-column min-vh-100" style={{ paddingTop: '7rem' }}>
       <div className="d-flex flex-grow-1">
         <div className="p-3" style={{ width: '200px' }}>
           

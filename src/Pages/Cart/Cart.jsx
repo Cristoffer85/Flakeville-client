@@ -28,7 +28,7 @@ function Cart() {
     const totalCount = cart.reduce((total, item) => total + item.quantity, 0);
 
     return (
-        <div className="container-fluid" style={{ marginTop: '7rem' }}>
+        <div className="container-fluid" style={{ paddingTop: '7rem' }}>
             <div className="row justify-content-center">
                 <div className="col-12 col-md-10">
                     <div className="card">

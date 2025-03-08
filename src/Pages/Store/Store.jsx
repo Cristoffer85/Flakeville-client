@@ -1,9 +1,7 @@
 import { useContext, useEffect, useState } from "react";
-
 import { categories } from "../../Components/Categories/Categories.jsx";
 import CartContext from "../../Contexts/CartContext/CartContext.jsx";
 import { fetchProductsByCategory, getAllProducts } from "../../Api/StoreApi/StoreApi.jsx";
-
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Store() {
@@ -48,9 +46,9 @@ function Store() {
     );
 
     return (
-        <div className="container-fluid" style={{ marginTop: '7rem' }}>
-            <div className="row">
-                <div className="col-md-3 mb-3">
+        <div className="container-fluid vh-100" style={{ paddingTop: '7rem', overflowY: 'hidden' }}>
+            <div className="row h-100">
+                <div className="col-md-3 mb-3 position-fixed" style={{ height: 'calc(100vh - 7rem)', overflowY: 'auto' }}>
                     <div className="list-group">
                         <div className="list-group-item">
                             <input
@@ -74,7 +72,7 @@ function Store() {
                         ))}
                     </div>
                 </div>
-                <div className="col-md-9">
+                <div className="col-md-9 offset-md-3" style={{ height: 'calc(100vh - 7rem)', overflowY: 'auto' }}>
                     <div className="row row-cols-1 row-cols-md-3 g-4">
                         {filteredProducts.map((product, index) => (
                             <div key={index} className="col">

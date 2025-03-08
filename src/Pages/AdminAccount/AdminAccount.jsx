@@ -20,7 +20,7 @@ function AdminAccount() {
     }, []);
 
     return (
-        <div className="container-fluid" style={{ marginTop: '7rem' }}>
+        <div className="container-fluid" style={{ paddingTop: '7rem' }}>
             <div className="row">
                 <div className="col-md-3">
                     <div className="list-group">
