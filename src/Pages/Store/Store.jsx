@@ -47,8 +47,8 @@ function Store() {
 
     return (
         <div className="container-fluid" style={{ paddingTop: '7rem', paddingBottom: '2rem', paddingRight: '1.5rem' }}>
-          {/* Flex container with gap added for margin between columns */}
           <div className="d-flex flex-column flex-md-row gap-3" style={{ height: 'calc(100vh - 9rem)' }}>
+
             {/* Left column: sticky on md+ */}
             <div className="col-md-3 flex-shrink-0 sticky-md-top">
               <div className="list-group">
@@ -74,6 +74,7 @@ function Store() {
                 ))}
               </div>
             </div>
+            
             {/* Right column: only vertical scroll, horizontal overflow hidden */}
             <div className="col-md-9" style={{ overflowY: 'auto', overflowX: 'hidden' }}>
               <div className="row row-cols-1 row-cols-md-3 g-4">
