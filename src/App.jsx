@@ -24,7 +24,16 @@ function App() {
             setIsLoggedIn(true);
             setRole(userRole); 
         }
+
+        const savedCart = localStorage.getItem('cart');
+        if (savedCart) {
+            setCart(JSON.parse(savedCart));
+        }
     }, []);
+
+    useEffect(() => {
+        localStorage.setItem('cart', JSON.stringify(cart));
+    }, [cart]);
 
     const handleLogin = (username, token, userRole) => {
         setIsLoggedIn(true);

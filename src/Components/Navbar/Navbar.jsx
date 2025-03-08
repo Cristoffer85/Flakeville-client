@@ -140,9 +140,9 @@ function Navbar({ isLoggedIn, handleLogout }) {
                         style={{ width: '2.2rem', height: '2.2rem' }}
                       />
                       {totalItems > 0 && (
-                        <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
-                          {totalItems}
-                        </span>
+                          <span className="position-absolute top-10 translate-middle-y badge rounded-pill bg-danger" style={{ fontSize: '0.8rem', padding: '0.4rem 0.5rem', left: '60%' }}>
+                              {totalItems}
+                          </span>
                       )}
                     </Link>
                   </li>
