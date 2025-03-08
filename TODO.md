@@ -1,5 +1,7 @@
 ---------------------------
 * Find ways to not having to use cookies/localstorage so much - but without losing current sessiondata by refresh/accidental browserclosure...? Impossible?
+
+        - Include/exclude more information within the jwt? From the model from server it already have 'username' included. And another separate of role. Do we really need to set these as extra persistent values in cookie or local to use it for state? Somehow use these clumped together encrypted and then decrypt in frontend when using?
 ---------------------------
 
 ---------------------------
