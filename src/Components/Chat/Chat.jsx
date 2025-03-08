@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
-import { sendMessage, getMessages } from '../../Api/ChatApi/ChatApi';
+import { sendMessage, getMessages, getUnreadMessagesCount, getUnreadMessagesSenders } from '../../Api/ChatApi/ChatApi';
 import { getAllUserNames } from '../../Api/UserApi/UserApi';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -11,6 +11,8 @@ const Chat = () => {
   const [userNames, setUserNames] = useState([]);
   const [messages, setMessages] = useState([]);
   const [error, setError] = useState('');
+  const [unreadCounts, setUnreadCounts] = useState({});
+  const [unreadSenders, setUnreadSenders] = useState(new Set());
 
   useEffect(() => {
     const username = Cookies.get('username');
@@ -29,7 +31,21 @@ const Chat = () => {
       }
     };
 
-    fetchUserNames();
+    const fetchUnreadMessages = async () => {
+      try {
+        const count = await getUnreadMessagesCount(sender);
+        const senders = await getUnreadMessagesSenders(sender);
+        setUnreadCounts(count);
+        setUnreadSenders(new Set(senders));
+      } catch (error) {
+        console.error('Error fetching unread messages:', error);
+      }
+    };
+
+    if (sender) {
+      fetchUserNames();
+      fetchUnreadMessages();
+    }
   }, [sender]);
 
   const fetchMessages = async (receiver) => {
@@ -37,6 +53,12 @@ const Chat = () => {
       const data = await getMessages(sender, receiver);
       setMessages(data);
       setError('');
+      // Remove receiver from unread senders set
+      setUnreadSenders(prev => {
+        const newSet = new Set(prev);
+        newSet.delete(receiver);
+        return newSet;
+      });
     } catch (error) {
       if (error.response && error.response.status === 403) {
         setError('You can only view your own messages.');
@@ -85,6 +107,7 @@ const Chat = () => {
             {userNames.filter(user => user.username !== sender).map((user, index) => (
               <button key={index} className="list-group-item list-group-item-action" onClick={() => handleUserClick(user.username)}>
                 {user.username}
+                {unreadSenders.has(user.username) && <span className="badge bg-danger ms-2">Unread</span>}
               </button>
             ))}
           </div>

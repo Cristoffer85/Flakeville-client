@@ -31,3 +31,33 @@ export const sendMessage = async (msgDto) => {
     }
     return response.data;
 };
+
+export const getUnreadMessagesCount = async (username) => {
+    const token = Cookies.get('token');
+    const response = await axios.get(`${config.backendUrl}/rabbitmq/unread/${username}`, {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    });
+
+    if (response.status !== 200) {
+        throw new Error('Failed to fetch unread messages count: ' + response.statusText);
+    }
+
+    return response.data;
+};
+
+export const getUnreadMessagesSenders = async (username) => {
+    const token = Cookies.get('token');
+    const response = await axios.get(`${config.backendUrl}/rabbitmq/unread/senders/${username}`, {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    });
+
+    if (response.status !== 200) {
+        throw new Error('Failed to fetch unread messages senders: ' + response.statusText);
+    }
+
+    return response.data;
+};
