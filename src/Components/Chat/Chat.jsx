@@ -119,7 +119,7 @@ const Chat = () => {
                 <button onClick={handleClose} className="btn btn-danger btn-sm float-end">X</button>
                 <h3>Messages with {receiver}</h3>
                 {error && <p className="text-danger">{error}</p>}
-                <div className="mb-3">
+                <div className="mb-3" style={{ maxHeight: '400px', overflowY: 'auto' }}>
                   {messages.length > 0 ? (
                     messages.map((msg, index) => {
                       const [messageSender, messageContent] = msg.split(': ');
