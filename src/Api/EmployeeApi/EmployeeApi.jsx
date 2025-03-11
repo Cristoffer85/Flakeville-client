@@ -1,8 +1,11 @@
-import Cookies from 'js-cookie';
 import config from '../Apiconfig';
 
+const getToken = () => {
+    return localStorage.getItem('jwtToken');
+};
+
 export const getEmployeeData = async (username) => {
-    const token = Cookies.get('token');
+    const token = getToken();
 
     const response = await fetch(`${config.backendUrl}/employee/getOneEmployee/${username}`, {
         headers: {
@@ -18,7 +21,7 @@ export const getEmployeeData = async (username) => {
 };
 
 export const updateEmployeeData = async (username, formFields) => {
-    const token = Cookies.get('token');
+    const token = getToken();
 
     const response = await fetch(`${config.backendUrl}/employee/updateEmployee/${username}`, {
         method: 'PUT',
@@ -45,15 +48,14 @@ export const fetchLifts = async () => {
 };
 
 export const startLift = async (id) => {
-    const token = Cookies.get('token');
+    const token = getToken();
     const response = await fetch(`${config.backendUrl}/skilifts/startLift/${id}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
         },
-        body: JSON.stringify({
-        })
+        body: JSON.stringify({})
     });
 
     if (!response.ok) {
@@ -64,15 +66,14 @@ export const startLift = async (id) => {
 };
 
 export const stopLift = async (id) => {
-    const token = Cookies.get('token');
+    const token = getToken();
     const response = await fetch(`${config.backendUrl}/skilifts/stopLift/${id}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
         },
-        body: JSON.stringify({
-        })
+        body: JSON.stringify({})
     });
 
     if (!response.ok) {

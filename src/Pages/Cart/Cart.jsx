@@ -2,15 +2,14 @@ import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import CartContext from '../../Contexts/CartContext/CartContext.jsx';
 import { sendOrder } from '../../Api/CartApi/CartApi';
-import Cookies from 'js-cookie';
-
+import AuthContext from '../../Contexts/AuthContext/AuthContext.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Cart() {
     const { cart, setCart } = useContext(CartContext);
+    const { authState } = useContext(AuthContext);
+    const { isLoggedIn, roles } = authState;
     const [successMessage, setSuccessMessage] = useState(null);
-    const isLoggedIn = Cookies.get('isLoggedIn');
-    const userRole = Cookies.get('role');
 
     const updateQuantity = (product, quantity) => {
         const updatedCart = cart.map(item =>
@@ -86,7 +85,7 @@ function Cart() {
                             <div className="row justify-content-center mt-4">
                                 <div className="col-12 col-md-6 text-center">
                                     <h3 className="mb-3">Total price: ${totalPrice}</h3>
-                                    {isLoggedIn && userRole === 'USER' && cart.length > 0 ? (
+                                    {isLoggedIn && roles.includes('USER') && cart.length > 0 ? (
                                         <button
                                             className="btn btn-success btn-lg"
                                             onClick={() => sendOrder(cart, setCart, setSuccessMessage)}

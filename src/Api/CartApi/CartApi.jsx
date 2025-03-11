@@ -1,9 +1,12 @@
-import Cookies from 'js-cookie';
 import config from '../Apiconfig';
 
+const getToken = () => {
+    return localStorage.getItem('jwtToken');
+};
+
 export async function sendOrder(cart, setCart, setSuccessMessage) {
-    const token = Cookies.get('token');
-    const username = Cookies.get('username');
+    const token = getToken();
+    const username = getUsername();
 
     const order = {
         id: "Previous order",

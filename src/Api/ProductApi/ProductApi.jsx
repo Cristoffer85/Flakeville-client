@@ -1,5 +1,8 @@
-import Cookies from 'js-cookie';
 import config from '../Apiconfig';
+
+const getToken = () => {
+    return localStorage.getItem('jwtToken');
+};
 
 export const getOneProduct = async (id) => {
     const response = await fetch(`${config.backendUrl}/products/getOneProduct/${id}`);
@@ -18,7 +21,7 @@ export const getAllProducts = async () => {
 };
 
 export const createProduct = async (product) => {
-    const token = Cookies.get('token');
+    const token = getToken();
     const response = await fetch(`${config.backendUrl}/products/createProduct`, {
         method: 'POST',
         headers: {
@@ -34,7 +37,7 @@ export const createProduct = async (product) => {
 };
 
 export const updateProduct = async (id, product) => {
-    const token = Cookies.get('token');
+    const token = getToken();
     const response = await fetch(`${config.backendUrl}/products/updateProduct/${id}`, {
         method: 'PUT',
         headers: {
@@ -50,7 +53,7 @@ export const updateProduct = async (id, product) => {
 };
 
 export const deleteProduct = async (id) => {
-    const token = Cookies.get('token');
+    const token = getToken();
     const response = await fetch(`${config.backendUrl}/products/deleteProduct/${id}`, {
         method: 'DELETE',
         headers: {

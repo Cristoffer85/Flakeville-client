@@ -1,8 +1,11 @@
-import Cookies from 'js-cookie';
 import config from '../Apiconfig';
 
+const getToken = () => {
+    return localStorage.getItem('jwtToken');
+};
+
 export const createUser = async (user) => {
-    const token = Cookies.get('token');
+    const token = getToken();
     const response = await fetch(`${config.backendUrl}/admin/createUser`, {
         method: 'POST',
         headers: {
@@ -19,7 +22,7 @@ export const createUser = async (user) => {
 };
 
 export const getAllUsers = async () => {
-    const token = Cookies.get('token');
+    const token = getToken();
     const response = await fetch(`${config.backendUrl}/admin/getAllUsers`, {
         headers: {
             'Authorization': `Bearer ${token}`
@@ -29,7 +32,7 @@ export const getAllUsers = async () => {
 };
 
 export const getUser = async (username) => {
-    const token = Cookies.get('token');
+    const token = getToken();
     const response = await fetch(`${config.backendUrl}/admin/getOneUser/${username}`, {
         headers: {
             'Authorization': `Bearer ${token}`
@@ -42,7 +45,7 @@ export const getUser = async (username) => {
 };
 
 export const updateUser = async (username, user) => {
-    const token = Cookies.get('token');
+    const token = getToken();
     const response = await fetch(`${config.backendUrl}/admin/updateUser/${username}`, {
         method: 'PUT',
         headers: {
@@ -59,7 +62,7 @@ export const updateUser = async (username, user) => {
 };
 
 export const deleteUser = async (username) => {
-    const token = Cookies.get('token');
+    const token = getToken();
     await fetch(`${config.backendUrl}/admin/deleteOneUser/${username}`, {
         method: 'DELETE',
         headers: {
@@ -69,7 +72,7 @@ export const deleteUser = async (username) => {
 };
 
 export const createEmployee = async (employee) => {
-    const token = Cookies.get('token');
+    const token = getToken();
     const response = await fetch(`${config.backendUrl}/admin/createEmployee`, {
         method: 'POST',
         headers: {
@@ -86,7 +89,7 @@ export const createEmployee = async (employee) => {
 };
 
 export const getAllEmployees = async () => {
-    const token = Cookies.get('token');
+    const token = getToken();
     const response = await fetch(`${config.backendUrl}/admin/getAllEmployees`, {
         headers: {
             'Authorization': `Bearer ${token}`
@@ -96,7 +99,7 @@ export const getAllEmployees = async () => {
 };
 
 export const getEmployee = async (username) => {
-    const token = Cookies.get('token');
+    const token = getToken();
     const response = await fetch(`${config.backendUrl}/admin/getOneEmployee/${username}`, {
         headers: {
             'Authorization': `Bearer ${token}`
@@ -109,7 +112,7 @@ export const getEmployee = async (username) => {
 };
 
 export const updateEmployee = async (username, employee) => {
-    const token = Cookies.get('token');
+    const token = getToken();
     const response = await fetch(`${config.backendUrl}/admin/updateEmployee/${username}`, {
         method: 'PUT',
         headers: {
@@ -126,7 +129,7 @@ export const updateEmployee = async (username, employee) => {
 };
 
 export const deleteEmployee = async (username) => {
-    const token = Cookies.get('token');
+    const token = getToken();
     await fetch(`${config.backendUrl}/admin/deleteEmployee/${username}`, {
         method: 'DELETE',
         headers: {

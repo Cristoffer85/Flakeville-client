@@ -1,9 +1,12 @@
 import axios from 'axios';
-import Cookies from 'js-cookie';
 import config from '../Apiconfig';
 
+const getToken = () => {
+    return localStorage.getItem('jwtToken');
+};
+
 export const getMessages = async (user1, user2) => {
-    const token = Cookies.get('token');
+    const token = getToken();
     const response = await axios.get(`${config.backendUrl}/rabbitmq/subscribe/${user1}/${user2}`, {
         headers: {
             'Authorization': `Bearer ${token}`,
@@ -19,7 +22,7 @@ export const getMessages = async (user1, user2) => {
 };
 
 export const sendMessage = async (msgDto) => {
-    const token = Cookies.get('token');
+    const token = getToken();
     const response = await axios.post(`${config.backendUrl}/rabbitmq/publish`, msgDto, {
         headers: {
             'Authorization': `Bearer ${token}`
@@ -33,7 +36,7 @@ export const sendMessage = async (msgDto) => {
 };
 
 export const getUnreadMessagesCount = async (username) => {
-    const token = Cookies.get('token');
+    const token = getToken();
     const response = await axios.get(`${config.backendUrl}/rabbitmq/unread/${username}`, {
         headers: {
             'Authorization': `Bearer ${token}`
@@ -48,7 +51,7 @@ export const getUnreadMessagesCount = async (username) => {
 };
 
 export const getUnreadMessagesSenders = async (username) => {
-    const token = Cookies.get('token');
+    const token = getToken();
     const response = await axios.get(`${config.backendUrl}/rabbitmq/unread/senders/${username}`, {
         headers: {
             'Authorization': `Bearer ${token}`
