@@ -1,65 +1,32 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import AppRouter from './Components/Router/Router.jsx';
-import Cookies from 'js-cookie';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
 import PageTitleContext from './Contexts/PageTitleContext/PageTitleContext.jsx';
 import CartContext from './Contexts/CartContext/CartContext.jsx';
 import LiftsContext from './Contexts/LiftsContext/LiftsContext.jsx';
+import AuthContext from './Contexts/AuthContext/AuthContext.jsx';
 
 function App() {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [showPopup, setShowPopup] = useState(false);
     const [pageTitle, setPageTitle] = useState('Home');
     const [cart, setCart] = useState([]);
     const [lifts, setLifts] = useState([]);
-    const [role, setRole] = useState(null);
-
-    useEffect(() => {
-        const token = Cookies.get('token');
-        const loggedIn = Cookies.get('isLoggedIn');
-        const userRole = Cookies.get('role');
-        if (token && loggedIn) {
-            setIsLoggedIn(true);
-            setRole(userRole); 
-        }
-
-        const savedCart = localStorage.getItem('cart');
-        if (savedCart) {
-            setCart(JSON.parse(savedCart));
-        }
-    }, []);
-
-    useEffect(() => {
-        localStorage.setItem('cart', JSON.stringify(cart));
-    }, [cart]);
-
-    const handleLogin = (username, token, userRole) => {
-        setIsLoggedIn(true);
-        Cookies.set('isLoggedIn', true);
-        Cookies.set('token', token);
-        Cookies.set('username', username);
-        Cookies.set('role', userRole);
-        setRole(userRole);
-    };
-
-    const handleLogout = () => {
-        setIsLoggedIn(false);
-        Cookies.remove('isLoggedIn');
-        Cookies.remove('token');
-        Cookies.remove('username');
-        Cookies.remove('role');
-        setRole(null);
-    };
+    const { authState, login, logout } = useContext(AuthContext);
 
     return (
         <div className="App">
             <PageTitleContext.Provider value={pageTitle}>
                 <CartContext.Provider value={{ cart, setCart }}>
                     <LiftsContext.Provider value={{ lifts, setLifts }}>
-                        <AppRouter isLoggedIn={isLoggedIn} handleLogin={handleLogin} handleLogout={handleLogout}
-                                   showPopup={showPopup} setShowPopup={setShowPopup} setPageTitle={setPageTitle} />
+                        <AppRouter 
+                            isLoggedIn={authState.isLoggedIn} 
+                            handleLogin={login} 
+                            handleLogout={logout}
+                            showPopup={showPopup} 
+                            setShowPopup={setShowPopup} 
+                            setPageTitle={setPageTitle} 
+                        />
                     </LiftsContext.Provider>
                 </CartContext.Provider>
             </PageTitleContext.Provider>

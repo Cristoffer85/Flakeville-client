@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { getUserDetails, updateUserDetails } from '../../../Api/UserApi/UserApi';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import AuthContext from '../../../Contexts/AuthContext/AuthContext.jsx';
 
 function UserDetails({ username }) {
+    const { authState } = useContext(AuthContext);
+    const { token } = authState;
     const [userDetails, setUserDetails] = useState({});
     const [updateEmail, setUpdateEmail] = useState('');
     const [updateTelephone, setUpdateTelephone] = useState('');
@@ -14,7 +17,7 @@ function UserDetails({ username }) {
     }, []);
 
     const fetchUserDetails = async () => {
-        const data = await getUserDetails(username);
+        const data = await getUserDetails(username, token);
         setUserDetails(data);
         setUpdateEmail(data.email || '');
         setUpdateTelephone(data.telephone || '');
@@ -25,7 +28,7 @@ function UserDetails({ username }) {
     const handleUpdateUserDetails = async (event) => {
         event.preventDefault();
         try {
-            await updateUserDetails(username, updateEmail, updateTelephone, updateBirthday, updateAddress);
+            await updateUserDetails(username, updateEmail, updateTelephone, updateBirthday, updateAddress, token);
             fetchUserDetails(); // Fetch updated user details
             // Clear the form inputs
             setUpdateEmail('');

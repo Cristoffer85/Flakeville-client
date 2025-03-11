@@ -1,8 +1,6 @@
 import config from '../Apiconfig';
-import Cookies from 'js-cookie';
 
-export const getUserDetails = async (username) => {
-    const token = Cookies.get('token');
+export const getUserDetails = async (username, token) => {
     const response = await fetch(`${config.backendUrl}/user/getOneUser/${username}`, {
         headers: {
             'Authorization': `Bearer ${token}`
@@ -11,8 +9,7 @@ export const getUserDetails = async (username) => {
     return await response.json();
 };
 
-export const updateUserDetails = async (username, email, telephone, birthday, address) => {
-    const token = Cookies.get('token');
+export const updateUserDetails = async (username, email, telephone, birthday, address, token) => {
     const response = await fetch(`${config.backendUrl}/user/updateUser/${username}`, {
         method: 'PUT',
         headers: {

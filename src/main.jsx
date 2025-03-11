@@ -2,6 +2,12 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App';
 import './index.css';
+import { AuthProvider } from './Contexts/AuthContext/AuthContext.jsx';
 
-const root = document.getElementById('root');
-createRoot(root).render(<App />);
+const container = document.getElementById('root');
+const root = createRoot(container);
+root.render(
+  <AuthProvider>
+    <App />
+  </AuthProvider>
+);

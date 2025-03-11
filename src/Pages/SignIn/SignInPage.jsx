@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import Cookies from 'js-cookie';
 import { loginUser } from '../../Api/AuthApi/AuthApi';
 import { navigateBasedOnRole } from '../../Components/Router/Router.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import AuthContext from '../../Contexts/AuthContext/AuthContext.jsx';
 
-function SignInPage({ handleLogin }) {
+function SignInPage() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const { login } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const handleUserLogin = async (event) => {
@@ -15,12 +16,14 @@ function SignInPage({ handleLogin }) {
 
         try {
             const data = await loginUser(username, password);
-            Cookies.set('token', data.jwt);
-            Cookies.set('role', data.role.authority);
-            handleLogin(data.user.username, data.jwt, data.role.authority);
+            if (data && data.token) {
+                login(data.token);
 
-            // Navigate to the respective page based on the user's role
-            navigateBasedOnRole(data.role.authority, navigate);
+                // Navigate to the respective page based on the user's role
+                navigateBasedOnRole(data.role.authority, navigate);
+            } else {
+                console.error('Invalid login response:', data);
+            }
         } catch (error) {
             console.log('Login failed:', error.message);
         }

@@ -1,18 +1,19 @@
-import { useEffect } from 'react';
+import { useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Cookies from 'js-cookie';
+import AuthContext from '../../Contexts/AuthContext/AuthContext.jsx';
 
 const HOC = ({ children }) => {
-    const isAuthenticated = Cookies.get('token');
+    const { authState } = useContext(AuthContext);
+    const { isLoggedIn } = authState;
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (!isAuthenticated) {
+        if (!isLoggedIn) {
             navigate('*');
         }
-    }, [isAuthenticated, navigate]);
+    }, [isLoggedIn, navigate]);
 
-    return isAuthenticated ? children : null;
+    return isLoggedIn ? children : null;
 };
 
 export default HOC;

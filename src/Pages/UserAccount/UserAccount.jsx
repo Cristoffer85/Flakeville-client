@@ -1,20 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import Cookies from 'js-cookie';
+import React, { useState, useEffect, useContext } from 'react';
 import UserDetails from './UserDetails/UserDetails.jsx';
 import PreviousOrders from './PreviousOrders/PreviousOrders.jsx';
 import Chat from '../../Components/Chat/Chat.jsx';
 import { getUserDetails } from '../../Api/UserApi/UserApi';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import AuthContext from '../../Contexts/AuthContext/AuthContext.jsx';
 
 function UserAccount() {
-    const username = Cookies.get('username');
+    const { authState } = useContext(AuthContext);
+    const { username, token } = authState;
     const [currentSection, setCurrentSection] = useState('userDetails');
     const [userDetails, setUserDetails] = useState({});
 
     useEffect(() => {
         const fetchUserDetails = async () => {
             try {
-                const data = await getUserDetails(username);
+                const data = await getUserDetails(username, token);
                 if (data) {
                     setUserDetails(data);
                 } else {
@@ -25,8 +26,10 @@ function UserAccount() {
             }
         };
 
-        fetchUserDetails();
-    }, [username]);
+        if (username && token) {
+            fetchUserDetails();
+        }
+    }, [username, token]);
 
     return (
         <div className="container-fluid" style={{ paddingTop: '7rem' }}>
