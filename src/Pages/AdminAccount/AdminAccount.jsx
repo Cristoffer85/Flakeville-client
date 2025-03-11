@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import Cookies from 'js-cookie';
+import React, { useState, useEffect, useContext } from 'react';
 import UserManagement from './UserManagement/UserManagement.jsx';
 import EmployeeManagement from './EmployeeManagement/EmployeeManagement.jsx';
 import { getAllUsers, getAllEmployees } from '../../Api/AdminApi/AdminApi.jsx';
 import Chat from '../../Components/Chat/Chat.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import AuthContext from '../../Contexts/AuthContext/AuthContext.jsx';
 
 function AdminAccount() {
-    const username = Cookies.get('username');
+    const { authState } = useContext(AuthContext);
+    const { username, token } = authState;
     const [currentSection, setCurrentSection] = useState('userManagement');
     const [users, setUsers] = useState([]);
     const [searchedUser, setSearchedUser] = useState(null);
@@ -15,9 +16,19 @@ function AdminAccount() {
     const [searchedEmployee, setSearchedEmployee] = useState(null);
 
     useEffect(() => {
-        getAllUsers().then(setUsers);
-        getAllEmployees().then(setEmployees);
-    }, []);
+        const fetchData = async () => {
+            try {
+                const usersData = await getAllUsers(token);
+                setUsers(usersData);
+                const employeesData = await getAllEmployees(token);
+                setEmployees(employeesData);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+
+        fetchData();
+    }, [token]);
 
     return (
         <div className="container-fluid" style={{ paddingTop: '7rem' }}>

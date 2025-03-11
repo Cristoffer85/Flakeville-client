@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
-import Cookies from 'js-cookie';
+import React, { useState, useContext } from 'react';
 import EmployeeDetails from './EmployeeDetails/EmployeeDetails.jsx';
 import ProductManagement from './ProductManagement/ProductManagement.jsx';
 import LiftManagement from './LiftManagement/LiftManagement.jsx';
 import Chat from '../../Components/Chat/Chat.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import AuthContext from '../../Contexts/AuthContext/AuthContext.jsx';
 
 function EmployeeAccount() {
-    const username = Cookies.get('username');
+    const { authState } = useContext(AuthContext);
+    const { username } = authState;
     const [currentSection, setCurrentSection] = useState('employeeDetails');
 
     return (

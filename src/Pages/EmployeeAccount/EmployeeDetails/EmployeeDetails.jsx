@@ -1,35 +1,49 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { getEmployeeData, updateEmployeeData } from '../../../Api/EmployeeApi/EmployeeApi.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import AuthContext from '../../../Contexts/AuthContext/AuthContext.jsx';
 
 function EmployeeDetails({ username }) {
+    const { authState } = useContext(AuthContext);
+    const { token } = authState;
     const [employeeDetails, setEmployeeDetails] = useState({ name: '', position: '' });
     const [formFields, setFormFields] = useState({ name: '', position: '' });
     const [successMessage, setSuccessMessage] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
 
     useEffect(() => {
-        getEmployeeData(username)
-            .then(data => setEmployeeDetails(data))
-            .catch(error => console.error('Error:', error));
-    }, [username]);
+        const fetchEmployeeData = async () => {
+            try {
+                const data = await getEmployeeData(username, token);
+                setEmployeeDetails(data);
+            } catch (error) {
+                console.error('Error:', error);
+                setErrorMessage('Failed to fetch employee data.');
+            }
+        };
+
+        fetchEmployeeData();
+    }, [username, token]);
 
     const handleUpdateEmployeeData = async (event) => {
         event.preventDefault();
 
         try {
-            await updateEmployeeData(username, formFields);
+            await updateEmployeeData(username, formFields, token);
             setSuccessMessage('Information updated');
             setFormFields({ name: '', position: '' }); // Clear the form
-            const updatedData = await getEmployeeData(username); // Fetch the updated employee details
+            const updatedData = await getEmployeeData(username, token); // Fetch the updated employee details
             setEmployeeDetails(updatedData);
         } catch (error) {
             console.error('Error:', error);
+            setErrorMessage('Failed to update employee data.');
         }
     };
 
     return (
         <div className="container">
             <h2 className="mb-4">Employee Details</h2>
+            {errorMessage && <p className="text-danger">{errorMessage}</p>}
             <p><strong>Name:</strong> {employeeDetails.name}</p>
             <p><strong>Position:</strong> {employeeDetails.position}</p>
             <form onSubmit={handleUpdateEmployeeData}>

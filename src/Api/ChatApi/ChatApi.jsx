@@ -1,66 +1,58 @@
-import axios from 'axios';
 import config from '../Apiconfig';
 
-const getToken = () => {
-    return localStorage.getItem('jwtToken');
-};
-
-export const getMessages = async (user1, user2) => {
-    const token = getToken();
-    const response = await axios.get(`${config.backendUrl}/rabbitmq/subscribe/${user1}/${user2}`, {
+export const sendMessage = async (msgDto, token) => {
+    const response = await fetch(`${config.backendUrl}/chat/sendMessage`, {
+        method: 'POST',
         headers: {
-            'Authorization': `Bearer ${token}`,
-            'X-Username': user1 // Include the logged-in user's username
-        }
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify(msgDto)
     });
 
-    if (response.status !== 200) {
-        throw new Error('Failed to fetch messages: ' + response.statusText);
+    if (!response.ok) {
+        throw new Error('Failed to send message: ' + await response.text());
     }
-
-    return response.data;
 };
 
-export const sendMessage = async (msgDto) => {
-    const token = getToken();
-    const response = await axios.post(`${config.backendUrl}/rabbitmq/publish`, msgDto, {
+export const getMessages = async (sender, receiver, token) => {
+    const response = await fetch(`${config.backendUrl}/chat/getMessages/${sender}/${receiver}`, {
         headers: {
             'Authorization': `Bearer ${token}`
         }
     });
 
-    if (response.status !== 200) {
-        throw new Error('Failed to send message: ' + response.statusText);
+    if (!response.ok) {
+        throw new Error('Failed to fetch messages: ' + await response.text());
     }
-    return response.data;
+
+    return await response.json();
 };
 
-export const getUnreadMessagesCount = async (username) => {
-    const token = getToken();
-    const response = await axios.get(`${config.backendUrl}/rabbitmq/unread/${username}`, {
+export const getUnreadMessagesCount = async (username, token) => {
+    const response = await fetch(`${config.backendUrl}/chat/getUnreadMessagesCount/${username}`, {
         headers: {
             'Authorization': `Bearer ${token}`
         }
     });
 
-    if (response.status !== 200) {
-        throw new Error('Failed to fetch unread messages count: ' + response.statusText);
+    if (!response.ok) {
+        throw new Error('Failed to fetch unread messages count: ' + await response.text());
     }
 
-    return response.data;
+    return await response.json();
 };
 
-export const getUnreadMessagesSenders = async (username) => {
-    const token = getToken();
-    const response = await axios.get(`${config.backendUrl}/rabbitmq/unread/senders/${username}`, {
+export const getUnreadMessagesSenders = async (username, token) => {
+    const response = await fetch(`${config.backendUrl}/chat/getUnreadMessagesSenders/${username}`, {
         headers: {
             'Authorization': `Bearer ${token}`
         }
     });
 
-    if (response.status !== 200) {
-        throw new Error('Failed to fetch unread messages senders: ' + response.statusText);
+    if (!response.ok) {
+        throw new Error('Failed to fetch unread messages senders: ' + await response.text());
     }
 
-    return response.data;
+    return await response.json();
 };

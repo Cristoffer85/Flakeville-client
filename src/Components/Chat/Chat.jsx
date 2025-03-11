@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import Cookies from 'js-cookie';
+import React, { useState, useEffect, useContext } from 'react';
 import { sendMessage, getMessages, getUnreadMessagesCount, getUnreadMessagesSenders } from '../../Api/ChatApi/ChatApi';
 import { getAllUserNames } from '../../Api/UserApi/UserApi';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import AuthContext from '../../Contexts/AuthContext/AuthContext.jsx';
 
 const Chat = () => {
-  const [sender, setSender] = useState('');
+  const { authState } = useContext(AuthContext);
+  const { username: sender, token } = authState;
   const [receiver, setReceiver] = useState('');
   const [message, setMessage] = useState('');
   const [userNames, setUserNames] = useState([]);
@@ -13,13 +14,6 @@ const Chat = () => {
   const [error, setError] = useState('');
   const [unreadCounts, setUnreadCounts] = useState({});
   const [unreadSenders, setUnreadSenders] = useState(new Set());
-
-  useEffect(() => {
-    const username = Cookies.get('username');
-    if (username) {
-      setSender(username);
-    }
-  }, []);
 
   useEffect(() => {
     const fetchUserNames = async () => {
@@ -33,8 +27,8 @@ const Chat = () => {
 
     const fetchUnreadMessages = async () => {
       try {
-        const count = await getUnreadMessagesCount(sender);
-        const senders = await getUnreadMessagesSenders(sender);
+        const count = await getUnreadMessagesCount(sender, token);
+        const senders = await getUnreadMessagesSenders(sender, token);
         setUnreadCounts(count);
         setUnreadSenders(new Set(senders));
       } catch (error) {
@@ -46,11 +40,11 @@ const Chat = () => {
       fetchUserNames();
       fetchUnreadMessages();
     }
-  }, [sender]);
+  }, [sender, token]);
 
   const fetchMessages = async (receiver) => {
     try {
-      const data = await getMessages(sender, receiver);
+      const data = await getMessages(sender, receiver, token);
       setMessages(data);
       setError('');
       // Remove receiver from unread senders set
@@ -81,9 +75,9 @@ const Chat = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const msgDto = { sender, receiver, message };
-  
+
     try {
-      await sendMessage(msgDto);
+      await sendMessage(msgDto, token);
       // Optimistically update the local state
       setMessages(prevMessages => [...prevMessages, `${sender}: ${message}`]);
       setMessage('');
