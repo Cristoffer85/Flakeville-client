@@ -20,11 +20,14 @@ import { fetchLifts } from '../../Api/EmployeeApi/EmployeeApi';
 import SnowfallEffect from '../SnowfallEffect/SnowfallEffect.jsx';
 import AuthContext from '../../Contexts/AuthContext/AuthContext.jsx';
 
-function Navbar({ isLoggedIn, handleLogout }) {
+function Navbar({ handleLogout }) {
     const { cart } = useContext(CartContext);
     const pageTitle = useContext(PageTitleContext);
+    
     const { authState } = useContext(AuthContext);
-    const { role } = authState;
+    const { isLoggedIn, roles } = authState;
+    const role = roles;
+
     const [isSnowing, setIsSnowing] = useState(false);
     const [snowKey, setSnowKey] = useState(0);
     const [menuOpen, setMenuOpen] = useState(false);

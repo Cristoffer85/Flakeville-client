@@ -65,9 +65,9 @@ function PageTitleUpdater({ setPageTitle }) {
     return null;
 }
 
-function AppRouter({ isLoggedIn, handleLogin, handleLogout, showPopup, setShowPopup, setPageTitle }) {
+function AppRouter({ handleLogin, handleLogout, showPopup, setShowPopup, setPageTitle }) {
     const { authState } = useContext(AuthContext);
-    const { role } = authState;
+    const { isLoggedIn, role } = authState;
     const commonProps = { isLoggedIn, handleLogin, handleLogout, showPopup, setShowPopup, role };
 
     return (
