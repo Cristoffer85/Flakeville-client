@@ -12,7 +12,7 @@ export const AuthProvider = ({ children }) => {
         return {
           isLoggedIn: true,
           username: decodedToken.username,
-          roles: decodedToken.roles,
+          role: decodedToken.roles,
           token: token,
         };
       } catch (error) {
@@ -22,7 +22,7 @@ export const AuthProvider = ({ children }) => {
     return {
       isLoggedIn: false,
       username: null,
-      roles: null,
+      role: null,
       token: null,
     };
   });
@@ -34,7 +34,7 @@ export const AuthProvider = ({ children }) => {
       setAuthState({
         isLoggedIn: true,
         username: decodedToken.username,
-        roles: decodedToken.roles,
+        role: decodedToken.roles,
         token: token,
       });
     } catch (error) {
@@ -47,7 +47,7 @@ export const AuthProvider = ({ children }) => {
     setAuthState({
       isLoggedIn: false,
       username: null,
-      roles: null,
+      role: null,
       token: null,
     });
   };

@@ -2,18 +2,20 @@ import { useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AuthContext from '../../Contexts/AuthContext/AuthContext.jsx';
 
-const HOC = ({ children }) => {
+const HOC = ({ children, requiredRole }) => {
     const { authState } = useContext(AuthContext);
-    const { isLoggedIn } = authState;
+    const { isLoggedIn, role } = authState;
     const navigate = useNavigate();
 
     useEffect(() => {
         if (!isLoggedIn) {
-            navigate('*');
+            navigate('/signin');
+        } else if (requiredRole && role !== requiredRole) {
+            navigate('/not-authorized');
         }
-    }, [isLoggedIn, navigate]);
+    }, [isLoggedIn, role, requiredRole, navigate]);
 
-    return isLoggedIn ? children : null;
+    return isLoggedIn && (!requiredRole || role === requiredRole) ? children : null;
 };
 
 export default HOC;

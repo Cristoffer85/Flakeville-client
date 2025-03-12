@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from 'react';
-import { BrowserRouter as Router, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import HOC from "../../Components/HOC/HOC.jsx";
 
 import Navbar from "../../Components/Navbar/Navbar.jsx";
@@ -79,12 +79,13 @@ function AppRouter({ handleLogin, handleLogout, showPopup, setShowPopup, setPage
                     <Route path="/store" element={<Store {...commonProps} />} />
                     <Route path="/weather" element={<Weather {...commonProps} />} />
                     <Route path="/" element={<Home {...commonProps} />} />
-                    <Route path="/admin" element={<HOC><AdminAcc {...commonProps} /></HOC>} />
-                    <Route path="/employee" element={<HOC><EmployeeAcc {...commonProps} /></HOC>} />
-                    <Route path="/user" element={<HOC><UserAcc {...commonProps} /></HOC>} />
+                    <Route path="/admin" element={<HOC requiredRole="ADMIN"><AdminAcc {...commonProps} /></HOC>} />
+                    <Route path="/employee" element={<HOC requiredRole="EMPLOYEE"><EmployeeAcc {...commonProps} /></HOC>} />
+                    <Route path="/user" element={<HOC requiredRole="USER"><UserAcc {...commonProps} /></HOC>} />
                     <Route path="/cart" element={<Cart {...commonProps} />} />
                     <Route path="/signin" element={<SignInPage {...commonProps} />} />
                     <Route path="/signup" element={<SignUpPage {...commonProps} />} />
+                    <Route path="/not-authorized" element={<NotAuthorized />} />
                     <Route path="*" element={<NotAuthorized />} />
                 </Routes>
             </div>

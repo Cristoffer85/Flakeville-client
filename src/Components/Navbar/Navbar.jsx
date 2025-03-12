@@ -25,7 +25,7 @@ function Navbar({ handleLogout }) {
     const pageTitle = useContext(PageTitleContext);
 
     const { authState } = useContext(AuthContext);
-    const { isLoggedIn, roles } = authState;
+    const { isLoggedIn, role } = authState;
 
     const [isSnowing, setIsSnowing] = useState(false);
     const [snowKey, setSnowKey] = useState(0);
@@ -67,7 +67,7 @@ function Navbar({ handleLogout }) {
 
     const handleAccountClick = () => {
         if (isLoggedIn) {
-            navigateBasedOnRole(roles, navigate);
+            navigateBasedOnRole(role, navigate);
         }
     };
 
