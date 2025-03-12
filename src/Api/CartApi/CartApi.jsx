@@ -4,9 +4,8 @@ const getToken = () => {
     return localStorage.getItem('jwtToken');
 };
 
-export async function sendOrder(cart, setCart, setSuccessMessage) {
+export async function sendOrder(cart, setCart, setSuccessMessage, username) {
     const token = getToken();
-    const username = getUsername();
 
     const order = {
         id: "Previous order",

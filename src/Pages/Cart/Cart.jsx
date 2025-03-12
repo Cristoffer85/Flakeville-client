@@ -8,7 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function Cart() {
     const { cart, setCart } = useContext(CartContext);
     const { authState } = useContext(AuthContext);
-    const { isLoggedIn, roles } = authState;
+    const { isLoggedIn, role, username } = authState;
     const [successMessage, setSuccessMessage] = useState(null);
 
     const updateQuantity = (product, quantity) => {
@@ -85,10 +85,10 @@ function Cart() {
                             <div className="row justify-content-center mt-4">
                                 <div className="col-12 col-md-6 text-center">
                                     <h3 className="mb-3">Total price: ${totalPrice}</h3>
-                                    {isLoggedIn && roles.includes('USER') && cart.length > 0 ? (
+                                    {isLoggedIn && role.includes('USER') && cart.length > 0 ? (
                                         <button
                                             className="btn btn-success btn-lg"
-                                            onClick={() => sendOrder(cart, setCart, setSuccessMessage)}
+                                            onClick={() => sendOrder(cart, setCart, setSuccessMessage, username)}
                                         >
                                             Send Order
                                         </button>
