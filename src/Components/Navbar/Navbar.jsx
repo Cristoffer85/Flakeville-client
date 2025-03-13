@@ -4,12 +4,12 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import logo from '../../Assets/Logo.png';
-import accountLogo from '../../Assets/ProfileLogoGold.png';
-import snowflakeImg from '../../Assets/Snowflake.png';
-import shoppingCartLogo from '../../Assets/Shoppingcartlogo.png';
-import menuOpenIcon from '../../Assets/menu_open.svg';
-import menuCloseIcon from '../../Assets/menu_close.svg';
+import logo from '../../assets/Logo.png';
+import accountLogo from '../../assets/ProfileLogoGold.png';
+import snowflakeImg from '../../assets/Snowflake.png';
+import shoppingCartLogo from '../../assets/Shoppingcartlogo.png';
+import menuOpenIcon from '../../assets/menu_open.svg';
+import menuCloseIcon from '../../assets/menu_close.svg';
 
 import PageTitleContext from '../../Contexts/PageTitleContext/PageTitleContext.jsx';
 import CartContext from '../../Contexts/CartContext/CartContext.jsx';
