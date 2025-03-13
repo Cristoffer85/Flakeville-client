@@ -11,9 +11,9 @@ import shoppingCartLogo from '../../assets/Shoppingcartlogo.png';
 import menuOpenIcon from '../../assets/menu_open.svg';
 import menuCloseIcon from '../../assets/menu_close.svg';
 
-import PageTitleContext from '../../Contexts/PageTitleContext/PageTitleContext.jsx';
-import CartContext from '../../Contexts/CartContext/CartContext.jsx';
-import LiftsContext from '../../Contexts/LiftsContext/LiftsContext.jsx';
+import PageTitleContext from '../../contexts/PageTitleContext/PageTitleContext.jsx';
+import CartContext from '../../contexts/CartContext/CartContext.jsx';
+import LiftsContext from '../../contexts/LiftsContext/LiftsContext.jsx';
 
 import { navigateBasedOnRole } from '../Router/Router.jsx';
 import { fetchLifts } from '../../Api/EmployeeApi/EmployeeApi';
