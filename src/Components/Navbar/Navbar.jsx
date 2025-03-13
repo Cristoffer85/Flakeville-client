@@ -4,21 +4,21 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import logo from '../../assets/Logo.png';
-import accountLogo from '../../assets/ProfileLogoGold.png';
-import snowflakeImg from '../../assets/Snowflake.png';
-import shoppingCartLogo from '../../assets/Shoppingcartlogo.png';
-import menuOpenIcon from '../../assets/menu_open.svg';
-import menuCloseIcon from '../../assets/menu_close.svg';
+import logo from '@/Assets/Logo.png';
+import accountLogo from '@/Assets/ProfileLogoGold.png';
+import snowflakeImg from '@/Assets/Snowflake.png';
+import shoppingCartLogo from '@/Assets/Shoppingcartlogo.png';
+import menuOpenIcon from '@/Assets/menu_open.svg';
+import menuCloseIcon from '@/Assets/menu_close.svg';
 
-import PageTitleContext from '../../contexts/PageTitleContext/PageTitleContext.jsx';
-import CartContext from '../../contexts/CartContext/CartContext.jsx';
-import LiftsContext from '../../contexts/LiftsContext/LiftsContext.jsx';
+import PageTitleContext from '@/Contexts/PagetitleContext/PageTitleContext.jsx';
+import CartContext from '@/Contexts/CartContext/CartContext.jsx';
+import LiftsContext from '@/Contexts/LiftsContext/LiftsContext.jsx';
 
 import { navigateBasedOnRole } from '../Router/Router.jsx';
-import { fetchLifts } from '../../Api/EmployeeApi/EmployeeApi';
-import SnowfallEffect from '../SnowfallEffect/SnowfallEffect.jsx';
-import AuthContext from '../../Contexts/AuthContext/AuthContext.jsx';
+import { fetchLifts } from '@/Api/EmployeeApi/EmployeeApi';
+import SnowfallEffect from '@/SnowfallEffect/SnowfallEffect.jsx';
+import AuthContext from '@/Contexts/AuthContext/AuthContext.jsx';
 
 function Navbar({ handleLogout }) {
     const { cart } = useContext(CartContext);
