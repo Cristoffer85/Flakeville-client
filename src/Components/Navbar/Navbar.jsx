@@ -15,7 +15,7 @@ import PageTitleContext from '@/Contexts/PagetitleContext/PageTitleContext.jsx';
 import CartContext from '@/Contexts/CartContext/CartContext.jsx';
 import LiftsContext from '@/Contexts/LiftsContext/LiftsContext.jsx';
 
-import { navigateBasedOnRole } from '../Router/Router.jsx';
+import { navigateBasedOnRole } from '@/Router/Router.jsx';
 import { fetchLifts } from '@/Api/EmployeeApi/EmployeeApi';
 import SnowfallEffect from '@/SnowfallEffect/SnowfallEffect.jsx';
 import AuthContext from '@/Contexts/AuthContext/AuthContext.jsx';
