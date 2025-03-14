@@ -125,9 +125,8 @@ function NavbarRegular({ handleLogout }) {
                 </li>
               </>
             ) : (
+              // Sign In button - only show when not logged in
               <li className="nav-item">
-
-                {/* Sign In button - only show when not logged in */}
                 <button
                   onClick={handleSignInClick}
                   className="btn btn-link nav-link"

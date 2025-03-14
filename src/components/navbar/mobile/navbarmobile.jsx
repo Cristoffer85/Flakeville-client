@@ -44,42 +44,57 @@ function NavbarMobile({ handleLogout }) {
 
         <div className="d-flex align-items-center">
           {/* Chat and Account icons - only show when logged in */}
-          {isLoggedIn && (
-            <>
-              <Link className="nav-link" to="/chat" style={{ marginRight: '0.8rem' }}>
-                <img
-                  src={chatLogo}
-                  alt="Chat"
-                  style={{ width: '2.2rem', height: '2.2rem' }}
-                />
-                {unreadMessages > 0 && (
-                  <span className="badge bg-danger" style={{ fontSize: '0.7rem' }}>
-                    !
-                  </span>
-                )}
-              </Link>
-              <img
-                src={accountLogo}
-                alt="Account"
-                onClick={handleAccountClick}
-                style={{ width: '3rem', height: '3rem', cursor: 'pointer', marginRight: '0.8rem' }}
-                className="nav-link"
-              />
-            </>
+          {isLoggedIn ? (
+              <>
+                  <Link className="nav-link" to="/chat" style={{ marginRight: '0.8rem' }}>
+                      <img
+                          src={chatLogo}
+                          alt="Chat"
+                          style={{ width: '2.2rem', height: '2.2rem' }}
+                      />
+                      {unreadMessages > 0 && (
+                          <span className="badge bg-danger" style={{ fontSize: '0.7rem' }}>
+                              !
+                          </span>
+                      )}
+                  </Link>
+                  <img
+                      src={accountLogo}
+                      alt="Account"
+                      onClick={handleAccountClick}
+                      style={{ width: '3rem', height: '3rem', cursor: 'pointer', marginRight: '0.8rem' }}
+                      className="nav-link"
+                  />
+              </>
+          ) : (
+          // Sign In button - only show when not logged in
+              <button
+                  onClick={handleSignInClick}
+                  className="btn btn-link nav-link"
+                  style={{
+                      backgroundColor: 'darkgrey',
+                      color: 'white',
+                      borderRadius: '5px',
+                      padding: '0.1rem 1.3rem',
+                      marginRight: '0.8rem'
+                  }}
+              >
+                  Sign In
+              </button>
           )}
-          
-          {/* Menu toggler - Always show wether logged in or not */}
+
+          {/* Menu toggler - Always show whether logged in or not */}
           <button
-            className="navbar-toggler"
-            type="button"
-            onClick={toggleMenu}
-            aria-label="Toggle navigation"
+              className="navbar-toggler"
+              type="button"
+              onClick={toggleMenu}
+              aria-label="Toggle navigation"
           >
-            <img
-              src={menuOpen ? menuCloseIcon : menuOpenIcon}
-              alt="Toggle menu"
-              style={{ width: '2.2rem', height: '2.2rem' }}
-            />
+              <img
+                  src={menuOpen ? menuCloseIcon : menuOpenIcon}
+                  alt="Toggle menu"
+                  style={{ width: '2.2rem', height: '2.2rem' }}
+              />
           </button>
         </div>
       </div>
@@ -132,7 +147,7 @@ function NavbarMobile({ handleLogout }) {
         
         {/* Sign Out button - only show when logged in */}
         <ul className="navbar-nav d-flex justify-content-center w-100" style={{ marginTop: '1rem' }}>
-            {isLoggedIn ? (
+            {isLoggedIn && (
                 <li className="nav-item">
                     <button
                         onClick={handleSignOutClick}
@@ -146,23 +161,6 @@ function NavbarMobile({ handleLogout }) {
                         }}
                     >
                         Sign Out
-                    </button>
-                </li>
-            ) : (
-                <li className="nav-item">
-        {/* Sign In button - only show when not logged in */}
-                    <button
-                        onClick={handleSignInClick}
-                        className="btn btn-link nav-link"
-                        style={{
-                            backgroundColor: 'darkgrey',
-                            color: 'white',
-                            borderRadius: '5px',
-                            padding: '0.1rem 1.3rem',
-                            margin: '0 auto'
-                        }}
-                    >
-                        Sign In
                     </button>
                 </li>
             )}
