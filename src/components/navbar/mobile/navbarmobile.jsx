@@ -118,17 +118,16 @@ function NavbarMobile({ handleLogout }) {
             </Link>
           </li>
           {/* Snowfall effect */}      
-          {/* Snowfall effect */}
-<li className="nav-item d-flex align-items-center" style={{ marginRight: '-0.5rem' }}>
-    <div className="nav-link d-flex align-items-center" onClick={handleStartSnow} style={{ cursor: 'pointer' }}>
-        <span style={{ marginRight: '0.5rem' }}>SNOWFALL EFFECT</span>
-        <img
-            src={snowflakeImg}
-            alt="Snowfall effect"
-            style={{ width: '2rem', height: '2rem' }}
-        />
-    </div>
-</li>
+          <li className="nav-item d-flex align-items-center" style={{ marginRight: '-0.5rem' }}>
+              <div className="nav-link d-flex align-items-center" onClick={handleStartSnow} style={{ cursor: 'pointer' }}>
+                  <span style={{ marginRight: '0.5rem' }}>SNOWFALL EFFECT</span>
+                  <img
+                      src={snowflakeImg}
+                      alt="Snowfall effect"
+                      style={{ width: '2rem', height: '2rem' }}
+                  />
+              </div>
+          </li>
         </ul>
         
         {/* Sign Out button - only show when logged in */}
