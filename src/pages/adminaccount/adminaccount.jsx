@@ -50,13 +50,6 @@ function AdminAccount() {
                         >
                             User Management
                         </button>
-                        <button
-                            type="button"
-                            className={`list-group-item list-group-item-action ${currentSection === 'chat' ? 'active' : ''}`}
-                            onClick={() => setCurrentSection('chat')}
-                        >
-                            Chat
-                        </button>
                     </div>
                 </div>
                 <div className="col-md-9">
@@ -81,13 +74,6 @@ function AdminAccount() {
                                     searchedEmployee={searchedEmployee}
                                     setSearchedEmployee={setSearchedEmployee}
                                 />
-                            </div>
-                        </div>
-                    )}
-                    {currentSection === 'chat' && (
-                        <div className="card">
-                            <div className="card-body">
-                                <Chat />
                             </div>
                         </div>
                     )}

@@ -37,13 +37,6 @@ function EmployeeAccount() {
                         >
                             Lift Management
                         </button>
-                        <button
-                            type="button"
-                            className={`list-group-item list-group-item-action ${currentSection === 'chat' ? 'active' : ''}`}
-                            onClick={() => setCurrentSection('chat')}
-                        >
-                            Chat
-                        </button>
                     </div>
                 </div>
                 <div className="col-md-9">
@@ -65,13 +58,6 @@ function EmployeeAccount() {
                         <div className="card">
                             <div className="card-body">
                                 <LiftManagement />
-                            </div>
-                        </div>
-                    )}
-                    {currentSection === 'chat' && (
-                        <div className="card">
-                            <div className="card-body">
-                                <Chat />
                             </div>
                         </div>
                     )}
