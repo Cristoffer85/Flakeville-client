@@ -8,6 +8,7 @@ import logo from '../../assets/mainlogo.png';
 import accountLogo from '../../assets/accountlogo.png';
 import snowflakeImg from '../../assets/snowflakelogo.png';
 import shoppingCartLogo from '../../assets/shoppingcartlogo.png';
+import chatLogo from '../../assets/chatlogo.png'; // Import the chat logo
 import menuOpenIcon from '../../assets/menu_open.svg';
 import menuCloseIcon from '../../assets/menu_close.svg';
 
@@ -97,13 +98,22 @@ function Navbar({ handleLogout }) {
                 <div className="d-flex align-items-center">
                     {/* Account Icon */}
                     {isLoggedIn && (
-                        <img
-                            src={accountLogo}
-                            alt="Account"
-                            onClick={handleAccountClick}
-                            style={{ width: '3rem', height: '3rem', cursor: 'pointer', marginRight: '0.8rem' }}
-                            className="nav-link d-md-none"
-                        />
+                        <>
+                            <Link className="nav-link d-md-none" to="/chat" style={{ marginRight: '0.8rem' }}>
+                                <img
+                                    src={chatLogo}
+                                    alt="Chat"
+                                    style={{ width: '2.2rem', height: '2.2rem' }}
+                                />
+                            </Link>
+                            <img
+                                src={accountLogo}
+                                alt="Account"
+                                onClick={handleAccountClick}
+                                style={{ width: '3rem', height: '3rem', cursor: 'pointer', marginRight: '0.8rem' }}
+                                className="nav-link d-md-none"
+                            />
+                        </>
                     )}
 
                     {/* Menu Toggle Button */}
@@ -162,7 +172,16 @@ function Navbar({ handleLogout }) {
                     <ul className="navbar-nav align-items-center">
                         {isLoggedIn ? (
                             <>
-                                <li className="nav-item" style={{ order: 4 }}>
+                                <li className="nav-item d-none d-md-block" style={{ order: 5 }}>
+                                    <Link className="nav-link" to="/chat">
+                                        <img
+                                            src={chatLogo}
+                                            alt="Chat"
+                                            style={{ width: '2.2rem', height: '2.2rem' }}
+                                        />
+                                    </Link>
+                                </li>
+                                <li className="nav-item" style={{ order: 6 }}>
                                     <button
                                         onClick={handleSignOutClick}
                                         className="btn btn-link nav-link"
@@ -171,7 +190,7 @@ function Navbar({ handleLogout }) {
                                         Sign Out
                                     </button>
                                 </li>
-                                <li className="nav-item d-none d-md-block" style={{ order: 6 }}>
+                                <li className="nav-item d-none d-md-block" style={{ order: 7 }}>
                                     <img
                                         src={accountLogo}
                                         alt="Account"
@@ -192,7 +211,7 @@ function Navbar({ handleLogout }) {
                                 </button>
                             </li>
                         )}
-                        <li className="nav-item" style={{ order: 5 }}>
+                        <li className="nav-item" style={{ order: 8 }}>
                             <img
                                 src={snowflakeImg}
                                 alt="Snowfall effect"

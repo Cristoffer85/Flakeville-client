@@ -13,6 +13,7 @@ import Weather from '../../pages/weather/weather.jsx';
 import NotAuthorized from "../../pages/notauthorized/notauthorized.jsx";
 import SignInPage from '../../pages/signin/signinpage.jsx';
 import SignUpPage from '../../pages/signup/signuppage.jsx';
+import ChatPage from '../../pages/chat/chatpage.jsx';
 import AuthContext from '../../contexts/authcontext/authcontext.jsx';
 
 export const navigateBasedOnRole = (role, navigate) => {
@@ -56,6 +57,9 @@ function PageTitleUpdater({ setPageTitle }) {
             case '/signup':
                 pageTitle = 'SIGN UP';
                 break;
+            case '/chat':
+                pageTitle = 'CHAT';
+                break;
             default:
                 pageTitle = 'FLAKEVILLE HOME';
         }
@@ -85,6 +89,7 @@ function AppRouter({ handleLogin, handleLogout, showPopup, setShowPopup, setPage
                     <Route path="/cart" element={<Cart {...commonProps} />} />
                     <Route path="/signin" element={<SignInPage {...commonProps} />} />
                     <Route path="/signup" element={<SignUpPage {...commonProps} />} />
+                    <Route path="/chat" element={<ChatPage {...commonProps} />} /> {/* Add the new chat page route */}
                     <Route path="/not-authorized" element={<NotAuthorized />} />
                     <Route path="*" element={<NotAuthorized />} />
                 </Routes>
