@@ -20,17 +20,19 @@ import { navigateBasedOnRole } from '../router/router.jsx';
 import { fetchLifts } from '../../api/employeeapi/employeeapi.jsx';
 import SnowfallEffect from '../snowfalleffect/snowfalleffect.jsx';
 import AuthContext from '../../contexts/authcontext/authcontext.jsx';
+import { getUnreadMessagesCount } from '../../api/chatapi/chatapi.jsx';
 
 function Navbar({ handleLogout }) {
     const { cart } = useContext(CartContext);
     const pageTitle = useContext(PageTitleContext);
 
     const { authState } = useContext(AuthContext);
-    const { isLoggedIn, role } = authState;
+    const { isLoggedIn, username, token } = authState;
 
     const [isSnowing, setIsSnowing] = useState(false);
     const [snowKey, setSnowKey] = useState(0);
     const [menuOpen, setMenuOpen] = useState(false);
+    const [unreadMessages, setUnreadMessages] = useState(0);
     const navigate = useNavigate();
     const { lifts, setLifts } = useContext(LiftsContext);
 
@@ -53,6 +55,23 @@ function Navbar({ handleLogout }) {
 
         fetchLiftsData();
     }, []);
+
+    useEffect(() => {
+        const fetchUnreadMessages = async () => {
+            try {
+                const count = await getUnreadMessagesCount(username, token);
+                setUnreadMessages(count);
+            } catch (error) {
+                console.error('Failed to fetch unread messages:', error);
+            }
+        };
+
+        if (isLoggedIn) {
+            fetchUnreadMessages();
+            const interval = setInterval(fetchUnreadMessages, 1000); // Poll every 1 seconds
+            return () => clearInterval(interval); // Cleanup interval on component unmount
+        }
+    }, [isLoggedIn, username, token]);
 
     const handleSignInClick = () => {
         navigate('/signin');
@@ -99,12 +118,17 @@ function Navbar({ handleLogout }) {
                     {/* Account Icon */}
                     {isLoggedIn && (
                         <>
-                            <Link className="nav-link d-md-none" to="/chat" style={{ marginRight: '0.8rem' }}>
+                            <Link className="nav-link d-md-none position-relative" to="/chat" style={{ marginRight: '0.8rem' }}>
                                 <img
                                     src={chatLogo}
                                     alt="Chat"
                                     style={{ width: '2.2rem', height: '2.2rem' }}
                                 />
+                                {unreadMessages > 0 && (
+                                    <span className="position-absolute" style={{ top: '20%', left: '80%', transform: 'translate(-50%, -50%)', backgroundColor: 'red', color: 'white', borderRadius: '50%', padding: '0.05rem 0.4rem', fontSize: '0.7rem' }}>
+                                        !
+                                    </span>
+                                )}
                             </Link>
                             <img
                                 src={accountLogo}
@@ -172,14 +196,19 @@ function Navbar({ handleLogout }) {
                     <ul className="navbar-nav align-items-center">
                         {isLoggedIn ? (
                             <>
-                                <li className="nav-item d-none d-md-block" style={{ order: 5 }}>
-                                    <Link className="nav-link" to="/chat">
-                                        <img
-                                            src={chatLogo}
-                                            alt="Chat"
-                                            style={{ width: '2.2rem', height: '2.2rem' }}
-                                        />
-                                    </Link>
+                                <li className="nav-item d-none d-md-block position-relative" style={{ order: 5 }}>
+                                <Link className="nav-link d-none d-md-block position-relative" to="/chat">
+                                    <img
+                                        src={chatLogo}
+                                        alt="Chat"
+                                        style={{ width: '2.2rem', height: '2.2rem' }}
+                                    />
+                                    {unreadMessages > 0 && (
+                                        <span className="position-absolute" style={{ top: '30%', left: '75%', transform: 'translate(-50%, -50%)', backgroundColor: 'red', color: 'white', borderRadius: '50%', padding: '0.05rem 0.4rem', fontSize: '0.7rem' }}>
+                                            !
+                                        </span>
+                                    )}
+                                </Link>
                                 </li>
                                 <li className="nav-item" style={{ order: 6 }}>
                                     <button

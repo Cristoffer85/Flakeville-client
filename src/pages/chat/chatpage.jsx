@@ -1,13 +1,81 @@
-import React from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Chat from '../../components/chat/chat.jsx';
+import { getAllUserNames } from '../../api/userapi/userapi.jsx';
+import { getUnreadMessagesCount, getUnreadMessagesSenders } from '../../api/chatapi/chatapi.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import AuthContext from '../../contexts/authcontext/authcontext.jsx';
 
 const ChatPage = () => {
+    const { authState } = useContext(AuthContext);
+    const { username: sender, token } = authState;
+    const [userNames, setUserNames] = useState([]);
+    const [selectedUser, setSelectedUser] = useState('');
+    const [unreadCounts, setUnreadCounts] = useState({});
+    const [unreadSenders, setUnreadSenders] = useState(new Set());
+
+    useEffect(() => {
+        const fetchUserNames = async () => {
+            try {
+                const data = await getAllUserNames();
+                setUserNames(data);
+            } catch (error) {
+                console.error('Error fetching user names:', error);
+            }
+        };
+
+        const fetchUnreadMessages = async () => {
+            try {
+                const count = await getUnreadMessagesCount(sender, token);
+                const senders = await getUnreadMessagesSenders(sender, token);
+                setUnreadCounts(count);
+                setUnreadSenders(new Set(senders));
+            } catch (error) {
+                console.error('Error fetching unread messages:', error);
+            }
+        };
+
+        if (sender) {
+            fetchUserNames();
+            fetchUnreadMessages();
+        }
+    }, [sender, token]);
+
+    const handleUserClick = (username) => {
+        setSelectedUser(username);
+        // Remove receiver from unread senders set
+        setUnreadSenders(prev => {
+            const newSet = new Set(prev);
+            newSet.delete(username);
+            return newSet;
+        });
+    };
+
     return (
         <div className="container-fluid" style={{ paddingTop: '7rem', paddingBottom: '2rem' }}>
             <div className="row">
                 <div className="col-md-3">
-                    <Chat />
+                    <div className="list-group">
+                        <p className="list-group-item list-group-item-action active">Users</p>
+                        {userNames.filter(user => user.username !== sender).map((user, index) => (
+                            <button
+                                key={index}
+                                className={`list-group-item list-group-item-action ${selectedUser === user.username ? 'active' : ''}`}
+                                onClick={() => handleUserClick(user.username)}
+                            >
+                                {user.username}
+                                {unreadSenders.has(user.username) && <span className="badge bg-danger ms-2">Unread</span>}
+                            </button>
+                        ))}
+                    </div>
+                </div>
+                <div className="col-md-9">
+                    {selectedUser && (
+                        <div className="card">
+                            <div className="card-body">
+                                <Chat receiver={selectedUser} />
+                            </div>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>
