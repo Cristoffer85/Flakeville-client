@@ -5,7 +5,7 @@ import { getUnreadMessagesCount, getUnreadMessagesSenders } from '../../api/chat
 import 'bootstrap/dist/css/bootstrap.min.css';
 import AuthContext from '../../contexts/authcontext/authcontext.jsx';
 
-const ChatPage = () => {
+const ChatPage = ({ setUnreadMessages }) => {
     const { authState } = useContext(AuthContext);
     const { username: sender, token } = authState;
     const [userNames, setUserNames] = useState([]);
@@ -29,6 +29,7 @@ const ChatPage = () => {
                 const senders = await getUnreadMessagesSenders(sender, token);
                 setUnreadCounts(count);
                 setUnreadSenders(new Set(senders));
+                setUnreadMessages(count); // Update the unread messages count in the navbar
             } catch (error) {
                 console.error('Error fetching unread messages:', error);
             }
@@ -38,16 +39,18 @@ const ChatPage = () => {
             fetchUserNames();
             fetchUnreadMessages();
         }
-    }, [sender, token]);
+    }, [sender, token, setUnreadMessages]);
 
     const handleUserClick = (username) => {
         setSelectedUser(username);
-        // Remove receiver from unread senders set
-        setUnreadSenders(prev => {
-            const newSet = new Set(prev);
-            newSet.delete(username);
-            return newSet;
-        });
+        if (unreadSenders.has(username)) {
+            setUnreadSenders(prev => {
+                const newSet = new Set(prev);
+                newSet.delete(username);
+                return newSet;
+            });
+            setUnreadMessages(prev => prev - 1); // Update the unread messages count in the navbar
+        }
     };
 
     return (
