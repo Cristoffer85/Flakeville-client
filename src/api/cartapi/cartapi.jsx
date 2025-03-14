@@ -1,7 +1,7 @@
 import config from '../apiconfig.jsx';
 
 const getToken = () => {
-    return localStorage.getItem('jwtToken');
+    return localStorage.getItem('token');
 };
 
 export async function sendOrder(cart, setCart, setSuccessMessage, username) {
