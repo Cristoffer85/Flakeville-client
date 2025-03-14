@@ -118,51 +118,55 @@ function NavbarMobile({ handleLogout }) {
             </Link>
           </li>
           {/* Snowfall effect */}      
-          <li className="nav-item d-flex align-items-center" style={{ marginRight: '-0.5rem' }}>
-              <span className="nav-link" style={{ marginRight: '0.5rem' }}>SNOWFALL EFFECT</span>
-              <img
-                  src={snowflakeImg}
-                  alt="Snowfall effect"
-                  onClick={handleStartSnow}
-                  style={{ width: '2rem', height: '2.8rem', cursor: 'pointer' }}
-                  className="nav-link"
-              />
-          </li>
+          {/* Snowfall effect */}
+<li className="nav-item d-flex align-items-center" style={{ marginRight: '-0.5rem' }}>
+    <div className="nav-link d-flex align-items-center" onClick={handleStartSnow} style={{ cursor: 'pointer' }}>
+        <span style={{ marginRight: '0.5rem' }}>SNOWFALL EFFECT</span>
+        <img
+            src={snowflakeImg}
+            alt="Snowfall effect"
+            style={{ width: '2rem', height: '2rem' }}
+        />
+    </div>
+</li>
         </ul>
         
-        {/* Sign in & Sign out*/}
-        <ul className="navbar-nav" style={{ marginTop: '1rem', marginLeft: '1rem' }}>
-          {isLoggedIn ? (
-            <li className="nav-item">
-              <button
-                onClick={handleSignOutClick}
-                className="btn btn-link nav-link"
-                style={{
-                  backgroundColor: 'darkgrey',
-                  color: 'white',
-                  borderRadius: '5px',
-                  padding: '0.1rem 1.3rem',
-                }}
-              >
-                Sign Out
-              </button>
-            </li>
-          ) : (
-            <li className="nav-item">
-              <button
-                onClick={handleSignInClick}
-                className="btn btn-link nav-link"
-                style={{
-                  backgroundColor: 'darkgrey',
-                  color: 'white',
-                  borderRadius: '5px',
-                  padding: '0.1rem 1.3rem',
-                }}
-              >
-                Sign In
-              </button>
-            </li>
-          )}
+        {/* Sign Out button - only show when logged in */}
+        <ul className="navbar-nav d-flex justify-content-center w-100" style={{ marginTop: '1rem' }}>
+            {isLoggedIn ? (
+                <li className="nav-item">
+                    <button
+                        onClick={handleSignOutClick}
+                        className="btn btn-link nav-link"
+                        style={{
+                            backgroundColor: 'darkgrey',
+                            color: 'white',
+                            borderRadius: '5px',
+                            padding: '0.1rem 1.3rem',
+                            margin: '0 auto'
+                        }}
+                    >
+                        Sign Out
+                    </button>
+                </li>
+            ) : (
+                <li className="nav-item">
+        {/* Sign In button - only show when not logged in */}
+                    <button
+                        onClick={handleSignInClick}
+                        className="btn btn-link nav-link"
+                        style={{
+                            backgroundColor: 'darkgrey',
+                            color: 'white',
+                            borderRadius: '5px',
+                            padding: '0.1rem 1.3rem',
+                            margin: '0 auto'
+                        }}
+                    >
+                        Sign In
+                    </button>
+                </li>
+            )}
         </ul>
       </div>
 
