@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getAllProducts, createProduct, getOneProduct, updateProduct, deleteProduct } from '../../../Api/ProductApi/ProductApi.jsx';
+import { getAllProducts, createProduct, getOneProduct, updateProduct, deleteProduct } from '../../../api/productapi/productapi.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function ProductManagement() {

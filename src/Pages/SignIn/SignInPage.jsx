@@ -1,9 +1,9 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { loginUser } from '../../Api/AuthApi/AuthApi';
-import { navigateBasedOnRole } from '../../Components/Router/Router.jsx';
+import { loginUser } from '../../api/authapi/authapi.jsx';
+import { navigateBasedOnRole } from '../../components/router/router.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import AuthContext from '../../Contexts/AuthContext/AuthContext.jsx';
+import AuthContext from '../../contexts/authcontext/authcontext.jsx';
 
 function SignInPage() {
     const [username, setUsername] = useState('');

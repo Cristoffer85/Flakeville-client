@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { getEmployeeData, updateEmployeeData } from '../../../Api/EmployeeApi/EmployeeApi.jsx';
+import { getEmployeeData, updateEmployeeData } from '../../../api/employeeapi/employeeapi.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import AuthContext from '../../../Contexts/AuthContext/AuthContext.jsx';
+import AuthContext from '../../../contexts/authcontext/authcontext.jsx';
 
 function EmployeeDetails({ username }) {
     const { authState } = useContext(AuthContext);

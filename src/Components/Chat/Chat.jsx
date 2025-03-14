@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { sendMessage, getMessages, getUnreadMessagesCount, getUnreadMessagesSenders } from '../../Api/ChatApi/ChatApi';
-import { getAllUserNames } from '../../Api/UserApi/UserApi';
+import { sendMessage, getMessages, getUnreadMessagesCount, getUnreadMessagesSenders } from '../../api/chatapi/chatapi.jsx';
+import { getAllUserNames } from '../../api/userapi/userapi.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import AuthContext from '../../Contexts/AuthContext/AuthContext.jsx';
+import AuthContext from '../../contexts/authcontext/authcontext.jsx';
 
 const Chat = () => {
   const { authState } = useContext(AuthContext);

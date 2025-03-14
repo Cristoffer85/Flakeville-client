@@ -1,19 +1,19 @@
 import React, { useEffect, useContext } from 'react';
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
-import HOC from "../../Components/HOC/HOC.jsx";
+import HOC from "../hoc/hoc.jsx";
 
-import Navbar from "../../Components/Navbar/Navbar.jsx";
-import Home from '../../Pages/Home/Home.jsx';
-import AdminAcc from "../../Pages/AdminAccount/AdminAccount.jsx";
-import EmployeeAcc from "../../Pages/EmployeeAccount/EmployeeAccount.jsx";
-import UserAcc from "../../Pages/UserAccount/UserAccount.jsx";
-import Store from '../../Pages/Store/Store.jsx';
-import Cart from "../../Pages/Cart/Cart.jsx";
-import Weather from '../../Pages/Weather/Weather.jsx';
-import NotAuthorized from "../../Pages/NotAuthorized/NotAuthorized.jsx";
-import SignInPage from '../../Pages/SignIn/SignInPage.jsx';
-import SignUpPage from '../../Pages/SignUp/SignUpPage.jsx';
-import AuthContext from '../../Contexts/AuthContext/AuthContext.jsx';
+import Navbar from "../navbar/navbar.jsx";
+import Home from '../../pages/home/home.jsx';
+import AdminAcc from "../../pages/adminaccount/adminaccount.jsx";
+import EmployeeAcc from "../../pages/employeeaccount/employeeaccount.jsx";
+import UserAcc from "../../pages/useraccount/useraccount.jsx";
+import Store from '../../pages/store/store.jsx';
+import Cart from "../../pages/cart/cart.jsx";
+import Weather from '../../pages/weather/weather.jsx';
+import NotAuthorized from "../../pages/notauthorized/notauthorized.jsx";
+import SignInPage from '../../pages/signin/signinpage.jsx';
+import SignUpPage from '../../pages/signup/signuppage.jsx';
+import AuthContext from '../../contexts/authcontext/authcontext.jsx';
 
 export const navigateBasedOnRole = (role, navigate) => {
     if (role === 'ADMIN') {

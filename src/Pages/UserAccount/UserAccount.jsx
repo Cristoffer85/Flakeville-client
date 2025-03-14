@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react';
-import UserDetails from './UserDetails/UserDetails.jsx';
-import PreviousOrders from './PreviousOrders/PreviousOrders.jsx';
-import Chat from '../../Components/Chat/Chat.jsx';
-import { getUserDetails } from '../../Api/UserApi/UserApi';
+import UserDetails from './userdetails/userdetails.jsx';
+import PreviousOrders from './previousorders/previousorders.jsx';
+import Chat from '../../components/chat/chat.jsx';
+import { getUserDetails } from '../../api/userapi/userapi.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import AuthContext from '../../Contexts/AuthContext/AuthContext.jsx';
+import AuthContext from '../../contexts/authcontext/authcontext.jsx';
 
 function UserAccount() {
     const { authState } = useContext(AuthContext);

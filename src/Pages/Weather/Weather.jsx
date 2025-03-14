@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
-import CurrentWeatherConditions from "../../Components/CurrentWeatherConditions/CurrentWeatherConditions.jsx";
-import FiveDayWeatherConditions from "../../Components/FiveDayWeatherConditions/FiveDayWeatherConditions.jsx";
-import { fetchCurrentConditions, fetchFiveDayConditions } from '../../Api/WeatherApi/WeatherApi.jsx';
+import CurrentWeatherConditions from "../../components/currentweatherconditions/currentweatherconditions.jsx";
+import FiveDayWeatherConditions from "../../components/fivedayweatherconditions/fivedayweatherconditions.jsx";
+import { fetchCurrentConditions, fetchFiveDayConditions } from '../../api/weatherapi/weatherapi.jsx';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 

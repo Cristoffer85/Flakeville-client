@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { getUser, createUser, updateUser, deleteUser } from '../../../Api/AdminApi/AdminApi.jsx';
+import { getUser, createUser, updateUser, deleteUser } from '../../../api/adminapi/adminapi.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function UserManagement({ users, setUsers, searchedUser, setSearchedUser }) {

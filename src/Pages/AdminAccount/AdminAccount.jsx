@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react';
-import UserManagement from './UserManagement/UserManagement.jsx';
-import EmployeeManagement from './EmployeeManagement/EmployeeManagement.jsx';
-import { getAllUsers, getAllEmployees } from '../../Api/AdminApi/AdminApi.jsx';
-import Chat from '../../Components/Chat/Chat.jsx';
+import UserManagement from './usermanagement/usermanagement.jsx';
+import EmployeeManagement from './employeemanagement/employeemanagement.jsx';
+import { getAllUsers, getAllEmployees } from '../../api/adminapi/adminapi.jsx';
+import Chat from '../../components/chat/chat.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import AuthContext from '../../Contexts/AuthContext/AuthContext.jsx';
+import AuthContext from '../../contexts/authcontext/authcontext.jsx';
 
 function AdminAccount() {
     const { authState } = useContext(AuthContext);

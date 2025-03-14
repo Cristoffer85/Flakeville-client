@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
-import LiftsContext from '../../Contexts/LiftsContext/LiftsContext';
-import { fetchLifts } from '../../Api/HomeApi/HomeApi';
-import Footer from '../../Components/Footer/Footer';
+import LiftsContext from '../../contexts/liftscontext/liftscontext';
+import { fetchLifts } from '../../api/homeapi/homeapi';
+import Footer from '../../components/footer/footer';
 import './Home.css';
 
 function Home() {
