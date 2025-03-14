@@ -28,7 +28,7 @@ function NavbarRegular({ handleLogout }) {
   return (
     <nav className="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
       <div className="container-fluid position-relative">
-        {/* Brand */}
+        {/* Main Logo - Always show */}
         <Link className="navbar-brand" to="/">
           <img
             src={logo}
@@ -38,22 +38,25 @@ function NavbarRegular({ handleLogout }) {
           />
         </Link>
 
-        {/* Left-side Links */}
+        {/* LEFT Icons + Links */}
         <div className="collapse navbar-collapse show">
           <ul
             className="navbar-nav me-auto mb-2 mb-md-0 align-items-center"
             style={{ fontSize: '1.3rem', fontWeight: '600' }}
           >
+            {/* Weather */}
             <li className="nav-item" style={{ marginRight: '-0.5rem' }}>
               <Link className="nav-link" to="/weather">
                 WEATHER
               </Link>
             </li>
+            {/* Store */}
             <li className="nav-item" style={{ marginRight: '-0.5rem' }}>
               <Link className="nav-link" to="/store">
                 STORE
               </Link>
             </li>
+            {/* Shopping Cart */}
             <li className="nav-item position-relative" style={{ marginRight: '-0.5rem' }}>
               <Link className="nav-link" to="/cart">
                 <img
@@ -70,7 +73,7 @@ function NavbarRegular({ handleLogout }) {
             </li>
           </ul>
 
-          {/* Centered Page Title */}
+          {/* CENTER - Page Title */}
           <span
             className="navbar-text d-none d-lg-block text-danger h4 mb-0 position-absolute top-50 start-50 translate-middle"
             style={{ fontSize: '1.8rem', fontWeight: 'bold' }}
@@ -78,8 +81,9 @@ function NavbarRegular({ handleLogout }) {
             {pageTitle}
           </span>
 
-          {/* Right-side Icons/Actions */}
+          {/* RIGHT - Icons + Links */}
           <ul className="navbar-nav align-items-center">
+            {/* Chat & Account & Sign out icons and buttons - only show when logged in */}
             {isLoggedIn ? (
               <>
                 <li className="nav-item">
@@ -122,6 +126,8 @@ function NavbarRegular({ handleLogout }) {
               </>
             ) : (
               <li className="nav-item">
+
+                {/* Sign In button - only show when not logged in */}
                 <button
                   onClick={handleSignInClick}
                   className="btn btn-link nav-link"
@@ -135,7 +141,9 @@ function NavbarRegular({ handleLogout }) {
                   Sign In
                 </button>
               </li>
+
             )}
+            {/* Snowfall effect  - always show */}
             <li className="nav-item">
               <img
                 src={snowflakeImg}
