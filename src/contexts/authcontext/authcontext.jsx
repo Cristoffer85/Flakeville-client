@@ -5,7 +5,7 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [authState, setAuthState] = useState(() => {
-    const token = localStorage.getItem('jwtToken');
+    const token = localStorage.getItem('token');
     if (token) {
       try {
         const decodedToken = jwtDecode(token);
@@ -30,7 +30,7 @@ export const AuthProvider = ({ children }) => {
   const login = (token) => {
     try {
       const decodedToken = jwtDecode(token);
-      localStorage.setItem('jwtToken', token);
+      localStorage.setItem('token', token);
       setAuthState({
         isLoggedIn: true,
         username: decodedToken.username,
@@ -43,7 +43,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = () => {
-    localStorage.removeItem('jwtToken');
+    localStorage.removeItem('token');
     setAuthState({
       isLoggedIn: false,
       username: null,
