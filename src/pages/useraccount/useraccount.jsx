@@ -32,7 +32,7 @@ function UserAccount() {
     }, [username, token]);
 
     return (
-        <div className="container-fluid" style={{ paddingTop: '7rem' }}>
+        <div className="container-fluid" style={{ paddingTop: '7rem', paddingBottom: '2rem' }}>
             <div className="row">
                 <div className="col-md-3">
                     <div className="list-group">
@@ -69,7 +69,7 @@ function UserAccount() {
                         </div>
                     )}
                     {currentSection === 'previousOrders' && (
-                        <div className="card">
+                        <div className="card" style={{ height: 'calc(100vh - 9rem)', overflowY: 'auto' }}>
                             <div className="card-body">
                                 <PreviousOrders orders={userDetails.orders || []} />
                             </div>
