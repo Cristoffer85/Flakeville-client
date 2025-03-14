@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { categories } from "../../COMPONENTS2/CATEGORIES2/CATEGORIES2.js";
-import CartContext from "../../CONTEXTS2/cartcontext/cartcontext.js";
-import { fetchProductsByCategory, getAllProducts } from "../../API2/storeapi/storeapi.js";
+import CartContext from "../../CONTEXTS2/CARTCONTEXT2/CARTCONTEXT2.js";
+import { fetchProductsByCategory, getAllProducts } from "../../API2/STOREAPI2/STOREAPI2.js";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Store() {

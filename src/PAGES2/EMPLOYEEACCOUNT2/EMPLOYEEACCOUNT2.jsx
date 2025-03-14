@@ -2,9 +2,9 @@ import React, { useState, useContext } from 'react';
 import EmployeeDetails from './EMPLOYEEDETAILS2/EMPLOYEEDETAILS2.jsx';
 import ProductManagement from './PRODUCTMANAGEMENT2/PRODUCTMANAGEMENT2.jsx';
 import LiftManagement from './LIFTMANAGEMENT2/LIFTMANAGEMENT2.jsx';
-import Chat from '../../components/CHAT2/CHAT2.jsx';
+import Chat from '../../COMPONENTS2/CHAT2/CHAT2.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import AuthContext from '../../contexts/authcontext/authcontext.jsx';
+import AuthContext from '../../CONTEXTS2/AUTHCONTEXT2/AUTHCONTEXT2.jsx';
 
 function EmployeeAccount() {
     const { authState } = useContext(AuthContext);

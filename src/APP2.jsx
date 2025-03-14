@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
-import AppRouter from './COMPONENTS2/Router/Router.js';
+import AppRouter from './COMPONENTS2/ROUTER2/ROUTER2.js';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import PageTitleContext from './CONTEXTS2/PageTitleContext/PageTitleContext.js';
-import CartContext from './CONTEXTS2/CartContext/CartContext.js';
-import LiftsContext from './CONTEXTS2/LiftsContext/LiftsContext.js';
-import AuthContext from './CONTEXTS2/AuthContext/AuthContext.js';
+import PageTitleContext from './CONTEXTS2/PAGETITLECONTEXT2/PAGETITLECONTEXT2.js';
+import CartContext from './CONTEXTS2/CARTCONTEXT2/CARTCONTEXT2.js';
+import LiftsContext from './CONTEXTS2/LIFTSCONTEXT2/LIFTSCONTEXT2.js';
+import AuthContext from './CONTEXTS2/AUTHCONTEXT2/AUTHCONTEXT2.js';
 
 function App() {
     const [showPopup, setShowPopup] = useState(false);

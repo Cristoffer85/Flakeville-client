@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import CurrentWeatherConditions from "../../COMPONENTS2/CURRENTWEATHERCONDITIONS2/CURRENTWEATHERCONDITIONS2.js";
 import FiveDayWeatherConditions from "../../COMPONENTS2/FIVEDAYWEATHERCONDITIONS2/FIVEDAYWEATHERCONDITIONS2.js";
-import { fetchCurrentConditions, fetchFiveDayConditions } from '../../API2/weatherapi/weatherapi.js';
+import { fetchCurrentConditions, fetchFiveDayConditions } from '../../API2/WEATHERAPI2/WEATHERAPI2.js';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 

@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
-import CartContext from '../../contexts/cartcontext/cartcontext.jsx';
-import { sendOrder } from '../../api/cartapi/cartapi.jsx';
-import AuthContext from '../../contexts/authcontext/authcontext.jsx';
+import CartContext from '../../CONTEXTS2/CARTCONTEXT2/CARTCONTEXT2.jsx';
+import { sendOrder } from '../../API2/CARTAPI2/CARTAPI2.jsx';
+import AuthContext from '../../CONTEXTS2/AUTHCONTEXT2/AUTHCONTEXT2.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Cart() {

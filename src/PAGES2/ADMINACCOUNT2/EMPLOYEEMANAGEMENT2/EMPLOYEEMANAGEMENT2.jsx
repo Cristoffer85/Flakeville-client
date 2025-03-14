@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { getEmployee, createEmployee, updateEmployee, deleteEmployee } from '../../../api/adminapi/adminapi.jsx';
+import { getEmployee, createEmployee, updateEmployee, deleteEmployee } from '../../../API2/ADMINAPI2/ADMINAPI2.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function EmployeeManagement({ employees, setEmployees, searchedEmployee, setSearchedEmployee }) {

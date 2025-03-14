@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
-import { registerUser } from '../../api/authapi/authapi.jsx';
-import { navigateBasedOnRole } from '../../components/ROUTER2/ROUTER2.jsx';
+import { registerUser } from '../../API2/AUTHAPI2/AUTHAPI2.jsx';
+import { navigateBasedOnRole } from '../../COMPONENTS2/ROUTER2/ROUTER2.jsx';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import 'bootstrap/dist/css/bootstrap.min.css';

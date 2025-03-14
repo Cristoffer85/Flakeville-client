@@ -2,9 +2,9 @@ import React, { useState, useEffect, useContext } from 'react';
 import UserDetails from './USERDETAILS2/USERDETAILS2.jsx';
 import PreviousOrders from './PREVIOUSORDERS2/PREVIOUSORDERS2.jsx';
 import Chat from '../../COMPONENTS2/CHAT2/CHAT2.jsx';
-import { getUserDetails } from '../../API2/userapi/userapi.js';
+import { getUserDetails } from '../../API2/USERAPI2/USERAPI2.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import AuthContext from '../../CONTEXTS2/authcontext/authcontext.js';
+import AuthContext from '../../CONTEXTS2/AUTHCONTEXT2/AUTHCONTEXT2.js';
 
 function UserAccount() {
     const { authState } = useContext(AuthContext);

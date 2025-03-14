@@ -1,4 +1,4 @@
-import config from '../Apiconfig';
+import config from '../APICONFIG2';
 
 const getToken = () => {
     return localStorage.getItem('jwtToken');

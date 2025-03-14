@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { fetchLifts, startLift, stopLift } from '../../../api/employeeapi/employeeapi.jsx';
+import { fetchLifts, startLift, stopLift } from '../../../API2/EMPLOYEEAPI2/EMPLOYEEAPI2.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function LiftManagement() {

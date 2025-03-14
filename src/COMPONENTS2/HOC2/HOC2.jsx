@@ -1,6 +1,6 @@
 import { useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import AuthContext from '../../contexts/authcontext/authcontext.jsx';
+import AuthContext from '../../CONTEXTS2/CONTEXT2/AUTHCONTEXT2.jsx';
 
 const HOC = ({ children, requiredRole }) => {
     const { authState } = useContext(AuthContext);
