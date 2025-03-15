@@ -85,7 +85,7 @@ function EmployeeAccount() {
                         </div>
                     )}
                 </div>
-                <div className="col-md-9 overflow-auto" style={{ maxHeight: 'calc(100vh - 7rem)' }}>
+                <div className="col-md-9 overflow-auto" style={{ maxHeight: 'calc(80vh - 7rem)', height: '80vh' }}>
                     {currentSection === 'employeeDetails' && (
                         <div className="card">
                             <div className="card-body">
