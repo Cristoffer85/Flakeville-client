@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import EmployeeDetails from './employeedetails/employeedetails.jsx';
 import ProductManagement from './productmanagement/productmanagement.jsx';
 import LiftManagement from './liftmanagement/liftmanagement.jsx';
-import Chat from '../../components/chat/chat.jsx';
+import CreateProduct from './productmanagement/createproduct/createproduct.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import AuthContext from '../../contexts/authcontext/authcontext.jsx';
 
@@ -10,6 +10,7 @@ function EmployeeAccount() {
     const { authState } = useContext(AuthContext);
     const { username } = authState;
     const [currentSection, setCurrentSection] = useState('employeeDetails');
+    const [showCreateProduct, setShowCreateProduct] = useState(false);
 
     return (
         <div className="container-fluid" style={{ paddingTop: '7rem' }}>
@@ -20,25 +21,47 @@ function EmployeeAccount() {
                         <button
                             type="button"
                             className={`list-group-item list-group-item-action ${currentSection === 'employeeDetails' ? 'active' : ''}`}
-                            onClick={() => setCurrentSection('employeeDetails')}
+                            onClick={() => {
+                                setCurrentSection('employeeDetails');
+                                setShowCreateProduct(false);
+                            }}
                         >
                             Employee Details
                         </button>
                         <button
                             type="button"
                             className={`list-group-item list-group-item-action ${currentSection === 'productManagement' ? 'active' : ''}`}
-                            onClick={() => setCurrentSection('productManagement')}
+                            onClick={() => {
+                                setCurrentSection('productManagement');
+                                setShowCreateProduct(false);
+                            }}
                         >
                             Product Management
                         </button>
                         <button
                             type="button"
+                            className={`list-group-item list-group-item-action ${showCreateProduct ? 'active' : ''}`}
+                            onClick={() => setShowCreateProduct(true)}
+                            style={{ fontSize: '0.875rem' }} // Adjust font size here
+                        >
+                            - Create Product
+                        </button>
+                        <button
+                            type="button"
                             className={`list-group-item list-group-item-action ${currentSection === 'liftManagement' ? 'active' : ''}`}
-                            onClick={() => setCurrentSection('liftManagement')}
+                            onClick={() => {
+                                setCurrentSection('liftManagement');
+                                setShowCreateProduct(false);
+                            }}
                         >
                             Lift Management
                         </button>
                     </div>
+                    {showCreateProduct && (
+                        <div className="mt-4 position-relative">
+                            <CreateProduct onClose={() => setShowCreateProduct(false)} />
+                        </div>
+                    )}
                 </div>
                 <div className="col-md-9">
                     {currentSection === 'employeeDetails' && (
