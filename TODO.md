@@ -3,6 +3,10 @@
 ---------------------------
 
 ---------------------------
+* Fix better Weather UI
+---------------------------
+
+---------------------------
 * After start&stop lift in EmployeeAccount/Liftmanagement.jsx the light in navbar doesnt immediately shift. The LiftStatus/SetLiftStatus is unused.
 
 * The same applies for whenever created a new product. It doesnt immediately appear in the list to the right. Fix this also later
