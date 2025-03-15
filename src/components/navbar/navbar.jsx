@@ -1,4 +1,3 @@
-// Navbar.jsx (Wrapper)
 import React, { useState, useEffect } from 'react';
 import NavbarRegular from './regular/navbarregular';
 import NavbarMobile from './mobile/navbarmobile';
