@@ -16,6 +16,7 @@ function EmployeeAccount() {
             <div className="row">
                 <div className="col-md-3">
                     <div className="list-group">
+                        <p className="list-group-item list-group-item-action active">Welcome, {username}!</p>
                         <button
                             type="button"
                             className={`list-group-item list-group-item-action ${currentSection === 'employeeDetails' ? 'active' : ''}`}
