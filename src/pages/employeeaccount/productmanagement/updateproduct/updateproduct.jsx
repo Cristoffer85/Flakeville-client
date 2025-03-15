@@ -1,14 +1,27 @@
-import React, { useState } from 'react';
-import { createProduct } from '../../../../api/productapi/productapi.jsx';
+import React, { useState, useEffect } from 'react';
+import { updateProduct } from '../../../../api/productapi/productapi.jsx';
 import { categories } from '../../../../components/categories/categories.jsx';
 
-function CreateProduct({ onClose }) {
-    const [createProductFormFields, setCreateProductFormFields] = useState({ name: '', description: '', price: '', category: '' });
+function UpdateProduct({ product, onClose }) {
+    const [updateProductFormFields, setUpdateProductFormFields] = useState({ id: '', name: '', description: '', price: '', category: '' });
 
-    const handleCreateProduct = async (event) => {
+    useEffect(() => {
+        setUpdateProductFormFields(product);
+    }, [product]);
+
+    const handleUpdateProduct = async (event) => {
         event.preventDefault();
-        await createProduct(createProductFormFields);
-        setCreateProductFormFields({ name: '', description: '', price: '', category: '' });
+
+        const updatedProduct = {
+            id: updateProductFormFields.id,
+            name: updateProductFormFields.name,
+            description: updateProductFormFields.description,
+            price: updateProductFormFields.price,
+            category: updateProductFormFields.category
+        };
+
+        await updateProduct(product.id, updatedProduct);
+        onClose();
     };
 
     return (
@@ -20,15 +33,15 @@ function CreateProduct({ onClose }) {
                 onClick={onClose}
             ></button>
             <div className="card-body">
-                <h5 className="card-title">Create Product</h5>
-                <form onSubmit={handleCreateProduct}>
+                <h5 className="card-title">Update Product</h5>
+                <form onSubmit={handleUpdateProduct}>
                     <div className="mb-3">
                         {/*<label className="form-label">Product Name:</label>*/}
                         <input
                             type="text"
                             className="form-control"
-                            value={createProductFormFields.name}
-                            onChange={(e) => setCreateProductFormFields({ ...createProductFormFields, name: e.target.value })}
+                            value={updateProductFormFields.name}
+                            onChange={(e) => setUpdateProductFormFields({ ...updateProductFormFields, name: e.target.value })}
                             placeholder="Product Name"
                         />
                     </div>
@@ -37,8 +50,8 @@ function CreateProduct({ onClose }) {
                         <input
                             type="text"
                             className="form-control"
-                            value={createProductFormFields.description}
-                            onChange={(e) => setCreateProductFormFields({ ...createProductFormFields, description: e.target.value })}
+                            value={updateProductFormFields.description}
+                            onChange={(e) => setUpdateProductFormFields({ ...updateProductFormFields, description: e.target.value })}
                             placeholder="Product Description"
                         />
                     </div>
@@ -47,8 +60,8 @@ function CreateProduct({ onClose }) {
                         <input
                             type="text"
                             className="form-control"
-                            value={createProductFormFields.price}
-                            onChange={(e) => setCreateProductFormFields({ ...createProductFormFields, price: e.target.value })}
+                            value={updateProductFormFields.price}
+                            onChange={(e) => setUpdateProductFormFields({ ...updateProductFormFields, price: e.target.value })}
                             placeholder="Product Price"
                         />
                     </div>
@@ -56,8 +69,8 @@ function CreateProduct({ onClose }) {
                         {/*<label className="form-label">Product Category:</label>*/}
                         <select
                             className="form-control"
-                            value={createProductFormFields.category}
-                            onChange={(e) => setCreateProductFormFields({ ...createProductFormFields, category: e.target.value })}
+                            value={updateProductFormFields.category}
+                            onChange={(e) => setUpdateProductFormFields({ ...updateProductFormFields, category: e.target.value })}
                         >
                             <option value="">Select Category</option>
                             {categories.map((category) => (
@@ -67,11 +80,11 @@ function CreateProduct({ onClose }) {
                             ))}
                         </select>
                     </div>
-                    <button type="submit" className="btn btn-primary">Create Product</button>
+                    <button type="submit" className="btn btn-primary">Update Product</button>
                 </form>
             </div>
         </div>
     );
 }
 
-export default CreateProduct;
+export default UpdateProduct;

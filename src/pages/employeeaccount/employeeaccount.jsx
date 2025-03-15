@@ -3,6 +3,7 @@ import EmployeeDetails from './employeedetails/employeedetails.jsx';
 import ProductManagement from './productmanagement/productmanagement.jsx';
 import LiftManagement from './liftmanagement/liftmanagement.jsx';
 import CreateProduct from './productmanagement/createproduct/createproduct.jsx';
+import UpdateProduct from './productmanagement/updateproduct/updateproduct.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import AuthContext from '../../contexts/authcontext/authcontext.jsx';
 
@@ -11,6 +12,14 @@ function EmployeeAccount() {
     const { username } = authState;
     const [currentSection, setCurrentSection] = useState('employeeDetails');
     const [showCreateProduct, setShowCreateProduct] = useState(false);
+    const [showUpdateProduct, setShowUpdateProduct] = useState(false);
+    const [productToEdit, setProductToEdit] = useState(null);
+
+    const handleEditProduct = (product) => {
+        setShowCreateProduct(false);
+        setShowUpdateProduct(true);
+        setProductToEdit(product);
+    };
 
     return (
         <div className="container-fluid" style={{ paddingTop: '7rem' }}>
@@ -24,6 +33,7 @@ function EmployeeAccount() {
                             onClick={() => {
                                 setCurrentSection('employeeDetails');
                                 setShowCreateProduct(false);
+                                setShowUpdateProduct(false);
                             }}
                         >
                             Employee Details
@@ -34,6 +44,7 @@ function EmployeeAccount() {
                             onClick={() => {
                                 setCurrentSection('productManagement');
                                 setShowCreateProduct(false);
+                                setShowUpdateProduct(false);
                             }}
                         >
                             Product Management
@@ -42,7 +53,10 @@ function EmployeeAccount() {
                             <button
                                 type="button"
                                 className={`list-group-item list-group-item-action ${showCreateProduct ? 'active' : ''}`}
-                                onClick={() => setShowCreateProduct(true)}
+                                onClick={() => {
+                                    setShowCreateProduct(true);
+                                    setShowUpdateProduct(false);
+                                }}
                                 style={{ fontSize: '0.875rem' }} // Adjust font size here
                             >
                                 - Create Product
@@ -54,6 +68,7 @@ function EmployeeAccount() {
                             onClick={() => {
                                 setCurrentSection('liftManagement');
                                 setShowCreateProduct(false);
+                                setShowUpdateProduct(false);
                             }}
                         >
                             Lift Management
@@ -62,6 +77,11 @@ function EmployeeAccount() {
                     {showCreateProduct && (
                         <div className="mt-4 position-relative">
                             <CreateProduct onClose={() => setShowCreateProduct(false)} />
+                        </div>
+                    )}
+                    {showUpdateProduct && productToEdit && (
+                        <div className="mt-4 position-relative">
+                            <UpdateProduct product={productToEdit} onClose={() => setShowUpdateProduct(false)} />
                         </div>
                     )}
                 </div>
@@ -76,7 +96,7 @@ function EmployeeAccount() {
                     {currentSection === 'productManagement' && (
                         <div className="card">
                             <div className="card-body">
-                                <ProductManagement />
+                                <ProductManagement onEditProduct={handleEditProduct} />
                             </div>
                         </div>
                     )}
