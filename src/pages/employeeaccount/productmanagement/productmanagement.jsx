@@ -28,7 +28,7 @@ function ProductManagement({ onEditProduct }) {
 
     return (
         <div>
-            <ul className="list-group mb-4" style={{ maxHeight: '400px', overflowY: 'auto' }}>
+            <ul className="list-group mb-4">
                 {products.map((product) => (
                     <li key={product.id} className="list-group-item d-flex justify-content-between align-items-center">
                         {product.name} - {product.price} SEK
