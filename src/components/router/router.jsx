@@ -69,10 +69,10 @@ function PageTitleUpdater({ setPageTitle }) {
     return null;
 }
 
-function AppRouter({ handleLogin, handleLogout, showPopup, setShowPopup, setPageTitle }) {
+function AppRouter({ handleLogin, handleLogout, showPopup, setShowPopup, setPageTitle, unreadMessages, setUnreadMessages }) {
     const { authState } = useContext(AuthContext);
     const { isLoggedIn, role } = authState;
-    const commonProps = { isLoggedIn, handleLogin, handleLogout, showPopup, setShowPopup, role };
+    const commonProps = { isLoggedIn, handleLogin, handleLogout, showPopup, setShowPopup, role, unreadMessages, setUnreadMessages };
 
     return (
         <Router>
@@ -89,7 +89,7 @@ function AppRouter({ handleLogin, handleLogout, showPopup, setShowPopup, setPage
                     <Route path="/cart" element={<Cart {...commonProps} />} />
                     <Route path="/signin" element={<SignInPage {...commonProps} />} />
                     <Route path="/signup" element={<SignUpPage {...commonProps} />} />
-                    <Route path="/chat" element={<ChatPage {...commonProps} />} /> {/* Add the new chat page route */}
+                    <Route path="/chat" element={<ChatPage {...commonProps} />} />
                     <Route path="/not-authorized" element={<NotAuthorized />} />
                     <Route path="*" element={<NotAuthorized />} />
                 </Routes>

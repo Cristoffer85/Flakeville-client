@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import AppRouter from './components/router/router.jsx';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -12,6 +12,7 @@ function App() {
     const [pageTitle, setPageTitle] = useState('Home');
     const [cart, setCart] = useState([]);
     const [lifts, setLifts] = useState([]);
+    const [unreadMessages, setUnreadMessages] = useState(0);
     const { authState, login, logout } = useContext(AuthContext);
 
     return (
@@ -24,8 +25,10 @@ function App() {
                             handleLogin={login} 
                             handleLogout={logout}
                             showPopup={showPopup} 
+                            unreadMessages={unreadMessages}
                             setShowPopup={setShowPopup} 
                             setPageTitle={setPageTitle} 
+                            setUnreadMessages={setUnreadMessages}
                         />
                     </LiftsContext.Provider>
                 </CartContext.Provider>
