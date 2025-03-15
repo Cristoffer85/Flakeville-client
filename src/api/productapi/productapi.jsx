@@ -5,7 +5,12 @@ const getToken = () => {
 };
 
 export const getOneProduct = async (id) => {
-    const response = await fetch(`${config.backendUrl}/products/getOneProduct/${id}`);
+    const token = getToken();
+    const response = await fetch(`${config.backendUrl}/products/getOneProduct/${id}`, {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    });
     if (!response.ok) {
         throw new Error('Failed to fetch product: ' + await response.text());
     }

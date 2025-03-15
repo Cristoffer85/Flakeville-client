@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { getAllProducts, createProduct, getOneProduct, updateProduct, deleteProduct } from '../../../api/productapi/productapi.jsx';
+import { categories } from '../../../components/categories/categories.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function ProductManagement() {
     const [products, setProducts] = useState([]);
     const [createProductFormFields, setCreateProductFormFields] = useState({ name: '', description: '', price: '', category: '' });
-    const [updateProductFormFields, setUpdateProductFormFields] = useState({ Id: '', name: '', description: '', price: '', category: '' });
+    const [updateProductFormFields, setUpdateProductFormFields] = useState({ id: '', name: '', description: '', price: '', category: '' });
     const [selectedProduct, setSelectedProduct] = useState(null);
 
     useEffect(() => {
@@ -19,7 +20,7 @@ function ProductManagement() {
 
     const handleCreateProduct = async (event) => {
         event.preventDefault();
-        await createProduct(createProductFormFields);
+        const createdProduct = await createProduct(createProductFormFields);
         setCreateProductFormFields({ name: '', description: '', price: '', category: '' });
         await fetchProducts();
     };
@@ -27,7 +28,7 @@ function ProductManagement() {
     const handleGetOneProduct = async (id) => {
         const product = await getOneProduct(id);
         setSelectedProduct(product);
-        await fetchProducts();
+        setUpdateProductFormFields(product);
     };
 
     const handleUpdateProduct = async (event) => {
@@ -39,15 +40,15 @@ function ProductManagement() {
         }
 
         const updatedProduct = {
-            Id: updateProductFormFields.Id || selectedProduct.Id,
+            id: updateProductFormFields.id || selectedProduct.id,
             name: updateProductFormFields.name || selectedProduct.name,
             description: updateProductFormFields.description || selectedProduct.description,
             price: updateProductFormFields.price || selectedProduct.price,
             category: updateProductFormFields.category || selectedProduct.category
         };
 
-        await updateProduct(selectedProduct.Id, updatedProduct);
-        setUpdateProductFormFields({ Id: '', name: '', description: '', price: '', category: '' });
+        const result = await updateProduct(selectedProduct.id, updatedProduct);
+        setUpdateProductFormFields({ id: '', name: '', description: '', price: '', category: '' });
         await fetchProducts();
     };
 
@@ -92,23 +93,28 @@ function ProductManagement() {
                 </div>
                 <div className="mb-3">
                     <label className="form-label">Product Category:</label>
-                    <input
-                        type="text"
+                    <select
                         className="form-control"
                         value={createProductFormFields.category}
                         onChange={(e) => setCreateProductFormFields({ ...createProductFormFields, category: e.target.value })}
-                        placeholder="Product Category"
-                    />
+                    >
+                        <option value="">Select Category</option>
+                        {categories.map((category) => (
+                            <option key={category} value={category}>
+                                {category}
+                            </option>
+                        ))}
+                    </select>
                 </div>
                 <button type="submit" className="btn btn-primary">Create Product</button>
             </form>
             <ul className="list-group mb-4">
                 {products.map((product) => (
-                    <li key={product.Id} className="list-group-item d-flex justify-content-between align-items-center">
+                    <li key={product.id} className="list-group-item d-flex justify-content-between align-items-center">
                         {product.name} - ${product.price}
                         <div>
-                            <button onClick={() => handleGetOneProduct(product.Id)} className="btn btn-secondary btn-sm me-2">Edit</button>
-                            <button onClick={() => handleDeleteProduct(product.Id)} className="btn btn-danger btn-sm">Delete</button>
+                            <button onClick={() => handleGetOneProduct(product.id)} className="btn btn-secondary btn-sm me-2">Edit</button>
+                            <button onClick={() => handleDeleteProduct(product.id)} className="btn btn-danger btn-sm">Delete</button>
                         </div>
                     </li>
                 ))}
@@ -147,13 +153,18 @@ function ProductManagement() {
                     </div>
                     <div className="mb-3">
                         <label className="form-label">Product Category:</label>
-                        <input
-                            type="text"
+                        <select
                             className="form-control"
                             value={updateProductFormFields.category}
                             onChange={(e) => setUpdateProductFormFields({ ...updateProductFormFields, category: e.target.value })}
-                            placeholder="Product Category"
-                        />
+                        >
+                            <option value="">Select Category</option>
+                            {categories.map((category) => (
+                                <option key={category} value={category}>
+                                    {category}
+                                </option>
+                            ))}
+                        </select>
                     </div>
                     <button type="submit" className="btn btn-primary">Update Product</button>
                 </form>
