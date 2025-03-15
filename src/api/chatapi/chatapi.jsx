@@ -20,14 +20,18 @@ export const sendMessage = async (msgDto) => {
   }
 };
 
-export const getMessages = async (sender, receiver) => {
+export const getMessages = async (sender, receiver, markAsRead = true) => {
   const token = getToken();
-  const response = await fetch(`${config.backendUrl}/rabbitmq/subscribe/${sender}/${receiver}`, {
-    headers: {
-      'Authorization': `Bearer ${token}`,
-      'X-Username': sender
+  // Pass the flag as a query parameter
+  const response = await fetch(
+    `${config.backendUrl}/rabbitmq/subscribe/${sender}/${receiver}?markAsRead=${markAsRead}`,
+    {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'X-Username': sender
+      }
     }
-  });
+  );
 
   if (!response.ok) {
     throw new Error('Failed to fetch messages: ' + await response.text());

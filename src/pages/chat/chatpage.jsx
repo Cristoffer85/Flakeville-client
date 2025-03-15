@@ -12,77 +12,83 @@ const ChatPage = ({ setUnreadMessages }) => {
     const [selectedUser, setSelectedUser] = useState('');
     const [unreadCounts, setUnreadCounts] = useState({});
     const [unreadSenders, setUnreadSenders] = useState(new Set());
-
+    const [markAsRead, setMarkAsRead] = useState(true);
+  
     useEffect(() => {
-        const fetchUserNames = async () => {
-            try {
-                const data = await getAllUserNames();
-                setUserNames(data);
-            } catch (error) {
-                console.error('Error fetching user names:', error);
-            }
-        };
-
-        const fetchUnreadMessages = async () => {
-            try {
-                const count = await getUnreadMessagesCount(sender, token);
-                const senders = await getUnreadMessagesSenders(sender, token);
-                setUnreadCounts(count);
-                setUnreadSenders(new Set(senders));
-                setUnreadMessages(count); // Update the unread messages count in the navbar
-            } catch (error) {
-                console.error('Error fetching unread messages:', error);
-            }
-        };
-
-        if (sender) {
-            fetchUserNames();
-            fetchUnreadMessages();
+      const fetchUserNames = async () => {
+        try {
+          const data = await getAllUserNames();
+          setUserNames(data);
+        } catch (error) {
+          console.error('Error fetching user names:', error);
         }
+      };
+  
+      const fetchUnreadMessages = async () => {
+        try {
+          const count = await getUnreadMessagesCount(sender, token);
+          const senders = await getUnreadMessagesSenders(sender, token);
+          setUnreadCounts(count);
+          setUnreadSenders(new Set(senders));
+          setUnreadMessages(count);
+        } catch (error) {
+          console.error('Error fetching unread messages:', error);
+        }
+      };
+  
+      if (sender) {
+        fetchUserNames();
+        fetchUnreadMessages();
+      }
     }, [sender, token, setUnreadMessages]);
-
+  
     const handleUserClick = (username) => {
         setSelectedUser(username);
         if (unreadSenders.has(username)) {
-            setUnreadSenders(prev => {
-                const newSet = new Set(prev);
-                newSet.delete(username);
-                return newSet;
-            });
-            setUnreadMessages(prev => prev - 1); // Update the unread messages count in the navbar
+          setMarkAsRead(true);
+          // Remove the clicked sender from the set
+          const newUnreadSenders = new Set(unreadSenders);
+          newUnreadSenders.delete(username);
+          setUnreadSenders(newUnreadSenders);
+          // Update unread count based on the new set size
+          setUnreadMessages(newUnreadSenders.size);
+        } else {
+          setMarkAsRead(false);
         }
-    };
-
+      };
+  
     return (
-        <div className="container-fluid" style={{ paddingTop: '7rem', paddingBottom: '2rem' }}>
-            <div className="row">
-                <div className="col-md-3">
-                    <div className="list-group">
-                        <p className="list-group-item list-group-item-action active">Users</p>
-                        {userNames.filter(user => user.username !== sender).map((user, index) => (
-                            <button
-                                key={index}
-                                className={`list-group-item list-group-item-action ${selectedUser === user.username ? 'active' : ''}`}
-                                onClick={() => handleUserClick(user.username)}
-                            >
-                                {user.username}
-                                {unreadSenders.has(user.username) && <span className="badge bg-danger ms-2">Unread</span>}
-                            </button>
-                        ))}
-                    </div>
-                </div>
-                <div className="col-md-9">
-                    {selectedUser && (
-                        <div className="card">
-                            <div className="card-body">
-                                <Chat receiver={selectedUser} />
-                            </div>
-                        </div>
-                    )}
-                </div>
+      <div className="container-fluid" style={{ paddingTop: '7rem', paddingBottom: '2rem' }}>
+        <div className="row">
+          <div className="col-md-3">
+            <div className="list-group">
+              <p className="list-group-item list-group-item-action active">Users</p>
+              {userNames
+                .filter(user => user.username !== sender)
+                .map((user, index) => (
+                  <button
+                    key={index}
+                    className={`list-group-item list-group-item-action ${selectedUser === user.username ? 'active' : ''}`}
+                    onClick={() => handleUserClick(user.username)}
+                  >
+                    {user.username}
+                    {unreadSenders.has(user.username) && <span className="badge bg-danger ms-2">Unread</span>}
+                  </button>
+                ))}
             </div>
+          </div>
+          <div className="col-md-9">
+            {selectedUser && (
+              <div className="card">
+                <div className="card-body">
+                  <Chat receiver={selectedUser} markAsRead={markAsRead} />
+                </div>
+              </div>
+            )}
+          </div>
         </div>
+      </div>
     );
-};
-
-export default ChatPage;
+  };
+  
+  export default ChatPage;  
