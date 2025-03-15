@@ -28,10 +28,10 @@ function ProductManagement({ onEditProduct }) {
 
     return (
         <div>
-            <ul className="list-group mb-4">
+            <ul className="list-group mb-4" style={{ maxHeight: '400px', overflowY: 'auto' }}>
                 {products.map((product) => (
                     <li key={product.id} className="list-group-item d-flex justify-content-between align-items-center">
-                        {product.name} - ${product.price}
+                        {product.name} - {product.price} SEK
                         <div>
                             <button onClick={() => handleGetOneProduct(product.id)} className="btn btn-secondary btn-sm me-2">Edit</button>
                             <button onClick={() => handleDeleteProduct(product.id)} className="btn btn-danger btn-sm">Delete</button>
