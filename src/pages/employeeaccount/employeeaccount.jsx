@@ -38,14 +38,16 @@ function EmployeeAccount() {
                         >
                             Product Management
                         </button>
-                        <button
-                            type="button"
-                            className={`list-group-item list-group-item-action ${showCreateProduct ? 'active' : ''}`}
-                            onClick={() => setShowCreateProduct(true)}
-                            style={{ fontSize: '0.875rem' }} // Adjust font size here
-                        >
-                            - Create Product
-                        </button>
+                        {currentSection === 'productManagement' && (
+                            <button
+                                type="button"
+                                className={`list-group-item list-group-item-action ${showCreateProduct ? 'active' : ''}`}
+                                onClick={() => setShowCreateProduct(true)}
+                                style={{ fontSize: '0.875rem' }} // Adjust font size here
+                            >
+                                - Create Product
+                            </button>
+                        )}
                         <button
                             type="button"
                             className={`list-group-item list-group-item-action ${currentSection === 'liftManagement' ? 'active' : ''}`}
