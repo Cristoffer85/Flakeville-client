@@ -8,11 +8,10 @@ body {
   background-image: url('/mainbackground.jpg');
   background-repeat: no-repeat;
   background-size: cover;
+  background-attachment: fixed; /* This fixes the background relative to the viewport */
   margin: 0;
   min-width: 250px;
   min-height: 100vh;
-  max-height: 100vh; 
-  overflow: hidden;
 }
 
 @media (max-width: 768px) {
