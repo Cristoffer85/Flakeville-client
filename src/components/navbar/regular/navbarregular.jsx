@@ -113,7 +113,7 @@ function NavbarRegular({ handleLogout }) {
                     src={accountLogo}
                     alt="Account"
                     onClick={handleAccountLogoClick}
-                    style={{ width: '3rem', height: '3rem', cursor: 'pointer' }}
+                    style={{ width: '3.7rem', height: '3.7rem', cursor: 'pointer' }}
                     className="nav-link"
                   />
                 </li>
@@ -124,7 +124,7 @@ function NavbarRegular({ handleLogout }) {
                   src={accountLogo}
                   alt="Account"
                   onClick={handleAccountLogoClick}
-                  style={{ width: '3rem', height: '3rem', cursor: 'pointer' }}
+                  style={{ width: '3.7rem', height: '3.7rem', cursor: 'pointer' }}
                   className="nav-link"
                 />
               </li>
