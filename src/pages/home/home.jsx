@@ -1,20 +1,11 @@
-import React, { useContext, useEffect } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import LiftsContext from '../../contexts/liftscontext/liftscontext.jsx';
-import { fetchLifts } from '../../api/homeapi/homeapi.jsx';
 import Footer from '../../components/footer/footer.jsx';
 import skiliftLogo from '../../assets/skiliftlogo.png';
 import weatherLogo from '../../assets/weatherlogo.png'; // Import the weather logo
 
 function Home() {
-  const { lifts, setLifts } = useContext(LiftsContext);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    fetchLifts()
-      .then((data) => setLifts(data))
-      .catch((error) => console.error('Error fetching lifts:', error));
-  }, [setLifts]);
 
   const handleLiftLogoClick = () => {
     navigate('/liftinfo');
