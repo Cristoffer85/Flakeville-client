@@ -1,4 +1,3 @@
-// NavbarRegular.jsx
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -26,7 +25,10 @@ function NavbarRegular({ handleLogout }) {
   } = useNavbarLogic(handleLogout);
 
   return (
-    <nav className="navbar navbar-expand-md fixed-top navbar-dark">
+    <nav
+      className="navbar navbar-expand-md fixed-top navbar-dark"
+      style={{ background: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(255, 255, 255, 0))' }}
+    >
       <div className="container-fluid position-relative">
         {/* Main Logo - Always show */}
         <Link className="navbar-brand" to="/">
@@ -140,7 +142,6 @@ function NavbarRegular({ handleLogout }) {
                   Sign In
                 </button>
               </li>
-
             )}
             {/* Snowfall effect  - always show */}
             <li className="nav-item">
