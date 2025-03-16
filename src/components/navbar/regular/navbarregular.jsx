@@ -71,6 +71,7 @@ function NavbarRegular({ handleLogout }) {
                     src={shoppingCartLogo}
                     alt="Shopping Cart"
                     style={{ width: '2.2rem', height: '2.2rem' }}
+                    title="Shopping Cart"
                   />
                   {totalItems > 0 && (
                     <span className="badge bg-danger" style={{ fontSize: '0.8rem' }}>
@@ -100,6 +101,7 @@ function NavbarRegular({ handleLogout }) {
                       src={chatLogo}
                       alt="Chat"
                       style={{ width: '2.2rem', height: '2.2rem' }}
+                      title="Chat"
                     />
                     {unreadMessages > 0 && (
                       <span className="badge bg-danger" style={{ fontSize: '0.7rem' }}>
@@ -115,6 +117,7 @@ function NavbarRegular({ handleLogout }) {
                     onClick={handleAccountLogoClick}
                     style={{ width: '3.7rem', height: '3.7rem', cursor: 'pointer' }}
                     className="nav-link"
+                    title='Account'
                   />
                 </li>
               </>
@@ -126,6 +129,7 @@ function NavbarRegular({ handleLogout }) {
                   onClick={handleAccountLogoClick}
                   style={{ width: '3.7rem', height: '3.7rem', cursor: 'pointer' }}
                   className="nav-link"
+                  title='Account'
                 />
               </li>
             )}
