@@ -6,7 +6,7 @@ import Chat from '../../components/chat/chat.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import AuthContext from '../../contexts/authcontext/authcontext.jsx';
 
-function AdminAccount() {
+function AdminAccount({ handleLogout }) {
     const { authState } = useContext(AuthContext);
     const { username, token } = authState;
     const [currentSection, setCurrentSection] = useState('userManagement');
@@ -49,6 +49,21 @@ function AdminAccount() {
                             onClick={() => setCurrentSection('userManagement')}
                         >
                             User Management
+                        </button>
+                    </div>
+                    <div className="list-group mt-3">
+                        <button
+                            type="button"
+                            className="list-group-item list-group-item-action"
+                            onClick={handleLogout}
+                            style={{
+                                backgroundColor: 'darkgrey',
+                                color: 'white',
+                                borderRadius: '5px',
+                                padding: '0.5rem 1rem',
+                            }}
+                        >
+                            Sign Out
                         </button>
                     </div>
                 </div>

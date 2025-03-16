@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import logo from '../../../assets/mainlogo.png';
 import accountLogo from '../../../assets/accountlogo.png';
@@ -11,6 +11,7 @@ import SnowfallEffect from '../../snowfalleffect/snowfalleffect.jsx';
 import useNavbarLogic from '../../../hooks/usenavbarlogic.jsx';
 
 function NavbarRegular({ handleLogout }) {
+  const navigate = useNavigate();
   const {
     isLoggedIn,
     totalItems,
@@ -18,16 +19,22 @@ function NavbarRegular({ handleLogout }) {
     isSnowing,
     snowKey,
     unreadMessages,
-    handleSignInClick,
-    handleSignOutClick,
     handleAccountClick,
     handleStartSnow,
   } = useNavbarLogic(handleLogout);
 
+  const handleAccountLogoClick = () => {
+    if (!isLoggedIn) {
+      navigate('/signin');
+    } else {
+      handleAccountClick();
+    }
+  };
+
   return (
     <nav
       className="navbar navbar-expand-md fixed-top navbar-dark"
-      style={{ background: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(255, 255, 255, 0))' }}
+      style={{ background: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.0))' }}
     >
       <div className="container-fluid position-relative">
         {/* Main Logo - Always show */}
@@ -40,40 +47,40 @@ function NavbarRegular({ handleLogout }) {
           />
         </Link>
 
-          {/* LEFT Icons + Links */}
-          <div className="collapse navbar-collapse show">
-            <ul
-              className="navbar-nav me-auto mb-2 mb-md-0 align-items-center"
-              style={{ fontSize: '1.3rem', fontWeight: '600' }}
-            >
-              {/* Weather */}
-              <li className="nav-item" style={{ marginRight: '-0.5rem' }}>
-                <Link className="nav-link" to="/weather" style={{ color: 'white' }}>
-                  WEATHER
-                </Link>
-              </li>
-              {/* Store */}
-              <li className="nav-item" style={{ marginRight: '-0.5rem' }}>
-                <Link className="nav-link" to="/store" style={{ color: 'white' }}>
-                  STORE
-                </Link>
-              </li>
-              {/* Shopping Cart */}
-              <li className="nav-item position-relative" style={{ marginRight: '-0.5rem' }}>
-                <Link className="nav-link" to="/cart">
-                  <img
-                    src={shoppingCartLogo}
-                    alt="Shopping Cart"
-                    style={{ width: '2.2rem', height: '2.2rem' }}
-                  />
-                  {totalItems > 0 && (
-                    <span className="badge bg-danger" style={{ fontSize: '0.8rem' }}>
-                      {totalItems}
-                    </span>
-                  )}
-                </Link>
-              </li>
-            </ul>
+        {/* LEFT Icons + Links */}
+        <div className="collapse navbar-collapse show">
+          <ul
+            className="navbar-nav me-auto mb-2 mb-md-0 align-items-center"
+            style={{ fontSize: '1.3rem', fontWeight: '600' }}
+          >
+            {/* Weather */}
+            <li className="nav-item" style={{ marginRight: '-0.5rem' }}>
+              <Link className="nav-link" to="/weather" style={{ color: 'white' }}>
+                WEATHER
+              </Link>
+            </li>
+            {/* Store */}
+            <li className="nav-item" style={{ marginRight: '-0.5rem' }}>
+              <Link className="nav-link" to="/store" style={{ color: 'white' }}>
+                STORE
+              </Link>
+            </li>
+            {/* Shopping Cart */}
+            <li className="nav-item position-relative" style={{ marginRight: '-0.5rem' }}>
+              <Link className="nav-link" to="/cart">
+                <img
+                  src={shoppingCartLogo}
+                  alt="Shopping Cart"
+                  style={{ width: '2.2rem', height: '2.2rem' }}
+                />
+                {totalItems > 0 && (
+                  <span className="badge bg-danger" style={{ fontSize: '0.8rem' }}>
+                    {totalItems}
+                  </span>
+                )}
+              </Link>
+            </li>
+          </ul>
 
           {/* CENTER - Page Title */}
           <span
@@ -103,44 +110,24 @@ function NavbarRegular({ handleLogout }) {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <button
-                    onClick={handleSignOutClick}
-                    className="btn btn-link nav-link"
-                    style={{
-                      backgroundColor: 'darkgrey',
-                      color: 'white',
-                      borderRadius: '5px',
-                      padding: '0.1rem 1.3rem',
-                    }}
-                  >
-                    Sign Out
-                  </button>
-                </li>
-                <li className="nav-item">
                   <img
                     src={accountLogo}
                     alt="Account"
-                    onClick={handleAccountClick}
+                    onClick={handleAccountLogoClick}
                     style={{ width: '3rem', height: '3rem', cursor: 'pointer' }}
                     className="nav-link"
                   />
                 </li>
               </>
             ) : (
-              // Sign In button - only show when not logged in
               <li className="nav-item">
-                <button
-                  onClick={handleSignInClick}
-                  className="btn btn-link nav-link"
-                  style={{
-                    backgroundColor: 'darkgrey',
-                    color: 'white',
-                    borderRadius: '5px',
-                    padding: '0.1rem 1.3rem',
-                  }}
-                >
-                  Sign In
-                </button>
+                <img
+                  src={accountLogo}
+                  alt="Account"
+                  onClick={handleAccountLogoClick}
+                  style={{ width: '3rem', height: '3rem', cursor: 'pointer' }}
+                  className="nav-link"
+                />
               </li>
             )}
             {/* Snowfall effect  - always show */}

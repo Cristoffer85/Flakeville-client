@@ -7,7 +7,7 @@ import UpdateProduct from './productmanagement/updateproduct/updateproduct.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import AuthContext from '../../contexts/authcontext/authcontext.jsx';
 
-function EmployeeAccount() {
+function EmployeeAccount({ handleLogout }) {
     const { authState } = useContext(AuthContext);
     const { username } = authState;
     const [currentSection, setCurrentSection] = useState('employeeDetails');
@@ -72,6 +72,21 @@ function EmployeeAccount() {
                             }}
                         >
                             Lift Management
+                        </button>
+                    </div>
+                    <div className="list-group mt-3">
+                        <button
+                            type="button"
+                            className="list-group-item list-group-item-action"
+                            onClick={handleLogout}
+                            style={{
+                                backgroundColor: 'darkgrey',
+                                color: 'white',
+                                borderRadius: '5px',
+                                padding: '0.5rem 1rem',
+                            }}
+                        >
+                            Sign Out
                         </button>
                     </div>
                     {showCreateProduct && (
