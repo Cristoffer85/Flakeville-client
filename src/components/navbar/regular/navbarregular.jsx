@@ -26,7 +26,7 @@ function NavbarRegular({ handleLogout }) {
   } = useNavbarLogic(handleLogout);
 
   return (
-    <nav className="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
+    <nav className="navbar navbar-expand-md fixed-top navbar-dark">
       <div className="container-fluid position-relative">
         {/* Main Logo - Always show */}
         <Link className="navbar-brand" to="/">
