@@ -25,7 +25,7 @@ function Home() {
     <>
       {/* Main Content Container with no horizontal padding */}
       <div className="container-fluid px-0" style={{ paddingTop: '7rem' }}>
-        <div className="row">
+        <div className="row gx-0">
           {/* Sidebar Column */}
           <div className="col-md-2 col-3 mb-3 mb-md-0">
             <div className="p-3 sticky-top" style={{ top: '7rem' }}>
@@ -50,8 +50,6 @@ function Home() {
 
           {/* Main Content Column */}
           <div className="col-md-8 col-12">
-
-          
             {/* Section 1: Title and Text Shifted Higher Up */}
             <div
               className="d-flex flex-column align-items-center text-center"
@@ -59,10 +57,9 @@ function Home() {
             >
               <h1 className="display-4">Welcome to Flakeville</h1>
               <p className="lead">
-                Probably your best vacation experience for both powder, relaxation while staying connected to your skiing friends.
+                Probably your best vacation experience for both powder, relaxation while staying connected to your skiing buddies.
               </p>
             </div>
-
 
             {/* Section 2: Videos Centered */}
             <div className="d-flex flex-column align-items-center justify-content-center vh-100 bg-light" style={{ marginTop: '19rem' }}>
@@ -81,9 +78,8 @@ function Home() {
               </div>
             </div>
 
-
             {/* Section 3: Random Content */}
-            <div className="d-flex flex-column align-items-center justify-content-center vh-100 bg-secondary text-white" style={{ marginTop: '19rem', marginBottom: '6rem' }}>
+            <div className="d-flex flex-column align-items-center justify-content-center vh-100 bg-secondary" style={{ color: 'white', marginTop: '19rem', marginBottom: '6rem' }}>
               <div className="w-100">
                 <h2 className="text-center mb-4">Random Content</h2>
                 <p className="text-center">
@@ -91,14 +87,12 @@ function Home() {
                 </p>
               </div>
             </div>
-
-
           </div>
         </div>
       </div>
 
       {/* Footer placed outside the container-fluid to stretch full width */}
-      <footer className="bg-secondary w-100">
+      <footer className="w-100" style={{ backgroundColor: '#343a40', margin: '0' }}>
         <Footer />
       </footer>
     </>
