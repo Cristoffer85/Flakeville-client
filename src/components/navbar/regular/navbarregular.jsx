@@ -151,6 +151,7 @@ function NavbarRegular({ handleLogout }) {
                 onClick={handleStartSnow}
                 style={{ width: '3rem', height: '3rem', cursor: 'pointer' }}
                 className="nav-link"
+                title="Click me for some magic!"
               />
             </li>
           </ul>
