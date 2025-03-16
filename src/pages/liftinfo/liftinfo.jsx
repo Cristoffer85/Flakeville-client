@@ -13,19 +13,23 @@ function LiftInfo() {
   }, [setLifts]);
 
   return (
-    <div className="container mt-5">
-      <h1>Lift Information</h1>
-      <ul className="list-group">
+    <div className="container mt-5" style={{ paddingTop: '7rem' }}>
+      <h1 className="mb-4">Lift Information</h1>
+      <div className="row">
         {lifts.map((lift) => (
-          <div key={lift.id} className="lift-container d-flex justify-content-between align-items-center">
-            <div>
-              <h3 className="mb-0">Lift {lift.id}</h3>
-              <p className="mb-0 text">{lift.description}</p>
+          <div key={lift.id} className="col-md-6 mb-4">
+            <div className="card lift-card">
+              <div className="card-body d-flex justify-content-between align-items-center">
+                <div>
+                  <h3 className="card-title mb-0">Lift {lift.id}</h3>
+                  <p className="card-text">{lift.description}</p>
+                </div>
+                <div className={`status-indicator ${lift.operating ? 'bg-success' : 'bg-danger'}`}></div>
+              </div>
             </div>
-            <div className={`sidebar-status-light ${lift.operating ? 'green' : 'red'}`}></div>
           </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }
