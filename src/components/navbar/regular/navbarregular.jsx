@@ -37,50 +37,49 @@ function NavbarRegular({ handleLogout }) {
       style={{ background: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.0))' }}
     >
       <div className="container-fluid position-relative">
-        {/* Main Logo - Always show */}
-        <Link className="navbar-brand" to="/">
-          <img
-            src={logo}
-            alt="Logo"
-            style={{ width: '3.5rem', height: '3.5rem', marginRight: '-0.8rem' }}
-            title="Flakeville home"
-          />
-        </Link>
-
         {/* LEFT Icons + Links */}
         <div className="collapse navbar-collapse show">
-          <ul
-            className="navbar-nav me-auto mb-2 mb-md-0 align-items-center"
-            style={{ fontSize: '1.3rem', fontWeight: '600' }}
-          >
-            {/* Weather */}
-            <li className="nav-item" style={{ marginRight: '-0.5rem' }}>
-              <Link className="nav-link" to="/weather" style={{ color: 'white' }}>
-                WEATHER
-              </Link>
-            </li>
-            {/* Store */}
-            <li className="nav-item" style={{ marginRight: '-0.5rem' }}>
-              <Link className="nav-link" to="/store" style={{ color: 'white' }}>
-                STORE
-              </Link>
-            </li>
-            {/* Shopping Cart */}
-            <li className="nav-item position-relative" style={{ marginRight: '-0.5rem' }}>
-              <Link className="nav-link" to="/cart">
-                <img
-                  src={shoppingCartLogo}
-                  alt="Shopping Cart"
-                  style={{ width: '2.2rem', height: '2.2rem' }}
-                />
-                {totalItems > 0 && (
-                  <span className="badge bg-danger" style={{ fontSize: '0.8rem' }}>
-                    {totalItems}
-                  </span>
-                )}
-              </Link>
-            </li>
-          </ul>
+            {/* Main Logo */}
+            <Link className="navbar-brand" to="/">
+              <img
+                src={logo}
+                alt="Logo"
+                style={{ width: '3.5rem', height: '3.5rem', marginRight: '-0.8rem' }}
+                title="Flakeville home"
+              />
+            </Link>
+            <ul
+              className="navbar-nav me-auto mb-2 mb-md-0 align-items-center"
+              style={{ fontSize: '1.3rem', fontWeight: '600' }}
+            >
+              {/* Weather */}
+              <li className="nav-item" style={{ marginRight: '-0.5rem' }}>
+                <Link className="nav-link" to="/weather" style={{ color: 'white' }}>
+                  WEATHER
+                </Link>
+              </li>
+              {/* Store */}
+              <li className="nav-item" style={{ marginRight: '-0.5rem' }}>
+                <Link className="nav-link" to="/store" style={{ color: 'white' }}>
+                  STORE
+                </Link>
+              </li>
+              {/* Shopping Cart */}
+              <li className="nav-item position-relative" style={{ marginRight: '-0.5rem' }}>
+                <Link className="nav-link" to="/cart">
+                  <img
+                    src={shoppingCartLogo}
+                    alt="Shopping Cart"
+                    style={{ width: '2.2rem', height: '2.2rem' }}
+                  />
+                  {totalItems > 0 && (
+                    <span className="badge bg-danger" style={{ fontSize: '0.8rem' }}>
+                      {totalItems}
+                    </span>
+                  )}
+                </Link>
+              </li>
+            </ul>
 
           {/* CENTER - Page Title */}
           <span
