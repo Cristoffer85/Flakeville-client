@@ -39,7 +39,6 @@ function Home() {
           <p></p>
         </div>
       </div>
-      <Footer />
     </div>
   );
 }
