@@ -1,6 +1,5 @@
-// NavbarMobile.jsx
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import logo from '../../../assets/mainlogo.png';
 import accountLogo from '../../../assets/accountlogo.png';
@@ -14,14 +13,13 @@ import SnowfallEffect from '../../snowfalleffect/snowfalleffect.jsx';
 import useNavbarLogic from '../../../hooks/usenavbarlogic.jsx';
 
 function NavbarMobile({ handleLogout }) {
+  const navigate = useNavigate();
   const {
     isLoggedIn,
     totalItems,
     isSnowing,
     snowKey,
     unreadMessages,
-    handleSignInClick,
-    handleSignOutClick,
     handleAccountClick,
     handleStartSnow,
   } = useNavbarLogic(handleLogout);
@@ -29,10 +27,18 @@ function NavbarMobile({ handleLogout }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
+  const handleAccountLogoClick = () => {
+    if (!isLoggedIn) {
+      navigate('/signin');
+    } else {
+      handleAccountClick();
+    }
+  };
+
   return (
     <nav className={`navbar navbar-expand-md fixed-top navbar-dark bg-dark ${menuOpen ? 'menu-open' : ''}`}>
       <div className="container-fluid d-flex justify-content-between align-items-center">
-        {/* Logo - Always show wether logged in or not */}
+        {/* Logo - Always show */}
         <Link className="navbar-brand" to="/">
           <img
             src={logo}
@@ -43,58 +49,43 @@ function NavbarMobile({ handleLogout }) {
         </Link>
 
         <div className="d-flex align-items-center">
-          {/* Chat and Account icons - only show when logged in */}
-          {isLoggedIn ? (
-              <>
-                  <Link className="nav-link" to="/chat" style={{ marginRight: '0.8rem' }}>
-                      <img
-                          src={chatLogo}
-                          alt="Chat"
-                          style={{ width: '2.2rem', height: '2.2rem' }}
-                      />
-                      {unreadMessages > 0 && (
-                          <span className="badge bg-danger" style={{ fontSize: '0.7rem' }}>
-                              !
-                          </span>
-                      )}
-                  </Link>
-                  <img
-                      src={accountLogo}
-                      alt="Account"
-                      onClick={handleAccountClick}
-                      style={{ width: '3rem', height: '3rem', cursor: 'pointer', marginRight: '0.8rem' }}
-                      className="nav-link"
-                  />
-              </>
-          ) : (
-          // Sign In button - only show when not logged in
-              <button
-                  onClick={handleSignInClick}
-                  className="btn btn-link nav-link"
-                  style={{
-                      backgroundColor: 'darkgrey',
-                      color: 'white',
-                      borderRadius: '5px',
-                      padding: '0.1rem 1.3rem',
-                      marginRight: '0.8rem'
-                  }}
-              >
-                  Sign In
-              </button>
+          {/* Chat icon - only show when logged in */}
+          {isLoggedIn && (
+            <Link className="nav-link" to="/chat" style={{ marginRight: '0.8rem' }}>
+              <img
+                src={chatLogo}
+                alt="Chat"
+                style={{ width: '2.2rem', height: '2.2rem' }}
+              />
+              {unreadMessages > 0 && (
+                <span className="badge bg-danger" style={{ fontSize: '0.7rem' }}>
+                  !
+                </span>
+              )}
+            </Link>
           )}
 
-          {/* Menu toggler - Always show whether logged in or not */}
+          {/* Account logo - Always show */}
+          <img
+            src={accountLogo}
+            alt="Account"
+            onClick={handleAccountLogoClick}
+            style={{ width: '3rem', height: '3rem', cursor: 'pointer', marginRight: '0.8rem' }}
+            className="nav-link"
+          />
+
+          {/* Menu toggler - Always show */}
           <button
-              className="navbar-toggler"
-              type="button"
-              onClick={toggleMenu}
-              aria-label="Toggle navigation"
+            className="navbar-toggler"
+            type="button"
+            onClick={toggleMenu}
+            aria-label="Toggle navigation"
           >
-              <img
-                  src={menuOpen ? menuCloseIcon : menuOpenIcon}
-                  alt="Toggle menu"
-                  style={{ width: '2.2rem', height: '2.2rem' }}
-              />
+            <img
+              src={menuOpen ? menuCloseIcon : menuOpenIcon}
+              alt="Toggle menu"
+              style={{ width: '2.2rem', height: '2.2rem' }}
+            />
           </button>
         </div>
       </div>
@@ -132,38 +123,21 @@ function NavbarMobile({ handleLogout }) {
               )}
             </Link>
           </li>
-          {/* Snowfall effect */}      
+          {/* Snowfall effect */}
           <li className="nav-item d-flex align-items-center" style={{ marginRight: '-0.5rem' }}>
-              <div className="nav-link d-flex align-items-center" onClick={handleStartSnow} style={{ cursor: 'pointer' }}>
-                  <span style={{ marginRight: '0.5rem' }}>SNOWFALL EFFECT</span>
-                  <img
-                      src={snowflakeImg}
-                      alt="Snowfall effect"
-                      style={{ width: '2rem', height: '2rem' }}
-                  />
-              </div>
+            <div
+              className="nav-link d-flex align-items-center"
+              onClick={handleStartSnow}
+              style={{ cursor: 'pointer' }}
+            >
+              <span style={{ marginRight: '0.5rem' }}>SNOWFALL EFFECT</span>
+              <img
+                src={snowflakeImg}
+                alt="Snowfall effect"
+                style={{ width: '2rem', height: '2rem' }}
+              />
+            </div>
           </li>
-        </ul>
-        
-        {/* Sign Out button - only show when logged in */}
-        <ul className="navbar-nav d-flex justify-content-center w-100" style={{ marginTop: '1rem' }}>
-            {isLoggedIn && (
-                <li className="nav-item">
-                    <button
-                        onClick={handleSignOutClick}
-                        className="btn btn-link nav-link"
-                        style={{
-                            backgroundColor: 'darkgrey',
-                            color: 'white',
-                            borderRadius: '5px',
-                            padding: '0.1rem 1.3rem',
-                            margin: '0 auto'
-                        }}
-                    >
-                        Sign Out
-                    </button>
-                </li>
-            )}
         </ul>
       </div>
 
