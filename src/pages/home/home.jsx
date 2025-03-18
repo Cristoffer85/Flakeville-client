@@ -50,16 +50,24 @@ function Home() {
 
           {/* Main Content Column */}
           <div className="col-md-8 col-12">
+
+
             {/* Section 1: Title and Text Shifted Higher Up */}
             <div
               className="d-flex flex-column align-items-center text-center"
-              style={{ minHeight: '50vh', paddingTop: '9rem' }}
+              style={{
+                minHeight: '50vh',
+                paddingTop: '9rem',
+                color: 'white',
+                textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)', // Add shadow for better readability
+              }}
             >
               <h1 className="display-4">Welcome to Flakeville</h1>
               <p className="lead">
                 Probably your best vacation experience for both powder, relaxation while staying connected to your skiing buddies.
               </p>
             </div>
+
 
             {/* Section 2: Videos Centered */}
             <div className="d-flex flex-column align-items-center justify-content-center vh-100 bg-light" style={{ marginTop: '19rem' }}>
@@ -78,6 +86,7 @@ function Home() {
               </div>
             </div>
 
+
             {/* Section 3: Random Content */}
             <div className="d-flex flex-column align-items-center justify-content-center vh-100 bg-secondary" style={{ color: 'white', marginTop: '19rem', marginBottom: '6rem' }}>
               <div className="w-100">
@@ -90,6 +99,7 @@ function Home() {
           </div>
         </div>
       </div>
+
 
       {/* Footer placed outside the container-fluid to stretch full width */}
       <footer className="w-100" style={{ backgroundColor: '#343a40', margin: '0' }}>

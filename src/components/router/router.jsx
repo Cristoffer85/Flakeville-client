@@ -65,7 +65,7 @@ function PageTitleUpdater({ setPageTitle }) {
                 pageTitle = 'LIFT INFORMATION';
                 break;
             default:
-                pageTitle = 'FLAKEVILLE HOME';
+                pageTitle = '';
         }
         setPageTitle(pageTitle);
     }, [location, setPageTitle]);
