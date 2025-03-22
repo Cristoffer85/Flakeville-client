@@ -1,15 +1,14 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, forwardRef, useImperativeHandle } from 'react';
 import { getBudget, addField, deleteField } from '../../../api/budgetapi/budgetapi.jsx';
 import AuthContext from '../../../contexts/authcontext/authcontext.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-function BudgetSection({ username }) {
+const BudgetSection = forwardRef(({ username }, ref) => {
     const { authState } = useContext(AuthContext);
     const { token } = authState;
 
     const [budget, setBudget] = useState({});
     const [editingField, setEditingField] = useState(null);
-    const [editedFieldName, setEditedFieldName] = useState('');
     const [editedFieldValue, setEditedFieldValue] = useState('');
 
     useEffect(() => {
@@ -28,7 +27,13 @@ function BudgetSection({ username }) {
     const handleAddField = async (fieldName, fieldValue) => {
         try {
             await addField(username, fieldName, parseFloat(fieldValue), token);
-            fetchBudget(); // Refresh budget
+            setBudget((prevBudget) => ({
+                ...prevBudget,
+                fields: {
+                    ...prevBudget.fields,
+                    [fieldName]: parseFloat(fieldValue),
+                },
+            }));
         } catch (error) {
             console.error('Failed to add field:', error);
         }
@@ -37,7 +42,11 @@ function BudgetSection({ username }) {
     const handleDeleteField = async (fieldName) => {
         try {
             await deleteField(username, fieldName, token);
-            fetchBudget(); // Refresh budget
+            setBudget((prevBudget) => {
+                const updatedFields = { ...prevBudget.fields };
+                delete updatedFields[fieldName];
+                return { ...prevBudget, fields: updatedFields };
+            });
         } catch (error) {
             console.error('Failed to delete field:', error);
         }
@@ -45,32 +54,31 @@ function BudgetSection({ username }) {
 
     const handleEditField = (fieldName, value) => {
         setEditingField(fieldName);
-        setEditedFieldName(fieldName);
         setEditedFieldValue(value);
     };
 
     const handleSaveEdit = async () => {
         try {
-            // Update the field directly without deleting and re-adding
-            const updatedFields = { ...budget.fields, [editedFieldName]: parseFloat(editedFieldValue) };
+            const updatedFields = { ...budget.fields, [editingField]: parseFloat(editedFieldValue) };
             setBudget((prevBudget) => ({
                 ...prevBudget,
                 fields: updatedFields,
             }));
 
-            // Persist the changes to the server
-            await addField(username, editedFieldName, parseFloat(editedFieldValue), token);
-
+            await addField(username, editingField, parseFloat(editedFieldValue), token);
             setEditingField(null);
         } catch (error) {
             console.error('Failed to save edited field:', error);
         }
     };
 
-    // Calculate the total value of all fields
     const calculateTotalValue = () => {
         return Object.values(budget.fields || {}).reduce((total, value) => total + value, 0);
     };
+
+    useImperativeHandle(ref, () => ({
+        handleAddField,
+    }));
 
     return (
         <div className="container">
@@ -89,14 +97,7 @@ function BudgetSection({ username }) {
                             <tr key={fieldName}>
                                 {editingField === fieldName ? (
                                     <>
-                                        <td>
-                                            <input
-                                                type="text"
-                                                className="form-control"
-                                                value={editedFieldName}
-                                                onChange={(e) => setEditedFieldName(e.target.value)}
-                                            />
-                                        </td>
+                                        <td>{fieldName}</td> {/* Field name is no longer editable */}
                                         <td>
                                             <input
                                                 type="number"
@@ -142,7 +143,6 @@ function BudgetSection({ username }) {
                                 )}
                             </tr>
                         ))}
-                    {/* Add a row for the total value */}
                     <tr>
                         <td><strong>Total</strong></td>
                         <td><strong>{calculateTotalValue()}</strong></td>
@@ -152,6 +152,6 @@ function BudgetSection({ username }) {
             </table>
         </div>
     );
-}
+});
 
 export default BudgetSection;

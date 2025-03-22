@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useRef } from 'react';
 import UserDetails from './userdetails/userdetails.jsx';
 import PreviousOrders from './previousorders/previousorders.jsx';
 import BudgetSection from './budgetsection/budgetsection.jsx';
@@ -13,6 +13,9 @@ function UserAccount({ handleLogout }) {
     const [currentSection, setCurrentSection] = useState('userDetails');
     const [userDetails, setUserDetails] = useState({});
     const [showCreateField, setShowCreateField] = useState(false);
+
+    // Reference to BudgetSection's handleAddField function
+    const budgetSectionRef = useRef();
 
     useEffect(() => {
         const fetchUserDetails = async () => {
@@ -96,7 +99,10 @@ function UserAccount({ handleLogout }) {
                             <CreateFieldModal
                                 onClose={() => setShowCreateField(false)}
                                 onCreate={(fieldName, fieldValue) => {
-                                    // Pass the create logic to BudgetSection
+                                    // Call BudgetSection's handleAddField function
+                                    if (budgetSectionRef.current) {
+                                        budgetSectionRef.current(fieldName, fieldValue);
+                                    }
                                     setShowCreateField(false);
                                 }}
                             />
@@ -123,7 +129,10 @@ function UserAccount({ handleLogout }) {
                     {currentSection === 'budget' && (
                         <div className="card">
                             <div className="card-body">
-                                <BudgetSection username={username} />
+                                <BudgetSection
+                                    username={username}
+                                    ref={(ref) => (budgetSectionRef.current = ref?.handleAddField)}
+                                />
                             </div>
                         </div>
                     )}
