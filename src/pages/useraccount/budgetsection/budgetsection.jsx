@@ -144,7 +144,7 @@ function BudgetSection({ username }) {
                         ))}
                     {/* Add a row for the total value */}
                     <tr>
-                        <td><strong>Bills - total</strong></td>
+                        <td><strong>Total</strong></td>
                         <td><strong>{calculateTotalValue()}</strong></td>
                         <td></td>
                     </tr>
